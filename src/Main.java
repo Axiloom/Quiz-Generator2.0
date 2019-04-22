@@ -38,6 +38,7 @@ public class Main extends Application {
       //
       // }
 
+      // Instance of our save menu
       saveMenu saveMenu = new saveMenu();
 
       Scene scene = new Scene(getMainMenu(), 500, 500);
@@ -47,6 +48,9 @@ public class Main extends Application {
       primaryStage.setTitle("Quiz Generator");
       primaryStage.show();
 
+
+
+
       // Event Handler Functional Interface
       EventHandler<ActionEvent> actionEventHandler = new EventHandler<ActionEvent>() {
         @Override
@@ -54,6 +58,9 @@ public class Main extends Application {
           if ()
         }
       };
+
+
+
 
     } catch (Exception e) {
       e.printStackTrace();
