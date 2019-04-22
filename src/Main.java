@@ -1,6 +1,8 @@
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -15,6 +17,8 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 
+import java.awt.event.MouseEvent;
+
 /**
  * TODO
  * 
@@ -22,7 +26,7 @@ import javafx.scene.text.FontWeight;
  *
  */
 public class Main extends Application {
-  
+
   /**
    * TODO
    */
@@ -34,10 +38,20 @@ public class Main extends Application {
       //
       // }
       Scene scene = new Scene(getMainMenu(), 500, 500);
+      Scene saveScene = new Scene(getSaveMenu(), 500,500);
       scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
       primaryStage.setScene(scene);
       primaryStage.setTitle("Quiz Generator");
       primaryStage.show();
+
+      // Event Handler Functional Interface
+      EventHandler<ActionEvent> actionEventHandler = new EventHandler<ActionEvent>() {
+        @Override
+        public void handle(ActionEvent event) {
+          if ()
+        }
+      };
+
     } catch (Exception e) {
       e.printStackTrace();
     }
