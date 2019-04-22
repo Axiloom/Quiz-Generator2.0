@@ -39,7 +39,7 @@ public class Main extends Application {
       // }
 
       // Instance of our save menu
-      saveMenu saveMenu = new saveMenu();
+      SaveMenu saveMenu = new SaveMenu();
 
       Scene scene = new Scene(getMainMenu(), 500, 500);
       Scene saveScene = new Scene(saveMenu.initalize(), 500,500);

@@ -8,9 +8,9 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 
-public class saveMenu extends Main{
+public class SaveMenu extends Main{
 
-  public saveMenu() {
+  public SaveMenu() {
   }
 
   public BorderPane initalize(){
