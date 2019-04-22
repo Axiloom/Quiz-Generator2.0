@@ -24,7 +24,7 @@ public class Main extends Application {
 //      while(running) {
 //        
 //      }
-      Scene scene = new Scene(getQuestionMenu(), 500, 500);
+      Scene scene = new Scene(getMainMenu(), 500, 500);
       scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
       primaryStage.setScene(scene);
       primaryStage.setTitle("Quiz Generator");
@@ -56,6 +56,9 @@ public class Main extends Application {
     Button add = new Button("   Add Questions ");
     Button save = new Button("  Save Questions ");
     Button start = new Button("START");
+    
+    //WIP on handlers
+    Handler handler = new Handler(load);
     
     // Way to add an image as a button
     
