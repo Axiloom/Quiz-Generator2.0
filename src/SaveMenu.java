@@ -14,16 +14,15 @@ import javafx.stage.Stage;
 
 public class SaveMenu extends Main implements EventHandler<ActionEvent> {
 
-  Stage primaryStage;
-  Scene menuScene;
-  Button back;
-  Button next;
+  private Stage primaryStage;
+  private Button back;
+  private Button submit;
 
   // Constructor
   public SaveMenu(Stage primaryStage) {
     this.primaryStage = primaryStage;
     back = new Button("BACK");
-    next = new Button("NEXT");
+    submit = new Button("SUBMIT");
   }
 
   public BorderPane initalize(){
@@ -43,6 +42,7 @@ public class SaveMenu extends Main implements EventHandler<ActionEvent> {
 
     // Listeners
     back.setOnAction(this);
+    submit.setOnAction(this);
 
     Image one = new Image("150x150blank.png");
     Image two = new Image("100x300blank.png");
@@ -51,7 +51,7 @@ public class SaveMenu extends Main implements EventHandler<ActionEvent> {
     ImageView img2 = new ImageView(two);
 
     VBox leftVBox = new VBox(label, img1, back);
-    VBox rightVBox = new VBox(numQuestions, img2, next);
+    VBox rightVBox = new VBox(numQuestions, img2, submit);
     VBox centerVBox = new VBox(img, jsonLabel, jsonName);
     root.setCenter(centerVBox);
     root.setLeft(leftVBox);
@@ -69,10 +69,14 @@ public class SaveMenu extends Main implements EventHandler<ActionEvent> {
    */
   @Override
   public void handle(ActionEvent event) {
+    MainMenu mainMenu = new MainMenu(primaryStage);
+    Scene mainScene = new Scene(mainMenu.initialize(),500,500);
     if (event.getSource() == back){
-      System.out.println("Hello");
-      primaryStage.setScene();
+      primaryStage.setScene(mainScene);
     }
-
+    else if(event.getSource() == submit) {
+      primaryStage.setScene(mainScene);
+      //TODO actually save the data some time
+    }
   }
 }
