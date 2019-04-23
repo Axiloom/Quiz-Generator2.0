@@ -25,12 +25,8 @@ public class QuestionMenu {
     Image one = new Image("150x50blank.png");
     ImageView img = new ImageView(one);
     
-    // Spacers
-    Label a1 = new Label("");
-    Label a2 = new Label("");
-    
     VBox leftVBox = new VBox(label);
-    VBox bottomVBox = new VBox(a1,img,stats);
+    VBox bottomVBox = new VBox(stats);
     
     root.setBottom(bottomVBox);
     root.setLeft(leftVBox);
