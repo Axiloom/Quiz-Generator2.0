@@ -39,6 +39,7 @@ public class StatisticsMenu extends Main implements EventHandler<ActionEvent> {
     // Styling
     percentCorrect.setFont(Font.font("Arial", FontWeight.BOLD, 35));
     fractionCorrect.setFont(Font.font("Arial", FontWeight.BOLD, 35));
+    label.setFont(Font.font("Arial", FontWeight.BOLD, 16));
 
     // Pane to hold everything
     BorderPane root = new BorderPane();

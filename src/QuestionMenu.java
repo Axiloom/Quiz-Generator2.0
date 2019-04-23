@@ -7,6 +7,8 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 
 public class QuestionMenu extends Main implements EventHandler<ActionEvent> {
@@ -21,6 +23,8 @@ public class QuestionMenu extends Main implements EventHandler<ActionEvent> {
   
   public BorderPane initialize() {
     Label label = new Label("Question 1/X");
+    label.setFont(Font.font("Arial", FontWeight.BOLD, 16));
+    
     BorderPane root = new BorderPane();
 
     Image one = new Image("150x50blank.png");

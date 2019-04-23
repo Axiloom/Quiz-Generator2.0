@@ -76,13 +76,15 @@ public class MainMenu extends Main implements EventHandler<ActionEvent> {
 
     // Create boxes
     VBox leftVBox = new VBox(label, img1);
-    VBox rightVBox = new VBox(numQuestions, img2, start);
+    VBox rightVBox = new VBox(numQuestions);
     VBox centerVBox = new VBox(img3, add, save, topicBox);
+    VBox bottomVBox = new VBox(start);
 
     // Place boxes on screen
     root.setCenter(centerVBox);
     root.setLeft(leftVBox);
     root.setRight(rightVBox);
+    root.setBottom(bottomVBox);
 
     // return this menu
     return root;
