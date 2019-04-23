@@ -53,6 +53,12 @@ public class SaveMenu extends Main implements EventHandler<ActionEvent> {
     topPanel.setSpacing(250);
     root.setTop(topPanel);
 
+    // Center Panel
+    VBox centerPanel = new VBox();
+    centerPanel.getChildren().addAll(jsonLabel,jsonName);
+    centerPanel.setPadding(new Insets(150,100,100,100));
+    root.setCenter(centerPanel);
+
     // Bottom Panel
     HBox bottomPanel = new HBox();
     bottomPanel.getChildren().addAll(back,submit);
