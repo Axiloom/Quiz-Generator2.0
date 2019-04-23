@@ -1,11 +1,10 @@
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -45,18 +44,26 @@ public class SaveMenu extends Main implements EventHandler<ActionEvent> {
     back.setOnAction(this);
     submit.setOnAction(this);
 
-    Image one = new Image("150x150blank.png");
-    ImageView img = new ImageView(one);
+    back.setPrefSize(100,50);
+    submit.setPrefSize(100,50);
 
-    VBox leftVBox = new VBox(label);
-    VBox rightVBox = new VBox(numQuestions);
-    VBox centerVBox = new VBox(img, jsonLabel, jsonName);
-    HBox bottomHBox = new HBox(back, submit);
-    
-    root.setCenter(centerVBox);
-    root.setLeft(leftVBox);
-    root.setRight(rightVBox);
-    root.setBottom(bottomHBox);
+    // Top Panel
+    HBox topPanel = new HBox();
+    topPanel.getChildren().addAll(label,numQuestions);
+    topPanel.setSpacing(250);
+    root.setTop(topPanel);
+
+    // Center Panel
+    VBox centerPanel = new VBox();
+    centerPanel.getChildren().addAll(jsonLabel,jsonName);
+    centerPanel.setPadding(new Insets(150,100,100,100));
+    root.setCenter(centerPanel);
+
+    // Bottom Panel
+    HBox bottomPanel = new HBox();
+    bottomPanel.getChildren().addAll(back,submit);
+    bottomPanel.setSpacing(360);
+    root.setBottom(bottomPanel);
 
     return root;
   }
