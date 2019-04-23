@@ -1,5 +1,6 @@
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -7,6 +8,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
@@ -26,7 +28,7 @@ public class AddMenu extends Main implements EventHandler<ActionEvent> {
     
     public BorderPane initialize() {
       Label label = new Label("Add Menu");
-      Label numQuestions = new Label("X Questions available");
+      Label numQuestions = new Label("N Questions available");
       numQuestions.setFont(Font.font("Arial", FontWeight.BOLD, 16));
       label.setFont(Font.font("Arial", FontWeight.BOLD, 16));
 
@@ -48,19 +50,16 @@ public class AddMenu extends Main implements EventHandler<ActionEvent> {
       back.setOnAction(this);
       submit.setOnAction(this);
 
-      Image one = new Image("150x50blank.png");
-      Image two = new Image("100x300blank.png");
-      ImageView img = new ImageView(one);
-      ImageView img1 = new ImageView(two);
-      ImageView img2 = new ImageView(two);
-
-      VBox leftVBox = new VBox(label, img1, back);
-      VBox rightVBox = new VBox(numQuestions, img2, submit);
-      VBox centerVBox = new VBox(img, topicLabel, topic, questionLabel, question, answerLabel, answer,
+      VBox centerVBox = new VBox(topicLabel, topic, questionLabel, question, answerLabel, answer,
           blank, or, blank2, load, jsonLoad);
+      centerVBox.setPadding(new Insets(80,0,50,50));
+      HBox bottomHBox = new HBox(back,submit);
+      bottomHBox.setPadding(new Insets(0,0,30,335));
+      
       root.setCenter(centerVBox);
-      root.setLeft(leftVBox);
-      root.setRight(rightVBox);
+      root.setLeft(label);
+      root.setRight(numQuestions);
+      root.setBottom(bottomHBox);
 
       return root;
     }
