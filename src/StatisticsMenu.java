@@ -1,6 +1,7 @@
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -27,14 +28,16 @@ public class StatisticsMenu extends Main implements EventHandler<ActionEvent> {
 
   public BorderPane initialize(){
 
+    // Create Labels
     Label label = new Label("Statistics Menu");
+    Label numbQuestions = new Label("N Questions available");
     
     Integer numQuestions = 10; // static holders
     Integer amtCorrect = 9;
     Double pct = ((double) amtCorrect / (double) numQuestions) * 100;
     Label percentCorrect = new Label(pct.toString() + "% Correct");
     Label fractionCorrect = new Label(amtCorrect.toString() + " / " + numQuestions.toString());
-    Label score = new Label("Your score:");
+    Label score = new Label("Your score");
     Label blank = new Label("");
     
     // Styling
@@ -42,6 +45,7 @@ public class StatisticsMenu extends Main implements EventHandler<ActionEvent> {
     percentCorrect.setFont(Font.font("Arial", FontWeight.BOLD, 30));
     fractionCorrect.setFont(Font.font("Arial", FontWeight.BOLD, 30));
     label.setFont(Font.font("Arial", FontWeight.BOLD, 16));
+    numbQuestions.setFont(Font.font("Arial", FontWeight.BOLD, 16));
 
     // Pane to hold everything
     BorderPane root = new BorderPane();
@@ -56,16 +60,26 @@ public class StatisticsMenu extends Main implements EventHandler<ActionEvent> {
     save.setPrefSize(100,50);
     exit.setPrefSize(100,50);
 
-    HBox bottomHBox = new HBox(save, exit);
-    bottomHBox.setPadding(new Insets(100,100,100,100));
-    bottomHBox.setSpacing(100);
+    // Top Panel
+    HBox topPanel = new HBox(label, numbQuestions);
+    topPanel.setPadding(new Insets(10,50,10,50));
+    topPanel.setSpacing(150);
+    root.setTop(topPanel);
+    topPanel.setStyle("-fx-background-color: #9fb983");
+
+    // Center Panel
     VBox centerVBox = new VBox(score, blank, fractionCorrect, percentCorrect);
-    centerVBox.setPadding(new Insets(140,0,30,10));
-    
+    centerVBox.setAlignment(Pos.CENTER);
     root.setCenter(centerVBox);
-    root.setLeft(label);
+    score.setStyle("-fx-underline: true");
+
+    // Bottom Panel
+    HBox bottomHBox = new HBox(save, exit);
+    bottomHBox.setPadding(new Insets(0,100,65,100));
+    bottomHBox.setSpacing(100);
     root.setBottom(bottomHBox);
 
+    // return this menu
     return root;
   }
 

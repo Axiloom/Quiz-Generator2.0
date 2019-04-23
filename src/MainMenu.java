@@ -3,6 +3,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
@@ -56,7 +57,7 @@ public class MainMenu extends Main implements EventHandler<ActionEvent> {
         FXCollections.observableArrayList("Topic 1", "Topic 2", "Topic 3");
     ComboBox<String> topicBox = new ComboBox<>(topics);
     topicBox.setPromptText("Set Topic  ");
-    topicBox.setPadding(new Insets(0,0,0,40));
+    topicBox.setPrefWidth(151);
 
     // BorderPane to add buttons to
     BorderPane root = new BorderPane();
@@ -71,16 +72,22 @@ public class MainMenu extends Main implements EventHandler<ActionEvent> {
     
     start.setPrefSize(100,50);
 
-    // Create boxes
-    VBox centerVBox = new VBox(add, save, topicBox);
-    centerVBox.setPadding(new Insets(160,0,0,80));
-    HBox bottomHBox = new HBox(start);
-    bottomHBox.setPadding(new Insets(0,0,40,300));
+    // Top Panel
+    HBox topPanel = new HBox(label, numQuestions);
+    topPanel.setPadding(new Insets(10,50,10,50));
+    topPanel.setSpacing(150);
+    root.setTop(topPanel);
+    topPanel.setStyle("-fx-background-color: #9fb983");
 
-    // Place boxes on screen
+    // Center Panel
+    VBox centerVBox = new VBox(add, save, topicBox);
+    centerVBox.setAlignment(Pos.CENTER);
+    centerVBox.setSpacing(2);
     root.setCenter(centerVBox);
-    root.setLeft(label);
-    root.setRight(numQuestions);
+
+    // Bottom Panel
+    HBox bottomHBox = new HBox(start);
+    bottomHBox.setPadding(new Insets(0,0,65,300));
     root.setBottom(bottomHBox);
 
     // return this menu

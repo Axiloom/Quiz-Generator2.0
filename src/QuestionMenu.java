@@ -1,6 +1,7 @@
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -25,23 +26,39 @@ public class QuestionMenu extends Main implements EventHandler<ActionEvent> {
   }
   
   public BorderPane initialize() {
-    Label label = new Label("Question 1/N"); // update with the questions
-    label.setFont(Font.font("Arial", FontWeight.BOLD, 22));
-    
+
+    // Labels
+    Label label = new Label("Quiz"); // update with the questions
+    Label numQuestions = new Label("Question 1/N");
+
+    // Style
+    label.setFont(Font.font("Arial", FontWeight.BOLD, 16));
+    numQuestions.setFont(Font.font("Arial", FontWeight.BOLD, 16));
+
+    // main pane
     BorderPane root = new BorderPane();
     
     // Set background color of root
     root.setStyle("-fx-background-color: #c0c0c5");
-    
+
+    // Listeners
     next.setOnAction(this);
-    
+
+    // Set button size
     next.setPrefSize(100,50);
-    
+
+    // Top Panel
+    HBox topPanel = new HBox(label, numQuestions);
+    topPanel.setPadding(new Insets(10,50,10,50));
+    topPanel.setSpacing(265);
+    numQuestions.setAlignment(Pos.CENTER_RIGHT);
+    root.setTop(topPanel);
+    topPanel.setStyle("-fx-background-color: #9fb983");
+
+    // Bottom Panel
     HBox bottomHBox = new HBox(next);
-    bottomHBox.setPadding(new Insets(0,0,40,300));
-    
+    bottomHBox.setPadding(new Insets(0,0,65,300));
     root.setBottom(bottomHBox);
-    root.setLeft(label);
 
     return root;
   }

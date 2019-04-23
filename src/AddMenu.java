@@ -56,18 +56,26 @@ public class AddMenu extends Main implements EventHandler<ActionEvent> {
       back.setPrefSize(100,50);
       submit.setPrefSize(100,50);
 
+      // Top Panel
+      HBox topPanel = new HBox(label, numQuestions);
+      topPanel.setPadding(new Insets(10,50,10,50));
+      topPanel.setSpacing(150);
+      root.setTop(topPanel);
+      topPanel.setStyle("-fx-background-color: #9fb983");
+
+      // Center Panel
       VBox centerVBox = new VBox(topicLabel, topic, questionLabel, question, answerLabel, answer,
           blank, or, blank2, load, jsonLoad);
-      centerVBox.setPadding(new Insets(80,0,50,80));
-      HBox bottomHBox = new HBox(back,submit);
-      bottomHBox.setPadding(new Insets(0,0,40,100));
-      bottomHBox.setSpacing(100);
-      
+      centerVBox.setPadding(new Insets(50,80,50,80));
       root.setCenter(centerVBox);
-      root.setLeft(label);
-      root.setRight(numQuestions);
+
+      // Bottom Panel
+      HBox bottomHBox = new HBox(back,submit);
+      bottomHBox.setPadding(new Insets(0,100,65,100));
+      bottomHBox.setSpacing(100);
       root.setBottom(bottomHBox);
 
+      // return this menu
       return root;
     }
   
