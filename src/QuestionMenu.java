@@ -1,4 +1,5 @@
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -8,7 +9,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-public class QuestionMenu {
+public class QuestionMenu extends Main implements EventHandler<ActionEvent> {
   
   private Stage primaryStage;
   private Button stats;
@@ -24,6 +25,8 @@ public class QuestionMenu {
 
     Image one = new Image("150x50blank.png");
     ImageView img = new ImageView(one);
+    
+    stats.setOnAction(this);
     
     VBox leftVBox = new VBox(label);
     VBox bottomVBox = new VBox(stats);
@@ -43,7 +46,8 @@ public class QuestionMenu {
   public void handle(ActionEvent event) {
     StatisticsMenu statsMenu = new StatisticsMenu(primaryStage);
     Scene statsScene = new Scene(statsMenu.initialize(),500,500);
-    if (event.getSource() == stats)
+    if (event.getSource() == stats) {
       primaryStage.setScene(statsScene);
+    }
   }
 }

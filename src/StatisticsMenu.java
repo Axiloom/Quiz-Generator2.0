@@ -31,9 +31,9 @@ public class StatisticsMenu extends Main implements EventHandler<ActionEvent> {
     
     Integer numQuestions = 10; // static holders
     Integer amtCorrect = 9;
-    Double pct = (double) amtCorrect / (double) numQuestions;
+    Double pct = ((double) amtCorrect / (double) numQuestions) * 100;
     Label percentCorrect = new Label(pct.toString() + "% Correct");
-    Label fractionCorrect = new Label(amtCorrect.toString() + " // " + numQuestions.toString());
+    Label fractionCorrect = new Label(amtCorrect.toString() + " / " + numQuestions.toString());
     Label blank = new Label("");
     
     // Styling
@@ -56,7 +56,7 @@ public class StatisticsMenu extends Main implements EventHandler<ActionEvent> {
     ImageView img3 = new ImageView(three);
 
     VBox leftVBox = new VBox(label);
-    VBox bottomVBox = new VBox(save, img3, exit);
+    VBox bottomVBox = new VBox(save, exit);
     VBox centerVBox = new VBox(img, fractionCorrect, blank, percentCorrect);
     root.setCenter(centerVBox);
     root.setLeft(leftVBox);
