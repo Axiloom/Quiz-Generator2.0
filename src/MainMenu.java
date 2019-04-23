@@ -59,6 +59,10 @@ public class MainMenu extends Main implements EventHandler<ActionEvent> {
     add.setOnAction(this);
     start.setOnAction(this);
     
+    // Scroll-over effect
+    start.setOnMouseEntered(e -> start.setStyle("-fx-font-size: 14pt;"));
+    start.setOnMouseExited(e -> start.setStyle("-fx-font-size: 12pt;"));
+    
     start.setPrefSize(100,50);
 
     // Top Panel

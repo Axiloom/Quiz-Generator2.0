@@ -43,6 +43,10 @@ public class QuestionMenu extends Main implements EventHandler<ActionEvent> {
 
     // Listeners
     next.setOnAction(this);
+    
+    // Scroll-over effect
+    next.setOnMouseEntered(e -> next.setStyle("-fx-font-size: 14pt;"));
+    next.setOnMouseExited(e -> next.setStyle("-fx-font-size: 12pt;"));
 
     // Set button size
     next.setPrefSize(100,50);

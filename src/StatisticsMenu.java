@@ -30,7 +30,6 @@ public class StatisticsMenu extends Main implements EventHandler<ActionEvent> {
 
     // Create Labels
     Label label = new Label("Statistics Menu");
-    Label numbQuestions = new Label("N Questions available");
     
     Integer numQuestions = 10; // static holders
     Integer amtCorrect = 9;
@@ -45,7 +44,6 @@ public class StatisticsMenu extends Main implements EventHandler<ActionEvent> {
     percentCorrect.setFont(Font.font("Arial", FontWeight.BOLD, 30));
     fractionCorrect.setFont(Font.font("Arial", FontWeight.BOLD, 30));
     label.setFont(Font.font("Arial", FontWeight.BOLD, 16));
-    numbQuestions.setFont(Font.font("Arial", FontWeight.BOLD, 16));
 
     // Pane to hold everything
     BorderPane root = new BorderPane();
@@ -57,11 +55,17 @@ public class StatisticsMenu extends Main implements EventHandler<ActionEvent> {
     save.setOnAction(this);
     exit.setOnAction(this);
     
+    // Scroll-over effects
+    save.setOnMouseEntered(e -> save.setStyle("-fx-font-size: 14pt;"));
+    save.setOnMouseExited(e -> save.setStyle("-fx-font-size: 12pt;"));
+    exit.setOnMouseEntered(e -> exit.setStyle("-fx-font-size: 14pt;"));
+    exit.setOnMouseExited(e -> exit.setStyle("-fx-font-size: 12pt;"));
+    
     save.setPrefSize(100,50);
     exit.setPrefSize(100,50);
 
     // Top Panel
-    HBox topPanel = new HBox(label, numbQuestions);
+    HBox topPanel = new HBox(label);
     topPanel.setPadding(new Insets(10,50,10,50));
     topPanel.setSpacing(150);
     root.setTop(topPanel);

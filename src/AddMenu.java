@@ -52,6 +52,12 @@ public class AddMenu extends Main implements EventHandler<ActionEvent> {
       back.setOnAction(this);
       submit.setOnAction(this);
       
+      // Scroll-over effects
+      back.setOnMouseEntered(e -> back.setStyle("-fx-font-size: 14pt;"));
+      back.setOnMouseExited(e -> back.setStyle("-fx-font-size: 12pt;"));
+      submit.setOnMouseEntered(e -> submit.setStyle("-fx-font-size: 14pt;"));
+      submit.setOnMouseExited(e -> submit.setStyle("-fx-font-size: 12pt;"));
+      
       // Formatting Buttons and Boxes
       back.setPrefSize(100,50);
       submit.setPrefSize(100,50);
