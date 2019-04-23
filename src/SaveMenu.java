@@ -51,20 +51,19 @@ public class SaveMenu extends Main implements EventHandler<ActionEvent> {
     root.setStyle("-fx-background-color: #c0c0c5");
 
     // Top Panel
-    HBox topPanel = new HBox();
-    topPanel.getChildren().addAll(label,numQuestions);
-    topPanel.setSpacing(250);
+    HBox topPanel = new HBox(label, numQuestions);
+    topPanel.setPadding(new Insets(10,50,10,50));
+    topPanel.setSpacing(150);
     root.setTop(topPanel);
+    topPanel.setStyle("-fx-background-color: #9fb983");
 
     // Center Panel
-    VBox centerPanel = new VBox();
-    centerPanel.getChildren().addAll(jsonLabel,jsonName);
-    centerPanel.setPadding(new Insets(150,100,100,100));
+    VBox centerPanel = new VBox(jsonLabel,jsonName);
+    centerPanel.setPadding(new Insets(150,100,50,100));
     root.setCenter(centerPanel);
 
     // Bottom Panel
-    HBox bottomPanel = new HBox();
-    bottomPanel.getChildren().addAll(back,submit);
+    HBox bottomPanel = new HBox(back,submit);
     bottomPanel.setPadding(new Insets(100,100,100,100));
     bottomPanel.setSpacing(100);
     root.setBottom(bottomPanel);
