@@ -47,6 +47,9 @@ public class SaveMenu extends Main implements EventHandler<ActionEvent> {
     back.setPrefSize(100,50);
     submit.setPrefSize(100,50);
 
+    // Set background color of root
+    root.setStyle("-fx-background-color: #c0c0c5");
+
     // Top Panel
     HBox topPanel = new HBox();
     topPanel.getChildren().addAll(label,numQuestions);
