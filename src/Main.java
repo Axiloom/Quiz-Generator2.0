@@ -14,6 +14,7 @@ public class Main extends Application {
   private static Scene saveScene;
   private static Scene addScene;
   private static Scene questionScene;
+  private static Scene statisticsScene;
 
   /**
    * TODO
@@ -27,15 +28,17 @@ public class Main extends Application {
       SaveMenu saveMenu = new SaveMenu(primaryStage);
       AddMenu addMenu = new AddMenu(primaryStage);
       QuestionMenu quizMenu = new QuestionMenu(primaryStage);
+      StatisticsMenu statisticsMenu = new StatisticsMenu(primaryStage);
 
       // Create Scenes
       mainScene = new Scene(mainMenu.initialize(), 500, 500);
       saveScene = new Scene(saveMenu.initialize() , 500, 500);
       addScene = new Scene(addMenu.initialize(), 500, 500);
       questionScene = new Scene(quizMenu.initialize(), 500, 500);
+      statisticsScene = new Scene(statisticsMenu.initialize(), 500, 500);
 
       // Style for main menu
-      //mainScene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+      mainScene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 
       // present stage
       primaryStage.setScene(mainScene);
