@@ -2,6 +2,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
@@ -9,6 +10,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
@@ -78,13 +80,14 @@ public class MainMenu extends Main implements EventHandler<ActionEvent> {
     VBox leftVBox = new VBox(label, img1);
     VBox rightVBox = new VBox(numQuestions);
     VBox centerVBox = new VBox(img3, add, save, topicBox);
-    VBox bottomVBox = new VBox(start);
+    HBox bottomHBox = new HBox(start);
+    bottomHBox.setPadding(new Insets(0,0,30,400));
 
     // Place boxes on screen
     root.setCenter(centerVBox);
     root.setLeft(leftVBox);
     root.setRight(rightVBox);
-    root.setBottom(bottomVBox);
+    root.setBottom(bottomHBox);
 
     // return this menu
     return root;
