@@ -45,10 +45,14 @@ public class SaveMenu extends Main implements EventHandler<ActionEvent> {
     back.setOnAction(this);
     submit.setOnAction(this);
 
+    Image one = new Image("150x150blank.png");
+    ImageView img = new ImageView(one);
+
     VBox leftVBox = new VBox(label);
     VBox rightVBox = new VBox(numQuestions);
-    VBox centerVBox = new VBox(jsonLabel, jsonName);
+    VBox centerVBox = new VBox(img, jsonLabel, jsonName);
     HBox bottomHBox = new HBox(back, submit);
+    
     root.setCenter(centerVBox);
     root.setLeft(leftVBox);
     root.setRight(rightVBox);
