@@ -23,13 +23,13 @@ public class MainMenu extends Main implements EventHandler<ActionEvent> {
   private Button add;
   private Button save;
   private Button start;
-  SaveMenu saveMenu = new SaveMenu(primaryStage);
-  AddMenu addMenu = new AddMenu(primaryStage);
-  Quiz quiz = new Quiz(primaryStage);
 
   // Constructor
   public MainMenu(Stage primaryStage) {
     this.primaryStage = primaryStage;
+    SaveMenu saveMenu = new SaveMenu(primaryStage);
+    AddMenu addMenu = new AddMenu(primaryStage);
+    Quiz quiz = new Quiz(primaryStage);
     saveScene = new Scene(saveMenu.initalize(), 500,500);
     addScene = new Scene(addMenu.initialize(),500, 500);
     quizScene = new Scene(quiz.initalize(),500, 500);
@@ -94,7 +94,6 @@ public class MainMenu extends Main implements EventHandler<ActionEvent> {
    * @param event the event which occurred
    */
   public void handle(ActionEvent event) {
-
     if (event.getSource() == save)
       primaryStage.setScene(saveScene);
 
