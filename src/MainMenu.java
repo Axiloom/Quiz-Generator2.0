@@ -2,6 +2,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
@@ -9,6 +10,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
@@ -29,13 +31,12 @@ public class MainMenu extends Main implements EventHandler<ActionEvent> {
     this.primaryStage = primaryStage;
     SaveMenu saveMenu = new SaveMenu(primaryStage);
     AddMenu addMenu = new AddMenu(primaryStage);
-    QuestionMenu quiz = new QuestionMenu(primaryStage);
-//    Quiz quiz = new Quiz(primaryStage);
+    QuestionMenu quiz = new QuestionMenu(primaryStage, 10); // updates with numQuestions selected
     saveScene = new Scene(saveMenu.initialize(), 500,500);
     addScene = new Scene(addMenu.initialize(),500, 500);
     quizScene = new Scene(quiz.initialize(),500, 500);
-    add = new Button("  Add Questions  ");
-    save = new Button("  Save Questions ");
+    add = new Button(" Add/Load Questions ");
+    save = new Button("      Save Questions    ");
     start = new Button("START");
   }
 
@@ -54,7 +55,8 @@ public class MainMenu extends Main implements EventHandler<ActionEvent> {
     ObservableList<String> topics =
         FXCollections.observableArrayList("Topic 1", "Topic 2", "Topic 3");
     ComboBox<String> topicBox = new ComboBox<>(topics);
-    topicBox.setPromptText("  Set Topic");
+    topicBox.setPromptText("Set Topic  ");
+    topicBox.setPadding(new Insets(0,0,0,40));
 
     // BorderPane to add buttons to
     BorderPane root = new BorderPane();
@@ -64,27 +66,17 @@ public class MainMenu extends Main implements EventHandler<ActionEvent> {
     add.setOnAction(this);
     start.setOnAction(this);
 
-    // Images to alter screen
-    Image one = new Image("100x100blank.png");
-    Image two = new Image("150x150blank.png");
-    Image three = new Image("100x300blank.png");
-
-    // Create imageViews for GUI
-    ImageView img1 = new ImageView(two);
-    ImageView img2 = new ImageView(three);
-    ImageView img3 = new ImageView(one);
-
     // Create boxes
-    VBox leftVBox = new VBox(label, img1);
-    VBox rightVBox = new VBox(numQuestions);
-    VBox centerVBox = new VBox(img3, add, save, topicBox);
-    VBox bottomVBox = new VBox(start);
+    VBox centerVBox = new VBox(add, save, topicBox);
+    centerVBox.setPadding(new Insets(160,0,0,80));
+    HBox bottomHBox = new HBox(start);
+    bottomHBox.setPadding(new Insets(0,0,30,400));
 
     // Place boxes on screen
     root.setCenter(centerVBox);
-    root.setLeft(leftVBox);
-    root.setRight(rightVBox);
-    root.setBottom(bottomVBox);
+    root.setLeft(label);
+    root.setRight(numQuestions);
+    root.setBottom(bottomHBox);
 
     // return this menu
     return root;
