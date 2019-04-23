@@ -7,7 +7,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
@@ -46,17 +45,18 @@ public class SaveMenu extends Main implements EventHandler<ActionEvent> {
     submit.setOnAction(this);
 
     Image one = new Image("150x150blank.png");
-    ImageView img = new ImageView(one);
+    Image two = new Image("100x300blank.png");
 
-    VBox leftVBox = new VBox(label);
-    VBox rightVBox = new VBox(numQuestions);
+    ImageView img = new ImageView(one);
+    ImageView img1 = new ImageView(two);
+    ImageView img2 = new ImageView(two);
+
+    VBox leftVBox = new VBox(label, img1, back);
+    VBox rightVBox = new VBox(numQuestions, img2, submit);
     VBox centerVBox = new VBox(img, jsonLabel, jsonName);
-    HBox bottomHBox = new HBox(back, submit);
-    
     root.setCenter(centerVBox);
     root.setLeft(leftVBox);
     root.setRight(rightVBox);
-    root.setBottom(bottomHBox);
 
     return root;
   }
