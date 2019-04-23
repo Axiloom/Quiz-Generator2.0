@@ -65,7 +65,8 @@ public class SaveMenu extends Main implements EventHandler<ActionEvent> {
     // Bottom Panel
     HBox bottomPanel = new HBox();
     bottomPanel.getChildren().addAll(back,submit);
-    bottomPanel.setSpacing(360);
+    bottomPanel.setPadding(new Insets(100,100,100,100));
+    bottomPanel.setSpacing(100);
     root.setBottom(bottomPanel);
 
     return root;
