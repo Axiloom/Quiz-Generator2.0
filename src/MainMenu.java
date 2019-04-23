@@ -23,13 +23,13 @@ public class MainMenu extends Main implements EventHandler<ActionEvent> {
   private Button add;
   private Button save;
   private Button start;
+  SaveMenu saveMenu = new SaveMenu(primaryStage);
+  AddMenu addMenu = new AddMenu(primaryStage);
+  Quiz quiz = new Quiz(primaryStage);
 
   // Constructor
   public MainMenu(Stage primaryStage) {
     this.primaryStage = primaryStage;
-    SaveMenu saveMenu = new SaveMenu(primaryStage);
-    AddMenu addMenu = new AddMenu(primaryStage);
-    Quiz quiz = new Quiz(primaryStage);
     saveScene = new Scene(saveMenu.initalize(), 500,500);
     addScene = new Scene(addMenu.initialize(),500, 500);
     quizScene = new Scene(quiz.initalize(),500, 500);
@@ -51,14 +51,14 @@ public class MainMenu extends Main implements EventHandler<ActionEvent> {
 
     // Drop down list of topics
     ObservableList<String> topics =
-        FXCollections.observableArrayList("Linux", "ADTs", "Search Trees");
+        FXCollections.observableArrayList("Topic 1", "Topic 2", "Topic 3");
     ComboBox<String> topicBox = new ComboBox<>(topics);
     topicBox.setPromptText("  Set Topic");
 
     // BorderPane to add buttons to
     BorderPane root = new BorderPane();
 
-    // Handler for save
+    // Handlers for buttons
     save.setOnAction(this);
     add.setOnAction(this);
     start.setOnAction(this);
@@ -83,7 +83,7 @@ public class MainMenu extends Main implements EventHandler<ActionEvent> {
     root.setLeft(leftVBox);
     root.setRight(rightVBox);
 
-    // return this menu
+    // return this Main
     return root;
   }
 
@@ -94,10 +94,13 @@ public class MainMenu extends Main implements EventHandler<ActionEvent> {
    * @param event the event which occurred
    */
   public void handle(ActionEvent event) {
+
     if (event.getSource() == save)
       primaryStage.setScene(saveScene);
+
     else if (event.getSource() == add)
       primaryStage.setScene(addScene);
+
     else if (event.getSource() == start)
       primaryStage.setScene(quizScene);
   }

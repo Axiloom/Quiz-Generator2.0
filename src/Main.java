@@ -17,7 +17,7 @@ public class Main extends Application {
   public void start(Stage primaryStage) {
     try {
 
-      // Instances of menu's
+      // Instances of main menu
       MainMenu mainMenu = new MainMenu(primaryStage);
 
       // Create Scenes
