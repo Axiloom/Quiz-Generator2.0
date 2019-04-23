@@ -52,12 +52,16 @@ public class AddMenu extends Main implements EventHandler<ActionEvent> {
       
       back.setOnAction(this);
       submit.setOnAction(this);
+      
+      back.setPrefSize(100,50);
+      submit.setPrefSize(100,50);
 
       VBox centerVBox = new VBox(topicLabel, topic, questionLabel, question, answerLabel, answer,
           blank, or, blank2, load, jsonLoad);
-      centerVBox.setPadding(new Insets(80,0,50,50));
+      centerVBox.setPadding(new Insets(80,0,50,80));
       HBox bottomHBox = new HBox(back,submit);
-      bottomHBox.setPadding(new Insets(0,0,30,335));
+      bottomHBox.setPadding(new Insets(0,0,40,100));
+      bottomHBox.setSpacing(100);
       
       root.setCenter(centerVBox);
       root.setLeft(label);
