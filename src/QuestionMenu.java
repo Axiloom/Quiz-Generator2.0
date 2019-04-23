@@ -70,13 +70,13 @@ public class QuestionMenu extends Main implements EventHandler<ActionEvent> {
    * @param event the event which occurred
    */
   public void handle(ActionEvent event) {
-    StatisticsMenu statsMenu = new StatisticsMenu(primaryStage);
-    Scene statsScene = new Scene(statsMenu.initialize(),500,500);
+
     if (event.getSource() == next && currQuestion == numQuestions) {
-      primaryStage.setScene(statsScene);
-    } 
+      primaryStage.setScene(Main.getStatisticsScene());
+    }
+
     else if(event.getSource() == next) {
-      primaryStage.setScene(statsScene);
+      primaryStage.setScene(Main.getStatisticsScene());
       //TODO change this so that it goes to next question somehow...instead of statsScene
     }
   }

@@ -92,14 +92,14 @@ public class StatisticsMenu extends Main implements EventHandler<ActionEvent> {
    */
   @Override
   public void handle(ActionEvent event) {
-    MainMenu mainMenu = new MainMenu(primaryStage);
-    Scene mainScene = new Scene(mainMenu.initialize(),500,500);
+
     if (event.getSource() == save){
-      primaryStage.setScene(mainScene);
-    //TODO actually save the data some time
+      primaryStage.setScene(Main.getMainScene());
+      //TODO actually save the data some time
     }
+
     else if(event.getSource() == exit) {
-      primaryStage.setScene(mainScene);
+      primaryStage.setScene(Main.getMainScene());
     }
   }
 }

@@ -15,6 +15,7 @@ public class Main extends Application {
   private static Scene addScene;
   private static Scene questionScene;
   private static Scene statisticsScene;
+  private static Stage primaryStage;
 
   /**
    * TODO
@@ -44,7 +45,7 @@ public class Main extends Application {
       primaryStage.setScene(mainScene);
       primaryStage.setTitle("Quiz Generator");
       primaryStage.show();
-      primaryStage.resizableProperty().setValue(false);
+      primaryStage.resizableProperty().setValue(true);
 
     } catch (Exception e) {
       e.printStackTrace();
@@ -60,19 +61,43 @@ public class Main extends Application {
    *
    * @return the main scene
    */
-  public static Scene getMainScene(){
+  protected static Scene getMainScene(){
     return mainScene;
   }
 
-  public static Scene getSaveScene(){
+  /**
+   * Getter for save scene
+   *
+   * @return the save scene
+   */
+  protected static Scene getSaveScene(){
     return saveScene;
   }
 
-  public static Scene getAddScene(){
+  /**
+   * Getter for add scene
+   *
+   * @return the add scene
+   */
+  protected static Scene getAddScene(){
     return addScene;
   }
 
-  public static Scene getQuizScene(){
+  /**
+   * Getter for quiz scene
+   *
+   * @return the quiz scene
+   */
+  protected static Scene getQuizScene(){
     return questionScene;
+  }
+
+  /**
+   * Getter for statistics scene
+   *
+   * @return the statistics scene
+   */
+  protected static Scene getStatisticsScene(){
+    return statisticsScene;
   }
 }

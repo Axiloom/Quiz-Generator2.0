@@ -68,7 +68,7 @@ public class MainMenu extends Main implements EventHandler<ActionEvent> {
     root.setTop(topPanel);
     topPanel.setStyle("-fx-background-color: #9fb983");
 
-    // Center Panel
+    // Center Panel (GOOD)
     VBox centerVBox = new VBox(add, save, topicBox);
     centerVBox.setAlignment(Pos.CENTER);
     centerVBox.setSpacing(2);
