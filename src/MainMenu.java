@@ -18,9 +18,6 @@ import javafx.stage.Stage;
 public class MainMenu extends Main implements EventHandler<ActionEvent> {
 
   private Stage primaryStage;
-  private Scene saveScene;
-  private Scene addScene;
-  private Scene quizScene;
   private Button add;
   private Button save;
   private Button start;
@@ -28,12 +25,6 @@ public class MainMenu extends Main implements EventHandler<ActionEvent> {
   // Constructor
   public MainMenu(Stage primaryStage) {
     this.primaryStage = primaryStage;
-    SaveMenu saveMenu = new SaveMenu(primaryStage);
-    AddMenu addMenu = new AddMenu(primaryStage);
-    QuestionMenu quiz = new QuestionMenu(primaryStage, 10); // updates with numQuestions selected
-    saveScene = new Scene(saveMenu.initialize(), 500,500);
-    addScene = new Scene(addMenu.initialize(),500, 500);
-    quizScene = new Scene(quiz.initialize(),500, 500);
     add = new Button(" Add/Load Questions ");
     save = new Button("      Save Questions    ");
     start = new Button("START");
@@ -91,6 +82,7 @@ public class MainMenu extends Main implements EventHandler<ActionEvent> {
     // return this menu
     return root;
   }
+
   /**
    * Invoked when a specific event of the type for which this handler is
    * registered happens.
@@ -99,12 +91,12 @@ public class MainMenu extends Main implements EventHandler<ActionEvent> {
    */
   public void handle(ActionEvent event) {
     if (event.getSource() == save)
-      primaryStage.setScene(saveScene);
+      primaryStage.setScene(Main.getSaveScene());
 
     else if (event.getSource() == add)
-      primaryStage.setScene(addScene);
+      primaryStage.setScene(Main.getAddScene());
 
     else if (event.getSource() == start)
-      primaryStage.setScene(quizScene);
+      primaryStage.setScene(Main.getQuizScene());
   }
 }

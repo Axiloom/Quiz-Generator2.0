@@ -18,10 +18,10 @@ public class QuestionMenu extends Main implements EventHandler<ActionEvent> {
   private int numQuestions;
   private int currQuestion;
 
-  public QuestionMenu(Stage primaryStage, int numQuestions) {
+  public QuestionMenu(Stage primaryStage) {
     this.primaryStage = primaryStage;
     next = new Button("NEXT");
-    numQuestions = 10;
+    numQuestions = 0;
     currQuestion = 0;
   }
   

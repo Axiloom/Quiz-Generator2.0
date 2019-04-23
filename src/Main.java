@@ -10,6 +10,11 @@ import javafx.scene.Scene;
  */
 public class Main extends Application {
 
+  private static Scene mainScene;
+  private static Scene saveScene;
+  private static Scene addScene;
+  private static Scene questionScene;
+
   /**
    * TODO
    */
@@ -19,9 +24,15 @@ public class Main extends Application {
 
       // Instances of menu's
       MainMenu mainMenu = new MainMenu(primaryStage);
+      SaveMenu saveMenu = new SaveMenu(primaryStage);
+      AddMenu addMenu = new AddMenu(primaryStage);
+      QuestionMenu quizMenu = new QuestionMenu(primaryStage);
 
       // Create Scenes
-      Scene mainScene = new Scene(mainMenu.initialize(), 500, 500);
+      mainScene = new Scene(mainMenu.initialize(), 500, 500);
+      saveScene = new Scene(saveMenu.initialize() , 500, 500);
+      addScene = new Scene(addMenu.initialize(), 500, 500);
+      questionScene = new Scene(quizMenu.initialize(), 500, 500);
 
       // Style for main menu
       //mainScene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
@@ -39,5 +50,26 @@ public class Main extends Application {
 
   public static void main(String[] args) {
     launch(args);
+  }
+
+  /**
+   * Getter for main scene
+   *
+   * @return the main scene
+   */
+  public static Scene getMainScene(){
+    return mainScene;
+  }
+
+  public static Scene getSaveScene(){
+    return saveScene;
+  }
+
+  public static Scene getAddScene(){
+    return addScene;
+  }
+
+  public static Scene getQuizScene(){
+    return questionScene;
   }
 }
