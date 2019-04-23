@@ -8,8 +8,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -93,7 +91,6 @@ public class MainMenu extends Main implements EventHandler<ActionEvent> {
     // return this menu
     return root;
   }
-
   /**
    * Invoked when a specific event of the type for which this handler is
    * registered happens.

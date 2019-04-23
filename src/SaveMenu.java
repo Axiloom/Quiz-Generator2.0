@@ -82,6 +82,7 @@ public class SaveMenu extends Main implements EventHandler<ActionEvent> {
   @Override
   public void handle(ActionEvent event) {
 
+    //todo figure out how to not create a new Scene every event
     MainMenu mainMenu = new MainMenu(primaryStage);
     Scene mainScene = new Scene(mainMenu.initialize(),500,500);
 
