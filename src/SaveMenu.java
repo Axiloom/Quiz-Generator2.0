@@ -29,7 +29,7 @@ public class SaveMenu extends Main implements EventHandler<ActionEvent> {
   public BorderPane initialize(){
 
     Label label = new Label("Save Menu");
-    Label numQuestions = new Label("X Questions available");
+    Label numQuestions = new Label("N Questions available");
 
     // Styling
     numQuestions.setFont(Font.font("Arial", FontWeight.BOLD, 16));
