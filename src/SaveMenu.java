@@ -16,12 +16,14 @@ public class SaveMenu extends Main implements EventHandler<ActionEvent> {
 
   Stage primaryStage;
   Scene menuScene;
+  Button back;
+  Button next;
 
   // Constructor
   public SaveMenu(Stage primaryStage) {
-//    this.primaryStage = primaryStage;
-//    MainMenu mainMenu = new MainMenu(primaryStage);
-//    menuScene = new Scene(mainMenu.initialize(),500,500);
+    this.primaryStage = primaryStage;
+    back = new Button("BACK");
+    next = new Button("NEXT");
   }
 
   public BorderPane initalize(){
@@ -39,11 +41,8 @@ public class SaveMenu extends Main implements EventHandler<ActionEvent> {
     Label jsonLabel = new Label("Save as JSON:");
     TextField jsonName = new TextField("Enter JSON File here");
 
-    Button next = new Button("NEXT");
-    Button back = new Button("BACK");
-
     // Listeners
-    next.setOnAction(this);
+    back.setOnAction(this);
 
     Image one = new Image("150x150blank.png");
     Image two = new Image("100x300blank.png");
@@ -70,6 +69,10 @@ public class SaveMenu extends Main implements EventHandler<ActionEvent> {
    */
   @Override
   public void handle(ActionEvent event) {
-    primaryStage.setScene(menuScene);
+    if (event.getSource() == back){
+      System.out.println("Hello");
+      primaryStage.setScene();
+    }
+
   }
 }
