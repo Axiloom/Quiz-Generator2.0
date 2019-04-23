@@ -69,8 +69,10 @@ public class SaveMenu extends Main implements EventHandler<ActionEvent> {
    */
   @Override
   public void handle(ActionEvent event) {
+
     MainMenu mainMenu = new MainMenu(primaryStage);
     Scene mainScene = new Scene(mainMenu.initialize(),500,500);
+
     if (event.getSource() == back){
       primaryStage.setScene(mainScene);
     }

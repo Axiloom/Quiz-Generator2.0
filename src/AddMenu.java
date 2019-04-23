@@ -72,10 +72,14 @@ public class AddMenu extends Main implements EventHandler<ActionEvent> {
    * @param event the event which occurred
    */
   public void handle(ActionEvent event) {
+
+    // Build main scene
     MainMenu mainMenu = new MainMenu(primaryStage);
     Scene mainScene = new Scene(mainMenu.initialize(),500,500);
+
     if (event.getSource() == back)
       primaryStage.setScene(mainScene);
+
     else if (event.getSource() == submit)
       primaryStage.setScene(mainScene);
       // TODO make this formally save or add the questions
