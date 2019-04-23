@@ -68,12 +68,14 @@ public class MainMenu extends Main implements EventHandler<ActionEvent> {
     save.setOnAction(this);
     add.setOnAction(this);
     start.setOnAction(this);
+    
+    start.setPrefSize(100,50);
 
     // Create boxes
     VBox centerVBox = new VBox(add, save, topicBox);
     centerVBox.setPadding(new Insets(160,0,0,80));
     HBox bottomHBox = new HBox(start);
-    bottomHBox.setPadding(new Insets(0,0,30,400));
+    bottomHBox.setPadding(new Insets(0,0,40,300));
 
     // Place boxes on screen
     root.setCenter(centerVBox);

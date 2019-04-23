@@ -35,8 +35,10 @@ public class QuestionMenu extends Main implements EventHandler<ActionEvent> {
     
     next.setOnAction(this);
     
+    next.setPrefSize(100,50);
+    
     HBox bottomHBox = new HBox(next);
-    bottomHBox.setPadding(new Insets(0,0,30,400));
+    bottomHBox.setPadding(new Insets(0,0,40,300));
     
     root.setBottom(bottomHBox);
     root.setLeft(label);

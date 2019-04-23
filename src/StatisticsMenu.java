@@ -22,7 +22,7 @@ public class StatisticsMenu extends Main implements EventHandler<ActionEvent> {
   public StatisticsMenu(Stage primaryStage) {
     this.primaryStage = primaryStage;
     save = new Button("SAVE");
-    exit = new Button("EXIT WITHOUT SAVING");
+    exit = new Button("EXIT");
   }
 
   public BorderPane initialize(){
@@ -52,9 +52,13 @@ public class StatisticsMenu extends Main implements EventHandler<ActionEvent> {
     // Listeners
     save.setOnAction(this);
     exit.setOnAction(this);
+    
+    save.setPrefSize(100,50);
+    exit.setPrefSize(100,50);
 
     HBox bottomHBox = new HBox(save, exit);
-    bottomHBox.setPadding(new Insets(0,0,30,250));
+    bottomHBox.setPadding(new Insets(100,100,100,100));
+    bottomHBox.setSpacing(100);
     VBox centerVBox = new VBox(score, blank, fractionCorrect, percentCorrect);
     centerVBox.setPadding(new Insets(140,0,30,10));
     
