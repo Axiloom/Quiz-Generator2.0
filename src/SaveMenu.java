@@ -71,7 +71,6 @@ public class SaveMenu extends Main implements EventHandler<ActionEvent> {
     return root;
   }
 
-
   /**
    * Invoked when a specific event of the type for which this handler is
    * registered happens.
