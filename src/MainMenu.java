@@ -84,7 +84,7 @@ public class MainMenu extends Main implements EventHandler<ActionEvent> {
     root.setLeft(leftVBox);
     root.setRight(rightVBox);
 
-    // return this Main
+    // return this menu
     return root;
   }
 
