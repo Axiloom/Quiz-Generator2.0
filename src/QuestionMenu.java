@@ -21,20 +21,23 @@ public class QuestionMenu extends Main implements EventHandler<ActionEvent> {
     this.primaryStage = primaryStage;
     next = new Button("NEXT");
     numQuestions = 10;
-    currQuestion = 0;
+    currQuestion = 0; // get values somewhere else probably to use here
   }
   
   public BorderPane initialize() {
     Label label = new Label("Question 1/N"); // update with the questions
     label.setFont(Font.font("Arial", FontWeight.BOLD, 22));
     
+    // 
     BorderPane root = new BorderPane();
     
     // Set background color of root
     root.setStyle("-fx-background-color: #c0c0c5");
     
+    // Listener 
     next.setOnAction(this);
     
+    // Formatting Buttons and Boxes
     next.setPrefSize(100,50);
     
     HBox bottomHBox = new HBox(next);

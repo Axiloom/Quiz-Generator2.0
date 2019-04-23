@@ -8,7 +8,6 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
-import javafx.scene.text.FontPosture;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 
@@ -53,9 +52,10 @@ public class StatisticsMenu extends Main implements EventHandler<ActionEvent> {
     save.setOnAction(this);
     exit.setOnAction(this);
     
+    // Formatting Buttons and Boxes
     save.setPrefSize(100,50);
     exit.setPrefSize(100,50);
-
+    
     HBox bottomHBox = new HBox(save, exit);
     bottomHBox.setPadding(new Insets(100,100,100,100));
     bottomHBox.setSpacing(100);

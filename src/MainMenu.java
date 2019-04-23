@@ -7,8 +7,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -64,14 +62,14 @@ public class MainMenu extends Main implements EventHandler<ActionEvent> {
     // Set background color of root
     root.setStyle("-fx-background-color: #c0c0c5");
 
-    // Handlers for buttons
+    // Listeners
     save.setOnAction(this);
     add.setOnAction(this);
     start.setOnAction(this);
     
+    // Formatting Buttons and Boxes
     start.setPrefSize(100,50);
 
-    // Create boxes
     VBox centerVBox = new VBox(add, save, topicBox);
     centerVBox.setPadding(new Insets(160,0,0,80));
     HBox bottomHBox = new HBox(start);
