@@ -47,6 +47,9 @@ public class SaveMenu extends Main implements EventHandler<ActionEvent> {
     back.setOnAction(this);
     submit.setOnAction(this);
 
+    back.setPrefSize(100,50);
+    submit.setPrefSize(100,50);
+
     // Top Panel
     HBox topPanel = new HBox();
     topPanel.getChildren().addAll(label,numQuestions);
@@ -62,7 +65,7 @@ public class SaveMenu extends Main implements EventHandler<ActionEvent> {
     // Bottom Panel
     HBox bottomPanel = new HBox();
     bottomPanel.getChildren().addAll(back,submit);
-    bottomPanel.setSpacing(378);
+    bottomPanel.setSpacing(360);
     root.setBottom(bottomPanel);
 
     return root;
