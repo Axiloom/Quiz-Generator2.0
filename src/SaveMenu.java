@@ -1,3 +1,6 @@
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -7,18 +10,30 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
+import javafx.stage.Stage;
 
-public class SaveMenu extends Main{
+public class SaveMenu extends Main implements EventHandler<ActionEvent> {
 
-  public SaveMenu() {
+  Stage primaryStage;
+  Scene menuScene;
+
+  // Constructor
+  public SaveMenu(Stage primaryStage) {
+//    this.primaryStage = primaryStage;
+//    MainMenu mainMenu = new MainMenu(primaryStage);
+//    menuScene = new Scene(mainMenu.initialize(),500,500);
   }
 
   public BorderPane initalize(){
+
     Label label = new Label("Save Menu");
     Label numQuestions = new Label("X Questions available");
+
+    // Styling
     numQuestions.setFont(Font.font("Arial", FontWeight.BOLD, 16));
     label.setFont(Font.font("Arial", FontWeight.BOLD, 16));
 
+    // Pane to hold everything
     BorderPane root = new BorderPane();
 
     Label jsonLabel = new Label("Save as JSON:");
@@ -26,6 +41,9 @@ public class SaveMenu extends Main{
 
     Button next = new Button("NEXT");
     Button back = new Button("BACK");
+
+    // Listeners
+    next.setOnAction(this);
 
     Image one = new Image("150x150blank.png");
     Image two = new Image("100x300blank.png");
@@ -44,4 +62,14 @@ public class SaveMenu extends Main{
   }
 
 
+  /**
+   * Invoked when a specific event of the type for which this handler is
+   * registered happens.
+   *
+   * @param event the event which occurred
+   */
+  @Override
+  public void handle(ActionEvent event) {
+    primaryStage.setScene(menuScene);
+  }
 }

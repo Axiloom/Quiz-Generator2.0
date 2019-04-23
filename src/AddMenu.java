@@ -7,10 +7,13 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
+import javafx.stage.Stage;
 
 public class AddMenu {
-  
-  public AddMenu() {
+  Stage primaryStage;
+
+  public AddMenu(Stage primaryStage) {
+    this.primaryStage = primaryStage;
   }
   
   public BorderPane initialize() {
