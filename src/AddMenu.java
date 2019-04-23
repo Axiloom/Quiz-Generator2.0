@@ -33,6 +33,9 @@ public class AddMenu extends Main implements EventHandler<ActionEvent> {
       label.setFont(Font.font("Arial", FontWeight.BOLD, 16));
 
       BorderPane root = new BorderPane();
+      
+      // Set background color of root
+      root.setStyle("-fx-background-color: #c0c0c5");
 
       Label topicLabel = new Label("Enter Topic:");
       TextField topic = new TextField("Enter Topic here");

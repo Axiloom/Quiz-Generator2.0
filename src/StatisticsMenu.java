@@ -45,6 +45,9 @@ public class StatisticsMenu extends Main implements EventHandler<ActionEvent> {
 
     // Pane to hold everything
     BorderPane root = new BorderPane();
+    
+    // Set background color of root
+    root.setStyle("-fx-background-color: #c0c0c5");
 
     // Listeners
     save.setOnAction(this);

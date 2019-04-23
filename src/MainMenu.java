@@ -60,6 +60,9 @@ public class MainMenu extends Main implements EventHandler<ActionEvent> {
 
     // BorderPane to add buttons to
     BorderPane root = new BorderPane();
+    
+    // Set background color of root
+    root.setStyle("-fx-background-color: #c0c0c5");
 
     // Handlers for buttons
     save.setOnAction(this);

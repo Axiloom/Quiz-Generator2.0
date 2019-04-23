@@ -30,6 +30,9 @@ public class QuestionMenu extends Main implements EventHandler<ActionEvent> {
     
     BorderPane root = new BorderPane();
     
+    // Set background color of root
+    root.setStyle("-fx-background-color: #c0c0c5");
+    
     next.setOnAction(this);
     
     HBox bottomHBox = new HBox(next);
