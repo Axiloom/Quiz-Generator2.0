@@ -9,7 +9,7 @@ public class Quiz extends Main {
     this.primaryStage = primaryStage;
   }
 
-  public BorderPane initalize(){
+  public BorderPane initialize(){
     Button mainMenu = new Button("mainMenu");
 
     // BorderPane to add buttons to

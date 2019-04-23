@@ -29,10 +29,11 @@ public class MainMenu extends Main implements EventHandler<ActionEvent> {
     this.primaryStage = primaryStage;
     SaveMenu saveMenu = new SaveMenu(primaryStage);
     AddMenu addMenu = new AddMenu(primaryStage);
-    Quiz quiz = new Quiz(primaryStage);
-    saveScene = new Scene(saveMenu.initalize(), 500,500);
+    QuestionMenu quiz = new QuestionMenu(primaryStage);
+//    Quiz quiz = new Quiz(primaryStage);
+    saveScene = new Scene(saveMenu.initialize(), 500,500);
     addScene = new Scene(addMenu.initialize(),500, 500);
-    quizScene = new Scene(quiz.initalize(),500, 500);
+    quizScene = new Scene(quiz.initialize(),500, 500);
     add = new Button("  Add Questions  ");
     save = new Button("  Save Questions ");
     start = new Button("START");

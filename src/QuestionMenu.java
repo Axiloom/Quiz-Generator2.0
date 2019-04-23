@@ -1,52 +1,53 @@
+import javafx.event.ActionEvent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
-import javafx.scene.text.Font;
-import javafx.scene.text.FontWeight;
+import javafx.stage.Stage;
 
 public class QuestionMenu {
+  
+  private Stage primaryStage;
+  private Button stats;
 
-  public QuestionMenu() {
+  public QuestionMenu(Stage primaryStage) {
+    this.primaryStage = primaryStage;
+    stats = new Button("STATISTICS");
   }
   
   public BorderPane initialize() {
-    Label label = new Label("Add Menu");
-    Label numQuestions = new Label("X Questions available");
-    numQuestions.setFont(Font.font("Arial", FontWeight.BOLD, 16));
-    label.setFont(Font.font("Arial", FontWeight.BOLD, 16));
-
+    Label label = new Label("Question 1/X");
     BorderPane root = new BorderPane();
 
-    CheckBox a = new CheckBox();
-    Label topicLabel = new Label("Enter Topic:");
-    TextField topic = new TextField("Enter Topic here");
-    Label questionLabel = new Label("Enter Question:");
-    TextField question = new TextField("Enter Question here");
-    Label answerLabel = new Label("Enter Answer:");
-    TextField answer = new TextField("Enter Answer here");
-
-    Button next = new Button("NEXT");
-    Button back = new Button("BACK");
-
-    Image two = new Image("100x300blank.png");
-    Image three = new Image("100x100blank.png");
-    ImageView img = new ImageView(three);
-    ImageView img1 = new ImageView(two);
-    ImageView img2 = new ImageView(two);
-
-    VBox leftVBox = new VBox(a, img1, back);
-    VBox rightVBox = new VBox(numQuestions, img2, next);
-    VBox centerVBox =
-        new VBox(img, topicLabel, topic, questionLabel, question, answerLabel, answer);
-    root.setCenter(centerVBox);
+    Image one = new Image("150x50blank.png");
+    ImageView img = new ImageView(one);
+    
+    // Spacers
+    Label a1 = new Label("");
+    Label a2 = new Label("");
+    
+    VBox leftVBox = new VBox(label);
+    VBox bottomVBox = new VBox(a1,img,stats);
+    
+    root.setBottom(bottomVBox);
     root.setLeft(leftVBox);
-    root.setRight(rightVBox);
 
     return root;
+  }
+  
+  /**
+   * Invoked when a specific event of the type for which this handler is
+   * registered happens.
+   *
+   * @param event the event which occurred
+   */
+  public void handle(ActionEvent event) {
+    StatisticsMenu statsMenu = new StatisticsMenu(primaryStage);
+    Scene statsScene = new Scene(statsMenu.initialize(),500,500);
+    if (event.getSource() == stats)
+      primaryStage.setScene(statsScene);
   }
 }

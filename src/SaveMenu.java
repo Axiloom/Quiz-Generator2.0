@@ -25,7 +25,7 @@ public class SaveMenu extends Main implements EventHandler<ActionEvent> {
     submit = new Button("SUBMIT");
   }
 
-  public BorderPane initalize(){
+  public BorderPane initialize(){
 
     Label label = new Label("Save Menu");
     Label numQuestions = new Label("X Questions available");
