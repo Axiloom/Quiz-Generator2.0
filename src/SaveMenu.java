@@ -37,6 +37,7 @@ public class SaveMenu extends Main implements EventHandler<ActionEvent> {
     // Pane to hold everything
     BorderPane root = new BorderPane();
 
+    // Buttons/Labels
     Label jsonLabel = new Label("Save as JSON:");
     TextField jsonName = new TextField("Enter JSON File here");
 
@@ -44,6 +45,7 @@ public class SaveMenu extends Main implements EventHandler<ActionEvent> {
     back.setOnAction(this);
     submit.setOnAction(this);
 
+    // Set Button sizes
     back.setPrefSize(100,50);
     submit.setPrefSize(100,50);
 
@@ -70,7 +72,6 @@ public class SaveMenu extends Main implements EventHandler<ActionEvent> {
 
     return root;
   }
-
 
   /**
    * Invoked when a specific event of the type for which this handler is
