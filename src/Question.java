@@ -49,12 +49,15 @@ public class Question {
     }
     
     /**
-     * 
+     * Used to correctly place questions into their topic array
      * @param topic
      * @return
      */
-    public boolean checkTopic(String topic) {
-      return true;
+    public boolean checkTopic(String topic, QuestionNode node) {
+      if (node.topic.equals(topic)) {
+        return true;
+      }
+      return false;
     }
   }
   
