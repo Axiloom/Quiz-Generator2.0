@@ -1,6 +1,15 @@
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import java.io.FileNotFoundException; 
+import java.io.PrintWriter;
+import org.json.simple.JSONArray; 
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException; 
+
 
 public class Question {
 
@@ -49,12 +58,15 @@ public class Question {
     }
     
     /**
-     * 
+     * Used to correctly place questions into their topic array
      * @param topic
      * @return
      */
-    public boolean checkTopic(String topic) {
-      return true;
+    public boolean checkTopic(String topic, QuestionNode node) {
+      if (node.topic.equals(topic)) {
+        return true;
+      }
+      return false;
     }
   }
   
@@ -73,9 +85,14 @@ public class Question {
    * 
    * @param jsonFilePath
    * @return
+ * @throws ParseException 
+ * @throws IOException 
+ * @throws FileNotFoundException 
    */
-  public boolean loadJSON(String jsonFilePath) {
+  public boolean loadJSON(String jsonFilePath) throws FileNotFoundException, IOException, ParseException {
     // Make as many private helper methods as we need
+	Object obj = new JSONParser().parse(new FileReader(jsonFilePath));
+	
     return true;
   }
   
