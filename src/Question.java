@@ -40,12 +40,13 @@ public class Question {
      * @param image
      * @param options
      */
-    QuestionNode(String topic, String metadata, String questionText, String image, ArrayList<String> options){
+    QuestionNode(String topic, String metadata, String questionText, String image, 
+    		ArrayList<String> options, String correctAnswer){
       this.metadata = metadata;
       this.question = questionText;
       this.options = options;
       img = new ImageView(new Image(image));
-      answer = findAnswer(); // detect the correct answer, do we need this?
+      answer = this.answer; // detect the correct answer, do we need this?
       this.topic = topic;
     }
     
@@ -136,14 +137,21 @@ public class Question {
 		// need to interate through the choices
 		JSONArray answerArray = (JSONArray) jsonQuestion.get("choiceArray");
 		ArrayList<String> choices = new ArrayList<>(); 
+		String correctAnswer = "";
 		for (Object answer : answerArray) {
-			choices.add((String)((ArrayList) answer).get(3));
-			if (((String)((ArrayList) answer).get(1)).equals("T")) {
-				String correctAnswer = (String)((ArrayList) answer).get(1); // right answer				
+			if (((JSONObject) answer).get("isCorrect").equals("T")){
+				correctAnswer = (String) ((JSONObject) answer).get("choice");
 			}
+			choices.add((String) ((JSONObject)answer).get("choice"));
+			/*
+			if (((String)((ArrayList) answer).get(1)).equals("T")) {
+				String correctAnswer = (String)((ArrayList) answer).get(1); // right answer
+			}
+			*/
 		}
-		QuestionNode newQuestion = new QuestionNode(topic, metaData, question, image, choices);
-		
+		QuestionNode newQuestion = new QuestionNode(topic, metaData, question, 
+				image, choices, correctAnswer);
+		addQuestionNode(newQuestion);
 		// create the new node here 
 		// write method to add the node 
 		
