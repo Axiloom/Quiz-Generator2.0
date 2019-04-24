@@ -44,7 +44,7 @@ public class Main extends Application {
       primaryStage.setScene(mainScene);
       primaryStage.setTitle("Quiz Generator");
       primaryStage.show();
-      primaryStage.resizableProperty().setValue(true);
+      primaryStage.resizableProperty().setValue(false);
 
     } catch (Exception e) {
       e.printStackTrace();

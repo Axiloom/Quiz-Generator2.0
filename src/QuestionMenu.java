@@ -106,6 +106,12 @@ public class QuestionMenu extends Main implements EventHandler<ActionEvent> {
     
     // Center Panel
     VBox questionAnswerBox = new VBox(question, opt1, opt2, opt3, opt4, opt5);
+    question.setText("Hello My name is john lkajsdf asldk asdk falksd flka sdklf Hello");
+    question.setPrefWidth(200);
+    question.setWrapText(true);
+    question.setPadding(new Insets(10));
+    //    question.setWrapText(true);
+    //    question.setPrefWidth(100);
     questionAnswerBox.setPadding(new Insets(35,0,0,15));
     questionAnswerBox.setSpacing(30);
     Label placeholder = new Label("PICTURE HERE");
