@@ -104,9 +104,20 @@ public class Question {
  * @throws FileNotFoundException 
    */
   public boolean loadJSON(String jsonFilePath) throws FileNotFoundException, IOException, ParseException {
-    // Make as many private helper methods as we need
-	Object obj = new JSONParser().parse(new FileReader(jsonFilePath));
+	    // Make as many private helper methods as we need
+    Object obj = new JSONParser().parse(new FileReader(jsonFilePath));
+	JSONObject jo = (JSONObject) obj;
+	JSONArray questionArray = (JSONArray) jo.get("questionArray");
 	
+	for (int i = 0; i < questionArray.size(); i ++) {
+		JSONObject jsonQuestion = (JSONObject) questionArray.get(i);
+		String metaData = (String) jsonQuestion.get("meta-data"); // meta data
+		String question = (String) jsonQuestion.get("question"); // question
+		String topic = (String) jsonQuestion.get("topic");
+		String image = (String) jsonQuestion.get("image");
+		//JSONArray answerArray = (JSONArray)
+	}
+		
     return true;
   }
   
