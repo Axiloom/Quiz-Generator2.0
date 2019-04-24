@@ -90,6 +90,7 @@ public class SaveMenu extends Main implements EventHandler<ActionEvent> {
   @Override
   public void handle(ActionEvent event) {
 
+    // TODO Problem: resizing doesnt resets after setting scene
     if (event.getSource() == back){
       primaryStage.setScene(Main.getMainScene());
     }
