@@ -4,7 +4,6 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
@@ -25,8 +24,8 @@ public class MainMenu extends Main implements EventHandler<ActionEvent> {
   // Constructor
   public MainMenu(Stage primaryStage) {
     this.primaryStage = primaryStage;
-    add = new Button(" Add/Load Questions ");
-    save = new Button("      Save Questions    ");
+    add = new Button("Add/Load Questions");
+    save = new Button("Save Questions");
     start = new Button("START");
   }
 
@@ -46,13 +45,23 @@ public class MainMenu extends Main implements EventHandler<ActionEvent> {
         FXCollections.observableArrayList("Topic 1", "Topic 2", "Topic 3");
     ComboBox<String> topicBox = new ComboBox<>(topics);
     topicBox.setPromptText("Set Topic  ");
-    topicBox.setPrefWidth(151);
+    topicBox.setPrefWidth(180);
+    
+    // Drop down list of questions
+    ObservableList<String> questions =
+        FXCollections.observableArrayList("1", "2", "3", "4", "n-1", "n");
+    ComboBox<String> questionBox = new ComboBox<>(questions);
+    questionBox.setPromptText("Set # Questions");
+    questionBox.setPrefWidth(180);
 
     // BorderPane to add buttons to
     BorderPane root = new BorderPane();
     
     // Set background color of root
     root.setStyle("-fx-background-color: #c0c0c5");
+    
+    add.setPrefWidth(180);
+    save.setPrefWidth(180);
 
     // Handlers for buttons
     save.setOnAction(this);
@@ -74,9 +83,13 @@ public class MainMenu extends Main implements EventHandler<ActionEvent> {
     topPanel.setStyle("-fx-background-color: #9fb983");
 
     // Center Panel (GOOD)
-    VBox centerVBox = new VBox(add, save, topicBox);
+    VBox topVBox = new VBox(add, save);
+    VBox bottomVBox = new VBox(topicBox, questionBox);
+    VBox centerVBox = new VBox(topVBox, bottomVBox);
     centerVBox.setAlignment(Pos.CENTER);
-    centerVBox.setSpacing(2);
+    centerVBox.setSpacing(35);
+    centerVBox.setPadding(new Insets(0,0,0,160));
+    
     root.setCenter(centerVBox);
 
     // Bottom Panel
