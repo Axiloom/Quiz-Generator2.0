@@ -90,7 +90,7 @@ public class Question {
         }
       }
     }
-    
+  
     return result;
   }
   
@@ -135,6 +135,11 @@ public class Question {
    * @return
    */
   public int getSize(String topic) {
-    return 0;
+    for (int i = 0; i < topics.size(); ++i) {
+      if (topics.get(i).get(1).topic.equals(topic)) {
+        return topics.get(i).size();
+      }
+    }
+    return -1;
   }
 }
