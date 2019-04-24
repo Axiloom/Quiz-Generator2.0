@@ -95,29 +95,28 @@ public class QuestionMenu extends Main implements EventHandler<ActionEvent> {
     topPanel.setAlignment(Pos.CENTER);
     root.setTop(topPanel);
     topPanel.setStyle("-fx-background-color: #9fb983");
-    
-    // Left Panel
-    VBox options = new VBox(a1,a2,a3,a4,a5);
-    options.setPadding(new Insets(85,0,0,60));
-    options.setSpacing(25);
-    root.setLeft(options);
-    // TODO add picture to left panel on the bottom corner or bottom panel
-    // TODO make sure the option is deselected after the quiz?
-    
+
     // Center Panel
-    VBox questionAnswerBox = new VBox(question, opt1, opt2, opt3, opt4, opt5);
-    question.setText("Hello My name is john lkajsdf asldk asdk falksd flka sdklf Hello");
-    question.setPrefWidth(200);
-    question.setWrapText(true);
-    question.setPadding(new Insets(10));
-    //    question.setWrapText(true);
-    //    question.setPrefWidth(100);
-    questionAnswerBox.setPadding(new Insets(35,0,0,15));
+    question.setText("Hello My name is john lkajsdf asldk asdk falksd flka sdka asdf asd  as df a" +
+            " ds df a sd f a sdf a sdf asd lf Hello");
+
+    Label picture = new Label("Picture here");
+
+    VBox questionAnswerBox = new VBox(
+            question,
+            new HBox(a, opt1),
+            new HBox(b, opt2),
+            new HBox(c, opt3),
+            new HBox(d, opt4),
+            new HBox(f, opt5),
+            picture);
+
+    questionAnswerBox.setPadding(new Insets(40,0,0,15));
     questionAnswerBox.setSpacing(30);
-    Label placeholder = new Label("PICTURE HERE");
-    VBox leftPanel = new VBox(questionAnswerBox, placeholder);
-    leftPanel.setSpacing(70);
-    root.setCenter(leftPanel);
+
+    picture.setPadding(new Insets(10,0,0,0));
+
+    root.setCenter(questionAnswerBox);
 
     // Bottom Panel
     HBox bottomHBox = new HBox(next);
