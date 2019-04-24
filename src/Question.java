@@ -131,8 +131,8 @@ public class Question {
   /**
    * Gets the number of questions available for a particular topic
    * 
-   * @param topic
-   * @return
+   * @param topic - the topic which we are finding number of questions for
+   * @return number of questions for a specific topic, or -1 if topic does not exist
    */
   public int getSize(String topic) {
     for (int i = 0; i < topics.size(); ++i) {
