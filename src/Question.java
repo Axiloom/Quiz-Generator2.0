@@ -27,7 +27,7 @@ public class Question {
   class QuestionNode{
     String metadata; // metadata for a question
     String question; // question
-    String[] options; // all options
+    ArrayList<String> options; // all options
     String answer; // correct answer
     ImageView img; // image going along with the question
     String topic;
@@ -40,7 +40,7 @@ public class Question {
      * @param image
      * @param options
      */
-    QuestionNode(String topic, String metadata, String questionText, String image, String[] options){
+    QuestionNode(String topic, String metadata, String questionText, String image, ArrayList<String> options){
       this.metadata = metadata;
       this.question = questionText;
       this.options = options;
@@ -71,6 +71,15 @@ public class Question {
       return false;
     }
   }
+
+  /**
+   * No-arg Constructor for Question class
+   */
+  public Question() {
+    topics = new ArrayList<>();
+    numQuestions = 0;
+    isCorrect = new ArrayList<>(); // might not need?
+  }
   
   /**
    * Returns a number of questions in a particular topic group in random order
@@ -90,8 +99,17 @@ public class Question {
         }
       }
     }
-    
+  
     return result;
+  }
+  
+  /**
+   * Adds a node to the topicList according to its topic
+   * @param node
+   * @return
+   */
+  public boolean addQuestionNode(QuestionNode node) {
+	  return true;
   }
   
   /**
@@ -115,7 +133,20 @@ public class Question {
 		String question = (String) jsonQuestion.get("question"); // question
 		String topic = (String) jsonQuestion.get("topic");
 		String image = (String) jsonQuestion.get("image");
-		//JSONArray answerArray = (JSONArray)
+		// need to interate through the choices
+		JSONArray answerArray = (JSONArray) jsonQuestion.get("choiceArray");
+		ArrayList<String> choices = new ArrayList<>(); 
+		for (Object answer : answerArray) {
+			choices.add((String)((ArrayList) answer).get(3));
+			if (((String)((ArrayList) answer).get(1)).equals("T")) {
+				String correctAnswer = (String)((ArrayList) answer).get(1); // right answer				
+			}
+		}
+		QuestionNode newQuestion = new QuestionNode(topic, metaData, question, image, choices);
+		
+		// create the new node here 
+		// write method to add the node 
+		
 	}
 		
     return true;
@@ -142,10 +173,15 @@ public class Question {
   /**
    * Gets the number of questions available for a particular topic
    * 
-   * @param topic
-   * @return
+   * @param topic - the topic which we are finding number of questions for
+   * @return number of questions for a specific topic, or -1 if topic does not exist
    */
   public int getSize(String topic) {
-    return 0;
+    for (int i = 0; i < topics.size(); ++i) {
+      if (topics.get(i).get(1).topic.equals(topic)) {
+        return topics.get(i).size();
+      }
+    }
+    return -1;
   }
 }
