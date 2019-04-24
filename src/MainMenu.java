@@ -68,7 +68,8 @@ public class MainMenu extends Main implements EventHandler<ActionEvent> {
     // Top Panel
     HBox topPanel = new HBox(label, numQuestions);
     topPanel.setPadding(new Insets(10,50,10,50));
-    topPanel.setSpacing(150);
+    topPanel.setSpacing(100);
+    topPanel.setAlignment(Pos.CENTER);
     root.setTop(topPanel);
     topPanel.setStyle("-fx-background-color: #9fb983");
 
@@ -80,7 +81,8 @@ public class MainMenu extends Main implements EventHandler<ActionEvent> {
 
     // Bottom Panel
     HBox bottomHBox = new HBox(start);
-    bottomHBox.setPadding(new Insets(0,0,65,300));
+    bottomHBox.setPadding(new Insets(0,0,65,200));
+    bottomHBox.setAlignment(Pos.CENTER);
     root.setBottom(bottomHBox);
 
     // return this menu

@@ -1,6 +1,7 @@
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -61,7 +62,8 @@ public class SaveMenu extends Main implements EventHandler<ActionEvent> {
     // Top Panel
     HBox topPanel = new HBox(label, numQuestions);
     topPanel.setPadding(new Insets(10,50,10,50));
-    topPanel.setSpacing(150);
+    topPanel.setSpacing(100);
+    topPanel.setAlignment(Pos.CENTER);
     root.setTop(topPanel);
     topPanel.setStyle("-fx-background-color: #9fb983");
 
