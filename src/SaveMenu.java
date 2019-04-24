@@ -68,8 +68,9 @@ public class SaveMenu extends Main implements EventHandler<ActionEvent> {
     topPanel.setStyle("-fx-background-color: #9fb983");
 
     // Center Panel
-    VBox centerPanel = new VBox(jsonLabel,jsonName);
+    HBox centerPanel = new HBox(jsonLabel,jsonName);
     centerPanel.setPadding(new Insets(150,100,50,100));
+    centerPanel.setSpacing(10);
     root.setCenter(centerPanel);
 
     // Bottom Panel

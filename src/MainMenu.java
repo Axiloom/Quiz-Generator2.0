@@ -7,6 +7,8 @@ import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollBar;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -44,15 +46,17 @@ public class MainMenu extends Main implements EventHandler<ActionEvent> {
     ObservableList<String> topics =
         FXCollections.observableArrayList("Topic 1", "Topic 2", "Topic 3");
     ComboBox<String> topicBox = new ComboBox<>(topics);
-    topicBox.setPromptText("Set Topic  ");
+    topicBox.setPromptText("Set Topic");
     topicBox.setPrefWidth(180);
+    topicBox.setVisibleRowCount(5);
     
     // Drop down list of questions
     ObservableList<String> questions =
-        FXCollections.observableArrayList("1", "2", "3", "4", "n-1", "n");
+        FXCollections.observableArrayList("1", "2", "3", "4", "5", "6", "7", "8", "n-1", "n");
     ComboBox<String> questionBox = new ComboBox<>(questions);
     questionBox.setPromptText("Set # Questions");
     questionBox.setPrefWidth(180);
+    questionBox.setVisibleRowCount(5);
 
     // BorderPane to add buttons to
     BorderPane root = new BorderPane();
