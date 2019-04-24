@@ -19,10 +19,7 @@ public class Question {
     String[] options; // all options
     String answer; // correct answer
     ImageView img; // image going along with the question
-<<<<<<< HEAD
-=======
     String topic;
->>>>>>> branch 'master' of https://github.com/Rockapella/Quiz-Generator2.0
     
     /**
      * TODO
@@ -32,22 +29,13 @@ public class Question {
      * @param image
      * @param options
      */
-<<<<<<< HEAD
-    QuestionNode(String metadata, String questionText, String image, String[] options){
+    QuestionNode(String topic, String metadata, String questionText, String image, String[] options){
       this.metadata = metadata;
       this.question = questionText;
       this.options = options;
       img = new ImageView(new Image(image));
       answer = findAnswer(); // detect the correct answer, do we need this?
-=======
-    QuestionNode(String metadata, String questionText, String image, String[] options, String topic){
-      this.metadata = metadata;
-      this.question = questionText;
-      this.options = options;
-      img = new ImageView(new Image(image));
-      findAnswer(); // detect the correct answer, do we need this?
       this.topic = topic;
->>>>>>> branch 'master' of https://github.com/Rockapella/Quiz-Generator2.0
     }
     
     /**
