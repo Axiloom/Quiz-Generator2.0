@@ -15,7 +15,6 @@ public class Main extends Application {
   private static Scene addScene;
   private static Scene questionScene;
   private static Scene statisticsScene;
-  private static Stage primaryStage;
 
   /**
    * TODO
