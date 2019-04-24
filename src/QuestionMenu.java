@@ -59,6 +59,17 @@ public class QuestionMenu extends Main implements EventHandler<ActionEvent> {
     opt3.setFont(Font.font("Arial", FontWeight.BOLD, 15));
     opt4.setFont(Font.font("Arial", FontWeight.BOLD, 15));
     opt5.setFont(Font.font("Arial", FontWeight.BOLD, 15));
+    
+    HBox a1 = new HBox(a, opt1);
+    a1.setSpacing(25);
+    HBox a2 = new HBox(b, opt2);
+    a2.setSpacing(25);
+    HBox a3 = new HBox(c, opt3);
+    a3.setSpacing(25);
+    HBox a4 = new HBox(d, opt4);
+    a4.setSpacing(25);
+    HBox a5 = new HBox(f, opt5);
+    a5.setSpacing(25);
 
     // main pane
     BorderPane root = new BorderPane();
@@ -85,7 +96,7 @@ public class QuestionMenu extends Main implements EventHandler<ActionEvent> {
     topPanel.setStyle("-fx-background-color: #9fb983");
     
     // Left Panel
-    VBox options = new VBox(a,b,c,d,f);
+    VBox options = new VBox(a1,a2,a3,a4,a5);
     options.setPadding(new Insets(85,0,0,60));
     options.setSpacing(25);
     root.setLeft(options);
