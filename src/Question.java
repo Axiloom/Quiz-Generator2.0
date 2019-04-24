@@ -47,5 +47,44 @@ public class Question {
       // find the option that has "T" as isCorrect and set it to answer
       return "";
     }
+    
+    /**
+     * 
+     * @param topic
+     * @return
+     */
+    public boolean checkTopic(String topic) {
+      return true;
+    }
+  }
+  
+  /**
+   * Returns a number of questions in a particular topic group in random order
+   * 
+   * @param topic
+   * @param numQuestions
+   */
+  public ArrayList<QuestionNode> getQuestions(String topic, int numQuestions){
+    return null;
+  }
+  
+  /**
+   * Parses a json file and adds the information to the data fields
+   * 
+   * @param jsonFilePath
+   * @return
+   */
+  public boolean loadJSON(String jsonFilePath) {
+    // Make as many private helper methods as we need
+    return true;
+  }
+  
+  /**
+   * Saves all questions in the
+   * 
+   * @return
+   */
+  public boolean saveToJSON() {
+    return true;
   }
 }
