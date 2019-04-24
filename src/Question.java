@@ -91,7 +91,7 @@ public class Question {
       }
     }
     
-    return null;
+    return result;
   }
   
   /**
