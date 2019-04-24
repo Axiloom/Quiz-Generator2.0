@@ -18,6 +18,7 @@ public class Question {
     String[] options; // all options
     String answer; // correct answer
     ImageView img; // image going along with the question
+    String topic;
     
     /**
      * TODO
@@ -27,12 +28,13 @@ public class Question {
      * @param image
      * @param options
      */
-    QuestionNode(String metadata, String questionText, String image, String[] options){
+    QuestionNode(String metadata, String questionText, String image, String[] options, String topic){
       this.metadata = metadata;
       this.question = questionText;
       this.options = options;
       img = new ImageView(new Image(image));
       findAnswer(); // detect the correct answer, do we need this?
+      this.topic = topic;
     }
     
     /**
