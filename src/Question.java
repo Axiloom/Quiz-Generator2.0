@@ -71,6 +71,15 @@ public class Question {
       return false;
     }
   }
+
+  /**
+   * No-arg Constructor for Question class
+   */
+  public Question() {
+    topics = new ArrayList<>();
+    numQuestions = 0;
+    isCorrect = new ArrayList<>(); // might not need?
+  }
   
   /**
    * Returns a number of questions in a particular topic group in random order
