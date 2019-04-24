@@ -5,6 +5,7 @@ import javafx.scene.image.ImageView;
 public class Question {
 
   ArrayList<ArrayList<QuestionNode>> topics; // holds ArrayList of questions for specific topics
+  ArrayList<Boolean> isCorrect; // keeps track of correct/incorrect answers throughout the quiz
   
   /**
    * TODO

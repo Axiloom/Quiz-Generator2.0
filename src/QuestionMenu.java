@@ -24,6 +24,7 @@ public class QuestionMenu extends Main implements EventHandler<ActionEvent> {
     next = new Button("NEXT");
     numQuestions = 0;
     currQuestion = 0;
+    
   }
   
   public BorderPane initialize() {
@@ -133,8 +134,13 @@ public class QuestionMenu extends Main implements EventHandler<ActionEvent> {
     }
 
     else if(event.getSource() == next) {
-      primaryStage.setScene(Main.getStatisticsScene());
-      //TODO change this so that it goes to next question somehow...instead of statsScene
+      // read through options (a,b,c,d, and f), detect which is true ( e.g. a.isSelected() ),
+      // compare if its the correct answer, update Question.isCorrect()
+      if(currQuestion == numQuestions) {
+        primaryStage.setScene(Main.getStatisticsScene());
+      } else {
+        // display next question
+      }
     }
   }
 }
