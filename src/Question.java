@@ -80,7 +80,7 @@ public class Question {
   }
   
   /**
-   * Saves all questions in the
+   * Saves all questions in a new json file
    * 
    * @return
    */
