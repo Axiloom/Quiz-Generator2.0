@@ -35,16 +35,28 @@ public class AddMenu extends Main implements EventHandler<ActionEvent> {
       // Set background color of root
       root.setStyle("-fx-background-color: #c0c0c5");
 
-      Label topicLabel = new Label("Enter Topic:");
+      Label topicLabel = new Label("Enter Topic: ");
       TextField topic = new TextField("Enter Topic here");
-      Label questionLabel = new Label("Enter Question:");
+      HBox topicHBox = new HBox(topicLabel, topic);
+      topicHBox.setSpacing(24);
+      
+      Label questionLabel = new Label("Enter Question: ");
       TextField question = new TextField("Enter Question here");
-      Label answerLabel = new Label("Enter Answer:");
+      HBox questionHBox = new HBox(questionLabel, question);
+      
+      Label answerLabel = new Label("Enter Answer: ");
       TextField answer = new TextField("Enter Answer here");
+      HBox answerHBox = new HBox(answerLabel, answer);
+      answerHBox.setSpacing(11);
+      
       Label or = new Label("OR");
       or.setFont(Font.font("Arial", FontWeight.BOLD, 16));
-      Label load = new Label("Load from JSON:");
+      
+      Label loadLabel = new Label("Load JSON: ");
       TextField jsonLoad = new TextField("Enter JSON File name");
+      HBox loadHBox = new HBox(loadLabel, jsonLoad);
+      loadHBox.setSpacing(25);
+      
       Label blank = new Label("");
       Label blank2 = new Label("");
       
@@ -70,8 +82,9 @@ public class AddMenu extends Main implements EventHandler<ActionEvent> {
       topPanel.setStyle("-fx-background-color: #9fb983");
 
       // Center Panel
-      VBox centerVBox = new VBox(topicLabel, topic, questionLabel, question, answerLabel, answer,
-          blank, or, blank2, load, jsonLoad);
+      VBox topVBox = new VBox(topicHBox, questionHBox, answerHBox);
+      VBox bottomVBox = new VBox(loadHBox);
+      VBox centerVBox = new VBox(topVBox, blank, or, blank2, bottomVBox);
       centerVBox.setPadding(new Insets(50,80,50,80));
       root.setCenter(centerVBox);
 
