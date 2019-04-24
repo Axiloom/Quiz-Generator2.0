@@ -1,6 +1,7 @@
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Random;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import java.io.FileNotFoundException; 
@@ -78,6 +79,18 @@ public class Question {
    * @param numQuestions
    */
   public ArrayList<QuestionNode> getQuestions(String topic, int numQuestions){
+    ArrayList<QuestionNode> result = new ArrayList<QuestionNode>();
+    for (int i = 0; i < topics.size(); ++i) {
+      if (topics.get(i).get(1).topic.equals(topic)) {
+        Random r = new Random();
+        while (numQuestions > 0) {
+          int index = r.nextInt(topics.get(i).size());
+          result.add(topics.get(i).get(index));
+          --numQuestions;
+        }
+      }
+    }
+    
     return null;
   }
   
