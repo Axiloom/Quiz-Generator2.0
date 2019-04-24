@@ -15,6 +15,7 @@ public class Question {
 
   ArrayList<ArrayList<QuestionNode>> topics; // holds ArrayList of questions for specific topics
   ArrayList<Boolean> isCorrect; // keeps track of correct/incorrect answers throughout the quiz
+  int numQuestions; // total number of questions available
   
   /**
    * TODO
@@ -103,5 +104,24 @@ public class Question {
    */
   public boolean saveToJSON() {
     return true;
+  }
+  
+  /**
+   * Gets the total number of questions available across all topics
+   * 
+   * @return
+   */
+  public int getSize() {
+    return numQuestions;
+  }
+  
+  /**
+   * Gets the number of questions available for a particular topic
+   * 
+   * @param topic
+   * @return
+   */
+  public int getSize(String topic) {
+    return 0;
   }
 }
