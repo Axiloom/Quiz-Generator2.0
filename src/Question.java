@@ -46,7 +46,7 @@ public class Question {
       this.question = questionText;
       this.options = options;
       img = new ImageView(new Image(image));
-      answer = this.answer; // detect the correct answer, do we need this?
+      this.answer = findAnswer(); // detect the correct answer, do we need this?
       this.topic = topic;
     }
     
