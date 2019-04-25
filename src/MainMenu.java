@@ -7,8 +7,6 @@ import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
-import javafx.scene.control.ScrollBar;
-import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundImage;
@@ -70,14 +68,12 @@ public class MainMenu extends Main implements EventHandler<ActionEvent> {
     // Set background color of root
     // root.setStyle("-fx-background-color: #c0c0c5");
 
-    // Josh Edits FIXME
     BackgroundSize bSize =
         new BackgroundSize(BackgroundSize.AUTO, BackgroundSize.AUTO, false, false, true, false);
     Image image1 = new Image("uwCrest_Dope.png");
     Background background = new Background(new BackgroundImage(image1, BackgroundRepeat.NO_REPEAT,
         BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, bSize));
     root.setBackground(background);
-    // Close Josh FIXME
 
 
     add.setPrefWidth(180);

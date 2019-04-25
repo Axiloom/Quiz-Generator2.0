@@ -16,13 +16,13 @@ import javafx.stage.Stage;
 public class StatisticsMenu extends Main implements EventHandler<ActionEvent> {
 
   private Stage primaryStage;
-  private Button save;
+  private Button cont;
   private Button exit;
 
   // Constructor
   public StatisticsMenu(Stage primaryStage) {
     this.primaryStage = primaryStage;
-    save = new Button("SAVE");
+    cont = new Button("NEW QUIZ");
     exit = new Button("EXIT");
   }
 
@@ -52,17 +52,17 @@ public class StatisticsMenu extends Main implements EventHandler<ActionEvent> {
     root.setStyle("-fx-background-color: #c0c0c5");
 
     // Listeners
-    save.setOnAction(this);
+    cont.setOnAction(this);
     exit.setOnAction(this);
     
     // Scroll-over effects
-    save.setOnMouseEntered(e -> save.setStyle("-fx-font-size: 14pt;"));
-    save.setOnMouseExited(e -> save.setStyle("-fx-font-size: 12pt;"));
+    cont.setOnMouseEntered(e -> cont.setStyle("-fx-font-size: 14pt;"));
+    cont.setOnMouseExited(e -> cont.setStyle("-fx-font-size: 12pt;"));
     exit.setOnMouseEntered(e -> exit.setStyle("-fx-font-size: 14pt;"));
     exit.setOnMouseExited(e -> exit.setStyle("-fx-font-size: 12pt;"));
     
-    save.setPrefSize(100,50);
-    exit.setPrefSize(100,50);
+    cont.setPrefSize(150,50);
+    exit.setPrefSize(150,50);
 
     // Top Panel
     HBox topPanel = new HBox(label);
@@ -79,7 +79,7 @@ public class StatisticsMenu extends Main implements EventHandler<ActionEvent> {
     score.setStyle("-fx-underline: true");
 
     // Bottom Panel
-    HBox bottomHBox = new HBox(save, exit);
+    HBox bottomHBox = new HBox(cont, exit);
     bottomHBox.setPadding(new Insets(0,100,65,100));
     bottomHBox.setSpacing(100);
     root.setBottom(bottomHBox);
@@ -97,13 +97,12 @@ public class StatisticsMenu extends Main implements EventHandler<ActionEvent> {
   @Override
   public void handle(ActionEvent event) {
 
-    if (event.getSource() == save){
+    if (event.getSource() == cont){
       primaryStage.setScene(Main.getMainScene());
-      //TODO actually save the data some time
     }
 
     else if(event.getSource() == exit) {
-      primaryStage.setScene(Main.getMainScene());
+      primaryStage.setScene(Main.getExitScene());
     }
   }
 }

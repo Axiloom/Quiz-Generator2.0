@@ -11,6 +11,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
+import javafx.scene.layout.Background;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -47,15 +48,12 @@ public class QuestionMenu extends Main implements EventHandler<ActionEvent> {
   public BorderPane initialize() {
 
     // Labels
-    Label label = new Label("Quiz"); // update with the questions
-    Label numQuestions = new Label("Question 1/N");
+    Label label = new Label("Quiz");
+    Label numQuestions = new Label("Question 1/N"); // update with the questions
 
     // Style
     label.setFont(Font.font("Arial", FontWeight.BOLD, 16));
     numQuestions.setFont(Font.font("Arial", FontWeight.BOLD, 16));
-
-    // Question Image
-    //ImageView image = question.img;
 
     // Question checkboxes
     ArrayList<CheckBox> activeBoxes = new ArrayList<>();
@@ -83,15 +81,18 @@ public class QuestionMenu extends Main implements EventHandler<ActionEvent> {
     };
 
     // TODO: REMOVE WHEN WE GET question.options working
-
     for (int i = 0 ; i < 5 ; i++){
-      CheckBox checkBox = new CheckBox("Question" + (i + 1));
+      CheckBox checkBox = new CheckBox("Questioasdfasdfasdfn" + (i + 1));
       checkBox.setFont(Font.font("Arial", FontWeight.BOLD, 15));
       checkBox.selectedProperty().addListener(listener);
+      checkBox.setWrapText(true);
+      checkBox.setPrefHeight(100);
+      checkBox.setPrefHeight(200);
+      checkBox.setStyle("-fx-background-color: #666666");
       boxes.add(checkBox);
     }
 
-    // Replace above with this when we get this working
+    // TODO: Replace above with this when we get question.options working
 //    for (int i = 0 ; i < question.options.size() ; i++){
 //      CheckBox checkBox = new CheckBox(question.options.get(i));
 //      checkBox.setFont(Font.font("Arial", FontWeight.BOLD, 15));
@@ -100,7 +101,8 @@ public class QuestionMenu extends Main implements EventHandler<ActionEvent> {
 //    }
     
     Label questionExample = new Label("What is the best way to wrap a question around the page, " +
-            "I looked on stackOverflow and couldnt find the answer?");
+            "I looked on stackOverflow and couldnt find the answer? jasdfj ajsdj fj jasjdfjajs " +
+            "djajsdjf ajsdj jajsdj jajsdjfj jja sjdj asjdjj fjajsdjfja sd");
 
     questionExample.setFont(Font.font("Arial", FontWeight.BOLD, 16));
 
@@ -129,10 +131,20 @@ public class QuestionMenu extends Main implements EventHandler<ActionEvent> {
     topPanel.setStyle("-fx-background-color: #9fb983");
 
     // Center Panel
-    ImageView image = new ImageView(new Image(QuestionMenu.class.getResourceAsStream("example.jpg")));
+    ImageView image =
+            new ImageView(new Image(QuestionMenu.class.getResourceAsStream("Example.jpg")));
+    image.setPreserveRatio(true);
+    image.setFitWidth(200);
+    image.setStyle("-fx-border-style: solid");
     VBox answers = new VBox(boxes.get(0), boxes.get(1), boxes.get(2), boxes.get(3), boxes.get(4));
     VBox displayImage = new VBox(image);
     HBox answersAndPicture = new HBox(answers,displayImage);
+    VBox questionAnswerBox = new VBox(questionExample, answersAndPicture);
+
+    // Allow Text Wrapping
+    questionExample.setWrapText(true);
+    questionExample.setPrefWidth(root.getPrefWidth());
+    questionExample.setPrefHeight(Integer.MAX_VALUE);
 
     // Move Boxes to look good on screen
     answers.setSpacing(25);
@@ -140,10 +152,8 @@ public class QuestionMenu extends Main implements EventHandler<ActionEvent> {
     answersAndPicture.setPadding(new Insets(25,0,0,0));
     displayImage.setPadding(new Insets(25,0,0,0));
 
-    VBox questionAnswerBox = new VBox(questionExample, answersAndPicture);
-
-    questionAnswerBox.setPadding(new Insets(40,0,0,15));
-    questionAnswerBox.setSpacing(30);
+    questionAnswerBox.setPadding(new Insets(5,10,0,10));
+    questionAnswerBox.setSpacing(5);
 
     root.setCenter(questionAnswerBox);
 
