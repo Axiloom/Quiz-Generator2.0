@@ -47,15 +47,12 @@ public class QuestionMenu extends Main implements EventHandler<ActionEvent> {
   public BorderPane initialize() {
 
     // Labels
-    Label label = new Label("Quiz"); // update with the questions
-    Label numQuestions = new Label("Question 1/N");
+    Label label = new Label("Quiz");
+    Label numQuestions = new Label("Question 1/N"); // update with the questions
 
     // Style
     label.setFont(Font.font("Arial", FontWeight.BOLD, 16));
     numQuestions.setFont(Font.font("Arial", FontWeight.BOLD, 16));
-
-    // Question Image
-    //ImageView image = question.img;
 
     // Question checkboxes
     ArrayList<CheckBox> activeBoxes = new ArrayList<>();

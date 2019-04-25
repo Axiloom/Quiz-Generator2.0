@@ -15,6 +15,8 @@ public class Main extends Application {
   private static Scene addScene;
   private static Scene questionScene;
   private static Scene statisticsScene;
+  private static Scene exitScene;
+  private Question question;
 
   /**
    * TODO
@@ -29,7 +31,7 @@ public class Main extends Application {
       AddMenu addMenu = new AddMenu(primaryStage);
       QuestionMenu quizMenu = new QuestionMenu(primaryStage);
       StatisticsMenu statisticsMenu = new StatisticsMenu(primaryStage);
-      Question question = new Question();
+      ExitMenu exitMenu = new ExitMenu(primaryStage);
 
       // Create Scenes
       mainScene = new Scene(mainMenu.initialize(), 500, 500);
@@ -37,6 +39,7 @@ public class Main extends Application {
       addScene = new Scene(addMenu.initialize(), 500, 500);
       questionScene = new Scene(quizMenu.initialize(), 500, 500);
       statisticsScene = new Scene(statisticsMenu.initialize(), 500, 500);
+      exitScene = new Scene(exitMenu.initialize(), 500, 500);
 
       // Style for main menu
       mainScene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
@@ -99,5 +102,14 @@ public class Main extends Application {
    */
   protected static Scene getStatisticsScene(){
     return statisticsScene;
+  }
+  
+  /**
+   * Getter for exit scene
+   *
+   * @return the exit scene
+   */
+  protected static Scene getExitScene(){
+    return exitScene;
   }
 }
