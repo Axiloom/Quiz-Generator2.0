@@ -37,6 +37,7 @@ public class Main extends Application {
   private static Scene addScene;
   private static Scene questionScene;
   private static Scene statisticsScene;
+  private static Question question;
 
   /**
    * TODO
@@ -51,7 +52,7 @@ public class Main extends Application {
       AddMenu addMenu = new AddMenu(primaryStage);
       QuestionMenu quizMenu = new QuestionMenu(primaryStage);
       StatisticsMenu statisticsMenu = new StatisticsMenu(primaryStage);
-      Question question = new Question();
+      question = new Question();
 
       // Create Scenes
       mainScene = new Scene(mainMenu.initialize(), 500, 500);
@@ -122,4 +123,11 @@ public class Main extends Application {
   protected static Scene getStatisticsScene(){
     return statisticsScene;
   }
+
+  /**
+   * Getter for Question instance
+   *
+   * @return the instance of Question
+   */
+  protected Question getQuestion(){ return question; }
 }
