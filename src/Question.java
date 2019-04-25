@@ -27,7 +27,7 @@ public class Question {
   class QuestionNode{
     String metadata; // metadata for a question
     String question; // question
-    String[] options; // all options
+    ArrayList<String> options; // all options
     String answer; // correct answer
     ImageView img; // image going along with the question
     String topic;
@@ -40,12 +40,13 @@ public class Question {
      * @param image
      * @param options
      */
-    QuestionNode(String topic, String metadata, String questionText, String image, String[] options){
+    QuestionNode(String topic, String metadata, String questionText, String image, 
+    		ArrayList<String> options, String correctAnswer){
       this.metadata = metadata;
       this.question = questionText;
       this.options = options;
       img = new ImageView(new Image(image));
-      answer = findAnswer(); // detect the correct answer, do we need this?
+      answer = this.answer; // detect the correct answer, do we need this?
       this.topic = topic;
     }
     
@@ -104,6 +105,15 @@ public class Question {
   }
   
   /**
+   * Adds a node to the topicList according to its topic
+   * @param node
+   * @return
+   */
+  public boolean addQuestionNode(QuestionNode node) {
+	  return true;
+  }
+  
+  /**
    * Parses a json file and adds the information to the data fields
    * 
    * @param jsonFilePath
@@ -113,9 +123,40 @@ public class Question {
  * @throws FileNotFoundException 
    */
   public boolean loadJSON(String jsonFilePath) throws FileNotFoundException, IOException, ParseException {
-    // Make as many private helper methods as we need
-	Object obj = new JSONParser().parse(new FileReader(jsonFilePath));
+	    // Make as many private helper methods as we need
+    Object obj = new JSONParser().parse(new FileReader(jsonFilePath));
+	JSONObject jo = (JSONObject) obj;
+	JSONArray questionArray = (JSONArray) jo.get("questionArray");
 	
+	for (int i = 0; i < questionArray.size(); i ++) {
+		JSONObject jsonQuestion = (JSONObject) questionArray.get(i);
+		String metaData = (String) jsonQuestion.get("meta-data"); // meta data
+		String question = (String) jsonQuestion.get("question"); // question
+		String topic = (String) jsonQuestion.get("topic");
+		String image = (String) jsonQuestion.get("image");
+		// need to interate through the choices
+		JSONArray answerArray = (JSONArray) jsonQuestion.get("choiceArray");
+		ArrayList<String> choices = new ArrayList<>(); 
+		String correctAnswer = "";
+		for (Object answer : answerArray) {
+			if (((JSONObject) answer).get("isCorrect").equals("T")){
+				correctAnswer = (String) ((JSONObject) answer).get("choice");
+			}
+			choices.add((String) ((JSONObject)answer).get("choice"));
+			/*
+			if (((String)((ArrayList) answer).get(1)).equals("T")) {
+				String correctAnswer = (String)((ArrayList) answer).get(1); // right answer
+			}
+			*/
+		}
+		QuestionNode newQuestion = new QuestionNode(topic, metaData, question, 
+				image, choices, correctAnswer);
+		addQuestionNode(newQuestion);
+		// create the new node here 
+		// write method to add the node 
+		
+	}
+		
     return true;
   }
   
