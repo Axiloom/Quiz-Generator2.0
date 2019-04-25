@@ -9,6 +9,12 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollBar;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.image.Image;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundImage;
+import javafx.scene.layout.BackgroundPosition;
+import javafx.scene.layout.BackgroundRepeat;
+import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -49,7 +55,7 @@ public class MainMenu extends Main implements EventHandler<ActionEvent> {
     topicBox.setPromptText("Set Topic");
     topicBox.setPrefWidth(180);
     topicBox.setVisibleRowCount(5);
-    
+
     // Drop down list of questions
     ObservableList<String> questions =
         FXCollections.observableArrayList("1", "2", "3", "4", "5", "6", "7", "8", "n-1", "n");
@@ -60,10 +66,20 @@ public class MainMenu extends Main implements EventHandler<ActionEvent> {
 
     // BorderPane to add buttons to
     BorderPane root = new BorderPane();
-    
+
     // Set background color of root
-    root.setStyle("-fx-background-color: #c0c0c5");
-    
+    //root.setStyle("-fx-background-color: #c0c0c5");
+
+    // Josh Edits FIXME
+    BackgroundSize bSize =
+        new BackgroundSize(BackgroundSize.AUTO, BackgroundSize.AUTO, false, false, true, false);
+    Image image1 = new Image("uwCrest_Dope.png");
+    Background background = new Background(new BackgroundImage(image1, BackgroundRepeat.NO_REPEAT,
+        BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, bSize));
+    root.setBackground(background);
+    // Close Josh FIXME
+
+
     add.setPrefWidth(180);
     save.setPrefWidth(180);
 
@@ -71,16 +87,16 @@ public class MainMenu extends Main implements EventHandler<ActionEvent> {
     save.setOnAction(this);
     add.setOnAction(this);
     start.setOnAction(this);
-    
+
     // Scroll-over effect
     start.setOnMouseEntered(e -> start.setStyle("-fx-font-size: 14pt;"));
     start.setOnMouseExited(e -> start.setStyle("-fx-font-size: 12pt;"));
-    
-    start.setPrefSize(100,50);
+
+    start.setPrefSize(100, 50);
 
     // Top Panel
     HBox topPanel = new HBox(label, numQuestions);
-    topPanel.setPadding(new Insets(10,50,10,50));
+    topPanel.setPadding(new Insets(10, 50, 10, 50));
     topPanel.setSpacing(100);
     topPanel.setAlignment(Pos.CENTER);
     root.setTop(topPanel);
@@ -92,13 +108,13 @@ public class MainMenu extends Main implements EventHandler<ActionEvent> {
     VBox centerVBox = new VBox(topVBox, bottomVBox);
     centerVBox.setAlignment(Pos.CENTER);
     centerVBox.setSpacing(35);
-    centerVBox.setPadding(new Insets(0,0,0,160));
-    
+    centerVBox.setPadding(new Insets(0, 0, 0, 160));
+
     root.setCenter(centerVBox);
 
     // Bottom Panel
     HBox bottomHBox = new HBox(start);
-    bottomHBox.setPadding(new Insets(0,0,65,200));
+    bottomHBox.setPadding(new Insets(0, 0, 65, 200));
     bottomHBox.setAlignment(Pos.CENTER);
     root.setBottom(bottomHBox);
 
@@ -107,8 +123,7 @@ public class MainMenu extends Main implements EventHandler<ActionEvent> {
   }
 
   /**
-   * Invoked when a specific event of the type for which this handler is
-   * registered happens.
+   * Invoked when a specific event of the type for which this handler is registered happens.
    *
    * @param event the event which occurred
    */
