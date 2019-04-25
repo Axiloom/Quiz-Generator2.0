@@ -29,6 +29,7 @@ public class Main extends Application {
       AddMenu addMenu = new AddMenu(primaryStage);
       QuestionMenu quizMenu = new QuestionMenu(primaryStage);
       StatisticsMenu statisticsMenu = new StatisticsMenu(primaryStage);
+      Question question = new Question();
 
       // Create Scenes
       mainScene = new Scene(mainMenu.initialize(), 500, 500);
