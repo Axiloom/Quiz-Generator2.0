@@ -1,3 +1,7 @@
+import javafx.beans.binding.Bindings;
+import javafx.beans.binding.IntegerBinding;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -5,12 +9,19 @@ import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
+import java.io.File;
+import javafx.scene.image.ImageView;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableSet;
+
+import java.io.FileInputStream;
 
 public class QuestionMenu extends Main implements EventHandler<ActionEvent> {
   
@@ -18,6 +29,15 @@ public class QuestionMenu extends Main implements EventHandler<ActionEvent> {
   private Button next;
   private int numQuestions;
   private int currQuestion;
+  private CheckBox answer1;
+  private CheckBox answer2;
+  private CheckBox answer3;
+  private CheckBox answer4;
+  private CheckBox answer5;
+  private ObservableSet<CheckBox> selectedCheckBoxes = FXCollections.observableSet();
+  private ObservableSet<CheckBox> unselectedCheckBoxes = FXCollections.observableSet();
+  private IntegerBinding numCheckBoxesSelected = Bindings.size(selectedCheckBoxes);
+  private final int maxNumSelected = 1;
 
   public QuestionMenu(Stage primaryStage) {
     this.primaryStage = primaryStage;
@@ -36,11 +56,11 @@ public class QuestionMenu extends Main implements EventHandler<ActionEvent> {
     // Style
     label.setFont(Font.font("Arial", FontWeight.BOLD, 16));
     numQuestions.setFont(Font.font("Arial", FontWeight.BOLD, 16));
-    
+
     // Question Image
 //    Image img = new Image("200x200black.png");
 //    ImageView questionImg = new ImageView(img);
-    
+
     // Question options
     CheckBox a = new CheckBox();
     CheckBox b = new CheckBox();
@@ -60,7 +80,7 @@ public class QuestionMenu extends Main implements EventHandler<ActionEvent> {
     opt3.setFont(Font.font("Arial", FontWeight.BOLD, 15));
     opt4.setFont(Font.font("Arial", FontWeight.BOLD, 15));
     opt5.setFont(Font.font("Arial", FontWeight.BOLD, 15));
-    
+
     HBox a1 = new HBox(a, opt1);
     a1.setSpacing(25);
     HBox a2 = new HBox(b, opt2);
@@ -100,21 +120,23 @@ public class QuestionMenu extends Main implements EventHandler<ActionEvent> {
     question.setText("Hello My name is john lkajsdf asldk asdk falksd flka sdka asdf asd  as df a" +
             " ds df a sd f a sdf a sdf asd lf Hello");
 
-    Label picture = new Label("Picture here");
+    ImageView image = new ImageView(new Image(QuestionMenu.class.getResourceAsStream("example.jpg")));
 
     VBox questionAnswerBox = new VBox(
             question,
+            // All in left VBox
             new HBox(a, opt1),
             new HBox(b, opt2),
             new HBox(c, opt3),
             new HBox(d, opt4),
             new HBox(f, opt5),
-            picture);
+            // In right VBox
+            image);
+
+    question.setWrapText(true);
 
     questionAnswerBox.setPadding(new Insets(40,0,0,15));
     questionAnswerBox.setSpacing(30);
-
-    picture.setPadding(new Insets(10,0,0,0));
 
     root.setCenter(questionAnswerBox);
 
