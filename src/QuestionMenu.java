@@ -62,6 +62,7 @@ public class QuestionMenu extends Main implements EventHandler<ActionEvent> {
     ArrayList<CheckBox> boxes = new ArrayList<>();
 
     // Make checkbox only have 1 answer TODO: NOT SURE HOW THIS WORKS; GOT OFF GITHUB
+    // https://stackoverflow.com/questions/51568622/restrict-checkboxes-checked-javafx
     int maxCount = 1;
     ChangeListener<Boolean> listener = (o, oldValue, newValue) -> {
       // get checkbox containing property
