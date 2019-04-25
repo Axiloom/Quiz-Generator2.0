@@ -47,7 +47,7 @@ public class QuestionMenu extends Main implements EventHandler<ActionEvent> {
     
   }
   
-  public BorderPane initialize() {
+  public BorderPane initialize(Question.QuestionNode question) {
 
     // Labels
     Label label = new Label("Quiz"); // update with the questions
