@@ -1,2 +1,6 @@
 /application/
 /no-image.png
+
+
+// Ignore .class files
+*.class
