@@ -82,13 +82,10 @@ public class QuestionMenu extends Main implements EventHandler<ActionEvent> {
 
     // TODO: REMOVE WHEN WE GET question.options working
     for (int i = 0 ; i < 5 ; i++){
-      CheckBox checkBox = new CheckBox("Questioasdfasdfasdfn" + (i + 1));
+      CheckBox checkBox = new CheckBox("Answer " + (i + 1));
       checkBox.setFont(Font.font("Arial", FontWeight.BOLD, 15));
       checkBox.selectedProperty().addListener(listener);
       checkBox.setWrapText(true);
-      checkBox.setPrefHeight(100);
-      checkBox.setPrefHeight(200);
-      checkBox.setStyle("-fx-background-color: #666666");
       boxes.add(checkBox);
     }
 
@@ -100,9 +97,8 @@ public class QuestionMenu extends Main implements EventHandler<ActionEvent> {
 //      boxes.add(checkBox);
 //    }
     
-    Label questionExample = new Label("What is the best way to wrap a question around the page, " +
-            "I looked on stackOverflow and couldnt find the answer? jasdfj ajsdj fj jasjdfjajs " +
-            "djajsdjf ajsdj jajsdj jajsdjfj jja sjdj asjdjj fjajsdjfja sd");
+    Label questionExample = new Label("What kind of wood would a wood chuck ckuck, if a woodchuck" +
+            " could chuck wood?");
 
     questionExample.setFont(Font.font("Arial", FontWeight.BOLD, 16));
 
@@ -131,17 +127,20 @@ public class QuestionMenu extends Main implements EventHandler<ActionEvent> {
     topPanel.setStyle("-fx-background-color: #9fb983");
 
     // Center Panel
-    ImageView image =
-            new ImageView(new Image(QuestionMenu.class.getResourceAsStream("Example.jpg")));
-    image.setPreserveRatio(true);
-    image.setFitWidth(200);
-    image.setStyle("-fx-border-style: solid");
+
+    // Image
+    ImageView getImage =
+            new ImageView(new Image(QuestionMenu.class.getResourceAsStream("no-image.png")));
+    getImage.setPreserveRatio(true);
+    getImage.setFitHeight(150);
+
+    // Different Boxes
+    VBox image = new VBox(getImage);
     VBox answers = new VBox(boxes.get(0), boxes.get(1), boxes.get(2), boxes.get(3), boxes.get(4));
-    VBox displayImage = new VBox(image);
-    HBox answersAndPicture = new HBox(answers,displayImage);
+    HBox answersAndPicture = new HBox(answers,image);
     VBox questionAnswerBox = new VBox(questionExample, answersAndPicture);
 
-    // Allow Text Wrapping
+    // Allow Text Wrapping for question
     questionExample.setWrapText(true);
     questionExample.setPrefWidth(root.getPrefWidth());
     questionExample.setPrefHeight(Integer.MAX_VALUE);
@@ -150,11 +149,10 @@ public class QuestionMenu extends Main implements EventHandler<ActionEvent> {
     answers.setSpacing(25);
     answersAndPicture.setSpacing(100);
     answersAndPicture.setPadding(new Insets(25,0,0,0));
-    displayImage.setPadding(new Insets(25,0,0,0));
-
     questionAnswerBox.setPadding(new Insets(5,10,0,10));
     questionAnswerBox.setSpacing(5);
 
+    // add to main pane
     root.setCenter(questionAnswerBox);
 
     // Bottom Panel
