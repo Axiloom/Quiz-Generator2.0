@@ -62,7 +62,7 @@ public class StatisticsMenu extends Main implements EventHandler<ActionEvent> {
     exit.setOnMouseExited(e -> exit.setStyle("-fx-font-size: 12pt;"));
     
     cont.setPrefSize(150,50);
-    exit.setPrefSize(100,50);
+    exit.setPrefSize(150,50);
 
     // Top Panel
     HBox topPanel = new HBox(label);
