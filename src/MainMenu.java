@@ -68,7 +68,7 @@ public class MainMenu extends Main implements EventHandler<ActionEvent> {
     BorderPane root = new BorderPane();
 
     // Set background color of root
-    //root.setStyle("-fx-background-color: #c0c0c5");
+    // root.setStyle("-fx-background-color: #c0c0c5");
 
     // Josh Edits FIXME
     BackgroundSize bSize =
@@ -103,18 +103,20 @@ public class MainMenu extends Main implements EventHandler<ActionEvent> {
     topPanel.setStyle("-fx-background-color: #9fb983");
 
     // Center Panel (GOOD)
-    VBox topVBox = new VBox(add, save);
-    VBox bottomVBox = new VBox(topicBox, questionBox);
-    VBox centerVBox = new VBox(topVBox, bottomVBox);
-    centerVBox.setAlignment(Pos.CENTER);
-    centerVBox.setSpacing(35);
-    centerVBox.setPadding(new Insets(0, 0, 0, 160));
+    VBox topRightVBox = new VBox(add, save);
+    VBox bottomRightVBox = new VBox(topicBox, questionBox);
+    topRightVBox.setAlignment(Pos.TOP_RIGHT);
+    bottomRightVBox.setAlignment(Pos.TOP_RIGHT);
 
-    root.setCenter(centerVBox);
+    topRightVBox.setPadding(new Insets(20, 0, 0, 20)); // set padding alignments (top left box)
+    bottomRightVBox.setPadding(new Insets(20, 20, 0, 0)); // top right box
+
+    root.setLeft(topRightVBox);
+    root.setRight(bottomRightVBox);
 
     // Bottom Panel
     HBox bottomHBox = new HBox(start);
-    bottomHBox.setPadding(new Insets(0, 0, 65, 200));
+    bottomHBox.setPadding(new Insets(0, 0, 65, 0));
     bottomHBox.setAlignment(Pos.CENTER);
     root.setBottom(bottomHBox);
 
