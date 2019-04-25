@@ -29,6 +29,7 @@ public class QuestionMenu extends Main implements EventHandler<ActionEvent> {
   private Button next;
   private int numQuestions;
   private int currQuestion;
+  Question.QuestionNode question;
 
   public QuestionMenu(Stage primaryStage) {
     this.primaryStage = primaryStage;
@@ -38,7 +39,7 @@ public class QuestionMenu extends Main implements EventHandler<ActionEvent> {
     
   }
   
-  public BorderPane initialize(Question.QuestionNode question) {
+  public BorderPane initialize() {
 
     // Labels
     Label label = new Label("Quiz"); // update with the questions
@@ -124,6 +125,14 @@ public class QuestionMenu extends Main implements EventHandler<ActionEvent> {
     root.setBottom(bottomHBox);
 
     return root;
+  }
+
+  /**
+   * Set next question to be asked
+   * @param question the current question being asked
+   */
+  public void setQuestion(Question.QuestionNode question){
+    this.question = question;
   }
   
   /**
