@@ -40,7 +40,7 @@ public class MainMenu extends Main implements EventHandler<ActionEvent> {
 
     // Create Labels
     Label label = new Label("Main Menu");
-    Label numQuestions = new Label("N Questions available");
+    Label numQuestions = new Label(getQuestion().getSize() + " questions available");
 
     // Styling
     numQuestions.setFont(Font.font("Arial", FontWeight.BOLD, 16));

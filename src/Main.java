@@ -16,7 +16,7 @@ public class Main extends Application {
   private static Scene questionScene;
   private static Scene statisticsScene;
   private static Scene exitScene;
-  private Question question;
+  private static Question question;
 
   /**
    * TODO
@@ -32,14 +32,15 @@ public class Main extends Application {
       QuestionMenu quizMenu = new QuestionMenu(primaryStage);
       StatisticsMenu statisticsMenu = new StatisticsMenu(primaryStage);
       ExitMenu exitMenu = new ExitMenu(primaryStage);
+      question = new Question();
 
       // Create Scenes
-      mainScene = new Scene(mainMenu.initialize(), 500, 500);
-      saveScene = new Scene(saveMenu.initialize() , 500, 500);
-      addScene = new Scene(addMenu.initialize(), 500, 500);
-      questionScene = new Scene(quizMenu.initialize(), 500, 500);
-      statisticsScene = new Scene(statisticsMenu.initialize(), 500, 500);
-      exitScene = new Scene(exitMenu.initialize(), 500, 500);
+      mainScene = new Scene(mainMenu.initialize(), 700, 500);
+      saveScene = new Scene(saveMenu.initialize() , 700, 500);
+      addScene = new Scene(addMenu.initialize(), 700, 500);
+      questionScene = new Scene(quizMenu.initialize(), 700, 500);
+      statisticsScene = new Scene(statisticsMenu.initialize(), 700, 500);
+      exitScene = new Scene(exitMenu.initialize(), 700, 500);
 
       // Style for main menu
       mainScene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
@@ -111,5 +112,14 @@ public class Main extends Application {
    */
   protected static Scene getExitScene(){
     return exitScene;
+  }
+  
+  /**
+   * Getter for the Question instance
+   * 
+   * @return instance of Question
+   */
+  protected Question getQuestion() {
+    return question;
   }
 }

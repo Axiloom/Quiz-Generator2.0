@@ -26,7 +26,7 @@ public class AddMenu extends Main implements EventHandler<ActionEvent> {
     
     public BorderPane initialize() {
       Label label = new Label("Add Menu");
-      Label numQuestions = new Label("N Questions available");
+      Label numQuestions = new Label(getQuestion().getSize() + " questions available");
       numQuestions.setFont(Font.font("Arial", FontWeight.BOLD, 16));
       label.setFont(Font.font("Arial", FontWeight.BOLD, 16));
 
