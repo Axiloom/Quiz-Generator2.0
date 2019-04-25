@@ -86,6 +86,7 @@ public class QuestionMenu extends Main implements EventHandler<ActionEvent> {
       checkBox.setFont(Font.font("Arial", FontWeight.BOLD, 15));
       checkBox.selectedProperty().addListener(listener);
       checkBox.setWrapText(true);
+      checkBox.setPrefSize(150,500);
       boxes.add(checkBox);
     }
 
@@ -94,6 +95,8 @@ public class QuestionMenu extends Main implements EventHandler<ActionEvent> {
 //      CheckBox checkBox = new CheckBox(question.options.get(i));
 //      checkBox.setFont(Font.font("Arial", FontWeight.BOLD, 15));
 //      checkBox.selectedProperty().addListener(listener);
+//      checkBox.setWrapText(true);
+//      checkBox.setPrefSize(500,500);
 //      boxes.add(checkBox);
 //    }
     
@@ -129,10 +132,9 @@ public class QuestionMenu extends Main implements EventHandler<ActionEvent> {
     // Center Panel
 
     // Image
-    ImageView getImage =
-            new ImageView(new Image(QuestionMenu.class.getResourceAsStream("no-image.png")));
-    getImage.setPreserveRatio(true);
-    getImage.setFitHeight(150);
+    ImageView getImage = new ImageView(new Image(QuestionMenu.class.getResourceAsStream("no-image.png")));
+    getImage.setFitHeight(200);
+    getImage.setFitWidth(200);
 
     // Different Boxes
     VBox image = new VBox(getImage);
