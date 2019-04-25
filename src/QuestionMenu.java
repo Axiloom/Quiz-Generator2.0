@@ -1,5 +1,6 @@
 import javafx.beans.binding.Bindings;
 import javafx.beans.binding.IntegerBinding;
+import javafx.beans.property.ReadOnlyProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -20,8 +21,12 @@ import java.io.File;
 import javafx.scene.image.ImageView;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableSet;
-
+import javafx.beans.value.ChangeListener;
 import java.io.FileInputStream;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 public class QuestionMenu extends Main implements EventHandler<ActionEvent> {
   
@@ -50,28 +55,53 @@ public class QuestionMenu extends Main implements EventHandler<ActionEvent> {
     numQuestions.setFont(Font.font("Arial", FontWeight.BOLD, 16));
 
     // Question Image
-    ImageView image = question.img;
+    //ImageView image = question.img;
 
     // Question checkboxes
-    CheckBox answer1CheckBox = new CheckBox();
-    CheckBox answer2CheckBox = new CheckBox();
-    CheckBox answer3CheckBox = new CheckBox();
-    CheckBox answer4CheckBox = new CheckBox();
-    CheckBox answer5CheckBox = new CheckBox();
+    ArrayList<CheckBox> activeBoxes = new ArrayList<>();
+    ArrayList<CheckBox> boxes = new ArrayList<>();
+
+    // Make checkbox only have 1 answer TODO: NOT SURE HOW THIS WORKS; GOT OFF GITHUB
+    int maxCount = 1;
+    ChangeListener<Boolean> listener = (o, oldValue, newValue) -> {
+      // get checkbox containing property
+      CheckBox cb = (CheckBox) ((ReadOnlyProperty) o).getBean();
+
+      if (newValue) {
+        activeBoxes.add(cb);
+        if (activeBoxes.size() > maxCount) {
+          // get first checkbox to be activated
+          cb = activeBoxes.iterator().next();
+
+          // unselect; change listener will remove
+          cb.setSelected(false);
+        }
+      } else {
+        activeBoxes.remove(cb);
+      }
+    };
+
+    // TODO: REMOVE WHEN WE GET question.options working
+
+    for (int i = 0 ; i < 5 ; i++){
+      CheckBox checkBox = new CheckBox("Question" + (i + 1));
+      checkBox.setFont(Font.font("Arial", FontWeight.BOLD, 15));
+      checkBox.selectedProperty().addListener(listener);
+      boxes.add(checkBox);
+    }
+
+    // Replace above with this when we get this working
+//    for (int i = 0 ; i < question.options.size() ; i++){
+//      CheckBox checkBox = new CheckBox(question.options.get(i));
+//      checkBox.setFont(Font.font("Arial", FontWeight.BOLD, 15));
+//      checkBox.selectedProperty().addListener(listener);
+//      boxes.add(checkBox);
+//    }
     
-    Label questionExample = new Label("What is the best way to wrap a question around the page?");
-    Label opt1 = new Label("option 1");
-    Label opt2 = new Label("option 2");
-    Label opt3 = new Label("option 3");
-    Label opt4 = new Label("option 4");
-    Label opt5 = new Label("option 5");
+    Label questionExample = new Label("What is the best way to wrap a question around the page, " +
+            "I looked on stackOverflow and couldnt find the answer?");
 
     questionExample.setFont(Font.font("Arial", FontWeight.BOLD, 16));
-    opt1.setFont(Font.font("Arial", FontWeight.BOLD, 15));
-    opt2.setFont(Font.font("Arial", FontWeight.BOLD, 15));
-    opt3.setFont(Font.font("Arial", FontWeight.BOLD, 15));
-    opt4.setFont(Font.font("Arial", FontWeight.BOLD, 15));
-    opt5.setFont(Font.font("Arial", FontWeight.BOLD, 15));
 
     // main pane
     BorderPane root = new BorderPane();
@@ -98,21 +128,18 @@ public class QuestionMenu extends Main implements EventHandler<ActionEvent> {
     topPanel.setStyle("-fx-background-color: #9fb983");
 
     // Center Panel
-    questionExample.setText("Hello My name is john lkajsdf asldk asdk falksd flka sdka asdf asd  " +
-            "as df " +
-            "a" +
-            " ds df a sd f a sdf a sdf asd lf Hello");
+    ImageView image = new ImageView(new Image(QuestionMenu.class.getResourceAsStream("example.jpg")));
+    VBox answers = new VBox(boxes.get(0), boxes.get(1), boxes.get(2), boxes.get(3), boxes.get(4));
+    VBox displayImage = new VBox(image);
+    HBox answersAndPicture = new HBox(answers,displayImage);
 
-    image = new ImageView(new Image(QuestionMenu.class.getResourceAsStream("example.jpg")));
+    // Move Boxes to look good on screen
+    answers.setSpacing(25);
+    answersAndPicture.setSpacing(100);
+    answersAndPicture.setPadding(new Insets(25,0,0,0));
+    displayImage.setPadding(new Insets(25,0,0,0));
 
-    VBox questionAnswerBox = new VBox(
-            questionExample,
-            new HBox(answer1CheckBox, opt1),
-            new HBox(answer2CheckBox, opt2),
-            new HBox(answer3CheckBox, opt3),
-            new HBox(answer4CheckBox, opt4),
-            new HBox(answer5CheckBox, opt5),
-            image);
+    VBox questionAnswerBox = new VBox(questionExample, answersAndPicture);
 
     questionAnswerBox.setPadding(new Insets(40,0,0,15));
     questionAnswerBox.setSpacing(30);
