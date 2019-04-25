@@ -1,3 +1,4 @@
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -61,7 +62,7 @@ public class ExitMenu extends Main implements EventHandler<ActionEvent>{
     if (event.getSource() == exit) {
       // TODO: show alert message displaying their choice and goodbye
       try {
-        stop();
+        Platform.exit();
       }catch (Exception e) {
       }
     }
@@ -70,7 +71,7 @@ public class ExitMenu extends Main implements EventHandler<ActionEvent>{
       //TODO save to JSON then close program
       // TODO: Show alert message displaying their choice and goodbye
       try {
-        stop();
+        Platform.exit();
       } catch(Exception e) {
       }
     }
