@@ -102,7 +102,8 @@ public class StatisticsMenu extends Main implements EventHandler<ActionEvent> {
     }
 
     else if(event.getSource() == exit) {
-      primaryStage.setScene(Main.getExitScene());
+      primaryStage.close(); // set exit button to close program
+      //primaryStage.setScene(Main.getExitScene());
     }
   }
 }

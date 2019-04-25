@@ -65,17 +65,14 @@ public class MainMenu extends Main implements EventHandler<ActionEvent> {
     // BorderPane to add buttons to
     BorderPane root = new BorderPane();
 
-    // Set background color of root
-    // root.setStyle("-fx-background-color: #c0c0c5");
-
+    // Set background of root
     BackgroundSize bSize =
         new BackgroundSize(BackgroundSize.AUTO, BackgroundSize.AUTO, false, false, true, false);
     Image image1 = new Image("uwCrest_Dope.png");
     Background background = new Background(new BackgroundImage(image1, BackgroundRepeat.NO_REPEAT,
         BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, bSize));
     root.setBackground(background);
-
-
+    
     add.setPrefWidth(180);
     save.setPrefWidth(180);
 
