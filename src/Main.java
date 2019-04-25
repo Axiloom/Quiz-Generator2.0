@@ -1,3 +1,25 @@
+//////////////////// ALL ASSIGNMENTS INCLUDE THIS SECTION /////////////////////
+//
+// Title: Quiz Generator
+// Due: 25 April 2019
+// Course: CS400, Spring 2019
+//
+// Author: John Bednarczyk, Joe Lessner, Josh Liberko, Shefali Mukerji, & Mitch Sutrick
+// Email: jbednarczyk@wisc.edu, jalessner@wisc.edu, jliberko@wisc.edu, mukerji2@wisc.edu, &
+//        sutrick@wisc.edu
+// Lecturer's Name: Debra Deppeler
+// Lecture #: 001
+//
+///////////////////////////// CREDIT OUTSIDE HELP /////////////////////////////
+//
+// Persons: NONE
+// Online Sources: NONE
+//
+///////////////////////////////// Known Bugs //////////////////////////////////
+//
+//
+//
+/////////////////////////////// 80 COLUMNS WIDE ///////////////////////////////
 import javafx.application.Application;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
