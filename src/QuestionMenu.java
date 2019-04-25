@@ -29,15 +29,6 @@ public class QuestionMenu extends Main implements EventHandler<ActionEvent> {
   private Button next;
   private int numQuestions;
   private int currQuestion;
-  private CheckBox answer1;
-  private CheckBox answer2;
-  private CheckBox answer3;
-  private CheckBox answer4;
-  private CheckBox answer5;
-  private ObservableSet<CheckBox> selectedCheckBoxes = FXCollections.observableSet();
-  private ObservableSet<CheckBox> unselectedCheckBoxes = FXCollections.observableSet();
-  private IntegerBinding numCheckBoxesSelected = Bindings.size(selectedCheckBoxes);
-  private final int maxNumSelected = 1;
 
   public QuestionMenu(Stage primaryStage) {
     this.primaryStage = primaryStage;
@@ -58,39 +49,28 @@ public class QuestionMenu extends Main implements EventHandler<ActionEvent> {
     numQuestions.setFont(Font.font("Arial", FontWeight.BOLD, 16));
 
     // Question Image
-//    Image img = new Image("200x200black.png");
-//    ImageView questionImg = new ImageView(img);
+    ImageView image = question.img;
 
-    // Question options
-    CheckBox a = new CheckBox();
-    CheckBox b = new CheckBox();
-    CheckBox c = new CheckBox();
-    CheckBox d = new CheckBox();
-    CheckBox f = new CheckBox();
+    // Question checkboxes
+    CheckBox answer1CheckBox = new CheckBox();
+    CheckBox answer2CheckBox = new CheckBox();
+    CheckBox answer3CheckBox = new CheckBox();
+    CheckBox answer4CheckBox = new CheckBox();
+    CheckBox answer5CheckBox = new CheckBox();
     
-    Label question = new Label("What is the best way to wrap a question around the page?");
+    Label questionExample = new Label("What is the best way to wrap a question around the page?");
     Label opt1 = new Label("option 1");
     Label opt2 = new Label("option 2");
     Label opt3 = new Label("option 3");
     Label opt4 = new Label("option 4");
     Label opt5 = new Label("option 5");
-    question.setFont(Font.font("Arial", FontWeight.BOLD, 16));
+
+    questionExample.setFont(Font.font("Arial", FontWeight.BOLD, 16));
     opt1.setFont(Font.font("Arial", FontWeight.BOLD, 15));
     opt2.setFont(Font.font("Arial", FontWeight.BOLD, 15));
     opt3.setFont(Font.font("Arial", FontWeight.BOLD, 15));
     opt4.setFont(Font.font("Arial", FontWeight.BOLD, 15));
     opt5.setFont(Font.font("Arial", FontWeight.BOLD, 15));
-
-    HBox a1 = new HBox(a, opt1);
-    a1.setSpacing(25);
-    HBox a2 = new HBox(b, opt2);
-    a2.setSpacing(25);
-    HBox a3 = new HBox(c, opt3);
-    a3.setSpacing(25);
-    HBox a4 = new HBox(d, opt4);
-    a4.setSpacing(25);
-    HBox a5 = new HBox(f, opt5);
-    a5.setSpacing(25);
 
     // main pane
     BorderPane root = new BorderPane();
@@ -117,23 +97,21 @@ public class QuestionMenu extends Main implements EventHandler<ActionEvent> {
     topPanel.setStyle("-fx-background-color: #9fb983");
 
     // Center Panel
-    question.setText("Hello My name is john lkajsdf asldk asdk falksd flka sdka asdf asd  as df a" +
+    questionExample.setText("Hello My name is john lkajsdf asldk asdk falksd flka sdka asdf asd  " +
+            "as df " +
+            "a" +
             " ds df a sd f a sdf a sdf asd lf Hello");
 
-    ImageView image = new ImageView(new Image(QuestionMenu.class.getResourceAsStream("example.jpg")));
+    image = new ImageView(new Image(QuestionMenu.class.getResourceAsStream("example.jpg")));
 
     VBox questionAnswerBox = new VBox(
-            question,
-            // All in left VBox
-            new HBox(a, opt1),
-            new HBox(b, opt2),
-            new HBox(c, opt3),
-            new HBox(d, opt4),
-            new HBox(f, opt5),
-            // In right VBox
+            questionExample,
+            new HBox(answer1CheckBox, opt1),
+            new HBox(answer2CheckBox, opt2),
+            new HBox(answer3CheckBox, opt3),
+            new HBox(answer4CheckBox, opt4),
+            new HBox(answer5CheckBox, opt5),
             image);
-
-    question.setWrapText(true);
 
     questionAnswerBox.setPadding(new Insets(40,0,0,15));
     questionAnswerBox.setSpacing(30);
