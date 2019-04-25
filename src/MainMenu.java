@@ -68,14 +68,12 @@ public class MainMenu extends Main implements EventHandler<ActionEvent> {
     // Set background color of root
     // root.setStyle("-fx-background-color: #c0c0c5");
 
-//    // Josh Edits FIXME
-//    BackgroundSize bSize =
-//        new BackgroundSize(BackgroundSize.AUTO, BackgroundSize.AUTO, false, false, true, false);
-//    Image image1 = new Image("uwCrest_Dope.png");
-//    Background background = new Background(new BackgroundImage(image1, BackgroundRepeat.NO_REPEAT,
-//        BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, bSize));
-//    root.setBackground(background);
-//    // Close Josh FIXME
+    BackgroundSize bSize =
+        new BackgroundSize(BackgroundSize.AUTO, BackgroundSize.AUTO, false, false, true, false);
+    Image image1 = new Image("uwCrest_Dope.png");
+    Background background = new Background(new BackgroundImage(image1, BackgroundRepeat.NO_REPEAT,
+        BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, bSize));
+    root.setBackground(background);
 
 
     add.setPrefWidth(180);
