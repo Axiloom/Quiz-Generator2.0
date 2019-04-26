@@ -102,6 +102,7 @@ public class QuestionMenu extends Main implements EventHandler<ActionEvent> {
     ArrayList<CheckBox> boxes = new ArrayList<>();
     Label question = new Label("What is the best way to wrap a question around the page, "
         + "I looked on stackOverflow and couldnt find the answer?");
+    question.setWrapText(true);
     // TODO replace with reading in Question.getQuestion(QuestionNode) possibly in a loop
     question.setFont(Font.font("Arial", FontWeight.BOLD, 16));
 
