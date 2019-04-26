@@ -37,17 +37,16 @@ import java.util.Set;
  */
 public class QuestionMenu extends Main implements EventHandler<ActionEvent> {
 
-  private Stage primaryStage;
-  private Button next;
-  private BorderPane root;
-  private int numQuestions;
-  private int currQuestion;
-  Question.QuestionNode question;
+  private Stage primaryStage; // stage being displayed on
+  private Button next; // next button
+  private BorderPane root; // BorderPane being constructed
+  private int numQuestions; // number of questions in the current quiz
+  private int currQuestion; // current question number of the quiz
 
   /**
    * QuestionMenu Constructor that declares the field variables and sets the background color
    * 
-   * @param primaryStage
+   * @param primaryStage - stage being displayed on
    */
   public QuestionMenu(Stage primaryStage) {
     this.primaryStage = primaryStage;
@@ -181,15 +180,6 @@ public class QuestionMenu extends Main implements EventHandler<ActionEvent> {
     bottomHBox.setPadding(new Insets(0, 0, 45, 525));
 
     root.setBottom(bottomHBox);
-  }
-
-  /**
-   * Set next question to be asked
-   * 
-   * @param question the current question being asked
-   */
-  public void setQuestion(Question.QuestionNode question) {
-    this.question = question;
   }
 
   /**

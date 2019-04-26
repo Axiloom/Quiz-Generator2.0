@@ -12,29 +12,69 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 
+/**
+ * AddMenu Class constructs the GUI for the AddMenu to display how to add or load questions
+ * 
+ * @author ATeam-99
+ *
+ */
 public class AddMenu extends Main implements EventHandler<ActionEvent> {
 
-    Stage primaryStage;
-    Button back;
-    Button submit;
+    private Stage primaryStage; // stage being displayed on
+    private BorderPane root; // BorderPane being constructed
+    private Button back; // back button
+    private Button submit; // submit button
 
+    /**
+     * AddMenu Constructor that declares the field variables and sets the background color
+     * 
+     * @param primaryStage - stage being displayed on
+     */
     public AddMenu(Stage primaryStage) {
       this.primaryStage = primaryStage;
+      root = new BorderPane();
       submit = new Button("SUBMIT");
       back = new Button("BACK");
+      root.setStyle("-fx-background-color: #c0c0c5");
     }
     
+    /**
+     * Initializes a BorderPane of the AddMenu screen
+     * 
+     * @return root - BorderPane of the AddMenu screen
+     */
     public BorderPane initialize() {
-      Label label = new Label("Add Menu");
-      Label numQuestions = new Label(getQuestion().getSize() + " questions available");
-      numQuestions.setFont(Font.font("Arial", FontWeight.BOLD, 16));
-      label.setFont(Font.font("Arial", FontWeight.BOLD, 16));
-
-      BorderPane root = new BorderPane();
       
-      // Set background color of root
-      root.setStyle("-fx-background-color: #c0c0c5");
-
+      setTopPanel();
+      setCenterPanel();
+      setBottomPanel();
+      
+      return root;
+    }
+    
+    /**
+     * Constructs the top panel in the BorderPane
+     */
+    private void setTopPanel() {
+      // Labels
+      Label label = new Label("Add Menu");
+      Label qAvailableLabel = new Label(getQuestion().getSize() + " questions available");
+      qAvailableLabel.setFont(Font.font("Arial", FontWeight.BOLD, 16));
+      label.setFont(Font.font("Arial", FontWeight.BOLD, 16));
+      
+      // Top Panel
+      HBox topPanel = new HBox(label, qAvailableLabel);
+      topPanel.setPadding(new Insets(10,50,10,50));
+      topPanel.setSpacing(150);
+      topPanel.setStyle("-fx-background-color: #9fb983");
+      
+      root.setTop(topPanel);
+    }
+    
+    /**
+     * Constructs the center panel in the BorderPane
+     */
+    private void setCenterPanel() {
       Label topicLabel = new Label("Enter Topic: ");
       TextField topic = new TextField("Enter Topic here");
       HBox topicHBox = new HBox(topicLabel, topic);
@@ -59,43 +99,38 @@ public class AddMenu extends Main implements EventHandler<ActionEvent> {
       
       Label blank = new Label("");
       Label blank2 = new Label("");
-      
-      // Listeners
-      back.setOnAction(this);
-      submit.setOnAction(this);
-      
-      // Scroll-over effects
-      back.setOnMouseEntered(e -> back.setStyle("-fx-font-size: 14pt;"));
-      back.setOnMouseExited(e -> back.setStyle("-fx-font-size: 12pt;"));
-      submit.setOnMouseEntered(e -> submit.setStyle("-fx-font-size: 14pt;"));
-      submit.setOnMouseExited(e -> submit.setStyle("-fx-font-size: 12pt;"));
-      
-      // Formatting Buttons and Boxes
-      back.setPrefSize(100,50);
-      submit.setPrefSize(100,50);
-
-      // Top Panel
-      HBox topPanel = new HBox(label, numQuestions);
-      topPanel.setPadding(new Insets(10,50,10,50));
-      topPanel.setSpacing(150);
-      root.setTop(topPanel);
-      topPanel.setStyle("-fx-background-color: #9fb983");
 
       // Center Panel
       VBox topVBox = new VBox(topicHBox, questionHBox, answerHBox);
       VBox bottomVBox = new VBox(loadHBox);
       VBox centerVBox = new VBox(topVBox, blank, or, blank2, bottomVBox);
       centerVBox.setPadding(new Insets(50,80,50,80));
+      
       root.setCenter(centerVBox);
-
+    }
+    
+    /**
+     * Constructs the bottom panel in the BorderPane
+     */
+    private void setBottomPanel() {
+      // Style
+      back.setPrefSize(100,50);
+      submit.setPrefSize(100,50); 
+      
+      // Listeners
+      back.setOnAction(this);
+      submit.setOnAction(this);
+      back.setOnMouseEntered(e -> back.setStyle("-fx-font-size: 14pt;"));
+      back.setOnMouseExited(e -> back.setStyle("-fx-font-size: 12pt;"));
+      submit.setOnMouseEntered(e -> submit.setStyle("-fx-font-size: 14pt;"));
+      submit.setOnMouseExited(e -> submit.setStyle("-fx-font-size: 12pt;"));
+      
       // Bottom Panel
       HBox bottomHBox = new HBox(back,submit);
       bottomHBox.setPadding(new Insets(0,100,65,100));
       bottomHBox.setSpacing(100);
+      
       root.setBottom(bottomHBox);
-
-      // return this menu
-      return root;
     }
   
   /**
