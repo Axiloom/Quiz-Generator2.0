@@ -192,4 +192,13 @@ public class Question {
     }
     return -1;
   }
+  
+  /**
+   * Given a node, returns the question for that node in a string
+   * 
+   * @return String of a question
+   */
+  public String getQuestion(QuestionNode node) {
+    return node.question;
+  }
 }

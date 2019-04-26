@@ -32,7 +32,7 @@ public class MainMenu extends Main implements EventHandler<ActionEvent> {
     this.primaryStage = primaryStage;
     add = new Button("Add/Load Questions");
     save = new Button("Save Questions");
-    start = new Button("START");
+    start = new Button("START QUIZ");
   }
 
   // Initalize MainMenu
@@ -90,7 +90,7 @@ public class MainMenu extends Main implements EventHandler<ActionEvent> {
     start.setOnMouseEntered(e -> start.setStyle("-fx-font-size: 14pt;"));
     start.setOnMouseExited(e -> start.setStyle("-fx-font-size: 12pt;"));
 
-    start.setPrefSize(100, 50);
+    start.setPrefSize(200, 50);
 
     // Top Panel
     HBox topPanel = new HBox(label, numQuestions);

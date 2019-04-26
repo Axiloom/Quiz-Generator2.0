@@ -26,13 +26,13 @@ public class Main extends Application {
     try {
 
       // Instances of menu's
+      question = new Question();
       MainMenu mainMenu = new MainMenu(primaryStage);
       SaveMenu saveMenu = new SaveMenu(primaryStage);
       AddMenu addMenu = new AddMenu(primaryStage);
       QuestionMenu quizMenu = new QuestionMenu(primaryStage);
       StatisticsMenu statisticsMenu = new StatisticsMenu(primaryStage);
       ExitMenu exitMenu = new ExitMenu(primaryStage);
-      question = new Question();
 
       // Create Scenes
       mainScene = new Scene(mainMenu.initialize(), 700, 500);

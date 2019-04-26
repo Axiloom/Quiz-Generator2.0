@@ -28,35 +28,83 @@ import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
+/**
+ * QuestionMenu Class constructs the GUI for the QuestionMenu to display the questions during the
+ * quiz.
+ * 
+ * @author ATeam-99
+ *
+ */
 public class QuestionMenu extends Main implements EventHandler<ActionEvent> {
-  
+
   private Stage primaryStage;
   private Button next;
+  private BorderPane root;
   private int numQuestions;
   private int currQuestion;
   Question.QuestionNode question;
 
+  /**
+   * QuestionMenu Constructor that declares the field variables and sets the background color
+   * 
+   * @param primaryStage
+   */
   public QuestionMenu(Stage primaryStage) {
     this.primaryStage = primaryStage;
+    root = new BorderPane();
     next = new Button("NEXT");
+    root.setStyle("-fx-background-color: #c0c0c5");
     numQuestions = 0;
     currQuestion = 0;
-    
   }
-  
+
+  /**
+   * Initializes a BorderPane of the QuestionMenu screen
+   * 
+   * @return root - BorderPane of the QuestionMenu screen
+   */
   public BorderPane initialize() {
 
+    setTopPanel();
+    setCenterPanel();
+    setBottomPanel();
+
+    return root;
+  }
+
+  /**
+   * Constructs the top panel in the BorderPane
+   */
+  private void setTopPanel() {
     // Labels
     Label label = new Label("Quiz");
-    Label numQuestions = new Label("Question 1/N"); // update with the questions
+    Label questionLabel = new Label("Question 1/" + numQuestions); // update with the questions
 
     // Style
     label.setFont(Font.font("Arial", FontWeight.BOLD, 16));
-    numQuestions.setFont(Font.font("Arial", FontWeight.BOLD, 16));
+    questionLabel.setFont(Font.font("Arial", FontWeight.BOLD, 16));
 
-    // Question checkboxes
+    // Top Panel
+    HBox topPanel = new HBox(label, questionLabel);
+    topPanel.setPadding(new Insets(10, 50, 10, 50));
+    topPanel.setSpacing(100);
+    topPanel.setAlignment(Pos.CENTER);
+    topPanel.setStyle("-fx-background-color: #9fb983");
+
+    root.setTop(topPanel);
+  }
+
+  /**
+   * Constructs the center panel in the BorderPane
+   */
+  private void setCenterPanel() {
+    // Question CheckBoxes
     ArrayList<CheckBox> activeBoxes = new ArrayList<>();
     ArrayList<CheckBox> boxes = new ArrayList<>();
+    Label question = new Label("What is the best way to wrap a question around the page, "
+        + "I looked on stackOverflow and couldnt find the answer?");
+    // TODO replace with reading in Question.getQuestion(QuestionNode) possibly in a loop
+    question.setFont(Font.font("Arial", FontWeight.BOLD, 16));
 
     // Make checkbox only have 1 answer TODO: NOT SURE HOW THIS WORKS; GOT OFF GITHUB
     // https://stackoverflow.com/questions/51568622/restrict-checkboxes-checked-javafx
@@ -81,7 +129,7 @@ public class QuestionMenu extends Main implements EventHandler<ActionEvent> {
 
     // TODO: REMOVE WHEN WE GET question.options working
 
-    for (int i = 0 ; i < 5 ; i++){
+    for (int i = 0; i < 5; i++) {
       CheckBox checkBox = new CheckBox("Question" + (i + 1));
       checkBox.setFont(Font.font("Arial", FontWeight.BOLD, 15));
       checkBox.selectedProperty().addListener(listener);
@@ -89,80 +137,63 @@ public class QuestionMenu extends Main implements EventHandler<ActionEvent> {
     }
 
     // Replace above with this when we get this working
-//    for (int i = 0 ; i < question.options.size() ; i++){
-//      CheckBox checkBox = new CheckBox(question.options.get(i));
-//      checkBox.setFont(Font.font("Arial", FontWeight.BOLD, 15));
-//      checkBox.selectedProperty().addListener(listener);
-//      boxes.add(checkBox);
-//    }
-    
-    Label questionExample = new Label("What is the best way to wrap a question around the page, " +
-            "I looked on stackOverflow and couldnt find the answer?");
+    // for (int i = 0 ; i < question.options.size() ; i++){
+    // CheckBox checkBox = new CheckBox(question.options.get(i));
+    // checkBox.setFont(Font.font("Arial", FontWeight.BOLD, 15));
+    // checkBox.selectedProperty().addListener(listener);
+    // boxes.add(checkBox);
+    // }
 
-    questionExample.setFont(Font.font("Arial", FontWeight.BOLD, 16));
-
-    // main pane
-    BorderPane root = new BorderPane();
-    
-    // Set background color of root
-    root.setStyle("-fx-background-color: #c0c0c5");
-
-    // Listeners
-    next.setOnAction(this);
-    
-    // Scroll-over effect
-    next.setOnMouseEntered(e -> next.setStyle("-fx-font-size: 14pt;"));
-    next.setOnMouseExited(e -> next.setStyle("-fx-font-size: 12pt;"));
-
-    // Set button size
-    next.setPrefSize(100,50);
-
-    // Top Panel
-    HBox topPanel = new HBox(label, numQuestions);
-    topPanel.setPadding(new Insets(10,50,10,50));
-    topPanel.setSpacing(100);
-    topPanel.setAlignment(Pos.CENTER);
-    root.setTop(topPanel);
-    topPanel.setStyle("-fx-background-color: #9fb983");
-
-    // Center Panel
-    ImageView image = new ImageView(new Image(QuestionMenu.class.getResourceAsStream("example.jpg")));
+    ImageView image =
+        new ImageView(new Image(QuestionMenu.class.getResourceAsStream("example.jpg")));
     VBox answers = new VBox(boxes.get(0), boxes.get(1), boxes.get(2), boxes.get(3), boxes.get(4));
     VBox displayImage = new VBox(image);
-    HBox answersAndPicture = new HBox(answers,displayImage);
+    HBox answersAndPicture = new HBox(answers, displayImage);
 
-    // Move Boxes to look good on screen
+    // Format Box Location
     answers.setSpacing(25);
-    answersAndPicture.setSpacing(100);
-    answersAndPicture.setPadding(new Insets(25,0,0,0));
-    displayImage.setPadding(new Insets(25,0,0,0));
+    answersAndPicture.setSpacing(250);
+    answersAndPicture.setPadding(new Insets(25, 0, 0, 0));
+    displayImage.setPadding(new Insets(25, 0, 0, 0));
 
-    VBox questionAnswerBox = new VBox(questionExample, answersAndPicture);
-
-    questionAnswerBox.setPadding(new Insets(40,0,0,15));
+    // Center Panel
+    VBox questionAnswerBox = new VBox(question, answersAndPicture);
+    questionAnswerBox.setPadding(new Insets(40, 0, 0, 15));
     questionAnswerBox.setSpacing(30);
 
     root.setCenter(questionAnswerBox);
+  }
+
+  /**
+   * Constructs the bottom panel in the BorderPane
+   */
+  private void setBottomPanel() {
+    // Style
+    next.setPrefSize(100, 50);
+
+    // Listeners
+    next.setOnAction(this);
+    next.setOnMouseEntered(e -> next.setStyle("-fx-font-size: 14pt;"));
+    next.setOnMouseExited(e -> next.setStyle("-fx-font-size: 12pt;"));
 
     // Bottom Panel
     HBox bottomHBox = new HBox(next);
-    bottomHBox.setPadding(new Insets(0,0,65,300));
-    root.setBottom(bottomHBox);
+    bottomHBox.setPadding(new Insets(0, 0, 45, 525));
 
-    return root;
+    root.setBottom(bottomHBox);
   }
 
   /**
    * Set next question to be asked
+   * 
    * @param question the current question being asked
    */
-  public void setQuestion(Question.QuestionNode question){
+  public void setQuestion(Question.QuestionNode question) {
     this.question = question;
   }
-  
+
   /**
-   * Invoked when a specific event of the type for which this handler is
-   * registered happens.
+   * Invoked when a specific event of the type for which this handler is registered happens.
    *
    * @param event the event which occurred
    */
@@ -172,10 +203,10 @@ public class QuestionMenu extends Main implements EventHandler<ActionEvent> {
       primaryStage.setScene(Main.getStatisticsScene());
     }
 
-    else if(event.getSource() == next) {
+    else if (event.getSource() == next) {
       // read through options (a,b,c,d, and f), detect which is true ( e.g. a.isSelected() ),
       // compare if its the correct answer, update Question.isCorrect()
-      if(currQuestion == numQuestions) {
+      if (currQuestion == numQuestions) {
         primaryStage.setScene(Main.getStatisticsScene());
       } else {
         // display next question

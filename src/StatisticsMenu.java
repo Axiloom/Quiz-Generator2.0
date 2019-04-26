@@ -80,7 +80,7 @@ public class StatisticsMenu extends Main implements EventHandler<ActionEvent> {
 
     // Bottom Panel
     HBox bottomHBox = new HBox(cont, exit);
-    bottomHBox.setPadding(new Insets(0,100,65,100));
+    bottomHBox.setPadding(new Insets(0,100,65,150));
     bottomHBox.setSpacing(100);
     root.setBottom(bottomHBox);
 
