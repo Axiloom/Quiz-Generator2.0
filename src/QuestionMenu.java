@@ -144,7 +144,7 @@ public class QuestionMenu extends Main implements EventHandler<ActionEvent> {
     // }
 
     ImageView image =
-        new ImageView(new Image(QuestionMenu.class.getResourceAsStream("example.jpg")));
+        new ImageView(new Image(QuestionMenu.class.getResourceAsStream("Example.jpg")));
     VBox answers = new VBox(boxes.get(0), boxes.get(1), boxes.get(2), boxes.get(3), boxes.get(4));
     VBox displayImage = new VBox(image);
     HBox answersAndPicture = new HBox(answers, displayImage);
