@@ -133,12 +133,12 @@ public class QuestionMenu extends Main implements EventHandler<ActionEvent> {
       }
     };
 
-    // TODO: REMOVE WHEN WE GET question.options working
-
+    // TODO: remove when we get question.options working
     for (int i = 0; i < 5; i++) {
-      CheckBox checkBox = new CheckBox("Question" + (i + 1));
+      CheckBox checkBox = new CheckBox("Answer " + (i + 1));
       checkBox.setFont(Font.font("Arial", FontWeight.BOLD, 15));
       checkBox.selectedProperty().addListener(listener);
+      checkBox.setMaxWidth(400);
       boxes.add(checkBox);
     }
 
@@ -147,19 +147,24 @@ public class QuestionMenu extends Main implements EventHandler<ActionEvent> {
     // CheckBox checkBox = new CheckBox(question.options.get(i));
     // checkBox.setFont(Font.font("Arial", FontWeight.BOLD, 15));
     // checkBox.selectedProperty().addListener(listener);
+    // checkBox.setMaxWidth(400);
     // boxes.add(checkBox);
     // }
 
     ImageView image =
         new ImageView(new Image(QuestionMenu.class.getResourceAsStream("Example.jpg")));
+    image.setPreserveRatio(true);
+    image.setFitHeight(200);
     VBox answers = new VBox(boxes.get(0), boxes.get(1), boxes.get(2), boxes.get(3), boxes.get(4));
     VBox displayImage = new VBox(image);
-    HBox answersAndPicture = new HBox(answers, displayImage);
+    BorderPane answersAndPicture = new BorderPane();
+    answersAndPicture.setLeft(answers);
+    answersAndPicture.setRight(displayImage);
 
     // Format Box Location
     answers.setSpacing(25);
-    answersAndPicture.setSpacing(250);
-    answersAndPicture.setPadding(new Insets(25, 0, 0, 0));
+    answers.setPadding(new Insets(25,0,0,0));
+    answersAndPicture.setPadding(new Insets(0, 25, 0, 0));
     displayImage.setPadding(new Insets(25, 0, 0, 0));
 
     // Center Panel
