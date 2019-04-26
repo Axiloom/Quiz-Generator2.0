@@ -1,6 +1,7 @@
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -58,6 +59,8 @@ public class AddMenu extends Main implements EventHandler<ActionEvent> {
     private void setTopPanel() {
       // Labels
       Label label = new Label("Add Menu");
+      
+      // Style
       Label qAvailableLabel = new Label(getQuestion().getSize() + " questions available");
       qAvailableLabel.setFont(Font.font("Arial", FontWeight.BOLD, 16));
       label.setFont(Font.font("Arial", FontWeight.BOLD, 16));
@@ -66,6 +69,7 @@ public class AddMenu extends Main implements EventHandler<ActionEvent> {
       HBox topPanel = new HBox(label, qAvailableLabel);
       topPanel.setPadding(new Insets(10,50,10,50));
       topPanel.setSpacing(150);
+      topPanel.setAlignment(Pos.CENTER);
       topPanel.setStyle("-fx-background-color: #9fb983");
       
       root.setTop(topPanel);
@@ -97,14 +101,14 @@ public class AddMenu extends Main implements EventHandler<ActionEvent> {
       HBox loadHBox = new HBox(loadLabel, jsonLoad);
       loadHBox.setSpacing(25);
       
-      Label blank = new Label("");
+      Label blank = new Label(""); // spacers
       Label blank2 = new Label("");
 
       // Center Panel
       VBox topVBox = new VBox(topicHBox, questionHBox, answerHBox);
       VBox bottomVBox = new VBox(loadHBox);
       VBox centerVBox = new VBox(topVBox, blank, or, blank2, bottomVBox);
-      centerVBox.setPadding(new Insets(50,80,50,80));
+      centerVBox.setPadding(new Insets(50,80,50,200));
       
       root.setCenter(centerVBox);
     }
@@ -127,7 +131,7 @@ public class AddMenu extends Main implements EventHandler<ActionEvent> {
       
       // Bottom Panel
       HBox bottomHBox = new HBox(back,submit);
-      bottomHBox.setPadding(new Insets(0,100,65,100));
+      bottomHBox.setPadding(new Insets(0,100,65,200));
       bottomHBox.setSpacing(100);
       
       root.setBottom(bottomHBox);
