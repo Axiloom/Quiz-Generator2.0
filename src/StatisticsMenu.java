@@ -3,7 +3,9 @@ import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
@@ -25,11 +27,12 @@ public class StatisticsMenu extends Main implements EventHandler<ActionEvent> {
   private BorderPane root; // BorderPane being constructed
   private Button cont; // continue button to start new quiz
   private Button exit; // exit button
+  private Alert alert; // alert displaying exit confirmation
 
   /**
-   * Initializes a BorderPane of the StatisticsMenu screen
+   * StatisticsMenu Constructor that declares the field variables and sets the background color
    * 
-   * @return root - BorderPane of the StatisticsMenu screen
+   * @param primaryStage - stage being displayed on
    */
   public StatisticsMenu(Stage primaryStage) {
     this.primaryStage = primaryStage;
@@ -105,14 +108,14 @@ public class StatisticsMenu extends Main implements EventHandler<ActionEvent> {
     // Style
     cont.setPrefSize(150,50);
     exit.setPrefSize(150,50);
-    
-    // Listeners
-    cont.setOnAction(this);
-    exit.setOnAction(this);
     cont.setOnMouseEntered(e -> cont.setStyle("-fx-font-size: 14pt;"));
     cont.setOnMouseExited(e -> cont.setStyle("-fx-font-size: 12pt;"));
     exit.setOnMouseEntered(e -> exit.setStyle("-fx-font-size: 14pt;"));
     exit.setOnMouseExited(e -> exit.setStyle("-fx-font-size: 12pt;"));
+
+    // Listeners
+    cont.setOnAction(e -> {primaryStage.setScene(Main.getMainScene());});
+    exit.setOnAction(e -> {primaryStage.setScene(Main.getExitScene());});
     
     // Bottom Panel
     HBox bottomHBox = new HBox(cont, exit);
@@ -122,21 +125,6 @@ public class StatisticsMenu extends Main implements EventHandler<ActionEvent> {
     root.setBottom(bottomHBox);
   }
 
-  /**
-   * Invoked when a specific event of the type for which this handler is
-   * registered happens.
-   *
-   * @param event the event which occurred
-   */
   @Override
-  public void handle(ActionEvent event) {
-
-    if (event.getSource() == cont){
-      primaryStage.setScene(Main.getMainScene());
-    }
-
-    else if(event.getSource() == exit) {
-      primaryStage.setScene(Main.getExitScene());
-    }
-  }
+  public void handle(ActionEvent event) {}
 }
