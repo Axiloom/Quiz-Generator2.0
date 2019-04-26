@@ -7,7 +7,9 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -26,6 +28,7 @@ import java.io.FileInputStream;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.LinkedHashSet;
+import java.util.Optional;
 import java.util.Set;
 
 /**
@@ -39,9 +42,11 @@ public class QuestionMenu extends Main implements EventHandler<ActionEvent> {
 
   private Stage primaryStage; // stage being displayed on
   private Button next; // next button
+  private Button quit; // quit button
   private BorderPane root; // BorderPane being constructed
   private int numQuestions; // number of questions in the current quiz
   private int currQuestion; // current question number of the quiz
+  private Alert alert;
 
   /**
    * QuestionMenu Constructor that declares the field variables and sets the background color
@@ -52,6 +57,7 @@ public class QuestionMenu extends Main implements EventHandler<ActionEvent> {
     this.primaryStage = primaryStage;
     root = new BorderPane();
     next = new Button("NEXT");
+    quit = new Button("QUIT");
     root.setStyle("-fx-background-color: #c0c0c5");
     numQuestions = 0;
     currQuestion = 0;
@@ -170,38 +176,29 @@ public class QuestionMenu extends Main implements EventHandler<ActionEvent> {
   private void setBottomPanel() {
     // Style
     next.setPrefSize(100, 50);
+    quit.setPrefSize(100, 50);
 
     // Listeners
-    next.setOnAction(this);
+    next.setOnAction(e -> {primaryStage.setScene(Main.getStatisticsScene());});
+    quit.setOnAction(e -> {
+      alert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure you want to quit?");
+      alert.showAndWait().filter(response -> response == ButtonType.OK);
+      primaryStage.setScene(Main.getStatisticsScene());
+    });
+    
     next.setOnMouseEntered(e -> next.setStyle("-fx-font-size: 14pt;"));
     next.setOnMouseExited(e -> next.setStyle("-fx-font-size: 12pt;"));
+    quit.setOnMouseEntered(e -> quit.setStyle("-fx-font-size: 14pt;"));
+    quit.setOnMouseExited(e -> quit.setStyle("-fx-font-size: 12pt;"));
 
     // Bottom Panel
-    HBox bottomHBox = new HBox(next);
-    bottomHBox.setPadding(new Insets(0, 0, 45, 525));
+    HBox bottomHBox = new HBox(quit, next);
+    bottomHBox.setSpacing(300);
+    bottomHBox.setPadding(new Insets(0, 0, 45, 100));
 
     root.setBottom(bottomHBox);
   }
 
-  /**
-   * Invoked when a specific event of the type for which this handler is registered happens.
-   *
-   * @param event the event which occurred
-   */
-  public void handle(ActionEvent event) {
-
-    if (event.getSource() == next && currQuestion == numQuestions) {
-      primaryStage.setScene(Main.getStatisticsScene());
-    }
-
-    else if (event.getSource() == next) {
-      // read through options (a,b,c,d, and f), detect which is true ( e.g. a.isSelected() ),
-      // compare if its the correct answer, update Question.isCorrect()
-      if (currQuestion == numQuestions) {
-        primaryStage.setScene(Main.getStatisticsScene());
-      } else {
-        // display next question
-      }
-    }
-  }
+  @Override
+  public void handle(ActionEvent event) {}
 }

@@ -163,9 +163,11 @@ public class Question {
   /**
    * Saves all questions in a new json file
    * 
+   * @param name - name of the new JSON file
    * @return
    */
-  public boolean saveToJSON() {
+  public boolean saveToJSON(String name) {
+    // TODO check for duplicate json name
     return true;
   }
   
