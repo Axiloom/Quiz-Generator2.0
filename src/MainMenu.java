@@ -32,7 +32,7 @@ public class MainMenu extends Main implements EventHandler<ActionEvent> {
     this.primaryStage = primaryStage;
     add = new Button("Add/Load Questions");
     save = new Button("Save Questions");
-    start = new Button("START");
+    start = new Button("START QUIZ");
   }
 
   // Initalize MainMenu
@@ -65,14 +65,19 @@ public class MainMenu extends Main implements EventHandler<ActionEvent> {
     // BorderPane to add buttons to
     BorderPane root = new BorderPane();
 
-    // Set background of root
+    // Set background color of root
+    // root.setStyle("-fx-background-color: #c0c0c5");
+
+    // Josh Edits FIXME
     BackgroundSize bSize =
         new BackgroundSize(BackgroundSize.AUTO, BackgroundSize.AUTO, false, false, true, false);
     Image image1 = new Image("uwCrest_Dope.png");
     Background background = new Background(new BackgroundImage(image1, BackgroundRepeat.NO_REPEAT,
         BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, bSize));
     root.setBackground(background);
-    
+    // Close Josh FIXME
+
+
     add.setPrefWidth(180);
     save.setPrefWidth(180);
 
@@ -85,7 +90,7 @@ public class MainMenu extends Main implements EventHandler<ActionEvent> {
     start.setOnMouseEntered(e -> start.setStyle("-fx-font-size: 14pt;"));
     start.setOnMouseExited(e -> start.setStyle("-fx-font-size: 12pt;"));
 
-    start.setPrefSize(100, 50);
+    start.setPrefSize(200, 50);
 
     // Top Panel
     HBox topPanel = new HBox(label, numQuestions);
@@ -93,7 +98,7 @@ public class MainMenu extends Main implements EventHandler<ActionEvent> {
     topPanel.setSpacing(100);
     topPanel.setAlignment(Pos.CENTER);
     root.setTop(topPanel);
-    topPanel.setStyle("-fx-background-color: #87ceeb"); //#9fb983"); // 9fb983 old green color
+    topPanel.setStyle("-fx-background-color: #9fb983");
 
     // Center Panel (GOOD)
     VBox topRightVBox = new VBox(add, save);

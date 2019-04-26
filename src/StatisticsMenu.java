@@ -13,79 +13,113 @@ import javafx.scene.text.FontPosture;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 
+/**
+ * StatisticsMenu Class constructs the GUI for the StatisticsMenu to display the quiz results.
+ * 
+ * @author ATeam-99
+ *
+ */
 public class StatisticsMenu extends Main implements EventHandler<ActionEvent> {
 
-  private Stage primaryStage;
-  private Button cont;
-  private Button exit;
+  private Stage primaryStage; // stage being displayed on
+  private BorderPane root; // BorderPane being constructed
+  private Button cont; // continue button to start new quiz
+  private Button exit; // exit button
 
-  // Constructor
+  /**
+   * Initializes a BorderPane of the StatisticsMenu screen
+   * 
+   * @return root - BorderPane of the StatisticsMenu screen
+   */
   public StatisticsMenu(Stage primaryStage) {
     this.primaryStage = primaryStage;
+    root = new BorderPane();
     cont = new Button("NEW QUIZ");
     exit = new Button("EXIT");
+    root.setStyle("-fx-background-color: #c0c0c5");
   }
-
+  
+  /**
+   * Initializes a BorderPane of the StatisticsMenu screen
+   * 
+   * @return root - BorderPane of the StatisticsMenu screen
+   */
   public BorderPane initialize(){
 
-    // Create Labels
+    setTopPanel();
+    setCenterPanel();
+    setBottomPanel();
+    
+    return root;
+  }
+  
+  /**
+   * Constructs the top panel in the BorderPane
+   */
+  private void setTopPanel() {
+    // Label
     Label label = new Label("Statistics Menu");
     
-    Integer numQuestions = 10; // static holders
-    Integer amtCorrect = 9;
-    Double pct = ((double) amtCorrect / (double) numQuestions) * 100;
-    Label percentCorrect = new Label(pct.toString() + "% Correct");
-    Label fractionCorrect = new Label(amtCorrect.toString() + " / " + numQuestions.toString());
-    Label score = new Label("Your score");
-    Label blank = new Label("");
-    
-    // Styling
-    score.setFont(Font.font("Times New Roman", FontWeight.EXTRA_BOLD, 40));
-    percentCorrect.setFont(Font.font("Arial", FontWeight.BOLD, 30));
-    fractionCorrect.setFont(Font.font("Arial", FontWeight.BOLD, 30));
+    // Style
     label.setFont(Font.font("Arial", FontWeight.BOLD, 16));
-
-    // Pane to hold everything
-    BorderPane root = new BorderPane();
     
-    // Set background color of root
-    root.setStyle("-fx-background-color: #c0c0c5");
-
-    // Listeners
-    cont.setOnAction(this);
-    exit.setOnAction(this);
-    
-    // Scroll-over effects
-    cont.setOnMouseEntered(e -> cont.setStyle("-fx-font-size: 14pt;"));
-    cont.setOnMouseExited(e -> cont.setStyle("-fx-font-size: 12pt;"));
-    exit.setOnMouseEntered(e -> exit.setStyle("-fx-font-size: 14pt;"));
-    exit.setOnMouseExited(e -> exit.setStyle("-fx-font-size: 12pt;"));
-    
-    cont.setPrefSize(150,50);
-    exit.setPrefSize(150,50);
-
     // Top Panel
     HBox topPanel = new HBox(label);
     topPanel.setPadding(new Insets(10,50,10,50));
     topPanel.setSpacing(100);
     topPanel.setAlignment(Pos.CENTER);
-    root.setTop(topPanel);
     topPanel.setStyle("-fx-background-color: #9fb983");
+
+    root.setTop(topPanel);
+  }
+  
+  /**
+   * Constructs the center panel in the BorderPane
+   */
+  private void setCenterPanel() {
+    Integer numQuestions = 10; // TODO make the calculation functional
+    Integer amtCorrect = 9;
+    Double pct = ((double) amtCorrect / (double) numQuestions) * 100;
+    Label percentCorrect = new Label(pct.toString() + "% Correct");
+    Label fractionCorrect = new Label(amtCorrect.toString() + " / " + numQuestions.toString());
+    Label score = new Label("Your score");
+    Label blank = new Label(""); // spacer
+    
+    // Style
+    score.setFont(Font.font("Times New Roman", FontWeight.EXTRA_BOLD, 40));
+    percentCorrect.setFont(Font.font("Arial", FontWeight.BOLD, 30));
+    fractionCorrect.setFont(Font.font("Arial", FontWeight.BOLD, 30));
 
     // Center Panel
     VBox centerVBox = new VBox(score, blank, fractionCorrect, percentCorrect);
     centerVBox.setAlignment(Pos.CENTER);
-    root.setCenter(centerVBox);
     score.setStyle("-fx-underline: true");
 
+    root.setCenter(centerVBox);
+  }
+  
+  /**
+   * Constructs the bottom panel in the BorderPane
+   */
+  private void setBottomPanel() {
+    // Style
+    cont.setPrefSize(150,50);
+    exit.setPrefSize(150,50);
+    
+    // Listeners
+    cont.setOnAction(this);
+    exit.setOnAction(this);
+    cont.setOnMouseEntered(e -> cont.setStyle("-fx-font-size: 14pt;"));
+    cont.setOnMouseExited(e -> cont.setStyle("-fx-font-size: 12pt;"));
+    exit.setOnMouseEntered(e -> exit.setStyle("-fx-font-size: 14pt;"));
+    exit.setOnMouseExited(e -> exit.setStyle("-fx-font-size: 12pt;"));
+    
     // Bottom Panel
     HBox bottomHBox = new HBox(cont, exit);
-    bottomHBox.setPadding(new Insets(0,100,65,100));
+    bottomHBox.setPadding(new Insets(0,100,65,150));
     bottomHBox.setSpacing(100);
+    
     root.setBottom(bottomHBox);
-
-    // return this menu
-    return root;
   }
 
   /**
@@ -102,8 +136,7 @@ public class StatisticsMenu extends Main implements EventHandler<ActionEvent> {
     }
 
     else if(event.getSource() == exit) {
-      primaryStage.close(); // set exit button to close program
-      //primaryStage.setScene(Main.getExitScene());
+      primaryStage.setScene(Main.getExitScene());
     }
   }
 }

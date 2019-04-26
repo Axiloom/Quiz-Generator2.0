@@ -1,25 +1,3 @@
-//////////////////// ALL ASSIGNMENTS INCLUDE THIS SECTION /////////////////////
-//
-// Title: Quiz Generator
-// Due: 25 April 2019
-// Course: CS400, Spring 2019
-//
-// Author: John Bednarczyk, Joe Lessner, Josh Liberko, Shefali Mukerji, & Mitch Sutrick
-// Email: jbednarczyk@wisc.edu, jalessner@wisc.edu, jliberko@wisc.edu, mukerji2@wisc.edu, &
-//        sutrick@wisc.edu
-// Lecturer's Name: Debra Deppeler
-// Lecture #: 001
-//
-///////////////////////////// CREDIT OUTSIDE HELP /////////////////////////////
-//
-// Persons: NONE
-// Online Sources: NONE
-//
-///////////////////////////////// Known Bugs //////////////////////////////////
-//
-//
-//
-/////////////////////////////// 80 COLUMNS WIDE ///////////////////////////////
 import javafx.application.Application;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
@@ -37,6 +15,7 @@ public class Main extends Application {
   private static Scene addScene;
   private static Scene questionScene;
   private static Scene statisticsScene;
+  private static Scene exitScene;
   private static Question question;
 
   /**
@@ -47,19 +26,21 @@ public class Main extends Application {
     try {
 
       // Instances of menu's
+      question = new Question();
       MainMenu mainMenu = new MainMenu(primaryStage);
       SaveMenu saveMenu = new SaveMenu(primaryStage);
       AddMenu addMenu = new AddMenu(primaryStage);
       QuestionMenu quizMenu = new QuestionMenu(primaryStage);
       StatisticsMenu statisticsMenu = new StatisticsMenu(primaryStage);
-      question = new Question();
+      ExitMenu exitMenu = new ExitMenu(primaryStage);
 
       // Create Scenes
-      mainScene = new Scene(mainMenu.initialize(), 500, 500);
-      saveScene = new Scene(saveMenu.initialize() , 500, 500);
-      addScene = new Scene(addMenu.initialize(), 500, 500);
-      questionScene = new Scene(quizMenu.initialize(), 500, 500);
-      statisticsScene = new Scene(statisticsMenu.initialize(), 500, 500);
+      mainScene = new Scene(mainMenu.initialize(), 700, 500);
+      saveScene = new Scene(saveMenu.initialize() , 700, 500);
+      addScene = new Scene(addMenu.initialize(), 700, 500);
+      questionScene = new Scene(quizMenu.initialize(), 700, 500);
+      statisticsScene = new Scene(statisticsMenu.initialize(), 700, 500);
+      exitScene = new Scene(exitMenu.initialize(), 700, 500);
 
       // Style for main menu
       mainScene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
@@ -123,11 +104,22 @@ public class Main extends Application {
   protected static Scene getStatisticsScene(){
     return statisticsScene;
   }
-
+  
   /**
-   * Getter for Question instance
+   * Getter for exit scene
    *
-   * @return the instance of Question
+   * @return the exit scene
    */
-  protected Question getQuestion(){ return question; }
+  protected static Scene getExitScene(){
+    return exitScene;
+  }
+  
+  /**
+   * Getter for the Question instance
+   * 
+   * @return instance of Question
+   */
+  protected Question getQuestion() {
+    return question;
+  }
 }

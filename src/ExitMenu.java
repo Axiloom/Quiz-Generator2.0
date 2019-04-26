@@ -74,7 +74,7 @@ public class ExitMenu extends Main implements EventHandler<ActionEvent>{
     // Center Panel
     VBox midPanel = new VBox(save, exit);
     midPanel.setSpacing(50);
-    midPanel.setPadding(new Insets(100, 0, 0, 130));
+    midPanel.setPadding(new Insets(100, 0, 0, 230));
     root.setCenter(midPanel);
     return root;
   }
