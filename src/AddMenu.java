@@ -81,33 +81,40 @@ public class AddMenu extends Main implements EventHandler<ActionEvent> {
     private void setCenterPanel() {
       Label topicLabel = new Label("Enter Topic: ");
       TextField topic = new TextField("Enter Topic here");
-      HBox topicHBox = new HBox(topicLabel, topic);
-      topicHBox.setSpacing(24);
+      BorderPane topicPane = new BorderPane();
+      topicPane.setLeft(topicLabel);
+      topicPane.setRight(topic);
+      topicPane.setMaxWidth(280);
       
       Label questionLabel = new Label("Enter Question: ");
       TextField question = new TextField("Enter Question here");
-      HBox questionHBox = new HBox(questionLabel, question);
-      
+      BorderPane questionPane = new BorderPane();
+      questionPane.setLeft(questionLabel);
+      questionPane.setRight(question);
+      questionPane.setMaxWidth(280);
+
       Label answerLabel = new Label("Enter Answer: ");
       TextField answer = new TextField("Enter Answer here");
-      HBox answerHBox = new HBox(answerLabel, answer);
-      answerHBox.setSpacing(11);
+      BorderPane answerPane = new BorderPane();
+      answerPane.setLeft(answerLabel);
+      answerPane.setRight(answer);
+      answerPane.setMaxWidth(280);
       
       Label or = new Label("OR");
       or.setFont(Font.font("Arial", FontWeight.BOLD, 16));
+      or.setPadding(new Insets(20,0,20,0));
       
       Label loadLabel = new Label("Load JSON: ");
       TextField jsonLoad = new TextField("Enter JSON File name");
-      HBox loadHBox = new HBox(loadLabel, jsonLoad);
-      loadHBox.setSpacing(25);
-      
-      Label blank = new Label(""); // spacers
-      Label blank2 = new Label("");
+      BorderPane loadPane = new BorderPane();
+      loadPane.setLeft(loadLabel);
+      loadPane.setRight(jsonLoad);
+      loadPane.setMaxWidth(280);
 
       // Center Panel
-      VBox topVBox = new VBox(topicHBox, questionHBox, answerHBox);
-      VBox bottomVBox = new VBox(loadHBox);
-      VBox centerVBox = new VBox(topVBox, blank, or, blank2, bottomVBox);
+      VBox topVBox = new VBox(topicPane, questionPane, answerPane);
+      VBox bottomVBox = new VBox(loadPane);
+      VBox centerVBox = new VBox(topVBox, or, bottomVBox);
       centerVBox.setPadding(new Insets(50,80,50,200));
       
       root.setCenter(centerVBox);
