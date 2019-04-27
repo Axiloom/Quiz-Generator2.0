@@ -23,6 +23,9 @@ public class AddMenu extends Main {
   private BorderPane root; // BorderPane being constructed
   private Button back; // back button
   private Button submit; // submit button
+  private TextField topic; // records the question topic
+  private TextField question; // records the question text
+  private TextField answer; // records the answer to the question
 
   /**
    * AddMenu Constructor that declares the field variables and sets the background color
@@ -34,6 +37,9 @@ public class AddMenu extends Main {
     root = new BorderPane();
     submit = new Button("SUBMIT");
     back = new Button("BACK");
+    topic = new TextField("");
+    question = new TextField("");
+    answer = new TextField("");
     root.setStyle("-fx-background-color: #c0c0c5");
   }
 
@@ -78,21 +84,18 @@ public class AddMenu extends Main {
    */
   private void setCenterPanel() {
     Label topicLabel = new Label("Enter Topic: ");
-    TextField topic = new TextField("Enter Topic here");
     BorderPane topicPane = new BorderPane();
     topicPane.setLeft(topicLabel);
     topicPane.setRight(topic);
     topicPane.setMaxWidth(280);
 
     Label questionLabel = new Label("Enter Question: ");
-    TextField question = new TextField("Enter Question here");
     BorderPane questionPane = new BorderPane();
     questionPane.setLeft(questionLabel);
     questionPane.setRight(question);
     questionPane.setMaxWidth(280);
 
     Label answerLabel = new Label("Enter Answer: ");
-    TextField answer = new TextField("Enter Answer here");
     BorderPane answerPane = new BorderPane();
     answerPane.setLeft(answerLabel);
     answerPane.setRight(answer);

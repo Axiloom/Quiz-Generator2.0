@@ -86,7 +86,7 @@ public class MainMenu extends Main {
     // Top Panel
     HBox topPanel = new HBox(label, numQuestions);
     topPanel.setPadding(new Insets(10, 50, 10, 50));
-    topPanel.setSpacing(0);
+    topPanel.setSpacing(100);
     topPanel.setAlignment(Pos.CENTER);
     topPanel.setStyle("-fx-background-color: #9fb983");
     
