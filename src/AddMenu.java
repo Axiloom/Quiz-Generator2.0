@@ -168,6 +168,13 @@ public class AddMenu extends Main {
       super.getQuestion().addQuestion(topic.getText(), question.getText(), "", options, 
           answer.getText(), "");
     }
+    else {
+      // Throw alert if failure to add question
+      alert = new Alert(Alert.AlertType.CONFIRMATION, "Enter all fields to add question.");
+      alert.setHeaderText("Error adding question.");
+      alert.showAndWait().filter(response -> response == ButtonType.OK);
+    }
+    
     // load questions
     if(!jsonLoad.getText().equals("")) {
       try {
@@ -177,10 +184,9 @@ public class AddMenu extends Main {
         alert = new Alert(Alert.AlertType.CONFIRMATION, "Error: " + e.getMessage());
         alert.setHeaderText("Error loading file.");
         alert.showAndWait().filter(response -> response == ButtonType.OK);
-        primaryStage.setScene(Main.getAddScene());
       }
     }
-    primaryStage.setScene(Main.getMainScene());
+    primaryStage.setScene(Main.getAddScene());
     });
 
     // Bottom Panel
