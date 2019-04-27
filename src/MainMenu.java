@@ -18,6 +18,8 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 
+import java.util.ArrayList;
+
 /**
  * MainMenu Class constructs the GUI for the MainMenu to display how to add/load questions, save
  * current questions, select a topic and number of questions, as well as to start the quiz.
@@ -117,20 +119,21 @@ public class MainMenu extends Main {
    * Constructs the right panel in the BorderPane
    */
   private void setRightPanel() {
+
+    // Number of Questions ComboBox
+    ObservableList<String> questions = FXCollections.observableArrayList("0");
+    ComboBox<String> questionBox = new ComboBox<>(questions);
+    questionBox.setPromptText("Set # Questions");
+    questionBox.setPrefWidth(180);
+    questionBox.setVisibleRowCount(5);
+
     // Topics ComboBox
     ObservableList<String> topics = FXCollections.observableArrayList(Main.getQuestion().getTopics());
     ComboBox<String> topicBox = new ComboBox<>(topics);
     topicBox.setPromptText("Set Topic");
     topicBox.setPrefWidth(180);
     topicBox.setVisibleRowCount(5);
-
-    // Number of Questions ComboBox
-    ObservableList<String> questions =
-        FXCollections.observableArrayList("1", "2", "3", "4", "5", "6", "7", "8", "n-1", "n");
-    ComboBox<String> questionBox = new ComboBox<>(questions);
-    questionBox.setPromptText("Set # Questions");
-    questionBox.setPrefWidth(180);
-    questionBox.setVisibleRowCount(5);
+    topicBox.setOnAction(event -> questionBox.setItems(FXCollections.observableArrayList("4")));
     
     // Right Panel
     VBox rightVBox = new VBox(topicBox, questionBox);
