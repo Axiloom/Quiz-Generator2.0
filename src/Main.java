@@ -1,4 +1,5 @@
 import javafx.application.Application;
+import javafx.scene.Parent;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
 
@@ -169,6 +170,6 @@ public class Main extends Application {
    * Creates the quizScene to be used with a question
    */
   protected static void setupQuizScene(ArrayList<Question.QuestionNode> questions){
-    quizScene = new Scene(quizMenu.initialize(questions), 700, 500);
+    quizScene = new Scene(quizMenu.initialize(questions), 700,500);
   }
 }

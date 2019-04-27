@@ -27,21 +27,19 @@ import java.util.Optional;
  * @author ATeam-99
  *
  */
-public class QuizMenu extends Main implements EventHandler<ActionEvent> {
+public class QuizMenu extends Main {
 
   private Stage primaryStage; // stage being displayed on
   private Button next; // next button
   private Button quit; // quit button
   private BorderPane root; // BorderPane being constructed
-  private int numQuestions; // number of questions in the current quiz
-  private int currQuestion; // current question number of the quiz
+  private int currentQuestion; // current question number of the quiz
   private Alert alert;
-  private static int questionNumber;
   ArrayList<Question.QuestionNode> questions;
 
   /**
    * QuestionMenu Constructor that declares the field variables and sets the background color
-   * 
+   *
    * @param primaryStage - stage being displayed on
    */
   public QuizMenu(Stage primaryStage) {
@@ -50,23 +48,20 @@ public class QuizMenu extends Main implements EventHandler<ActionEvent> {
     next = new Button("NEXT");
     quit = new Button("QUIT");
     root.setStyle("-fx-background-color: #c0c0c5");
-    numQuestions = 0;
-    currQuestion = 0;
-    questionNumber = 0;
   }
 
   /**
    * Initializes a BorderPane of the QuestionMenu screen
-   * 
+   *
    * @return root - BorderPane of the QuestionMenu screen
    */
   public BorderPane initialize(ArrayList<Question.QuestionNode> questions) {
 
+    this.questions = questions;
+
     setTopPanel();
     setCenterPanel();
     setBottomPanel();
-
-    this.questions = questions;
 
     return root;
   }
@@ -77,7 +72,7 @@ public class QuizMenu extends Main implements EventHandler<ActionEvent> {
   private void setTopPanel() {
     // Labels
     Label label = new Label("Quiz");
-    Label questionLabel = new Label("Question 1/" + numQuestions); // update with the questions
+    Label questionLabel = new Label("Question " + currentQuestion + "/" + questions.size());
 
     // Style
     label.setFont(Font.font("Arial", FontWeight.BOLD, 16));
@@ -98,11 +93,9 @@ public class QuizMenu extends Main implements EventHandler<ActionEvent> {
    */
   private void setCenterPanel() {
 
-    Label question = new Label("What is the best way to wrap a question around the page, "
-        + "I looked on stackOverflow and couldnt find the answer?");
+    // Setup Question
+    Label question = new Label(questions.get(currentQuestion).question);
     question.setWrapText(true);
-
-    // TODO replace with reading in Question.getQuestion(QuestionNode) possibly in a loop
     question.setFont(Font.font("Arial", FontWeight.BOLD, 16));
 
     // Make checkbox only have 1 answer TODO: NOT SURE HOW THIS WORKS; GOT OFF GITHUB
@@ -130,25 +123,22 @@ public class QuizMenu extends Main implements EventHandler<ActionEvent> {
       }
     };
 
-    // TODO: remove when we get question.options working
-    for (int i = 0; i < 5; i++) {
-      CheckBox checkBox = new CheckBox("Answer " + (i + 1));
+    // setup possible answers
+    for (int i = 0; i < questions.get(currentQuestion).options.size(); i++) {
+      CheckBox checkBox = new CheckBox(questions.get(currentQuestion).options.get(i));
       checkBox.setFont(Font.font("Arial", FontWeight.BOLD, 15));
       checkBox.selectedProperty().addListener(listener);
       checkBox.setMaxWidth(400);
       boxes.add(checkBox);
     }
 
-    // Replace above with this when we get this working
-    // for (int i = 0 ; i < question.options.size() ; i++){
-    // CheckBox checkBox = new CheckBox(question.options.get(i));
-    // checkBox.setFont(Font.font("Arial", FontWeight.BOLD, 15));
-    // checkBox.selectedProperty().addListener(listener);
-    // checkBox.setMaxWidth(400);
-    // boxes.add(checkBox);
-    // }
-
     ImageView image = new ImageView(new Image(QuizMenu.class.getResourceAsStream("Example.jpg")));
+    ;
+
+    if (questions.get(currentQuestion).img != null) {
+      image = questions.get(currentQuestion).img;
+    }
+
     image.setPreserveRatio(true);
     image.setFitHeight(200);
     VBox answers = new VBox(boxes.get(0), boxes.get(1), boxes.get(2), boxes.get(3), boxes.get(4));
@@ -159,7 +149,7 @@ public class QuizMenu extends Main implements EventHandler<ActionEvent> {
 
     // Format Box Location
     answers.setSpacing(25);
-    answers.setPadding(new Insets(25,0,0,0));
+    answers.setPadding(new Insets(25, 0, 0, 0));
     answersAndPicture.setPadding(new Insets(0, 25, 0, 0));
     displayImage.setPadding(new Insets(25, 0, 0, 0));
 
@@ -180,7 +170,10 @@ public class QuizMenu extends Main implements EventHandler<ActionEvent> {
     quit.setPrefSize(100, 50);
 
     // Listeners
-    next.setOnAction(e -> {primaryStage.setScene(Main.getStatisticsScene());});
+    next.setOnAction(e -> {
+      currentQuestion++;
+      primaryStage.setScene(Main.getStatisticsScene());
+    });
     //TODO ^^^^ make hitting next display the next question
     quit.setOnAction(e -> {
       alert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure you want to quit?");
@@ -190,10 +183,10 @@ public class QuizMenu extends Main implements EventHandler<ActionEvent> {
         primaryStage.setScene(Main.getStatisticsScene());
       }
       if (button.get().equals(ButtonType.CANCEL)) { // cancels
-//        primaryStage.setScene(Main.getExitScene());
+        //        primaryStage.setScene(Main.getExitScene());
       }
     });
-    
+
     next.setOnMouseEntered(e -> next.setStyle("-fx-font-size: 14pt;"));
     next.setOnMouseExited(e -> next.setStyle("-fx-font-size: 12pt;"));
     quit.setOnMouseEntered(e -> quit.setStyle("-fx-font-size: 14pt;"));
@@ -206,11 +199,4 @@ public class QuizMenu extends Main implements EventHandler<ActionEvent> {
 
     root.setBottom(bottomHBox);
   }
-
-  private void getNextQuestion(){
-
-  }
-
-  @Override
-  public void handle(ActionEvent event) {}
 }
