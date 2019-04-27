@@ -23,8 +23,8 @@ public class StatisticsMenu extends Main {
   private Button cont; // continue button to start new quiz
   private Button exit; // exit button
   private Alert alert; // alert displaying exit confirmation
-  private Double correct;
-  private Double numQuestions;
+  private double correct;
+  private double numQuestions;
 
   /**
    * StatisticsMenu Constructor that declares the field variables and sets the background color
@@ -82,7 +82,8 @@ public class StatisticsMenu extends Main {
   private void setCenterPanel() {
     Double pct = (correct / numQuestions) * 100;
     Label percentCorrect = new Label(pct.toString() + "% Correct");
-    Label fractionCorrect = new Label(correct.toString() + " / " + numQuestions.toString());
+    Label fractionCorrect =
+            new Label(((int)correct) + " / " + (int)numQuestions);
     Label score = new Label("Your score");
     Label blank = new Label(""); // spacer
     
