@@ -1,10 +1,4 @@
-import javafx.beans.binding.Bindings;
-import javafx.beans.binding.IntegerBinding;
 import javafx.beans.property.ReadOnlyProperty;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Alert;
@@ -30,7 +24,7 @@ import java.util.ArrayList;
  * @author ATeam-99
  *
  */
-public class QuestionMenu extends Main implements EventHandler<ActionEvent> {
+public class QuestionMenu extends Main {
 
   private Stage primaryStage; // stage being displayed on
   private Button next; // next button
@@ -176,6 +170,10 @@ public class QuestionMenu extends Main implements EventHandler<ActionEvent> {
     // Style
     next.setPrefSize(100, 50);
     quit.setPrefSize(100, 50);
+    next.setOnMouseEntered(e -> next.setStyle("-fx-font-size: 14pt;"));
+    next.setOnMouseExited(e -> next.setStyle("-fx-font-size: 12pt;"));
+    quit.setOnMouseEntered(e -> quit.setStyle("-fx-font-size: 14pt;"));
+    quit.setOnMouseExited(e -> quit.setStyle("-fx-font-size: 12pt;"));
 
     // Listeners
     next.setOnAction(e -> {primaryStage.setScene(Main.getStatisticsScene());});
@@ -184,11 +182,6 @@ public class QuestionMenu extends Main implements EventHandler<ActionEvent> {
       alert.showAndWait().filter(response -> response == ButtonType.OK);
       primaryStage.setScene(Main.getStatisticsScene());
     });
-    
-    next.setOnMouseEntered(e -> next.setStyle("-fx-font-size: 14pt;"));
-    next.setOnMouseExited(e -> next.setStyle("-fx-font-size: 12pt;"));
-    quit.setOnMouseEntered(e -> quit.setStyle("-fx-font-size: 14pt;"));
-    quit.setOnMouseExited(e -> quit.setStyle("-fx-font-size: 12pt;"));
 
     // Bottom Panel
     HBox bottomHBox = new HBox(quit, next);
@@ -198,10 +191,10 @@ public class QuestionMenu extends Main implements EventHandler<ActionEvent> {
     root.setBottom(bottomHBox);
   }
 
+  /**
+   * TODO
+   */
   private void nextQuestion(){
 
   }
-
-  @Override
-  public void handle(ActionEvent event) {}
 }
