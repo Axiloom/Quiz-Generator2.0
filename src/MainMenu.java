@@ -180,20 +180,17 @@ public class MainMenu extends Main {
     start.setOnMouseExited(e -> start.setStyle("-fx-font-size: 12pt;"));
 
     // Listeners
-    //TODO enable this for when it goes live. testing with this is a pain in the ass
-//    start.setOnAction(event -> {
-//      if(topicBox.getValue() == null || questionBox.getValue() == null) {
-//        alert = new Alert(Alert.AlertType.ERROR, "Select a topic and number of questions");
-//        alert.setHeaderText("Error.");
-//        alert.showAndWait().filter(response -> response == ButtonType.OK);
-//        primaryStage.setScene(Main.getMainScene());
-//      } else {
-//        primaryStage.setScene(Main.getQuizScene());
-//      }
-//    });
-    //TODO remove below line of code once above is uncommented
     start.setOnAction(event -> {
-      if (topicBox.getValue() != null && questionBox.getValue() != null){
+
+      // Error Message
+      if(topicBox.getValue() == null || questionBox.getValue() == null) {
+        alert = new Alert(Alert.AlertType.ERROR, "Select a topic and number of questions");
+        alert.setHeaderText("Error.");
+        alert.showAndWait().filter(response -> response == ButtonType.OK);
+        primaryStage.setScene(Main.getMainScene());
+      }
+      // Continue onto quiz
+      else {
         Main.setupQuizScene(Main.getQuestion().getQuestions(topicBox.getValue(), Integer.parseInt(questionBox.getValue())));
         Main.setupStatisticsScene(Integer.parseInt(questionBox.getValue()));
         primaryStage.setScene(Main.getQuizScene());
