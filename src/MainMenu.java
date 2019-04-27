@@ -190,6 +190,7 @@ public class MainMenu extends Main {
 //        primaryStage.setScene(Main.getQuizScene());
 //      }
 //    });
+    //TODO remove below line of code once above is uncommented
     start.setOnAction(event -> primaryStage.setScene(Main.getQuizScene()));
     
     // Bottom Panel

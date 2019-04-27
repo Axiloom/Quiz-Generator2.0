@@ -43,7 +43,7 @@ public class ExitMenu extends Main {
     save = new Button("SAVE AND EXIT");
     exit = new Button("EXIT WITHOUT SAVING");
     root.setStyle("-fx-background-color: #c0c0c5");
-    fileName = new TextField("Enter file name");
+    fileName = new TextField();
   }
 
   /**
@@ -94,36 +94,44 @@ public class ExitMenu extends Main {
     exit.setOnMouseEntered(e -> exit.setStyle("-fx-font-size: 14pt;"));
     exit.setOnMouseExited(e -> exit.setStyle("-fx-font-size: 12pt;"));
     
-    
+
     // Listeners
-    save.setOnAction(e -> {
+    save.setOnAction(e -> { // save questions
       String file = fileName.getText();
-      alert = new Alert(Alert.AlertType.CONFIRMATION, "Save to " + file + "?");
-      alert.setHeaderText("Save Questions");
-      Optional<ButtonType> buttonType = alert.showAndWait();
-      if(buttonType.get().equals(ButtonType.OK)) {
-        super.getQuestion().saveToJSON(file);
-        try {
-          Platform.exit();
-        } catch (Exception f) {
-        }
-      }
-      if(buttonType.get().equals(ButtonType.CANCEL)) {
+      Optional<ButtonType> button;
+      if (file.equals("")) { // No file entered
+        alert = new Alert(Alert.AlertType.ERROR, "Enter a file name.");
+        alert.setHeaderText("Error.");
+        alert.showAndWait().filter(response -> response == ButtonType.OK);
         primaryStage.setScene(Main.getExitScene());
+      } else { // Save questions to file
+        alert = new Alert(Alert.AlertType.CONFIRMATION, "Save to " + file + ".json?");
+        alert.setHeaderText("Save Questions");
+        button = alert.showAndWait();
+        if (button.get().equals(ButtonType.OK)) { // saves
+          super.getQuestion().saveToJSON(file);
+          try {
+            Platform.exit();
+          } catch (Exception f) {
+          }
+        }
+        if (button.get().equals(ButtonType.CANCEL)) { // cancels save
+          primaryStage.setScene(Main.getExitScene());
+        }
       }
     });
 
-    exit.setOnAction(e -> {
+    exit.setOnAction(e -> { // exit without save
       alert = new Alert(Alert.AlertType.CONFIRMATION, "Exit without saving?");
       alert.setHeaderText("Exit Without Saving");
       Optional<ButtonType> buttonType = alert.showAndWait();
-      if(buttonType.get().equals(ButtonType.OK)) {
+      if(buttonType.get().equals(ButtonType.OK)) { // exit
         try {
           Platform.exit();
         } catch (Exception f) {
         }
       }
-      if(buttonType.get().equals(ButtonType.CANCEL)) {
+      if(buttonType.get().equals(ButtonType.CANCEL)) { // cancel
         primaryStage.setScene(Main.getExitScene());
       }
     });
