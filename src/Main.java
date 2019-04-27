@@ -24,6 +24,7 @@ public class Main extends Application {
   private static SaveMenu saveMenu;
   private static AddMenu addMenu;
   private static QuizMenu quizMenu;
+  private static StatisticsMenu statisticsMenu;
   
   /**
    * TODO
@@ -38,7 +39,7 @@ public class Main extends Application {
       saveMenu = new SaveMenu(primaryStage);
       addMenu = new AddMenu(primaryStage);
       quizMenu = new QuizMenu(primaryStage);
-      StatisticsMenu statisticsMenu = new StatisticsMenu(primaryStage);
+      statisticsMenu = new StatisticsMenu(primaryStage);
       ExitMenu exitMenu = new ExitMenu(primaryStage);
 
       // Create Scenes
@@ -164,6 +165,13 @@ public class Main extends Application {
   protected static QuizMenu getQuizMenu() {
     return quizMenu;
   }
+
+  /**
+   * Getter for the StatisticsMenu instance
+   *
+   * @return instance of StatisticsMenu
+   */
+  protected static StatisticsMenu getStatisticsMenu(){ return statisticsMenu; }
 
 
   /**

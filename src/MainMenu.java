@@ -196,6 +196,7 @@ public class MainMenu extends Main {
       if (topicBox.getValue() != null && questionBox.getValue() != null){
         Main.setupQuizScene(Main.getQuestion().getQuestions(topicBox.getValue(), Integer.parseInt(questionBox.getValue())));
         primaryStage.setScene(Main.getQuizScene());
+        Main.getStatisticsMenu().setNumQuestions(Integer.parseInt(questionBox.getValue()));
       }
     });
     

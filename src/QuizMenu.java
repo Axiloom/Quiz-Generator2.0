@@ -35,7 +35,8 @@ public class QuizMenu extends Main {
   private BorderPane root; // BorderPane being constructed
   private int currentQuestion; // current question number of the quiz
   private Alert alert;
-  ArrayList<Question.QuestionNode> questions;
+  private ArrayList<Question.QuestionNode> questions;
+  private ArrayList<CheckBox> activeBoxes = new ArrayList<>();
 
   /**
    * QuestionMenu Constructor that declares the field variables and sets the background color
@@ -101,7 +102,6 @@ public class QuizMenu extends Main {
     // Make checkbox only have 1 answer TODO: NOT SURE HOW THIS WORKS; GOT OFF GITHUB
     // https://stackoverflow.com/questions/51568622/restrict-checkboxes-checked-javafx
     // Question CheckBoxes
-    ArrayList<CheckBox> activeBoxes = new ArrayList<>();
     ArrayList<CheckBox> boxes = new ArrayList<>();
 
     int maxCount = 1;
@@ -174,6 +174,8 @@ public class QuizMenu extends Main {
       if (currentQuestion == questions.size()-1)
         primaryStage.setScene(Main.getStatisticsScene());
       else {
+        if (!activeBoxes.isEmpty() && activeBoxes.get(0).getText().equals(questions.get(currentQuestion).answer))
+          Main.getStatisticsMenu().updateCount();
 
         currentQuestion++;
         Main.getQuizMenu().initialize(questions);
