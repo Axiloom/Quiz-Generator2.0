@@ -17,7 +17,8 @@ public class Main extends Application {
   private static Scene statisticsScene;
   private static Scene exitScene;
   private static Question question;
-
+  private static MainMenu mainMenu;
+  
   /**
    * TODO
    */
@@ -27,7 +28,7 @@ public class Main extends Application {
 
       // Instances of menu's
       question = new Question();
-      MainMenu mainMenu = new MainMenu(primaryStage);
+      mainMenu = new MainMenu(primaryStage);
       SaveMenu saveMenu = new SaveMenu(primaryStage);
       AddMenu addMenu = new AddMenu(primaryStage);
       QuestionMenu quizMenu = new QuestionMenu(primaryStage);
@@ -121,5 +122,14 @@ public class Main extends Application {
    */
   protected static Question getQuestion() {
     return question;
+  }
+  
+  /**
+   * TODO
+   * 
+   * @return
+   */
+  protected static MainMenu getMainMenu() {
+    return mainMenu;
   }
 }

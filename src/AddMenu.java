@@ -177,6 +177,7 @@ public class AddMenu extends Main {
       option2.clear();
       option3.clear();
       option4.clear();
+      super.getMainMenu().initialize();
     } else {
       // Throw alert if failure to add question
       alert = new Alert(Alert.AlertType.CONFIRMATION, "Enter all fields to add question.");
