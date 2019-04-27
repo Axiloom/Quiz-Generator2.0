@@ -59,12 +59,6 @@ public class QuizMenu extends Main {
 
     this.questions = questions;
 
-    System.out.println("Size: " + questions.size());
-
-    for (Question.QuestionNode question : questions){
-      System.out.println("Question: " + question.question);
-    }
-
     setTopPanel();
     setCenterPanel();
     setBottomPanel();
