@@ -167,8 +167,7 @@ public class AddMenu extends Main {
       options.add(option4.getText());
       super.getQuestion().addQuestion(topic.getText(), question.getText(), "", options, 
           answer.getText(), "");
-    }
-    else {
+    } else {
       // Throw alert if failure to add question
       alert = new Alert(Alert.AlertType.CONFIRMATION, "Enter all fields to add question.");
       alert.setHeaderText("Error adding question.");
