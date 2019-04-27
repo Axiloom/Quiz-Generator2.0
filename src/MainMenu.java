@@ -2,6 +2,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
@@ -34,6 +35,9 @@ public class MainMenu extends Main {
   private Button add; // add button
   private Button save; // save button
   private Button start; // start quiz button
+  private ComboBox<String> questionBox; // holds the total questions available for a specific topic
+  private ComboBox<String> topicBox; // holds the topics available
+  private Alert alert; // alert to make sure topic and question amount are chosen
 
   /**
    * MainMenu Constructor that declares the field variables
@@ -79,14 +83,20 @@ public class MainMenu extends Main {
   private void setTopPanel() {
     // Labels
     Label label = new Label("Main Menu");
-    Label numQuestions = new Label(getQuestion().getSize() + " questions available");
+    String qLabel = "" + getQuestion().getSize();
+    if(getQuestion().getSize() == 1) {
+      qLabel += " question available";
+    } else {
+      qLabel += " questions available";
+    }
+    Label qAvailableLabel = new Label(qLabel);
 
     // Style
-    numQuestions.setFont(Font.font("Arial", FontWeight.BOLD, 16));
+    qAvailableLabel.setFont(Font.font("Arial", FontWeight.BOLD, 16));
     label.setFont(Font.font("Arial", FontWeight.BOLD, 16));
 
     // Top Panel
-    HBox topPanel = new HBox(label, numQuestions);
+    HBox topPanel = new HBox(label, qAvailableLabel);
     topPanel.setPadding(new Insets(10, 50, 10, 50));
     topPanel.setSpacing(100);
     topPanel.setAlignment(Pos.CENTER);
@@ -122,14 +132,14 @@ public class MainMenu extends Main {
 
     // Number of Questions ComboBox
     ObservableList<String> questions = FXCollections.observableArrayList("0");
-    ComboBox<String> questionBox = new ComboBox<>(questions);
+    questionBox = new ComboBox<>(questions);
     questionBox.setPromptText("Set # Questions");
     questionBox.setPrefWidth(180);
     questionBox.setVisibleRowCount(5);
 
     // Topics ComboBox
     ObservableList<String> topics = FXCollections.observableArrayList(Main.getQuestion().getTopics());
-    ComboBox<String> topicBox = new ComboBox<>(topics);
+    topicBox = new ComboBox<>(topics);
     topicBox.setPromptText("Set Topic");
     topicBox.setPrefWidth(180);
     topicBox.setVisibleRowCount(5);
@@ -154,8 +164,18 @@ public class MainMenu extends Main {
     start.setPrefSize(200, 50);
     start.setOnMouseEntered(e -> start.setStyle("-fx-font-size: 14pt;"));
     start.setOnMouseExited(e -> start.setStyle("-fx-font-size: 12pt;"));
-
+    
     // Listeners
+    // TODO: re-enable this for when its live. Testing with this enabled is a bitch tho
+//    start.setOnAction(event -> {
+//      if (topicBox.getValue() == null || questionBox.getValue() == null){
+//        alert = new Alert(Alert.AlertType.ERROR, "Choose a topic and number of questions first");
+//        alert.setHeaderText("Error");
+//        alert.showAndWait();
+//      } else {
+//        primaryStage.setScene(Main.getQuizScene());
+//      }
+//    });
     start.setOnAction(event -> primaryStage.setScene(Main.getQuizScene()));
     
     // Bottom Panel
