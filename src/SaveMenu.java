@@ -1,7 +1,10 @@
 
+import java.util.Optional;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
@@ -23,6 +26,9 @@ public class SaveMenu extends Main {
   private BorderPane root; // BorderPane being constructed
   private Button back; // back button
   private Button submit; // submit button
+  private TextField fileName; // TextField to record saved file name
+  private Alert alert; // alert to help user save properly
+
 
   /**
    * SaveMenu Constructor that declares the field variables and sets the background color
@@ -33,6 +39,7 @@ public class SaveMenu extends Main {
     this.primaryStage = primaryStage;
     back = new Button("BACK");
     submit = new Button("SUBMIT");
+    fileName = new TextField("Enter JSON File here");
     root = new BorderPane();
     root.setStyle("-fx-background-color: #c0c0c5");
   }
@@ -79,10 +86,9 @@ public class SaveMenu extends Main {
   private void setCenterPanel() {
     
     Label jsonLabel = new Label("Save as JSON:");
-    TextField jsonName = new TextField("Enter JSON File here");
-
+    
     // Center Panel
-    HBox centerPanel = new HBox(jsonLabel,jsonName);
+    HBox centerPanel = new HBox(jsonLabel,fileName);
     centerPanel.setPadding(new Insets(150,100,50,200));
     centerPanel.setSpacing(10);
     
@@ -103,7 +109,15 @@ public class SaveMenu extends Main {
     
     // Listeners
     back.setOnAction(event -> primaryStage.setScene(Main.getMainScene()));
-    submit.setOnAction(event -> primaryStage.setScene(Main.getMainScene()));
+    submit.setOnAction(event -> {
+      String file = fileName.getText();
+      if(file.equals("Enter JSON File here") || file.equals("")) {
+        alert = new Alert(Alert.AlertType.CONFIRMATION, "Enter valid file name.");
+        alert.setHeaderText("Save Questions");
+        Optional<ButtonType> buttonType = alert.showAndWait();
+      }
+      primaryStage.setScene(Main.getMainScene());
+    });
     
     // Bottom Panel
     HBox bottomPanel = new HBox(back,submit);
