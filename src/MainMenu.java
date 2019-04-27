@@ -173,10 +173,14 @@ public class MainMenu extends Main {
 //        alert.setHeaderText("Error");
 //        alert.showAndWait();
 //      } else {
+//        super.getMainMenu().initialize();
 //        primaryStage.setScene(Main.getQuizScene());
 //      }
 //    });
-    start.setOnAction(event -> primaryStage.setScene(Main.getQuizScene()));
+    start.setOnAction(event -> {
+      super.getMainMenu().initialize();
+      primaryStage.setScene(Main.getQuizScene());
+    });
     
     // Bottom Panel
     HBox bottomHBox = new HBox(start);
