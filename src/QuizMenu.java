@@ -174,6 +174,7 @@ public class QuizMenu extends Main {
       if (currentQuestion == questions.size()-1)
         primaryStage.setScene(Main.getStatisticsScene());
       else {
+
         currentQuestion++;
         Main.getQuizMenu().initialize(questions);
       }

@@ -1,4 +1,3 @@
-
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Alert;
@@ -24,6 +23,8 @@ public class StatisticsMenu extends Main {
   private Button cont; // continue button to start new quiz
   private Button exit; // exit button
   private Alert alert; // alert displaying exit confirmation
+  private Double correct;
+  private Double numQuestions;
 
   /**
    * StatisticsMenu Constructor that declares the field variables and sets the background color
@@ -76,11 +77,9 @@ public class StatisticsMenu extends Main {
    * Constructs the center panel in the BorderPane
    */
   private void setCenterPanel() {
-    Integer numQuestions = 10; // TODO make the calculation functional
-    Integer amtCorrect = 9;
-    Double pct = ((double) amtCorrect / (double) numQuestions) * 100;
+    Double pct = (correct / numQuestions) * 100;
     Label percentCorrect = new Label(pct.toString() + "% Correct");
-    Label fractionCorrect = new Label(amtCorrect.toString() + " / " + numQuestions.toString());
+    Label fractionCorrect = new Label(correct.toString() + " / " + numQuestions.toString());
     Label score = new Label("Your score");
     Label blank = new Label(""); // spacer
     
@@ -120,4 +119,15 @@ public class StatisticsMenu extends Main {
     
     root.setBottom(bottomHBox);
   }
+
+  /**
+   * Update correct by 1
+   */
+  public void updateCount(){correct++;};
+
+  /**
+   * Set the total number of questions
+   * @param numQuestions the total number of questions
+   */
+  public void setNumQuestions(int numQuestions){ this.numQuestions = (double)numQuestions; }
 }
