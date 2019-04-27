@@ -161,7 +161,6 @@ public class MainMenu extends Main {
       questionBox.setItems(FXCollections.observableList(range));
     });
 
-    
     // Right Panel
     VBox rightVBox = new VBox(topicBox, questionBox);
     rightVBox.setAlignment(Pos.TOP_RIGHT);

@@ -160,38 +160,66 @@ public class AddMenu extends Main {
     submit.setOnMouseEntered(e -> submit.setStyle("-fx-font-size: 14pt;"));
     submit.setOnMouseExited(e -> submit.setStyle("-fx-font-size: 12pt;"));
 
-    // Listeners
+    // Back Listener
     back.setOnAction(event -> primaryStage.setScene(Main.getMainScene()));
+
+    // Submit Listener
     submit.setOnAction(event -> {
-    // adds question
-    if(!topic.getText().equals("") && !question.getText().equals("") && !answer.getText().equals("")
-        && !option1.getText().equals("") && !option2.getText().equals("") && 
-        !option3.getText().equals("") && !option4.getText().equals("") && !option5.getText().equals("")) {
-      ArrayList<String> options = new ArrayList<>();
-      options.add(option1.getText());
-      options.add(option2.getText());
-      options.add(option3.getText());
-      options.add(option4.getText());
-      options.add(option5.getText());
-      super.getQuestion().addQuestion(topic.getText(), question.getText(), "", options, 
-          answer.getText(), "");
-      alert = new Alert(Alert.AlertType.INFORMATION, "Successfully added question!");
-      alert.setHeaderText("Success.");
+      // adds question
+      if(!topic.getText().equals("") &&
+              !question.getText().equals("") &&
+              !answer.getText().equals("") &&
+              !option1.getText().equals("") &&
+              !option2.getText().equals("") &&
+              !option3.getText().equals("") &&
+              !option4.getText().equals("") &&
+              !option5.getText().equals("") &&
+              jsonLoad.getText().equals("")) {
+        ArrayList<String> options = new ArrayList<>();
+        options.add(option1.getText());
+        options.add(option2.getText());
+        options.add(option3.getText());
+        options.add(option4.getText());
+        options.add(option5.getText());
+        super.getQuestion().addQuestion(topic.getText(), question.getText(), "", options,
+            answer.getText(), "");
+        alert = new Alert(Alert.AlertType.INFORMATION, "Successfully added question!");
+        alert.setHeaderText("Success.");
+        alert.showAndWait().filter(response -> response == ButtonType.OK);
+
+        // Clear TextFields
+        topic.clear();
+        question.clear();
+        answer.clear();
+        option1.clear();
+        option2.clear();
+        option3.clear();
+        option4.clear();
+        option5.clear();
+
+        // Update menu displays
+        super.getMainMenu().initialize();
+        super.getAddMenu().initialize();
+        super.getSaveMenu().initialize();
+    }
+
+    else if (!topic.getText().equals("") &&
+              !question.getText().equals("") &&
+              !answer.getText().equals("") &&
+              !option1.getText().equals("") &&
+              !option2.getText().equals("") &&
+              !option3.getText().equals("") &&
+              !option4.getText().equals("") &&
+              !option5.getText().equals("") &&
+              !jsonLoad.getText().equals("")){
+
+      // Throw alert if add question and parse json are entered
+      alert = new Alert(Alert.AlertType.ERROR, "Cannot import json and add question at the same " +
+              "time");
+      alert.setHeaderText("Error adding question.");
       alert.showAndWait().filter(response -> response == ButtonType.OK);
-      // Clear TextFields
-      topic.clear();
-      question.clear();
-      answer.clear();
-      option1.clear();
-      option2.clear();
-      option3.clear();
-      option4.clear();
-      option5.clear();
-      // Update menu displays
-      super.getMainMenu().initialize();
-      super.getAddMenu().initialize();
-      super.getSaveMenu().initialize();
-    } else {
+    }
+    else {
       // Throw alert if failure to add question
       alert = new Alert(Alert.AlertType.ERROR, "Enter all fields to add question.");
       alert.setHeaderText("Error adding question.");
