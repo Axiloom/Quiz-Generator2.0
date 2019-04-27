@@ -1,6 +1,4 @@
 import javafx.beans.property.ReadOnlyProperty;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Alert;
@@ -102,8 +100,6 @@ public class QuizMenu extends Main {
 
     // Make checkbox only have 1 answer TODO: NOT SURE HOW THIS WORKS; GOT OFF GITHUB
     // https://stackoverflow.com/questions/51568622/restrict-checkboxes-checked-javafx
-    // Question CheckBoxes
-
     int maxCount = 1;
     ChangeListener<Boolean> listener = (o, oldValue, newValue) -> {
       // get checkbox containing property
@@ -132,8 +128,7 @@ public class QuizMenu extends Main {
       boxes.add(checkBox);
     }
 
-    ImageView image = new ImageView(new Image(QuizMenu.class.getResourceAsStream("Example.jpg")));
-    ;
+    ImageView image = new ImageView(new Image(QuizMenu.class.getResourceAsStream("no-image.png")));
 
     if (questions.get(currentQuestion).img != null) {
       image = questions.get(currentQuestion).img;
