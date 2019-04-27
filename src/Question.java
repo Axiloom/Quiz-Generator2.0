@@ -88,12 +88,22 @@ public class Question {
 
     return questions;
   }
-  
+
   /**
    * Adds a node to the topicList according to its topic
-   * @param question the question to be added
+   *
+   * @param topic the topic of the question
+   * @param questionText the text of the question
+   * @param metadata the meta of the question
+   * @param options the options for the question
+   * @param correctAnswer the correct answer for the question
+   * @param image the image for the question
    */
-  public void addQuestion(QuestionNode question) {
+  public void addQuestion(String topic, String questionText, String metadata, ArrayList<String> options, String correctAnswer, String image) {
+
+    // Question to be added
+    QuestionNode question = new QuestionNode(topic, metadata, questionText, image, options,
+            correctAnswer);
 
     // Create topic if it doesnt exist
     if (!topics.contains(question.topic))
@@ -134,18 +144,10 @@ public class Question {
           correctAnswer = (String) ((JSONObject) answer).get("choice");
         }
         choices.add((String) ((JSONObject) answer).get("choice"));
-			/*
-			if (((String)((ArrayList) answer).get(1)).equals("T")) {
-				String correctAnswer = (String)((ArrayList) answer).get(1); // right answer
-			}
-			*/
       }
-      QuestionNode newQuestion = new QuestionNode(topic, metaData, question,
-              image, choices, correctAnswer);
-      addQuestion(newQuestion);
-      // create the new node here
-      // write method to add the node
 
+      // Add Question
+      addQuestion(topic,question,metaData,choices,correctAnswer,image);
     }
 		
     return true;
