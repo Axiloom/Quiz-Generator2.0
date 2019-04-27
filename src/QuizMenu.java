@@ -171,12 +171,14 @@ public class QuizMenu extends Main {
 
     // Listeners
     next.setOnAction(e -> {
+      if (!activeBoxes.isEmpty() && activeBoxes.get(0).getText().equals(questions.get(currentQuestion).answer)) {
+        Main.getStatisticsMenu().updateCount();
+        Main.getStatisticsMenu().initialize(questions.size());
+      }
+
       if (currentQuestion == questions.size()-1)
         primaryStage.setScene(Main.getStatisticsScene());
       else {
-        if (!activeBoxes.isEmpty() && activeBoxes.get(0).getText().equals(questions.get(currentQuestion).answer))
-          Main.getStatisticsMenu().updateCount();
-
         currentQuestion++;
         Main.getQuizMenu().initialize(questions);
       }
