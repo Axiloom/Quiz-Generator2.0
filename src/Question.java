@@ -7,7 +7,6 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import java.io.FileNotFoundException;
 import java.util.Set;
-
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -114,7 +113,7 @@ public class Question {
 
     // Add question
 	  topics.get(question.topic).add(question);
-
+	  ++numQuestions;
   }
   
   /**
