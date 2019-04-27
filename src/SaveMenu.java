@@ -64,14 +64,20 @@ public class SaveMenu extends Main {
   private void setTopPanel() {
     // Labels
     Label label = new Label("Save Menu");
-    Label numQuestions = new Label(getQuestion().getSize() + " questions available");
+    String qLabel = "" + getQuestion().getSize();
+    if(getQuestion().getSize() == 1) {
+      qLabel += " question available";
+    } else {
+      qLabel += " questions available";
+    }
+    Label qAvailableLabel = new Label(qLabel);
 
     // Style
-    numQuestions.setFont(Font.font("Arial", FontWeight.BOLD, 16));
+    qAvailableLabel.setFont(Font.font("Arial", FontWeight.BOLD, 16));
     label.setFont(Font.font("Arial", FontWeight.BOLD, 16));
     
     // Top Panel
-    HBox topPanel = new HBox(label, numQuestions);
+    HBox topPanel = new HBox(label, qAvailableLabel);
     topPanel.setPadding(new Insets(10,50,10,50));
     topPanel.setSpacing(100);
     topPanel.setAlignment(Pos.CENTER);
@@ -108,13 +114,15 @@ public class SaveMenu extends Main {
     submit.setOnMouseExited(e -> submit.setStyle("-fx-font-size: 12pt;"));
     
     // Listeners
-    back.setOnAction(event -> primaryStage.setScene(Main.getMainScene()));
+    back.setOnAction(event -> {
+      primaryStage.setScene(Main.getMainScene());
+    });
     submit.setOnAction(event -> {
       String file = fileName.getText();
       if(file.equals("Enter JSON File here") || file.equals("")) {
         alert = new Alert(Alert.AlertType.CONFIRMATION, "Enter valid file name.");
         alert.setHeaderText("Save Questions");
-        Optional<ButtonType> buttonType = alert.showAndWait();
+        Optional<ButtonType> buttonType = alert.showAndWait();//TODO complete this
       }
       primaryStage.setScene(Main.getMainScene());
     });

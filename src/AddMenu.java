@@ -77,9 +77,15 @@ public class AddMenu extends Main {
   private void setTopPanel() {
     // Labels
     Label label = new Label("Add Menu");
-
+    String qLabel = "" + getQuestion().getSize();
+    if(getQuestion().getSize() == 1) {
+      qLabel += " question available";
+    } else {
+      qLabel += " questions available";
+    }
+    Label qAvailableLabel = new Label(qLabel);
+    
     // Style
-    Label qAvailableLabel = new Label(getQuestion().getSize() + " questions available");
     qAvailableLabel.setFont(Font.font("Arial", FontWeight.BOLD, 16));
     label.setFont(Font.font("Arial", FontWeight.BOLD, 16));
 
@@ -170,6 +176,7 @@ public class AddMenu extends Main {
       alert = new Alert(Alert.AlertType.CONFIRMATION, "Successfully added question!");
       alert.setHeaderText("Success.");
       alert.showAndWait().filter(response -> response == ButtonType.OK);
+      // Clear TextFields
       topic.clear();
       question.clear();
       answer.clear();
@@ -177,7 +184,10 @@ public class AddMenu extends Main {
       option2.clear();
       option3.clear();
       option4.clear();
+      // Update menu displays
       super.getMainMenu().initialize();
+      super.getAddMenu().initialize();
+      super.getSaveMenu().initialize();
     } else {
       // Throw alert if failure to add question
       alert = new Alert(Alert.AlertType.CONFIRMATION, "Enter all fields to add question.");
@@ -190,6 +200,10 @@ public class AddMenu extends Main {
       try {
         super.getQuestion().loadJSON(jsonLoad.getText());
         jsonLoad.clear();
+        // Update menu displays
+        super.getMainMenu().initialize();
+        super.getAddMenu().initialize();
+        super.getSaveMenu().initialize();
       } catch(Exception e) {
         // Throw alert if failure to load file
         alert = new Alert(Alert.AlertType.CONFIRMATION, "Error: " + e.getMessage());

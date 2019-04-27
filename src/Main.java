@@ -18,6 +18,9 @@ public class Main extends Application {
   private static Scene exitScene;
   private static Question question;
   private static MainMenu mainMenu;
+  private static SaveMenu saveMenu;
+  private static AddMenu addMenu;
+  private static QuestionMenu quizMenu;
   
   /**
    * TODO
@@ -29,9 +32,9 @@ public class Main extends Application {
       // Instances of menu's
       question = new Question();
       mainMenu = new MainMenu(primaryStage);
-      SaveMenu saveMenu = new SaveMenu(primaryStage);
-      AddMenu addMenu = new AddMenu(primaryStage);
-      QuestionMenu quizMenu = new QuestionMenu(primaryStage);
+      saveMenu = new SaveMenu(primaryStage);
+      addMenu = new AddMenu(primaryStage);
+      quizMenu = new QuestionMenu(primaryStage);
       StatisticsMenu statisticsMenu = new StatisticsMenu(primaryStage);
       ExitMenu exitMenu = new ExitMenu(primaryStage);
 
@@ -125,11 +128,38 @@ public class Main extends Application {
   }
   
   /**
-   * TODO
+   * Getter for the MainMenu instance
    * 
-   * @return
+   * @return instance of MainMenu
    */
   protected static MainMenu getMainMenu() {
     return mainMenu;
+  }
+  
+  /**
+   * Getter for the SaveMenu instance
+   * 
+   * @return instance of SaveMenu
+   */
+  protected static SaveMenu getSaveMenu() {
+    return saveMenu;
+  }
+  
+  /**
+   * Getter for the AddMenu instance
+   * 
+   * @return instance of AddMenu
+   */
+  protected static AddMenu getAddMenu() {
+    return addMenu;
+  }
+  
+  /**
+   * Getter for the Questionmenu instance
+   * 
+   * @return instance of QuestionMenu
+   */
+  protected static QuestionMenu getQuestionMenu() {
+    return quizMenu;
   }
 }
