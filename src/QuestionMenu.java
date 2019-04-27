@@ -19,17 +19,9 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
-import java.io.File;
 import javafx.scene.image.ImageView;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableSet;
 import javafx.beans.value.ChangeListener;
-import java.io.FileInputStream;
 import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.LinkedHashSet;
-import java.util.Optional;
-import java.util.Set;
 
 /**
  * QuestionMenu Class constructs the GUI for the QuestionMenu to display the questions during the
