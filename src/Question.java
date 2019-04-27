@@ -184,12 +184,7 @@ public class Question {
    * @return number of questions for a specific topic, or -1 if topic does not exist
    */
   public int getSize(String topic) {
-    if(topics.contains(topic)) {
-      return 1;
-    } else {
-      return 0;
-    }
-//    return -1;
+    return -1;
   }
   
   /**
@@ -208,10 +203,5 @@ public class Question {
    */
   public Set<String> getTopics(){
     return topics.keySet();
-  }
-  
-  public static void main(String[] args) {
-    Question a = new Question();
-    System.out.println(a.getSize("test"));
   }
 }
