@@ -100,14 +100,15 @@ public class QuizMenu extends Main {
 
     // Make checkbox only have 1 answer TODO: NOT SURE HOW THIS WORKS; GOT OFF GITHUB
     // https://stackoverflow.com/questions/51568622/restrict-checkboxes-checked-javafx
-    int maxCount = 1;
+    // Number of different check boxes the user can select
+    int maxNumberOfSelections = 1;
     ChangeListener<Boolean> listener = (o, oldValue, newValue) -> {
       // get checkbox containing property
       CheckBox cb = (CheckBox) ((ReadOnlyProperty) o).getBean();
 
       if (newValue) {
         activeBoxes.add(cb);
-        if (activeBoxes.size() > maxCount) {
+        if (activeBoxes.size() > maxNumberOfSelections) {
           // get first checkbox to be activated
           cb = activeBoxes.iterator().next();
 
@@ -164,8 +165,10 @@ public class QuizMenu extends Main {
     next.setPrefSize(100, 50);
     quit.setPrefSize(100, 50);
 
-    // Listeners
+    // Listener for next button
     next.setOnAction(e -> {
+
+      // Make sure an answer was selected
       if (activeBoxes.isEmpty()) {
         // Throw alert if no answer is selected
         alert = new Alert(Alert.AlertType.ERROR, "Please select an answer.");
@@ -174,14 +177,17 @@ public class QuizMenu extends Main {
       }
 
       else {
+        // Update statistics if answer was correct
         if (activeBoxes.get(0).getText().equals(questions.get(currentQuestion).answer)) {
           Main.getStatisticsMenu().updateCount();
           Main.getStatisticsMenu().initialize(questions.size());
         }
 
+        // Clear all check boxes
         activeBoxes.clear();
         boxes.clear();
 
+        // Exit if last question was answered
         if (currentQuestion == questions.size()-1) {
           primaryStage.setScene(Main.getStatisticsScene());
         }
@@ -191,16 +197,16 @@ public class QuizMenu extends Main {
         }
       }
     });
-    //TODO ^^^^ make hitting next display the next question
+
+    // Listener for quit button
     quit.setOnAction(e -> {
+
       alert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure you want to quit?");
       alert.setHeaderText("Quit Quiz?");
       Optional<ButtonType> button = alert.showAndWait();
+
       if (button.get().equals(ButtonType.OK)) { // quits
         primaryStage.setScene(Main.getStatisticsScene());
-      }
-      if (button.get().equals(ButtonType.CANCEL)) { // cancels
-        //        primaryStage.setScene(Main.getExitScene());
       }
     });
 
