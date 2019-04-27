@@ -166,22 +166,30 @@ public class QuizMenu extends Main {
 
     // Listeners
     next.setOnAction(e -> {
-      if (!activeBoxes.isEmpty() && activeBoxes.get(0).getText().equals(questions.get(currentQuestion).answer)) {
-        Main.getStatisticsMenu().updateCount();
-        Main.getStatisticsMenu().initialize(questions.size());
+      if (activeBoxes.isEmpty()) {
+        // Throw alert if no answer is selected
+        alert = new Alert(Alert.AlertType.ERROR, "Please select an answer.");
+        alert.setHeaderText("No answer selected.");
+        alert.showAndWait().filter(response -> response == ButtonType.OK);
       }
 
-      activeBoxes.clear();
-      boxes.clear();
-
-      if (currentQuestion == questions.size()-1) {
-        primaryStage.setScene(Main.getStatisticsScene());
-      }
       else {
-        currentQuestion++;
-        Main.getQuizMenu().initialize(questions);
-      }
+        if (activeBoxes.get(0).getText().equals(questions.get(currentQuestion).answer)) {
+          Main.getStatisticsMenu().updateCount();
+          Main.getStatisticsMenu().initialize(questions.size());
+        }
 
+        activeBoxes.clear();
+        boxes.clear();
+
+        if (currentQuestion == questions.size()-1) {
+          primaryStage.setScene(Main.getStatisticsScene());
+        }
+        else {
+          currentQuestion++;
+          Main.getQuizMenu().initialize(questions);
+        }
+      }
     });
     //TODO ^^^^ make hitting next display the next question
     quit.setOnAction(e -> {
