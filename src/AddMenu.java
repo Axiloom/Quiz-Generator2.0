@@ -114,18 +114,20 @@ public class AddMenu extends Main {
     questionPane.setLeft(questionLabel);
     questionPane.setRight(question);
     questionPane.setMaxWidth(320);
+    questionPane.setPadding(new Insets(0,0,10,0));
 
     Label answerLabel = new Label("Enter Answer: ");
     BorderPane answerPane = new BorderPane();
     answerPane.setLeft(answerLabel);
     answerPane.setRight(answer);
-    answerPane.setMaxWidth(320);
+    answerPane.setMaxWidth(500);
     
     Label optionsLabel = new Label("Enter Alternative Options: ");
     BorderPane optionPane = new BorderPane();
     optionPane.setLeft(optionsLabel);
     VBox optionsBox = new VBox(option1, option2, option3, option4);
     optionPane.setRight(optionsBox);
+
 
     Label or = new Label("OR");
     or.setFont(Font.font("Arial", FontWeight.BOLD, 16));
@@ -135,7 +137,7 @@ public class AddMenu extends Main {
     BorderPane loadPane = new BorderPane();
     loadPane.setLeft(loadLabel);
     loadPane.setRight(jsonLoad);
-    loadPane.setMaxWidth(280);
+    loadPane.setMaxWidth(320);
 
     // Center Panel
     VBox topVBox = new VBox(topicPane, questionPane, answerPane, optionPane);
