@@ -1,5 +1,4 @@
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
+
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -18,7 +17,7 @@ import javafx.stage.Stage;
  * @author ATeam-99
  *
  */
-public class AddMenu extends Main implements EventHandler<ActionEvent> {
+public class AddMenu extends Main {
 
   private Stage primaryStage; // stage being displayed on
   private BorderPane root; // BorderPane being constructed
