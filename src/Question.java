@@ -7,7 +7,6 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import java.io.FileNotFoundException;
 import java.util.Set;
-
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -109,12 +108,11 @@ public class Question {
             correctAnswer);
 
     // Create topic if it doesnt exist
-    if (!topics.contains(question.topic)) {
+    if (!topics.contains(question.topic))
       topics.put(question.topic, new ArrayList<>());
-    }
+
     // Add question
-	topics.get(question.topic).add(question);
-	++numQuestions;
+	  topics.get(question.topic).add(question);
 
   }
   
@@ -184,7 +182,9 @@ public class Question {
    * @return number of questions for a specific topic, or -1 if topic does not exist
    */
   public int getSize(String topic) {
-    return -1;
+    if (topics.contains(topic))
+      return 0;
+    return 1;
   }
   
   /**
