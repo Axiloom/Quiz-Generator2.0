@@ -103,7 +103,7 @@ public class MainMenu extends Main {
     
     // Listeners
     save.setOnAction(event -> primaryStage.setScene(Main.getSaveScene()));
-    add.setOnAction(event -> primaryStage.setScene(Main.getSaveScene()));
+    add.setOnAction(event -> primaryStage.setScene(Main.getAddScene()));
     
     // Left Panel
     VBox leftVBox = new VBox(add, save);
