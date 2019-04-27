@@ -23,7 +23,7 @@ import javafx.stage.Stage;
  * @author ATeam-99
  *
  */
-public class ExitMenu extends Main implements EventHandler<ActionEvent>{
+public class ExitMenu extends Main {
 
   private Stage primaryStage; // stage being displayed on
   private BorderPane root; // BorderPane being constructed
@@ -138,7 +138,4 @@ public class ExitMenu extends Main implements EventHandler<ActionEvent>{
     
     root.setCenter(midPanel);
   }
-
-  @Override
-  public void handle(ActionEvent arg0) {}
 }
