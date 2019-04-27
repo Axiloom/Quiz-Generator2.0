@@ -208,6 +208,6 @@ public class Question {
 
   public static void main(String[] args){
     Question question = new Question();
-    System.out.print(question.topics.get("asd"));
+    System.out.print(question.getSize("1234"));
   }
 }
