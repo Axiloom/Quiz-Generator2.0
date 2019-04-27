@@ -39,7 +39,7 @@ public class SaveMenu extends Main {
     this.primaryStage = primaryStage;
     back = new Button("BACK");
     submit = new Button("SUBMIT");
-    fileName = new TextField("Enter JSON File here");
+    fileName = new TextField();
     root = new BorderPane();
     root.setStyle("-fx-background-color: #c0c0c5");
   }
@@ -119,12 +119,20 @@ public class SaveMenu extends Main {
     });
     submit.setOnAction(event -> {
       String file = fileName.getText();
-      if(file.equals("Enter JSON File here") || file.equals("")) {
-        alert = new Alert(Alert.AlertType.CONFIRMATION, "Enter valid file name.");
-        alert.setHeaderText("Save Questions");
-        Optional<ButtonType> buttonType = alert.showAndWait();//TODO complete this
+      if(file.equals("")) {
+        alert = new Alert(Alert.AlertType.ERROR, "Enter valid file name.");
+        alert.setHeaderText("Error:");
+        alert.showAndWait().filter(response -> response == ButtonType.OK);
+        // clear response
+        fileName.clear();
+      } else {
+        super.getQuestion().saveToJSON(file);
+        alert = new Alert(Alert.AlertType.INFORMATION, "Saved to " + file + ".json");
+        alert.setHeaderText("Save successful!");
+        alert.showAndWait().filter(response -> response == ButtonType.OK);
+        fileName.clear();
       }
-      primaryStage.setScene(Main.getMainScene());
+      primaryStage.setScene(Main.getSaveScene());
     });
     
     // Bottom Panel

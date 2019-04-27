@@ -173,7 +173,7 @@ public class AddMenu extends Main {
       options.add(option4.getText());
       super.getQuestion().addQuestion(topic.getText(), question.getText(), "", options, 
           answer.getText(), "");
-      alert = new Alert(Alert.AlertType.CONFIRMATION, "Successfully added question!");
+      alert = new Alert(Alert.AlertType.INFORMATION, "Successfully added question!");
       alert.setHeaderText("Success.");
       alert.showAndWait().filter(response -> response == ButtonType.OK);
       // Clear TextFields
@@ -190,7 +190,7 @@ public class AddMenu extends Main {
       super.getSaveMenu().initialize();
     } else {
       // Throw alert if failure to add question
-      alert = new Alert(Alert.AlertType.CONFIRMATION, "Enter all fields to add question.");
+      alert = new Alert(Alert.AlertType.ERROR, "Enter all fields to add question.");
       alert.setHeaderText("Error adding question.");
       alert.showAndWait().filter(response -> response == ButtonType.OK);
     }
