@@ -167,6 +167,16 @@ public class AddMenu extends Main {
       options.add(option4.getText());
       super.getQuestion().addQuestion(topic.getText(), question.getText(), "", options, 
           answer.getText(), "");
+      alert = new Alert(Alert.AlertType.CONFIRMATION, "Successfully added question!");
+      alert.setHeaderText("Success.");
+      alert.showAndWait().filter(response -> response == ButtonType.OK);
+      topic.clear();
+      question.clear();
+      answer.clear();
+      option1.clear();
+      option2.clear();
+      option3.clear();
+      option4.clear();
     } else {
       // Throw alert if failure to add question
       alert = new Alert(Alert.AlertType.CONFIRMATION, "Enter all fields to add question.");
@@ -178,6 +188,7 @@ public class AddMenu extends Main {
     if(!jsonLoad.getText().equals("")) {
       try {
         super.getQuestion().loadJSON(jsonLoad.getText());
+        jsonLoad.clear();
       } catch(Exception e) {
         // Throw alert if failure to load file
         alert = new Alert(Alert.AlertType.CONFIRMATION, "Error: " + e.getMessage());
