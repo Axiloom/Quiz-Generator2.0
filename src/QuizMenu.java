@@ -179,7 +179,7 @@ public class QuizMenu extends Main {
       else {
         // Update statistics if answer was correct
         if (activeBoxes.get(0).getText().equals(questions.get(currentQuestion).answer)) {
-          Main.getStatisticsMenu().updateCount();
+          Main.getStatisticsMenu().correct++;
           Main.getStatisticsMenu().initialize(questions.size());
         }
 

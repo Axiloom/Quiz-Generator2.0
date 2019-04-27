@@ -181,8 +181,7 @@ public class Main extends Application {
       quizScene = new Scene(quizMenu.initialize(questions), 700, 500);
     }
     else {
-      Parent root = quizMenu.initialize(questions);
-      quizScene.setRoot(root);
+      quizScene.setRoot(quizMenu.initialize(questions));
     }
   }
 
@@ -191,8 +190,7 @@ public class Main extends Application {
       statisticsScene = new Scene(statisticsMenu.initialize(numQuestions), 700, 500);
     }
     else {
-      Parent root = statisticsMenu.initialize(numQuestions);
-      statisticsScene.setRoot(root);
+      statisticsScene.setRoot(statisticsMenu.initialize(numQuestions));
     }
   }
 }

@@ -23,7 +23,7 @@ public class StatisticsMenu extends Main {
   private Button cont; // continue button to start new quiz
   private Button exit; // exit button
   private Alert alert; // alert displaying exit confirmation
-  private double correct;
+  protected double correct;
   private double numQuestions;
 
   /**
@@ -131,11 +131,5 @@ public class StatisticsMenu extends Main {
   /**
    * Update correct by 1
    */
-  public void updateCount(){correct++;};
-
-  /**
-   * Set the total number of questions
-   * @param numQuestions the total number of questions
-   */
-  public void setNumQuestions(int numQuestions){ this.numQuestions = (double)numQuestions; }
+  public void updateCount(){correct++;}
 }
