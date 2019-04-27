@@ -59,6 +59,10 @@ public class QuizMenu extends Main {
 
     this.questions = questions;
 
+    for (Question.QuestionNode question : questions){
+      System.out.print(question.question + " ");
+    }
+
     setTopPanel();
     setCenterPanel();
     setBottomPanel();
@@ -171,8 +175,13 @@ public class QuizMenu extends Main {
 
     // Listeners
     next.setOnAction(e -> {
-      currentQuestion++;
-      primaryStage.setScene(Main.getStatisticsScene());
+      if (currentQuestion == questions.size())
+        primaryStage.setScene(Main.getStatisticsScene());
+      else {
+        currentQuestion++;
+        Main.getQuizMenu().initialize(questions);
+      }
+
     });
     //TODO ^^^^ make hitting next display the next question
     quit.setOnAction(e -> {
