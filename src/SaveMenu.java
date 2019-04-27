@@ -1,14 +1,14 @@
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
+
+import java.util.Optional;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
@@ -20,12 +20,15 @@ import javafx.stage.Stage;
  * @author ATeam-99
  *
  */
-public class SaveMenu extends Main implements EventHandler<ActionEvent> {
+public class SaveMenu extends Main {
 
   private Stage primaryStage; // stage being displayed on
   private BorderPane root; // BorderPane being constructed
   private Button back; // back button
   private Button submit; // submit button
+  private TextField fileName; // TextField to record saved file name
+  private Alert alert; // alert to help user save properly
+
 
   /**
    * SaveMenu Constructor that declares the field variables and sets the background color
@@ -36,6 +39,7 @@ public class SaveMenu extends Main implements EventHandler<ActionEvent> {
     this.primaryStage = primaryStage;
     back = new Button("BACK");
     submit = new Button("SUBMIT");
+    fileName = new TextField("Enter JSON File here");
     root = new BorderPane();
     root.setStyle("-fx-background-color: #c0c0c5");
   }
@@ -82,10 +86,9 @@ public class SaveMenu extends Main implements EventHandler<ActionEvent> {
   private void setCenterPanel() {
     
     Label jsonLabel = new Label("Save as JSON:");
-    TextField jsonName = new TextField("Enter JSON File here");
-
+    
     // Center Panel
-    HBox centerPanel = new HBox(jsonLabel,jsonName);
+    HBox centerPanel = new HBox(jsonLabel,fileName);
     centerPanel.setPadding(new Insets(150,100,50,200));
     centerPanel.setSpacing(10);
     
@@ -99,16 +102,22 @@ public class SaveMenu extends Main implements EventHandler<ActionEvent> {
     // Style
     back.setPrefSize(100,50);
     submit.setPrefSize(100,50);
-    
-    // Listeners
-    back.setOnAction(this);
-    submit.setOnAction(this);
-
-    // Scroll-over effect
     back.setOnMouseEntered(e -> back.setStyle("-fx-font-size: 14pt;"));
     back.setOnMouseExited(e -> back.setStyle("-fx-font-size: 12pt;"));
     submit.setOnMouseEntered(e -> submit.setStyle("-fx-font-size: 14pt;"));
     submit.setOnMouseExited(e -> submit.setStyle("-fx-font-size: 12pt;"));
+    
+    // Listeners
+    back.setOnAction(event -> primaryStage.setScene(Main.getMainScene()));
+    submit.setOnAction(event -> {
+      String file = fileName.getText();
+      if(file.equals("Enter JSON File here") || file.equals("")) {
+        alert = new Alert(Alert.AlertType.CONFIRMATION, "Enter valid file name.");
+        alert.setHeaderText("Save Questions");
+        Optional<ButtonType> buttonType = alert.showAndWait();
+      }
+      primaryStage.setScene(Main.getMainScene());
+    });
     
     // Bottom Panel
     HBox bottomPanel = new HBox(back,submit);
@@ -116,25 +125,5 @@ public class SaveMenu extends Main implements EventHandler<ActionEvent> {
     bottomPanel.setSpacing(100);
     
     root.setBottom(bottomPanel);
-  }
-
-  /**
-   * Invoked when a specific event of the type for which this handler is
-   * registered happens.
-   *
-   * @param event the event which occurred
-   */
-  @Override
-  public void handle(ActionEvent event) {
-
-    // TODO Problem: resizing doesnt resets after setting scene
-    if (event.getSource() == back){
-      primaryStage.setScene(Main.getMainScene());
-    }
-
-    else if(event.getSource() == submit) {
-      primaryStage.setScene(Main.getMainScene());
-      //TODO actually save the data some time
-    }
   }
 }

@@ -1,17 +1,13 @@
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
+
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
-import javafx.scene.text.FontPosture;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 
@@ -21,7 +17,7 @@ import javafx.stage.Stage;
  * @author ATeam-99
  *
  */
-public class StatisticsMenu extends Main implements EventHandler<ActionEvent> {
+public class StatisticsMenu extends Main {
 
   private Stage primaryStage; // stage being displayed on
   private BorderPane root; // BorderPane being constructed
@@ -124,7 +120,4 @@ public class StatisticsMenu extends Main implements EventHandler<ActionEvent> {
     
     root.setBottom(bottomHBox);
   }
-
-  @Override
-  public void handle(ActionEvent event) {}
 }

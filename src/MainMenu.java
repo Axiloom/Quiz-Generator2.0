@@ -1,7 +1,5 @@
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -27,7 +25,7 @@ import javafx.stage.Stage;
  * @author ATeam-99
  *
  */
-public class MainMenu extends Main implements EventHandler<ActionEvent> {
+public class MainMenu extends Main {
 
   private Stage primaryStage; // stage being displayed on
   private BorderPane root; // BorderPane being constructed
@@ -88,7 +86,7 @@ public class MainMenu extends Main implements EventHandler<ActionEvent> {
     // Top Panel
     HBox topPanel = new HBox(label, numQuestions);
     topPanel.setPadding(new Insets(10, 50, 10, 50));
-    topPanel.setSpacing(100);
+    topPanel.setSpacing(0);
     topPanel.setAlignment(Pos.CENTER);
     topPanel.setStyle("-fx-background-color: #9fb983");
     
@@ -104,8 +102,8 @@ public class MainMenu extends Main implements EventHandler<ActionEvent> {
     save.setPrefWidth(180);
     
     // Listeners
-    save.setOnAction(this);
-    add.setOnAction(this);
+    save.setOnAction(event -> primaryStage.setScene(Main.getSaveScene()));
+    add.setOnAction(event -> primaryStage.setScene(Main.getAddScene()));
     
     // Left Panel
     VBox leftVBox = new VBox(add, save);
@@ -148,11 +146,11 @@ public class MainMenu extends Main implements EventHandler<ActionEvent> {
   private void setBottomPanel() {
     // Style
     start.setPrefSize(200, 50);
-
-    // Listeners
-    start.setOnAction(this);
     start.setOnMouseEntered(e -> start.setStyle("-fx-font-size: 14pt;"));
     start.setOnMouseExited(e -> start.setStyle("-fx-font-size: 12pt;"));
+
+    // Listeners
+    start.setOnAction(event -> primaryStage.setScene(Main.getQuizScene()));
     
     // Bottom Panel
     HBox bottomHBox = new HBox(start);
@@ -160,22 +158,5 @@ public class MainMenu extends Main implements EventHandler<ActionEvent> {
     bottomHBox.setAlignment(Pos.CENTER);
     
     root.setBottom(bottomHBox);
-
-  }
-
-  /**
-   * Invoked when a specific event of the type for which this handler is registered happens.
-   *
-   * @param event the event which occurred
-   */
-  public void handle(ActionEvent event) {
-    if (event.getSource() == save)
-      primaryStage.setScene(Main.getSaveScene());
-
-    else if (event.getSource() == add)
-      primaryStage.setScene(Main.getAddScene());
-
-    else if (event.getSource() == start)
-      primaryStage.setScene(Main.getQuizScene());
   }
 }
