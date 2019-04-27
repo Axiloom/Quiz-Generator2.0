@@ -204,4 +204,9 @@ public class Question {
   public Set<String> getTopics(){
     return topics.keySet();
   }
+
+  public static void main(String[] args){
+    Question question = new Question();
+    System.out.print(question.topics.get("asd"));
+  }
 }
