@@ -99,30 +99,31 @@ public class ExitMenu extends Main implements EventHandler<ActionEvent>{
     save.setOnAction(e -> {
       String file = fileName.getText();
       alert = new Alert(Alert.AlertType.CONFIRMATION, "Save to " + file + "?");
-      
-      Optional<ButtonType> a = alert.showAndWait().filter(response -> response == ButtonType.OK);
-      Optional<ButtonType> b = alert.showAndWait().filter(response -> response == ButtonType.OK);
-      if(a.isPresent()) {
-        
-      }
-      
-//          .ifPresent(response -> super.getQuestion().saveToJSON(file));
-      Platform.exit();
-    });
-
-      
-    
-    exit.setOnAction(e -> {
-      alert = new Alert(Alert.AlertType.CONFIRMATION, "Exit without saving?");
-      Optional<ButtonType> ok = alert.showAndWait().filter(response -> response == ButtonType.OK);
-      Optional<ButtonType> cancel = alert.showAndWait().filter(response -> response == ButtonType.CANCEL);
-      if(ok.isPresent()) {
+      alert.setHeaderText("Save Questions");
+      Optional<ButtonType> buttonType = alert.showAndWait();
+      if(buttonType.get().equals(ButtonType.OK)) {
+        super.getQuestion().saveToJSON(file);
         try {
           Platform.exit();
         } catch (Exception f) {
         }
       }
-      else if(cancel.isPresent()) {
+      if(buttonType.get().equals(ButtonType.CANCEL)) {
+        primaryStage.setScene(Main.getExitScene());
+      }
+    });
+
+    exit.setOnAction(e -> {
+      alert = new Alert(Alert.AlertType.CONFIRMATION, "Exit without saving?");
+      alert.setHeaderText("Exit Without Saving");
+      Optional<ButtonType> buttonType = alert.showAndWait();
+      if(buttonType.get().equals(ButtonType.OK)) {
+        try {
+          Platform.exit();
+        } catch (Exception f) {
+        }
+      }
+      if(buttonType.get().equals(ButtonType.CANCEL)) {
         primaryStage.setScene(Main.getExitScene());
       }
     });
