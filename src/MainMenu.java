@@ -118,8 +118,7 @@ public class MainMenu extends Main {
    */
   private void setRightPanel() {
     // Topics ComboBox
-    ObservableList<String> topics =
-        FXCollections.observableArrayList("Topic 1", "Topic 2", "Topic 3");
+    ObservableList<String> topics = FXCollections.observableArrayList(Main.getQuestion().getTopics());
     ComboBox<String> topicBox = new ComboBox<>(topics);
     topicBox.setPromptText("Set Topic");
     topicBox.setPrefWidth(180);
