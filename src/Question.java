@@ -99,7 +99,8 @@ public class Question {
    * @param correctAnswer the correct answer for the question
    * @param image the image for the question
    */
-  public void addQuestion(String topic, String questionText, String metadata, ArrayList<String> options, String correctAnswer, String image) {
+  public void addQuestion(String topic, String questionText, String metadata,
+      ArrayList<String> options, String correctAnswer, String image) {
 
     // Question to be added
     QuestionNode question = new QuestionNode(topic, metadata, questionText, image, options,

@@ -1,7 +1,10 @@
 
+import java.util.ArrayList;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
@@ -26,6 +29,12 @@ public class AddMenu extends Main {
   private TextField topic; // records the question topic
   private TextField question; // records the question text
   private TextField answer; // records the answer to the question
+  private TextField option1; // records alternative choice
+  private TextField option2; // records alternative choice
+  private TextField option3; // records alternative choice
+  private TextField option4; // records alternative choice
+  private TextField jsonLoad; // file name to load
+  private Alert alert; // alert for failure to load files
 
   /**
    * AddMenu Constructor that declares the field variables and sets the background color
@@ -40,6 +49,11 @@ public class AddMenu extends Main {
     topic = new TextField("");
     question = new TextField("");
     answer = new TextField("");
+    option1 = new TextField("");
+    option2 = new TextField("");
+    option3 = new TextField("");
+    option4 = new TextField("");
+    jsonLoad = new TextField("");
     root.setStyle("-fx-background-color: #c0c0c5");
   }
 
@@ -100,20 +114,25 @@ public class AddMenu extends Main {
     answerPane.setLeft(answerLabel);
     answerPane.setRight(answer);
     answerPane.setMaxWidth(280);
+    
+    Label optionsLabel = new Label("Enter Alternative Options: ");
+    BorderPane optionPane = new BorderPane();
+    optionPane.setLeft(optionsLabel);
+    VBox optionsBox = new VBox(option1, option2, option3, option4);
+    optionPane.setRight(optionsBox);
 
     Label or = new Label("OR");
     or.setFont(Font.font("Arial", FontWeight.BOLD, 16));
     or.setPadding(new Insets(20, 0, 20, 0));
 
     Label loadLabel = new Label("Load JSON: ");
-    TextField jsonLoad = new TextField("Enter JSON File name");
     BorderPane loadPane = new BorderPane();
     loadPane.setLeft(loadLabel);
     loadPane.setRight(jsonLoad);
     loadPane.setMaxWidth(280);
 
     // Center Panel
-    VBox topVBox = new VBox(topicPane, questionPane, answerPane);
+    VBox topVBox = new VBox(topicPane, questionPane, answerPane, optionPane);
     VBox bottomVBox = new VBox(loadPane);
     VBox centerVBox = new VBox(topVBox, or, bottomVBox);
     centerVBox.setPadding(new Insets(50, 80, 50, 200));
@@ -135,10 +154,34 @@ public class AddMenu extends Main {
 
     // Listeners
     back.setOnAction(event -> primaryStage.setScene(Main.getMainScene()));
-    submit.setOnAction(event ->
-    // TODO add questions
-    // TODO load questions
-    primaryStage.setScene(Main.getMainScene()));
+    submit.setOnAction(event -> {
+    // adds question
+    if(!topic.getText().equals("") && !question.getText().equals("") && !answer.getText().equals("")
+        && !option1.getText().equals("") && !option2.getText().equals("") && 
+        !option3.getText().equals("") && !option4.getText().equals("")) {
+      ArrayList<String> options = new ArrayList<>();
+      options.add(question.getText());
+      options.add(option1.getText());
+      options.add(option2.getText());
+      options.add(option3.getText());
+      options.add(option4.getText());
+      super.getQuestion().addQuestion(topic.getText(), question.getText(), "", options, 
+          answer.getText(), "");
+    }
+    // load questions
+    if(!jsonLoad.getText().equals("")) {
+      try {
+        super.getQuestion().loadJSON(jsonLoad.getText());
+      } catch(Exception e) {
+        // Throw alert if failure to load file
+        alert = new Alert(Alert.AlertType.CONFIRMATION, "Error: " + e.getMessage());
+        alert.setHeaderText("Error loading file.");
+        alert.showAndWait().filter(response -> response == ButtonType.OK);
+        primaryStage.setScene(Main.getAddScene());
+      }
+    }
+    primaryStage.setScene(Main.getMainScene());
+    });
 
     // Bottom Panel
     HBox bottomHBox = new HBox(back, submit);
