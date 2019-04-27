@@ -51,7 +51,7 @@ public class Question {
       this.metadata = metadata;
       this.question = questionText;
       this.options = options;
-      img = new ImageView(new Image(image));
+      //img = new ImageView(new Image(image));
       this.answer = correctAnswer;
       this.topic = topic;
     }
@@ -181,7 +181,7 @@ public class Question {
    * @return number of questions for a specific topic, or -1 if topic does not exist
    */
   public int getSize(String topic) {
-    return topics.get(topic).size();
+    return -1;
   }
   
   /**

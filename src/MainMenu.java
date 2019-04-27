@@ -133,7 +133,10 @@ public class MainMenu extends Main {
     topicBox.setPromptText("Set Topic");
     topicBox.setPrefWidth(180);
     topicBox.setVisibleRowCount(5);
-    topicBox.setOnAction(event -> questionBox.setItems(FXCollections.observableArrayList("4")));
+
+    String num = "" + Main.getQuestion().getSize(questionBox.getValue());
+
+    topicBox.setOnAction(event -> questionBox.setItems(FXCollections.observableArrayList(num)));
     
     // Right Panel
     VBox rightVBox = new VBox(topicBox, questionBox);
