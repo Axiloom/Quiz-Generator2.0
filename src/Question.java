@@ -51,7 +51,9 @@ public class Question {
       this.metadata = metadata;
       this.question = questionText;
       this.options = options;
-      //img = new ImageView(new Image(image));
+      if(!image.equals("")) {
+        img = new ImageView(new Image(image));
+      }
       this.answer = correctAnswer;
       this.topic = topic;
     }
