@@ -177,10 +177,22 @@ public class Main extends Application {
    * Creates the quizScene to be used with a question
    */
   protected static void setupQuizScene(ArrayList<Question.QuestionNode> questions){
-    quizScene = new Scene(quizMenu.initialize(questions), 700,500);
+    if (quizScene == null) {
+      quizScene = new Scene(quizMenu.initialize(questions), 700, 500);
+    }
+    else {
+      Parent root = quizMenu.initialize(questions);
+      quizScene.setRoot(root);
+    }
   }
 
   protected static void setupStatisticsScene(int numQuestions){
-    statisticsScene = new Scene(statisticsMenu.initialize(numQuestions), 700, 500);
+    if (statisticsScene == null) {
+      statisticsScene = new Scene(statisticsMenu.initialize(numQuestions), 700, 500);
+    }
+    else {
+      Parent root = statisticsMenu.initialize(numQuestions);
+      statisticsScene.setRoot(root);
+    }
   }
 }

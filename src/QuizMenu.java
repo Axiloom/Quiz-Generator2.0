@@ -176,9 +176,10 @@ public class QuizMenu extends Main {
         Main.getStatisticsMenu().initialize(questions.size());
       }
 
+      activeBoxes.clear();
+      boxes.clear();
+
       if (currentQuestion == questions.size()-1) {
-        activeBoxes.clear();
-        boxes.clear();
         primaryStage.setScene(Main.getStatisticsScene());
       }
       else {

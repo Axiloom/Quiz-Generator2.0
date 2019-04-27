@@ -113,7 +113,11 @@ public class StatisticsMenu extends Main {
     exit.setOnMouseExited(e -> exit.setStyle("-fx-font-size: 12pt;"));
 
     // Listeners
-    cont.setOnAction(e -> {primaryStage.setScene(Main.getMainScene());});
+    cont.setOnAction(e -> {
+      correct = 0; // Reset number of correct answers
+      primaryStage.setScene(Main.getMainScene());
+    });
+
     exit.setOnAction(e -> {primaryStage.setScene(Main.getExitScene());});
     
     // Bottom Panel
