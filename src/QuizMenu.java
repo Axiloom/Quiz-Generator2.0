@@ -1,9 +1,4 @@
-import javafx.application.Platform;
-import javafx.beans.binding.Bindings;
-import javafx.beans.binding.IntegerBinding;
 import javafx.beans.property.ReadOnlyProperty;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -32,7 +27,7 @@ import java.util.Optional;
  * @author ATeam-99
  *
  */
-public class QuestionMenu extends Main implements EventHandler<ActionEvent> {
+public class QuizMenu extends Main implements EventHandler<ActionEvent> {
 
   private Stage primaryStage; // stage being displayed on
   private Button next; // next button
@@ -49,7 +44,7 @@ public class QuestionMenu extends Main implements EventHandler<ActionEvent> {
    * 
    * @param primaryStage - stage being displayed on
    */
-  public QuestionMenu(Stage primaryStage) {
+  public QuizMenu(Stage primaryStage) {
     this.primaryStage = primaryStage;
     root = new BorderPane();
     next = new Button("NEXT");
@@ -151,7 +146,7 @@ public class QuestionMenu extends Main implements EventHandler<ActionEvent> {
     // boxes.add(checkBox);
     // }
 
-    ImageView image = new ImageView(new Image(QuestionMenu.class.getResourceAsStream("Example.jpg")));
+    ImageView image = new ImageView(new Image(QuizMenu.class.getResourceAsStream("Example.jpg")));
     image.setPreserveRatio(true);
     image.setFitHeight(200);
     VBox answers = new VBox(boxes.get(0), boxes.get(1), boxes.get(2), boxes.get(3), boxes.get(4));

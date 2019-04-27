@@ -13,14 +13,14 @@ public class Main extends Application {
   private static Scene mainScene;
   private static Scene saveScene;
   private static Scene addScene;
-  private static Scene questionScene;
+  private static Scene quizScene;
   private static Scene statisticsScene;
   private static Scene exitScene;
   private static Question question;
   private static MainMenu mainMenu;
   private static SaveMenu saveMenu;
   private static AddMenu addMenu;
-  private static QuestionMenu quizMenu;
+  private static QuizMenu quizMenu;
   
   /**
    * TODO
@@ -34,7 +34,7 @@ public class Main extends Application {
       mainMenu = new MainMenu(primaryStage);
       saveMenu = new SaveMenu(primaryStage);
       addMenu = new AddMenu(primaryStage);
-      quizMenu = new QuestionMenu(primaryStage);
+      quizMenu = new QuizMenu(primaryStage);
       StatisticsMenu statisticsMenu = new StatisticsMenu(primaryStage);
       ExitMenu exitMenu = new ExitMenu(primaryStage);
 
@@ -42,7 +42,7 @@ public class Main extends Application {
       mainScene = new Scene(mainMenu.initialize(), 700, 500);
       saveScene = new Scene(saveMenu.initialize() , 700, 500);
       addScene = new Scene(addMenu.initialize(), 700, 500);
-      questionScene = new Scene(quizMenu.initialize(), 700, 500);
+      quizScene = new Scene(quizMenu.initialize(), 700, 500);
       statisticsScene = new Scene(statisticsMenu.initialize(), 700, 500);
       exitScene = new Scene(exitMenu.initialize(), 700, 500);
 
@@ -97,7 +97,7 @@ public class Main extends Application {
    * @return the quiz scene
    */
   protected static Scene getQuizScene(){
-    return questionScene;
+    return quizScene;
   }
 
   /**
@@ -159,7 +159,12 @@ public class Main extends Application {
    * 
    * @return instance of QuestionMenu
    */
-  protected static QuestionMenu getQuestionMenu() {
+  protected static QuizMenu getQuizMenu() {
     return quizMenu;
+  }
+
+
+  protected static void setupQuizMenu(){
+
   }
 }
