@@ -83,7 +83,10 @@ public class Question {
     // Get random questions
     for (int i = 0 ; i < numQuestions ; i++){
       QuestionNode randomQuestion = topics.get(topic).get(rand.nextInt(topics.get(topic).size()));
-      if (!questions.contains(randomQuestion))
+
+      while (questions.contains(randomQuestion)){
+        randomQuestion = topics.get(topic).get(rand.nextInt(topics.get(topic).size()));
+      }
         questions.add(randomQuestion);
     }
 

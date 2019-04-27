@@ -59,8 +59,10 @@ public class QuizMenu extends Main {
 
     this.questions = questions;
 
+    System.out.println("Size: " + questions.size());
+
     for (Question.QuestionNode question : questions){
-      System.out.print(question.question + " ");
+      System.out.println("Question: " + question.question);
     }
 
     setTopPanel();
@@ -175,7 +177,7 @@ public class QuizMenu extends Main {
 
     // Listeners
     next.setOnAction(e -> {
-      if (currentQuestion == questions.size())
+      if (currentQuestion == questions.size()-1)
         primaryStage.setScene(Main.getStatisticsScene());
       else {
         currentQuestion++;
