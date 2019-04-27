@@ -37,6 +37,7 @@ public class StatisticsMenu extends Main {
     cont = new Button("NEW QUIZ");
     exit = new Button("EXIT");
     root.setStyle("-fx-background-color: #c0c0c5");
+    correct = (double) 0;
   }
   
   /**
@@ -44,7 +45,9 @@ public class StatisticsMenu extends Main {
    * 
    * @return root - BorderPane of the StatisticsMenu screen
    */
-  public BorderPane initialize(){
+  public BorderPane initialize(int numQuestions){
+
+    this.numQuestions = (double)numQuestions;
 
     setTopPanel();
     setCenterPanel();

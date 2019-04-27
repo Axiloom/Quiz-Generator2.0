@@ -33,6 +33,7 @@ public class AddMenu extends Main {
   private TextField option2; // records alternative choice
   private TextField option3; // records alternative choice
   private TextField option4; // records alternative choice
+  private TextField option5; // records alternative choice
   private TextField jsonLoad; // file name to load
   private Alert alert; // alert for failure to load files
 
@@ -53,6 +54,7 @@ public class AddMenu extends Main {
     option2 = new TextField("");
     option3 = new TextField("");
     option4 = new TextField("");
+    option5 = new TextField("");
     jsonLoad = new TextField("");
     root.setStyle("-fx-background-color: #c0c0c5");
   }
@@ -124,7 +126,7 @@ public class AddMenu extends Main {
     Label optionsLabel = new Label("Enter Alternative Options: ");
     BorderPane optionPane = new BorderPane();
     optionPane.setLeft(optionsLabel);
-    VBox optionsBox = new VBox(option1, option2, option3, option4);
+    VBox optionsBox = new VBox(option1, option2, option3, option4, option5);
     optionPane.setRight(optionsBox);
 
     Label or = new Label("OR");
@@ -164,13 +166,13 @@ public class AddMenu extends Main {
     // adds question
     if(!topic.getText().equals("") && !question.getText().equals("") && !answer.getText().equals("")
         && !option1.getText().equals("") && !option2.getText().equals("") && 
-        !option3.getText().equals("") && !option4.getText().equals("")) {
+        !option3.getText().equals("") && !option4.getText().equals("") && !option5.getText().equals("")) {
       ArrayList<String> options = new ArrayList<>();
-      options.add(question.getText());
       options.add(option1.getText());
       options.add(option2.getText());
       options.add(option3.getText());
       options.add(option4.getText());
+      options.add(option5.getText());
       super.getQuestion().addQuestion(topic.getText(), question.getText(), "", options, 
           answer.getText(), "");
       alert = new Alert(Alert.AlertType.INFORMATION, "Successfully added question!");
@@ -184,6 +186,7 @@ public class AddMenu extends Main {
       option2.clear();
       option3.clear();
       option4.clear();
+      option5.clear();
       // Update menu displays
       super.getMainMenu().initialize();
       super.getAddMenu().initialize();

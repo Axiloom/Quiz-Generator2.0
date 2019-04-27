@@ -46,7 +46,6 @@ public class Main extends Application {
       mainScene = new Scene(mainMenu.initialize(), 700, 500);
       saveScene = new Scene(saveMenu.initialize() , 700, 500);
       addScene = new Scene(addMenu.initialize(), 700, 500);
-      statisticsScene = new Scene(statisticsMenu.initialize(), 700, 500);
       exitScene = new Scene(exitMenu.initialize(), 700, 500);
 
       // Style for main menu
@@ -179,5 +178,9 @@ public class Main extends Application {
    */
   protected static void setupQuizScene(ArrayList<Question.QuestionNode> questions){
     quizScene = new Scene(quizMenu.initialize(questions), 700,500);
+  }
+
+  protected static void setupStatisticsScene(int numQuestions){
+    statisticsScene = new Scene(statisticsMenu.initialize(numQuestions), 700, 500);
   }
 }
