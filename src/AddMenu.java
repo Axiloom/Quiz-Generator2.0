@@ -107,19 +107,19 @@ public class AddMenu extends Main {
     BorderPane topicPane = new BorderPane();
     topicPane.setLeft(topicLabel);
     topicPane.setRight(topic);
-    topicPane.setMaxWidth(280);
+    topicPane.setMaxWidth(320);
 
     Label questionLabel = new Label("Enter Question: ");
     BorderPane questionPane = new BorderPane();
     questionPane.setLeft(questionLabel);
     questionPane.setRight(question);
-    questionPane.setMaxWidth(280);
+    questionPane.setMaxWidth(320);
 
     Label answerLabel = new Label("Enter Answer: ");
     BorderPane answerPane = new BorderPane();
     answerPane.setLeft(answerLabel);
     answerPane.setRight(answer);
-    answerPane.setMaxWidth(280);
+    answerPane.setMaxWidth(320);
     
     Label optionsLabel = new Label("Enter Alternative Options: ");
     BorderPane optionPane = new BorderPane();
