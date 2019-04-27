@@ -182,7 +182,7 @@ public class Question {
    * @return number of questions for a specific topic, or -1 if topic does not exist
    */
   public int getSize(String topic) {
-    if (topics.contains(topic))
+    if (this.topics.contains(topic))
       return 0;
     return 1;
   }
