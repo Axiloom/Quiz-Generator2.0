@@ -1,25 +1,26 @@
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Hashtable;
 import java.util.Random;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import java.io.FileNotFoundException; 
-import java.io.PrintWriter;
+import java.io.FileNotFoundException;
 import org.json.simple.JSONArray; 
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException; 
+import org.json.simple.parser.ParseException;
 
-
+/**
+ * Main Question Class to retrieve anything question related
+ */
 public class Question {
 
-  ArrayList<ArrayList<QuestionNode>> topics; // holds ArrayList of questions for specific topics
-  ArrayList<Boolean> isCorrect; // keeps track of correct/incorrect answers throughout the quiz
-  int numQuestions; // total number of questions available
+  private Hashtable<String,ArrayList<QuestionNode>> topics; // Hash table to store questions
+  private int numQuestions; // total number of questions available
   
   /**
-   * TODO
+   * Each node represents a single question and all attributes associated with that question
    * 
    * @author ATeam-99
    *
@@ -30,15 +31,17 @@ public class Question {
     ArrayList<String> options; // all options
     String answer; // correct answer
     ImageView img; // image going along with the question
-    String topic;
-    
+    String topic; // topic associated with this question
+
     /**
-     * TODO
-     * 
-     * @param metadata
-     * @param questionText
-     * @param image
-     * @param options
+     * Each node represents a single question and all attributes associated with that question
+     *
+     * @param topic the topic associated with this question
+     * @param metadata the metadata associated with this question
+     * @param questionText the text associated with this question
+     * @param image the image associated with this question
+     * @param options the possible answers associated with this question
+     * @param correctAnswer the correct answer for this questions
      */
     QuestionNode(String topic, String metadata, String questionText, String image, 
     		ArrayList<String> options, String correctAnswer){
@@ -46,30 +49,8 @@ public class Question {
       this.question = questionText;
       this.options = options;
       img = new ImageView(new Image(image));
-      this.answer = findAnswer(); // detect the correct answer, do we need this?
+      this.answer = correctAnswer;
       this.topic = topic;
-    }
-    
-    /**
-     * TODO
-     * 
-     * @return
-     */
-    private String findAnswer(){
-      // find the option that has "T" as isCorrect and set it to answer
-      return "";
-    }
-    
-    /**
-     * Used to correctly place questions into their topic array
-     * @param topic
-     * @return
-     */
-    public boolean checkTopic(String topic, QuestionNode node) {
-      if (node.topic.equals(topic)) {
-        return true;
-      }
-      return false;
     }
   }
 
@@ -77,85 +58,92 @@ public class Question {
    * No-arg Constructor for Question class
    */
   public Question() {
-    topics = new ArrayList<>();
+    topics = new Hashtable<>();
     numQuestions = 0;
-    isCorrect = new ArrayList<>(); // might not need?
   }
   
   /**
-   * Returns a number of questions in a particular topic group in random order
+   * Returns an arrayList of questions for a particular topic group in random order
    * 
-   * @param topic
-   * @param numQuestions
+   * @param topic the topic which we want to search for
+   * @param numQuestions the number of questions from that topic
    */
   public ArrayList<QuestionNode> getQuestions(String topic, int numQuestions){
-    ArrayList<QuestionNode> result = new ArrayList<QuestionNode>();
-    for (int i = 0; i < topics.size(); ++i) {
-      if (topics.get(i).get(1).topic.equals(topic)) {
-        Random r = new Random();
-        while (numQuestions > 0) {
-          int index = r.nextInt(topics.get(i).size());
-          result.add(topics.get(i).get(index));
-          --numQuestions;
-        }
-      }
+
+    // Random generator
+    Random rand = new Random();
+
+    // Array to store our questions
+    ArrayList<QuestionNode> questions = new ArrayList<>();
+
+    // Get random questions
+    for (int i = 0 ; i < numQuestions ; i++){
+      QuestionNode randomQuestion = topics.get(topic).get(rand.nextInt(topics.get(topic).size()));
+      if (!questions.contains(randomQuestion))
+        questions.add(randomQuestion);
     }
-  
-    return result;
+
+    return questions;
   }
   
   /**
    * Adds a node to the topicList according to its topic
-   * @param node
-   * @return
+   * @param question the question to be added
    */
-  public boolean addQuestionNode(QuestionNode node) {
-	  return true;
+  public void addQuestion(QuestionNode question) {
+
+    // Create topic if it doesnt exist
+    if (!topics.contains(question.topic))
+      topics.put(question.topic, new ArrayList<>());
+
+    // Add question
+	  topics.get(question.topic).add(question);
+
   }
   
   /**
    * Parses a json file and adds the information to the data fields
    * 
-   * @param jsonFilePath
-   * @return
- * @throws ParseException 
- * @throws IOException 
- * @throws FileNotFoundException 
+   * @param jsonFilePath the path to the JSON file
+   * @return true if the file was loaded correctly
+   * @throws ParseException error with parsing
+   * @throws IOException error with reading file
+   * @throws FileNotFoundException file does not exist
    */
   public boolean loadJSON(String jsonFilePath) throws FileNotFoundException, IOException, ParseException {
 	    // Make as many private helper methods as we need
     Object obj = new JSONParser().parse(new FileReader(jsonFilePath));
-	JSONObject jo = (JSONObject) obj;
-	JSONArray questionArray = (JSONArray) jo.get("questionArray");
-	
-	for (int i = 0; i < questionArray.size(); i ++) {
-		JSONObject jsonQuestion = (JSONObject) questionArray.get(i);
-		String metaData = (String) jsonQuestion.get("meta-data"); // meta data
-		String question = (String) jsonQuestion.get("question"); // question
-		String topic = (String) jsonQuestion.get("topic");
-		String image = (String) jsonQuestion.get("image");
-		// need to interate through the choices
-		JSONArray answerArray = (JSONArray) jsonQuestion.get("choiceArray");
-		ArrayList<String> choices = new ArrayList<>(); 
-		String correctAnswer = "";
-		for (Object answer : answerArray) {
-			if (((JSONObject) answer).get("isCorrect").equals("T")){
-				correctAnswer = (String) ((JSONObject) answer).get("choice");
-			}
-			choices.add((String) ((JSONObject)answer).get("choice"));
+	  JSONObject jo = (JSONObject) obj;
+	  JSONArray questionArray = (JSONArray) jo.get("questionArray");
+
+    for (Object aQuestionArray : questionArray) {
+      JSONObject jsonQuestion = (JSONObject) aQuestionArray;
+      String metaData = (String) jsonQuestion.get("meta-data"); // meta data
+      String question = (String) jsonQuestion.get("question"); // question
+      String topic = (String) jsonQuestion.get("topic");
+      String image = (String) jsonQuestion.get("image");
+      // need to interate through the choices
+      JSONArray answerArray = (JSONArray) jsonQuestion.get("choiceArray");
+      ArrayList<String> choices = new ArrayList<>();
+      String correctAnswer = "";
+      for (Object answer : answerArray) {
+        if (((JSONObject) answer).get("isCorrect").equals("T")) {
+          correctAnswer = (String) ((JSONObject) answer).get("choice");
+        }
+        choices.add((String) ((JSONObject) answer).get("choice"));
 			/*
 			if (((String)((ArrayList) answer).get(1)).equals("T")) {
 				String correctAnswer = (String)((ArrayList) answer).get(1); // right answer
 			}
 			*/
-		}
-		QuestionNode newQuestion = new QuestionNode(topic, metaData, question, 
-				image, choices, correctAnswer);
-		addQuestionNode(newQuestion);
-		// create the new node here 
-		// write method to add the node 
-		
-	}
+      }
+      QuestionNode newQuestion = new QuestionNode(topic, metaData, question,
+              image, choices, correctAnswer);
+      addQuestion(newQuestion);
+      // create the new node here
+      // write method to add the node
+
+    }
 		
     return true;
   }
@@ -164,7 +152,7 @@ public class Question {
    * Saves all questions in a new json file
    * 
    * @param name - name of the new JSON file
-   * @return
+   * @return true if the file was successfully saved
    */
   public boolean saveToJSON(String name) {
     // TODO check for duplicate json name
@@ -174,7 +162,7 @@ public class Question {
   /**
    * Gets the total number of questions available across all topics
    * 
-   * @return
+   * @return the total number of questions
    */
   public int getSize() {
     return numQuestions;
@@ -187,12 +175,7 @@ public class Question {
    * @return number of questions for a specific topic, or -1 if topic does not exist
    */
   public int getSize(String topic) {
-    for (int i = 0; i < topics.size(); ++i) {
-      if (topics.get(i).get(1).topic.equals(topic)) {
-        return topics.get(i).size();
-      }
-    }
-    return -1;
+    return topics.get(topic).size();
   }
   
   /**

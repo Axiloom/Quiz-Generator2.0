@@ -95,17 +95,20 @@ public class QuestionMenu extends Main implements EventHandler<ActionEvent> {
    * Constructs the center panel in the BorderPane
    */
   private void setCenterPanel() {
-    // Question CheckBoxes
-    ArrayList<CheckBox> activeBoxes = new ArrayList<>();
-    ArrayList<CheckBox> boxes = new ArrayList<>();
+
     Label question = new Label("What is the best way to wrap a question around the page, "
         + "I looked on stackOverflow and couldnt find the answer?");
     question.setWrapText(true);
+
     // TODO replace with reading in Question.getQuestion(QuestionNode) possibly in a loop
     question.setFont(Font.font("Arial", FontWeight.BOLD, 16));
 
     // Make checkbox only have 1 answer TODO: NOT SURE HOW THIS WORKS; GOT OFF GITHUB
     // https://stackoverflow.com/questions/51568622/restrict-checkboxes-checked-javafx
+    // Question CheckBoxes
+    ArrayList<CheckBox> activeBoxes = new ArrayList<>();
+    ArrayList<CheckBox> boxes = new ArrayList<>();
+
     int maxCount = 1;
     ChangeListener<Boolean> listener = (o, oldValue, newValue) -> {
       // get checkbox containing property
@@ -143,8 +146,7 @@ public class QuestionMenu extends Main implements EventHandler<ActionEvent> {
     // boxes.add(checkBox);
     // }
 
-    ImageView image =
-        new ImageView(new Image(QuestionMenu.class.getResourceAsStream("Example.jpg")));
+    ImageView image = new ImageView(new Image(QuestionMenu.class.getResourceAsStream("Example.jpg")));
     image.setPreserveRatio(true);
     image.setFitHeight(200);
     VBox answers = new VBox(boxes.get(0), boxes.get(1), boxes.get(2), boxes.get(3), boxes.get(4));
@@ -194,6 +196,10 @@ public class QuestionMenu extends Main implements EventHandler<ActionEvent> {
     bottomHBox.setPadding(new Insets(0, 0, 45, 100));
 
     root.setBottom(bottomHBox);
+  }
+
+  private void nextQuestion(){
+
   }
 
   @Override
