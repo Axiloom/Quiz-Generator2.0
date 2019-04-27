@@ -191,7 +191,12 @@ public class MainMenu extends Main {
 //      }
 //    });
     //TODO remove below line of code once above is uncommented
-    start.setOnAction(event -> primaryStage.setScene(Main.getQuizScene()));
+    start.setOnAction(event -> {
+      if (topicBox.getValue() != null && questionBox.getValue() != null){
+        Main.setupQuizScene(Main.getQuestion().getQuestions(topicBox.getValue(), Integer.parseInt(questionBox.getValue())));
+        primaryStage.setScene(Main.getQuizScene());
+      }
+    });
     
     // Bottom Panel
     HBox bottomHBox = new HBox(start);

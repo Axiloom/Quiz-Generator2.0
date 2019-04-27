@@ -60,11 +60,13 @@ public class QuizMenu extends Main implements EventHandler<ActionEvent> {
    * 
    * @return root - BorderPane of the QuestionMenu screen
    */
-  public BorderPane initialize() {
+  public BorderPane initialize(ArrayList<Question.QuestionNode> questions) {
 
     setTopPanel();
     setCenterPanel();
     setBottomPanel();
+
+    this.questions = questions;
 
     return root;
   }
