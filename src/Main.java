@@ -1,14 +1,12 @@
 import javafx.application.Application;
-import javafx.scene.Parent;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
-
 import java.util.ArrayList;
 
 /**
  * Initalize GUI
  * 
- * @author 
+ * @author team-99
  *
  */
 public class Main extends Application {
@@ -27,7 +25,7 @@ public class Main extends Application {
   private static StatisticsMenu statisticsMenu;
   
   /**
-   * TODO
+   * Start the application here (initial setup)
    */
   @Override
   public void start(Stage primaryStage) {
@@ -172,9 +170,8 @@ public class Main extends Application {
    */
   protected static StatisticsMenu getStatisticsMenu(){ return statisticsMenu; }
 
-
   /**
-   * Creates the quizScene to be used with a question
+   * Creates the quizScene
    */
   protected static void setupQuizScene(ArrayList<Question.QuestionNode> questions){
     if (quizScene == null) {
@@ -185,6 +182,11 @@ public class Main extends Application {
     }
   }
 
+  /**
+   * Creates the statisticsScene
+   *
+   * @param numQuestions the number of questions in the quiz
+   */
   protected static void setupStatisticsScene(int numQuestions){
     if (statisticsScene == null) {
       statisticsScene = new Scene(statisticsMenu.initialize(numQuestions), 700, 500);
