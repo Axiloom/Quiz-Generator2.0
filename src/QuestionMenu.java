@@ -39,6 +39,8 @@ public class QuestionMenu extends Main implements EventHandler<ActionEvent> {
   private int numQuestions; // number of questions in the current quiz
   private int currQuestion; // current question number of the quiz
   private Alert alert;
+  private static int questionNumber;
+  ArrayList<Question.QuestionNode> questions;
 
   /**
    * QuestionMenu Constructor that declares the field variables and sets the background color
@@ -53,6 +55,7 @@ public class QuestionMenu extends Main implements EventHandler<ActionEvent> {
     root.setStyle("-fx-background-color: #c0c0c5");
     numQuestions = 0;
     currQuestion = 0;
+    questionNumber = 0;
   }
 
   /**
@@ -198,7 +201,7 @@ public class QuestionMenu extends Main implements EventHandler<ActionEvent> {
     root.setBottom(bottomHBox);
   }
 
-  private void nextQuestion(){
+  private void getNextQuestion(){
 
   }
 

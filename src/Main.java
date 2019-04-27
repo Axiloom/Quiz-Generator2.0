@@ -119,7 +119,7 @@ public class Main extends Application {
    * 
    * @return instance of Question
    */
-  protected Question getQuestion() {
+  protected static Question getQuestion() {
     return question;
   }
 }

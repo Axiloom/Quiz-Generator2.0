@@ -6,7 +6,9 @@ import java.util.Random;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import java.io.FileNotFoundException;
-import org.json.simple.JSONArray; 
+import java.util.Set;
+
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
@@ -16,7 +18,8 @@ import org.json.simple.parser.ParseException;
  */
 public class Question {
 
-  private Hashtable<String,ArrayList<QuestionNode>> topics; // Hash table to store questions
+  private Hashtable<String,ArrayList<QuestionNode>> topics; // Hash table to store
+  // questions
   private int numQuestions; // total number of questions available
   
   /**
@@ -151,10 +154,10 @@ public class Question {
   /**
    * Saves all questions in a new json file
    * 
-   * @param name - name of the new JSON file
+   * @param nameOfJson - name of the new JSON file
    * @return true if the file was successfully saved
    */
-  public boolean saveToJSON(String name) {
+  public boolean saveToJSON(String nameOfJson) {
     // TODO check for duplicate json name
     return true;
   }
@@ -185,5 +188,14 @@ public class Question {
    */
   public String getQuestion(QuestionNode node) {
     return node.question;
+  }
+
+  /**
+   * gets all topics created
+   *
+   * @return set containing all topics
+   */
+  public Set<String> getTopics(){
+    return topics.keySet();
   }
 }
