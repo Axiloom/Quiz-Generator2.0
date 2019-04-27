@@ -109,7 +109,7 @@ public class Question {
             correctAnswer);
 
     // Create topic if it doesnt exist
-    if (!topics.contains(question.topic))
+    if (!topics.containsKey(question.topic))
       topics.put(question.topic, new ArrayList<>());
 
     // Add question
@@ -183,9 +183,15 @@ public class Question {
    * @return number of questions for a specific topic, or -1 if topic does not exist
    */
   public int getSize(String topic) {
-    if (topics.contains(topic))
+
+    if (topic == null)
+      return -1;
+
+    else if (!topics.containsKey(topic)) {
       return 0;
-    return 1;
+    }
+
+    return topics.get(topic).size();
   }
   
   /**
@@ -206,8 +212,20 @@ public class Question {
     return topics.keySet();
   }
 
-  public static void main(String[] args){
-    Question question = new Question();
-    System.out.print(question.getSize("1234"));
-  }
+//  public static void main(String[] args){
+//    Question question = new Question();
+//    ArrayList<String> al = new ArrayList<>();
+//    al.add("a");
+//    al.add("a");
+//    al.add("a");
+//    al.add("a");
+//    question.addQuestion("Helo","a","a",al,"a","");
+//    question.addQuestion("Helo","b","b",al,"b","");
+//
+//    System.out.println(question.topics.get("Helo").get(0).question);
+//
+//    System.out.println(question.topics.size());
+//    System.out.println(question.topics.get("Helo").size());
+//
+//  }
 }

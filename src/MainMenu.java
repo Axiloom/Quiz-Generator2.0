@@ -19,6 +19,9 @@ import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 /**
  * MainMenu Class constructs the GUI for the MainMenu to display how to add/load questions, save
@@ -120,13 +123,6 @@ public class MainMenu extends Main {
    */
   private void setRightPanel() {
 
-    // Number of Questions ComboBox
-    ObservableList<String> questions = FXCollections.observableArrayList("0");
-    ComboBox<String> questionBox = new ComboBox<>(questions);
-    questionBox.setPromptText("Set # Questions");
-    questionBox.setPrefWidth(180);
-    questionBox.setVisibleRowCount(5);
-
     // Topics ComboBox
     ObservableList<String> topics = FXCollections.observableArrayList(Main.getQuestion().getTopics());
     ComboBox<String> topicBox = new ComboBox<>(topics);
@@ -134,9 +130,32 @@ public class MainMenu extends Main {
     topicBox.setPrefWidth(180);
     topicBox.setVisibleRowCount(5);
 
-    String num = "" + Main.getQuestion().getSize(questionBox.getValue());
+    // Number of Questions ComboBox
+    ObservableList<String> questions = FXCollections.observableArrayList();
+    ComboBox<String> questionBox = new ComboBox<>(questions);
+    questionBox.setPromptText("Set # Questions");
+    questionBox.setPrefWidth(180);
+    questionBox.setVisibleRowCount(5);
 
-    topicBox.setOnAction(event -> questionBox.setItems(FXCollections.observableArrayList(num)));
+    // Handler for picking a topic
+    topicBox.setOnAction(event -> {
+
+      // Get the total number of questions for a topic
+      int maxNumber = Main.getQuestion().getSize(topicBox.getValue());
+
+      // Create a list of the range of numbers needed
+      List<Integer> rangeTemp = IntStream.rangeClosed(1, maxNumber).boxed().collect(Collectors.toList());
+
+      // List to store integers as strings
+      List<String> range = new ArrayList<>();
+
+      // Convert integers to strings for setItems
+      for (Integer i : rangeTemp) range.add(Integer.toString(i));
+
+      // Set the items in our questionBox
+      questionBox.setItems(FXCollections.observableList(range));
+    });
+
     
     // Right Panel
     VBox rightVBox = new VBox(topicBox, questionBox);
