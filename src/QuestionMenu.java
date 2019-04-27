@@ -1,3 +1,4 @@
+import javafx.application.Platform;
 import javafx.beans.binding.Bindings;
 import javafx.beans.binding.IntegerBinding;
 import javafx.beans.property.ReadOnlyProperty;
@@ -22,6 +23,7 @@ import javafx.stage.Stage;
 import javafx.scene.image.ImageView;
 import javafx.beans.value.ChangeListener;
 import java.util.ArrayList;
+import java.util.Optional;
 
 /**
  * QuestionMenu Class constructs the GUI for the QuestionMenu to display the questions during the
@@ -182,10 +184,17 @@ public class QuestionMenu extends Main implements EventHandler<ActionEvent> {
 
     // Listeners
     next.setOnAction(e -> {primaryStage.setScene(Main.getStatisticsScene());});
+    //TODO ^^^^ make hitting next display the next question
     quit.setOnAction(e -> {
       alert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure you want to quit?");
-      alert.showAndWait().filter(response -> response == ButtonType.OK);
-      primaryStage.setScene(Main.getStatisticsScene());
+      alert.setHeaderText("Quit Quiz?");
+      Optional<ButtonType> button = alert.showAndWait();
+      if (button.get().equals(ButtonType.OK)) { // quits
+        primaryStage.setScene(Main.getStatisticsScene());
+      }
+      if (button.get().equals(ButtonType.CANCEL)) { // cancels
+//        primaryStage.setScene(Main.getExitScene());
+      }
     });
     
     next.setOnMouseEntered(e -> next.setStyle("-fx-font-size: 14pt;"));
