@@ -55,7 +55,6 @@ public class Question {
       ArrayList<String> randomizedOptions = new ArrayList<>();
 
       for (String option: options){
-
         randomizedOptions.add(rand.nextInt(options.size()),option);
       }
 
@@ -104,7 +103,7 @@ public class Question {
 
     return questions;
   }
-
+  
   /**
    * Adds a node to the topicList according to its topic
    *
