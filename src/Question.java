@@ -30,7 +30,7 @@ public class Question {
   class QuestionNode{
     String metadata; // metadata for a question
     String question; // question
-    ArrayList<String> options; // all options
+    String[] options; // all options
     String answer; // correct answer
     ImageView img; // image going along with the question
     String topic; // topic associated with this question
@@ -52,11 +52,17 @@ public class Question {
 
       // Randomize choices
       Random rand = new Random();
-      ArrayList<String> randomizedOptions = new ArrayList<>();
+      String[] randomizedOptions = new String[options.size()];
+
+      System.out.println(options.size());
 
       for (String option: options){
+        int random = rand.nextInt(options.size());
 
-        randomizedOptions.add(rand.nextInt(options.size()),option);
+        while (randomizedOptions[random] != null)
+          random = rand.nextInt(options.size());
+
+        randomizedOptions[random] = option;
       }
 
       this.options = randomizedOptions;

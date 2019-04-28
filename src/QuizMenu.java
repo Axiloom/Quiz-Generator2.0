@@ -121,8 +121,8 @@ public class QuizMenu extends Main {
     };
 
     // setup possible answers
-    for (int i = 0; i < questions.get(currentQuestion).options.size(); i++) {
-      CheckBox checkBox = new CheckBox(questions.get(currentQuestion).options.get(i));
+    for (int i = 0; i < questions.get(currentQuestion).options.length; i++) {
+      CheckBox checkBox = new CheckBox(questions.get(currentQuestion).options[i]);
       checkBox.setFont(Font.font("Arial", FontWeight.BOLD, 15));
       checkBox.selectedProperty().addListener(listener);
       checkBox.setMaxWidth(400);
