@@ -163,11 +163,21 @@ public class AddMenu extends Main {
     submit.setOnMouseExited(e -> submit.setStyle("-fx-font-size: 12pt;"));
 
     // Back Listener
-    back.setOnAction(event -> primaryStage.setScene(Main.getMainScene()));
+    back.setOnAction(event -> {
+      topic.clear();
+      question.clear();
+      answer.clear();
+      option1.clear();
+      option2.clear();
+      option3.clear();
+      option4.clear();
+      jsonLoad.clear();
+      primaryStage.setScene(Main.getMainScene());
+    });
 
     // Submit Listener
     submit.setOnAction(event -> {
-      // adds question
+      // Add question
       if (!topic.getText().equals("") && !question.getText().equals("")
           && !answer.getText().equals("") && !option1.getText().equals("")
           && !option2.getText().equals("") && !option3.getText().equals("")
@@ -215,8 +225,7 @@ public class AddMenu extends Main {
           alert.setHeaderText("Error loading file.");
           alert.showAndWait().filter(response -> response == ButtonType.OK);
         }
-      }
-
+      } // Trying to add and load at same time
       else if (!topic.getText().equals("") && !question.getText().equals("")
           && !answer.getText().equals("") && !option1.getText().equals("")
           && !option2.getText().equals("") && !option3.getText().equals("")
