@@ -107,29 +107,27 @@ public class AddMenu extends Main {
     BorderPane topicPane = new BorderPane();
     topicPane.setLeft(topicLabel);
     topicPane.setRight(topic);
-    topicPane.setMaxWidth(350);
+    topicPane.setMaxWidth(360);
 
     Label questionLabel = new Label("Enter Question: ");
     BorderPane questionPane = new BorderPane();
     questionPane.setLeft(questionLabel);
     questionPane.setRight(question);
-    questionPane.setMaxWidth(350);
+    questionPane.setMaxWidth(360);
     questionPane.setPadding(new Insets(0,0,10,0));
 
     Label answerLabel = new Label("Enter Answer: ");
     BorderPane answerPane = new BorderPane();
     answerPane.setLeft(answerLabel);
     answerPane.setRight(answer);
-    answerPane.setMaxWidth(350);
+    answerPane.setMaxWidth(360);
     
     Label optionsLabel = new Label("Enter Alternative Options: ");
     BorderPane optionPane = new BorderPane();
     optionPane.setLeft(optionsLabel);
     VBox optionsBox = new VBox(option1, option2, option3, option4);
     optionPane.setRight(optionsBox);
-    optionPane.setMaxWidth(350);
-
-
+    optionPane.setMaxWidth(360);
 
     Label or = new Label("OR");
     or.setFont(Font.font("Arial", FontWeight.BOLD, 16));

@@ -49,7 +49,18 @@ public class Question {
     		ArrayList<String> options, String correctAnswer){
       this.metadata = metadata;
       this.question = questionText;
-      this.options = options;
+
+      // Randomize choices
+      Random rand = new Random();
+      ArrayList<String> randomizedOptions = new ArrayList<>();
+
+      for (String option: options){
+        randomizedOptions.add(rand.nextInt(options.size()),option);
+      }
+
+      this.options = randomizedOptions;
+
+
       if(!image.equals("")) {
         img = new ImageView(new Image(image));
       }
