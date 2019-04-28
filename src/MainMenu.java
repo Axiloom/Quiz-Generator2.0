@@ -2,16 +2,15 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.CheckMenuItem;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.CustomMenuItem;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.MenuButton;
+import javafx.scene.control.MenuItem;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundImage;
@@ -45,10 +44,11 @@ public class MainMenu extends Main {
   private Button save; // save button
   private Button start; // start quiz button
   private ComboBox<String> questionBox; // combobox displaying amount of questions
-  private ComboBox<String> topicBox; // combobox displaying available topics
   private Alert alert; // alert displayed when improperly starting quiz
   private ListView<String> selected;
   private int maxNumber;
+  private MenuButton choices;
+  private List<CheckMenuItem> topics;
   /**
    * MainMenu Constructor that declares the field variables
    * 
@@ -61,6 +61,7 @@ public class MainMenu extends Main {
     save = new Button("Save Questions");
     start = new Button("START QUIZ");
     selected = new ListView<>();
+    topics = new ArrayList<>();
   }
 
   /**
@@ -139,11 +140,10 @@ public class MainMenu extends Main {
   private void setRightPanel() {
 
     // Topics ComboBox
-    MenuButton choices = new MenuButton ( "Set Topic" ) ;
+    choices = new MenuButton ( "Set Topics" ) ;
     choices.setPrefWidth(180);
 
     // List of topics
-    List<CheckMenuItem> topics = new ArrayList<>();
 
     for (String s : Main.getQuestion().getTopics()){
       topics.add(new CheckMenuItem(s));
@@ -221,9 +221,6 @@ public class MainMenu extends Main {
         primaryStage.setScene(Main.getMainScene());
       }
 
-
-
-
       // Continue onto quiz
       else {
 
@@ -241,14 +238,15 @@ public class MainMenu extends Main {
 
         Main.setupQuizScene(questions);
         Main.setupStatisticsScene(Integer.parseInt(questionBox.getValue()));
+
+        // Reset all topics and #'s
+        for (CheckMenuItem item : topics){
+          item.setSelected(false);
+        }
+        questionBox.getSelectionModel().clearSelection();
+
         primaryStage.setScene(Main.getQuizScene());
       }
-
-
-
-
-
-
     });
     
     // Bottom Panel
