@@ -1,7 +1,9 @@
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Hashtable;
+import java.util.List;
 import java.util.Random;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -215,12 +217,17 @@ public class Question {
   }
 
   /**
-   * gets all topics created
+   * gets a set of alphabetized topics
    *
    * @return set containing all topics
    */
-  public Set<String> getTopics(){
-    return topics.keySet();
+  public List<String> getTopics(){
+
+    List<String> alphabetizedList = new ArrayList<>(topics.keySet());
+
+    Collections.sort(alphabetizedList);
+
+    return alphabetizedList;
   }
 
 //  public static void main(String[] args){
