@@ -55,6 +55,7 @@ public class Question {
       ArrayList<String> randomizedOptions = new ArrayList<>();
 
       for (String option: options){
+
         randomizedOptions.add(rand.nextInt(options.size()),option);
       }
 
