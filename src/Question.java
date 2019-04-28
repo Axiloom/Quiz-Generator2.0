@@ -105,10 +105,15 @@ public class Question {
       while (questions.contains(randomQuestion)){
         randomQuestion = topics.get(topic).get(rand.nextInt(topics.get(topic).size()));
       }
-        questions.add(randomQuestion);
+
+      questions.add(randomQuestion);
     }
 
     return questions;
+  }
+
+  public ArrayList<QuestionNode> getQuestion(String topic){
+    return topics.get(topic);
   }
 
   /**

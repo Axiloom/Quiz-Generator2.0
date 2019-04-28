@@ -6,8 +6,12 @@ import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.CheckMenuItem;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.CustomMenuItem;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
+import javafx.scene.control.MenuButton;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundImage;
@@ -22,6 +26,7 @@ import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -42,7 +47,8 @@ public class MainMenu extends Main {
   private ComboBox<String> questionBox; // combobox displaying amount of questions
   private ComboBox<String> topicBox; // combobox displaying available topics
   private Alert alert; // alert displayed when improperly starting quiz
-
+  private ListView<String> selected;
+  private int maxNumber;
   /**
    * MainMenu Constructor that declares the field variables
    * 
@@ -54,9 +60,13 @@ public class MainMenu extends Main {
     add = new Button("Add/Load Questions");
     save = new Button("Save Questions");
     start = new Button("START QUIZ");
+    selected = new ListView<>();
   }
 
-  // Initalize MainMenu
+  /**
+   * Initalize MainMenu
+   * @return root
+   */
   public BorderPane initialize() {
 
     setBackground();
@@ -129,11 +139,26 @@ public class MainMenu extends Main {
   private void setRightPanel() {
 
     // Topics ComboBox
-    ObservableList<String> topics = FXCollections.observableArrayList(Main.getQuestion().getTopics());
-    topicBox = new ComboBox<>(topics);
-    topicBox.setPromptText("Set Topic");
-    topicBox.setPrefWidth(180);
-    topicBox.setVisibleRowCount(5);
+    MenuButton choices = new MenuButton ( "Set Topic" ) ;
+    choices.setPrefWidth(180);
+
+    // List of topics
+    List<CheckMenuItem> topics = new ArrayList<>();
+
+    for (String s : Main.getQuestion().getTopics()){
+      topics.add(new CheckMenuItem(s));
+    }
+
+    choices.getItems().addAll(topics);
+
+    for  (CheckMenuItem item : topics)  {
+      item.selectedProperty().addListener((observableValue, oldValue, newValue) -> {
+        if (newValue)
+          selected.getItems().add(item.getText());
+        else
+          selected.getItems().remove(item.getText());
+      });
+    }
 
     // Number of Questions ComboBox
     ObservableList<String> questions = FXCollections.observableArrayList();
@@ -142,27 +167,34 @@ public class MainMenu extends Main {
     questionBox.setPrefWidth(180);
     questionBox.setVisibleRowCount(5);
 
-    // Handler for picking a topic
-    topicBox.setOnAction(event -> {
+    // Handler for picking multiple topics
+    for (CheckMenuItem item : topics){
+      item.setOnAction(event -> {
 
-      // Get the total number of questions for a topic
-      int maxNumber = Main.getQuestion().getSize(topicBox.getValue());
+        // Reset Max Number
+        maxNumber = 0;
 
-      // Create a list of the range of numbers needed
-      List<Integer> rangeTemp = IntStream.rangeClosed(1, maxNumber).boxed().collect(Collectors.toList());
+        // Get the total number of questions for a topic
+        for (String s : selected.getItems()){
+          maxNumber += Main.getQuestion().getSize(s);
+        }
 
-      // List to store integers as strings
-      List<String> range = new ArrayList<>();
+        // Create a list of the range of numbers needed
+        List<Integer> rangeTemp = IntStream.rangeClosed(1, maxNumber).boxed().collect(Collectors.toList());
 
-      // Convert integers to strings for setItems
-      for (Integer i : rangeTemp) range.add(Integer.toString(i));
+        // List to store integers as strings
+        List<String> range = new ArrayList<>();
 
-      // Set the items in our questionBox
-      questionBox.setItems(FXCollections.observableList(range));
-    });
+        // Convert integers to strings for setItems
+        for (Integer i : rangeTemp) range.add(Integer.toString(i));
+
+        // Set the items in our questionBox
+        questionBox.setItems(FXCollections.observableList(range));
+      });
+    }
 
     // Right Panel
-    VBox rightVBox = new VBox(topicBox, questionBox);
+    VBox rightVBox = new VBox(choices, questionBox);
     rightVBox.setAlignment(Pos.TOP_RIGHT);
     rightVBox.setPadding(new Insets(20, 20, 0, 0));
 
@@ -182,18 +214,41 @@ public class MainMenu extends Main {
     start.setOnAction(event -> {
 
       // Error Message
-      if(topicBox.getValue() == null || questionBox.getValue() == null) {
+      if(selected.getItems().isEmpty() || questionBox.getValue() == null) {
         alert = new Alert(Alert.AlertType.ERROR, "Select a topic and number of questions");
         alert.setHeaderText("Error.");
         alert.showAndWait().filter(response -> response == ButtonType.OK);
         primaryStage.setScene(Main.getMainScene());
       }
+
+
+
+
       // Continue onto quiz
       else {
-        Main.setupQuizScene(Main.getQuestion().getQuestions(topicBox.getValue(), Integer.parseInt(questionBox.getValue())));
+
+        ArrayList<Question.QuestionNode> questions = new ArrayList<>();
+
+        for (String topic : selected.getItems()){
+          questions.addAll(Main.getQuestion().getQuestion(topic));
+        }
+
+        Random rand = new Random();
+
+        for (int i = questions.size() ; i > Integer.parseInt(questionBox.getValue()) ; i--){
+          questions.remove(rand.nextInt(questions.size()));
+        }
+
+        Main.setupQuizScene(questions);
         Main.setupStatisticsScene(Integer.parseInt(questionBox.getValue()));
         primaryStage.setScene(Main.getQuizScene());
       }
+
+
+
+
+
+
     });
     
     // Bottom Panel

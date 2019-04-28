@@ -72,7 +72,7 @@ public class QuizMenu extends Main {
   private void setTopPanel() {
     // Labels
     Label label = new Label("Quiz");
-    Label questionLabel = new Label("Question " + currentQuestion + "/" + questions.size());
+    Label questionLabel = new Label("Question " + (currentQuestion + 1) + "/" + questions.size());
 
     // Style
     label.setFont(Font.font("Arial", FontWeight.BOLD, 16));
@@ -120,7 +120,7 @@ public class QuizMenu extends Main {
       }
     };
 
-    // setup possible answers
+    // setup choices todo
     for (int i = 0; i < questions.get(currentQuestion).options.length; i++) {
       CheckBox checkBox = new CheckBox(questions.get(currentQuestion).options[i]);
       checkBox.setFont(Font.font("Arial", FontWeight.BOLD, 15));
@@ -145,7 +145,6 @@ public class QuizMenu extends Main {
 
     // Format Box Location
     answers.setSpacing(25);
-    answers.setPadding(new Insets(25, 0, 0, 0));
     answersAndPicture.setPadding(new Insets(0, 25, 0, 0));
     displayImage.setPadding(new Insets(25, 0, 0, 0));
 
@@ -189,6 +188,7 @@ public class QuizMenu extends Main {
 
         // Exit if last question was answered
         if (currentQuestion == questions.size()-1) {
+          currentQuestion = 0;
           primaryStage.setScene(Main.getStatisticsScene());
         }
         else {
@@ -206,6 +206,12 @@ public class QuizMenu extends Main {
       Optional<ButtonType> button = alert.showAndWait();
 
       if (button.get().equals(ButtonType.OK)) { // quits
+
+        // Clear all check boxes
+        activeBoxes.clear();
+        boxes.clear();
+        currentQuestion = 0;
+
         primaryStage.setScene(Main.getStatisticsScene());
       }
     });
