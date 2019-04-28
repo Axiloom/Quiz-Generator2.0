@@ -168,14 +168,10 @@ public class AddMenu extends Main {
     // Submit Listener
     submit.setOnAction(event -> {
       // adds question
-      if(!topic.getText().equals("") &&
-              !question.getText().equals("") &&
-              !answer.getText().equals("") &&
-              !option1.getText().equals("") &&
-              !option2.getText().equals("") &&
-              !option3.getText().equals("") &&
-              !option4.getText().equals("") &&
-              jsonLoad.getText().equals("")) {
+      if (!topic.getText().equals("") && !question.getText().equals("")
+          && !answer.getText().equals("") && !option1.getText().equals("")
+          && !option2.getText().equals("") && !option3.getText().equals("")
+          && !option4.getText().equals("") && jsonLoad.getText().equals("")) {
         ArrayList<String> options = new ArrayList<>();
         options.add(answer.getText());
         options.add(option1.getText());
@@ -201,47 +197,43 @@ public class AddMenu extends Main {
         super.getMainMenu().initialize();
         super.getAddMenu().initialize();
         super.getSaveMenu().initialize();
-    }
+      } // Load Questions
+      else if (topic.getText().equals("") && question.getText().equals("")
+          && answer.getText().equals("") && option1.getText().equals("")
+          && option2.getText().equals("") && option3.getText().equals("")
+          && option4.getText().equals("") && !jsonLoad.getText().equals("")) {
+        try {
+          super.getQuestion().loadJSON(jsonLoad.getText());
+          jsonLoad.clear();
+          // Update menu displays
+          super.getMainMenu().initialize();
+          super.getAddMenu().initialize();
+          super.getSaveMenu().initialize();
+        } catch (Exception e) {
+          // Throw alert if failure to load file
+          alert = new Alert(Alert.AlertType.CONFIRMATION, "Error: " + e.getMessage());
+          alert.setHeaderText("Error loading file.");
+          alert.showAndWait().filter(response -> response == ButtonType.OK);
+        }
+      }
 
-    else if (!topic.getText().equals("") &&
-              !question.getText().equals("") &&
-              !answer.getText().equals("") &&
-              !option1.getText().equals("") &&
-              !option2.getText().equals("") &&
-              !option3.getText().equals("") &&
-              !option4.getText().equals("") &&
-              !jsonLoad.getText().equals("")){
+      else if (!topic.getText().equals("") && !question.getText().equals("")
+          && !answer.getText().equals("") && !option1.getText().equals("")
+          && !option2.getText().equals("") && !option3.getText().equals("")
+          && !option4.getText().equals("") && !jsonLoad.getText().equals("")) {
 
-      // Throw alert if add question and parse json are entered
-      alert = new Alert(Alert.AlertType.ERROR, "Cannot import json and add question at the same " +
-              "time");
-      alert.setHeaderText("Error adding question.");
-      alert.showAndWait().filter(response -> response == ButtonType.OK);
-    }
-    else {
-      // Throw alert if failure to add question
-      alert = new Alert(Alert.AlertType.ERROR, "Enter all fields to add question.");
-      alert.setHeaderText("Error adding question.");
-      alert.showAndWait().filter(response -> response == ButtonType.OK);
-    }
-    
-    // load questions
-    if(!jsonLoad.getText().equals("")) {
-      try {
-        super.getQuestion().loadJSON(jsonLoad.getText());
-        jsonLoad.clear();
-        // Update menu displays
-        super.getMainMenu().initialize();
-        super.getAddMenu().initialize();
-        super.getSaveMenu().initialize();
-      } catch(Exception e) {
-        // Throw alert if failure to load file
-        alert = new Alert(Alert.AlertType.CONFIRMATION, "Error: " + e.getMessage());
-        alert.setHeaderText("Error loading file.");
+        // Throw alert if add question and parse json are entered
+        alert = new Alert(Alert.AlertType.ERROR,
+            "Cannot import json and add question at the same " + "time");
+        alert.setHeaderText("Error adding question.");
+        alert.showAndWait().filter(response -> response == ButtonType.OK);
+      } else {
+        // Throw alert if failure to add question
+        alert = new Alert(Alert.AlertType.ERROR, "Enter all fields to add question.");
+        alert.setHeaderText("Error adding question.");
         alert.showAndWait().filter(response -> response == ButtonType.OK);
       }
-    }
-    primaryStage.setScene(Main.getAddScene());
+      primaryStage.setScene(Main.getAddScene());
     });
 
     // Bottom Panel
