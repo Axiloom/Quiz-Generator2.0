@@ -228,6 +228,7 @@ public class AddMenu extends Main {
           alert = new Alert(Alert.AlertType.CONFIRMATION, "Error: " + e.getMessage());
           alert.setHeaderText("Error loading file.");
           alert.showAndWait().filter(response -> response == ButtonType.OK);
+          jsonLoad.clear();
         }
       } // Trying to add and load at same time
       else if (!topic.getText().equals("") && !question.getText().equals("")
