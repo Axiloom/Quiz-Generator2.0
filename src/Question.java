@@ -147,7 +147,7 @@ public class Question {
   public boolean loadJSON(String jsonFilePath) throws FileNotFoundException, IOException, ParseException {
 
     // todo may need to change this for when we create an executable.
-    Object obj = new JSONParser().parse(new FileReader("src/" + jsonFilePath));
+    Object obj = new JSONParser().parse(new FileReader(jsonFilePath));
 
 	  JSONObject jo = (JSONObject) obj;
 	  JSONArray questionArray = (JSONArray) jo.get("questionArray");
