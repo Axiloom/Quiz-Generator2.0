@@ -65,10 +65,10 @@ public class Question {
 
       this.options = randomizedOptions;
 
-
-      if(!image.equals("")) {
+      if(!image.equals("none")) {
         img = new ImageView(new Image(image));
       }
+
       this.answer = correctAnswer;
       this.topic = topic;
     }
@@ -145,15 +145,17 @@ public class Question {
    * @throws FileNotFoundException file does not exist
    */
   public boolean loadJSON(String jsonFilePath) throws FileNotFoundException, IOException, ParseException {
-	    // Make as many private helper methods as we need
-    Object obj = new JSONParser().parse(new FileReader(jsonFilePath));
+
+    // todo may need to change this for when we create an executable.
+    Object obj = new JSONParser().parse(new FileReader("src/" + jsonFilePath));
+
 	  JSONObject jo = (JSONObject) obj;
 	  JSONArray questionArray = (JSONArray) jo.get("questionArray");
 
     for (Object aQuestionArray : questionArray) {
       JSONObject jsonQuestion = (JSONObject) aQuestionArray;
       String metaData = (String) jsonQuestion.get("meta-data"); // meta data
-      String question = (String) jsonQuestion.get("question"); // question
+      String question = (String) jsonQuestion.get("questionText"); // question
       String topic = (String) jsonQuestion.get("topic");
       String image = (String) jsonQuestion.get("image");
       // need to interate through the choices
@@ -210,15 +212,6 @@ public class Question {
     }
 
     return topics.get(topic).size();
-  }
-  
-  /**
-   * Given a node, returns the question for that node in a string
-   * 
-   * @return String of a question
-   */
-  public String getQuestion(QuestionNode node) {
-    return node.question;
   }
 
   /**

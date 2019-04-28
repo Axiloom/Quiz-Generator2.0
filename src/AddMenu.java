@@ -219,7 +219,11 @@ public class AddMenu extends Main {
           super.getMainMenu().initialize();
           super.getAddMenu().initialize();
           super.getSaveMenu().initialize();
+          alert = new Alert(Alert.AlertType.INFORMATION, "Successfully added from JSON!");
+          alert.setHeaderText("Success.");
+          alert.showAndWait().filter(response -> response == ButtonType.OK);
         } catch (Exception e) {
+          e.printStackTrace();
           // Throw alert if failure to load file
           alert = new Alert(Alert.AlertType.CONFIRMATION, "Error: " + e.getMessage());
           alert.setHeaderText("Error loading file.");
