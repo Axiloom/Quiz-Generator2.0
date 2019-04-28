@@ -27,6 +27,76 @@
       {"isCorrect":"F","choice":"$O(N^{TS})$"},
       {"isCorrect":"F","choice":"$O(N)$"}
     ]
+  },
+  {
+    "meta-data":"unused",
+    "questionText": "Which command will change the current working directory to a sub-directory named $p3$?",
+    "topic": "linuxa",
+    "image":"none",
+    "choiceArray":
+    [
+      {"isCorrect":"F","choice":"pwd"},
+      {"isCorrect":"F","choice":"cwd"},
+      {"isCorrect":"F","choice":"cp"},
+      {"isCorrect":"T","choice":"cd"},
+      {"isCorrect":"F","choice":"mkdir"}
+    ]
+  },
+  {
+    "meta-data":"unused",
+    "questionText": "Which command will change the current working directory to a sub-directory named $p3$?",
+    "topic": "linuxb",
+    "image":"none",
+    "choiceArray":
+    [
+      {"isCorrect":"F","choice":"pwd"},
+      {"isCorrect":"F","choice":"cwd"},
+      {"isCorrect":"F","choice":"cp"},
+      {"isCorrect":"T","choice":"cd"},
+      {"isCorrect":"F","choice":"mkdir"}
+    ]
+  },
+  {
+    "meta-data":"unused",
+    "questionText": "Which command will change the current working directory to a sub-directory named $p3$?",
+    "topic": "linuxc",
+    "image":"none",
+    "choiceArray":
+    [
+      {"isCorrect":"F","choice":"pwd"},
+      {"isCorrect":"F","choice":"cwd"},
+      {"isCorrect":"F","choice":"cp"},
+      {"isCorrect":"T","choice":"cd"},
+      {"isCorrect":"F","choice":"mkdir"}
+    ]
+  },
+  {
+    "meta-data":"unused",
+    "questionText": "Which command will change the current working directory to a sub-directory named $p3$?",
+    "topic": "linuxd",
+    "image":"none",
+    "choiceArray":
+    [
+      {"isCorrect":"F","choice":"pwd"},
+      {"isCorrect":"F","choice":"cwd"},
+      {"isCorrect":"F","choice":"cp"},
+      {"isCorrect":"T","choice":"cd"},
+      {"isCorrect":"F","choice":"mkdir"}
+    ]
+  },
+  {
+    "meta-data":"unused",
+    "questionText": "Which command will change the current working directory to a sub-directory named $p3$?",
+    "topic": "linuxe",
+    "image":"none",
+    "choiceArray":
+    [
+      {"isCorrect":"F","choice":"pwd"},
+      {"isCorrect":"F","choice":"cwd"},
+      {"isCorrect":"F","choice":"cp"},
+      {"isCorrect":"T","choice":"cd"},
+      {"isCorrect":"F","choice":"mkdir"}
+    ]
   }
 ]
 }
