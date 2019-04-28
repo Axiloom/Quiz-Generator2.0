@@ -54,8 +54,6 @@ public class Question {
       Random rand = new Random();
       String[] randomizedOptions = new String[options.size()];
 
-      System.out.println(options.size());
-
       for (String option: options){
         int random = rand.nextInt(options.size());
 
