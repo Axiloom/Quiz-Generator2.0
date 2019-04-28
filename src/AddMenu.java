@@ -120,7 +120,6 @@ public class AddMenu extends Main {
     BorderPane answerPane = new BorderPane();
     answerPane.setLeft(answerLabel);
     answerPane.setRight(answer);
-    answerPane.setMaxWidth(500);
     
     Label optionsLabel = new Label("Enter Alternative Options: ");
     BorderPane optionPane = new BorderPane();
