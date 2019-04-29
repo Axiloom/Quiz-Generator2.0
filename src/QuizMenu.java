@@ -139,10 +139,8 @@ public class QuizMenu extends Main {
     image.setFitHeight(200);
     VBox answers = new VBox();
     // Adds as many options as there are available
-    for(int i = 0; i < 5; ++i) {
-      if(boxes.get(i) != null) {
+    for(int i = 0; i < boxes.size(); ++i) {
         answers.getChildren().add(boxes.get(i));
-      }
     }
     VBox displayImage = new VBox(image);
     BorderPane answersAndPicture = new BorderPane();

@@ -144,7 +144,7 @@ public class MainMenu extends Main {
     choices.setPrefWidth(180);
 
     // List of topics
-
+    topics.clear(); // clear list before adding more topics to avoid repeats
     for (String s : Main.getQuestion().getTopics()){
       topics.add(new CheckMenuItem(s));
     }
