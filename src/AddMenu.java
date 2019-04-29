@@ -140,13 +140,13 @@ public class AddMenu extends Main {
     or.setPadding(new Insets(20, 0, 20, 0));
 
     // Set project directory for browse window todo not sure whats wrong
-//    try {
-//      fileChooser.setInitialDirectory(new File(Main.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath()));
-//    }
-//    catch (URISyntaxException e){
-//      e.printStackTrace();
-//      System.out.println("Error while retrieving project directory");
-//    }
+    try {
+      fileChooser.setInitialDirectory(new File(Main.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath()));
+    }
+    catch (URISyntaxException e){
+      e.printStackTrace();
+      System.out.println("Error while retrieving project directory");
+    }
 
 
     Label loadLabel = new Label("Load JSON: ");
