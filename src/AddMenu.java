@@ -1,17 +1,15 @@
 
+import java.io.File;
 import java.util.ArrayList;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 /**
@@ -35,6 +33,9 @@ public class AddMenu extends Main {
   private TextField option4; // records alternative choice
   private TextField jsonLoad; // file name to load
   private Alert alert; // alert for failure to load files
+  private FileChooser fileChooser;
+  private Button fileChooserButton;
+  private File jsonFile;
 
   /**
    * AddMenu Constructor that declares the field variables and sets the background color
@@ -54,6 +55,8 @@ public class AddMenu extends Main {
     option3 = new TextField("");
     option4 = new TextField("");
     jsonLoad = new TextField("");
+    fileChooser = new FileChooser();
+    fileChooserButton = new Button("Browse...");
     root.setStyle("-fx-background-color: #c0c0c5");
   }
 
@@ -136,16 +139,32 @@ public class AddMenu extends Main {
     or.setPadding(new Insets(20, 0, 20, 0));
 
     Label loadLabel = new Label("Load JSON: ");
-    BorderPane loadPane = new BorderPane();
-    loadPane.setLeft(loadLabel);
-    loadPane.setRight(jsonLoad);
-    loadPane.setMaxWidth(320);
+    Label typeLabel = new Label(".json");
+    typeLabel.setFont(Font.font("Arial", 14));
+    HBox loadHBox = new HBox(loadLabel,jsonLoad,typeLabel,fileChooserButton);
+    fileChooser.setTitle("Browse for .json");
+    jsonLoad.setTooltip(new Tooltip(".json must be located in the same directory as .jar"));
+    fileChooserButton.setTooltip(new Tooltip(".json must be located in the same directory as .jar"));
+    typeLabel.setPadding(new Insets(10,20,0,0));
+    loadLabel.setPrefWidth(150);
+    jsonLoad.setPrefWidth(170);
 
     // Center Panel
     VBox topVBox = new VBox(topicPane, questionPane, answerPane, optionPane);
-    VBox bottomVBox = new VBox(loadPane);
+    VBox bottomVBox = new VBox(loadHBox);
+    bottomVBox.setSpacing(10);
     VBox centerVBox = new VBox(topVBox, or, bottomVBox);
-    centerVBox.setPadding(new Insets(50, 80, 50, 200));
+    centerVBox.setPadding(new Insets(50, 20, 30, 200));
+
+
+    // Listeners
+    fileChooserButton.setOnAction(event -> {
+      File jsonFile = fileChooser.showOpenDialog(primaryStage);
+      if (jsonFile.exists()){
+        jsonLoad.setText(jsonFile.getName().substring(0,jsonFile.getName().indexOf(".")));
+      }
+    });
+
 
     root.setCenter(centerVBox);
   }
