@@ -54,6 +54,9 @@ public class Question {
       if (!image.equals("none")) {
         imageName = image;
         img = new ImageView(new Image(image));
+      } else {
+        imageName = "none";
+        img = null;
       }
 
       this.metadata = metadata;
