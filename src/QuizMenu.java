@@ -16,6 +16,7 @@ import javafx.stage.Stage;
 import javafx.scene.image.ImageView;
 import javafx.beans.value.ChangeListener;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Optional;
 
 /**
@@ -121,8 +122,9 @@ public class QuizMenu extends Main {
     };
 
     // setup choices todo
-    for (int i = 0; i < questions.get(currentQuestion).options.length; i++) {
-      CheckBox checkBox = new CheckBox(questions.get(currentQuestion).options[i]);
+    for (int i = 0; i < questions.get(currentQuestion).options.size(); i++) {
+      Collections.shuffle(questions.get(i).options);
+      CheckBox checkBox = new CheckBox(questions.get(currentQuestion).options.get(i));
       checkBox.setFont(Font.font("Arial", FontWeight.BOLD, 15));
       checkBox.selectedProperty().addListener(listener);
       checkBox.setMaxWidth(400);
