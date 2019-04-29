@@ -151,9 +151,6 @@ public class Question {
     String inputFilePath = jarFile.getParent() + File.separator + jsonFilePath;
     FileInputStream inStream = new FileInputStream(new File(inputFilePath));
 
-
-
-
     FileInputStream fis = inStream;
     BufferedReader in = new BufferedReader(new InputStreamReader(fis));
 
@@ -194,6 +191,53 @@ public class Question {
    */
   public boolean saveToJSON(String jsonFile) {
     // TODO check for duplicate json name
+    
+    // WORKING EXAMPLE
+//    JSONObject obj = new JSONObject();
+//    obj.put("Name", "crunchify.com");
+//    obj.put("Author", "App Shah");
+//
+//    JSONArray company = new JSONArray();
+//    company.add("Compnay: eBay");
+//    company.add("Compnay: Paypal");
+//    company.add("Compnay: Google");
+//    obj.put("Company List", company);
+//
+//    // try-with-resources statement based on post comment below :)
+//    try (FileWriter file = new FileWriter("/Users/<username>/Documents/file1.txt")) {
+//        file.write(obj.toJSONString());
+//        System.out.println("Successfully Copied JSON Object to File...");
+//        System.out.println("\nJSON Object: " + obj);
+//    }
+    
+    JSONObject topics = new JSONObject();
+    JSONArray opts = new JSONArray();
+    List<String> topicList = getTopics();
+    
+    for(String topic : topicList) {
+      ArrayList<Question.QuestionNode> questionList = getQuestions(topic);
+      for(QuestionNode question : questionList) {
+        topics.put("meta-data", question.metadata);
+        topics.put("questionText", question.question);
+        topics.put("topic", question.topic);
+        topics.put("image", question.img);
+        for(String option : question.options) {
+          if(option.equals(question.answer)) {
+            opts.add("isCorrect\":\"T\",\"choice\":" + option);
+          }
+          else {
+            opts.add("isCorrect\":\"F\",\"choice\":" + option);
+          }
+        }
+        topics.put("choiceArray", opts);
+      }
+    }
+    try (FileWriter file = new FileWriter(jsonFile)) {
+      file.write(topics.toJSONString());
+      System.out.println("good");
+    } catch (Exception e) {
+      System.out.println("error");
+    }
     return true;
   }
 
