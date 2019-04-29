@@ -1,5 +1,4 @@
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Hashtable;
@@ -7,7 +6,7 @@ import java.util.List;
 import java.util.Random;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import java.io.FileNotFoundException;
+
 import java.util.Set;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -145,8 +144,13 @@ public class Question {
   public boolean loadJSON(String jsonFilePath)
       throws FileNotFoundException, IOException, ParseException {
 
+
+    String path = "./" + jsonFilePath;
+    FileInputStream fis = new FileInputStream(path);
+    BufferedReader in = new BufferedReader(new InputStreamReader(fis));
+
     // todo may need to change this for when we create an executable.
-    Object obj = new JSONParser().parse(new FileReader(jsonFilePath));
+    Object obj = new JSONParser().parse(in);
 
     JSONObject jo = (JSONObject) obj;
     JSONArray questionArray = (JSONArray) jo.get("questionArray");

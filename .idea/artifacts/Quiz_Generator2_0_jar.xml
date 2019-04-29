@@ -1,0 +1,10 @@
+<component name="ArtifactManager">
+  <artifact type="jar" build-on-make="true" name="Quiz-Generator2.0:jar">
+    <output-path>$USER_HOME$/Desktop</output-path>
+    <root id="archive" name="Quiz-Generator2.0.jar">
+      <element id="module-output" name="Quiz-Generator2.0" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/resources/json-simple-1.1.jar" path-in-jar="/" />
+      <element id="dir-copy" path="$USER_HOME$/Desktop" />
+    </root>
+  </artifact>
+</component>
