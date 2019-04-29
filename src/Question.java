@@ -145,11 +145,14 @@ public class Question {
       throws FileNotFoundException, IOException, ParseException, URISyntaxException {
 
     // Read file from .jar
-    File jarFile = new File(Main.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath());
-    String inputFilePath = jarFile.getParent() + File.separator + jsonFilePath;
-    FileInputStream fis = new FileInputStream(new File(inputFilePath));
-    BufferedReader in = new BufferedReader(new InputStreamReader(fis));
-    Object obj = new JSONParser().parse(in);
+//    File jarFile = new File(Main.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath());
+//    String inputFilePath = jarFile.getParent() + File.separator + jsonFilePath;
+//
+//    FileInputStream fis = new FileInputStream(new File(jsonFilePath)); // todo change jsonFilePath to inputFilePath
+//    BufferedReader in = new BufferedReader(new InputStreamReader(fis));
+//    Object obj = new JSONParser().parse(in);
+
+    Object obj = new JSONParser().parse(new FileReader(jsonFilePath));
 
     JSONObject jo = (JSONObject) obj;
     JSONArray questionArray = (JSONArray) jo.get("questionArray");
