@@ -1,4 +1,6 @@
 import java.io.*;
+import java.net.URISyntaxException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Hashtable;
@@ -142,11 +144,17 @@ public class Question {
    * @throws FileNotFoundException file does not exist
    */
   public boolean loadJSON(String jsonFilePath)
-      throws FileNotFoundException, IOException, ParseException {
+      throws FileNotFoundException, IOException, ParseException, URISyntaxException {
+
+    // Read file from .jar
+    File jarFile = new File(Main.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath());
+    String inputFilePath = jarFile.getParent() + File.separator + jsonFilePath;
+    FileInputStream inStream = new FileInputStream(new File(inputFilePath));
 
 
-    String path = "./" + jsonFilePath;
-    FileInputStream fis = new FileInputStream(path);
+
+
+    FileInputStream fis = inStream;
     BufferedReader in = new BufferedReader(new InputStreamReader(fis));
 
     // todo may need to change this for when we create an executable.
