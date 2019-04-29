@@ -267,13 +267,13 @@ public class AddMenu extends Main {
           && !option4.getText().equals("") && !jsonLoad.getText().equals("")) {
 
         // Throw alert if add question and parse json are entered
-        alert = new Alert(Alert.AlertType.ERROR,
+        alert = new Alert(Alert.AlertType.WARNING,
             "Cannot import json and add question at the same " + "time");
         alert.setHeaderText("Error adding question.");
         alert.showAndWait().filter(response -> response == ButtonType.OK);
       } else {
         // Throw alert if failure to add question
-        alert = new Alert(Alert.AlertType.ERROR, "Enter all fields to add question.");
+        alert = new Alert(Alert.AlertType.WARNING, "Enter all fields to add question.");
         alert.setHeaderText("Error adding question.");
         alert.showAndWait().filter(response -> response == ButtonType.OK);
       }
