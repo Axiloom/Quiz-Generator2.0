@@ -140,9 +140,9 @@ public class AddMenu extends Main {
 
     Label loadLabel = new Label("Load JSON: ");
     Label typeLabel = new Label(".json");
+    typeLabel.setFont(Font.font("Arial", 14));
     HBox loadHBox = new HBox(loadLabel,jsonLoad,typeLabel,fileChooserButton);
     fileChooser.setTitle("Browse for .json");
-
     jsonLoad.setTooltip(new Tooltip(".json must be located in the same directory as .jar"));
     fileChooserButton.setTooltip(new Tooltip(".json must be located in the same directory as .jar"));
     typeLabel.setPadding(new Insets(10,20,0,0));
@@ -164,9 +164,6 @@ public class AddMenu extends Main {
         jsonLoad.setText(jsonFile.getName().substring(0,jsonFile.getName().indexOf(".")));
       }
     });
-
-
-
 
 
     root.setCenter(centerVBox);
