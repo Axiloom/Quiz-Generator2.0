@@ -1,3 +1,4 @@
+import java.text.DecimalFormat;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Alert;
@@ -81,7 +82,11 @@ public class StatisticsMenu extends Main {
    */
   private void setCenterPanel() {
     Double pct = (correct / numQuestions) * 100;
-    Label percentCorrect = new Label(pct.toString() + "% Correct");
+    String percent = pct.toString();
+    if(percent.length() > 5) {
+      percent = percent.substring(0, 5);
+    }
+    Label percentCorrect = new Label(percent + "% Correct");
     Label fractionCorrect =
             new Label(((int)correct) + " / " + (int)numQuestions);
     Label score = new Label("Your score");
