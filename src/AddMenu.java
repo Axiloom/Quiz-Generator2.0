@@ -28,14 +28,18 @@ public class AddMenu extends Main {
   private TextField topic; // records the question topic
   private TextField question; // records the question text
   private TextField answer; // records the answer to the question
+  private TextField picture;
   private TextField option1; // records alternative choice
   private TextField option2; // records alternative choice
   private TextField option3; // records alternative choice
   private TextField option4; // records alternative choice
   private TextField jsonLoad; // file name to load
   private Alert alert; // alert for failure to load files
-  private FileChooser fileChooser;
-  private Button fileChooserButton;
+  private FileChooser jsonFileChooser;
+  private FileChooser pictureFileChooser;
+  private Button jsonFileChooserButton;
+  private Button pictureFileChooserButton;
+  private File pictureFile;
   private File jsonFile;
 
   /**
@@ -51,13 +55,17 @@ public class AddMenu extends Main {
     topic = new TextField("");
     question = new TextField("");
     answer = new TextField("");
+    picture = new TextField("");
     option1 = new TextField("");
     option2 = new TextField("");
     option3 = new TextField("");
     option4 = new TextField("");
     jsonLoad = new TextField("");
-    fileChooser = new FileChooser();
-    fileChooserButton = new Button("Browse...");
+    jsonFileChooser = new FileChooser();
+    pictureFileChooser = new FileChooser();
+    jsonFileChooserButton = new Button("Browse...");
+    pictureFileChooserButton = new Button("Browse...");
+
     root.setStyle("-fx-background-color: #c0c0c5");
   }
 
@@ -118,7 +126,15 @@ public class AddMenu extends Main {
     questionPane.setLeft(questionLabel);
     questionPane.setRight(question);
     questionPane.setMaxWidth(320);
-    questionPane.setPadding(new Insets(0,0,10,0));
+
+    Label pictureLabel = new Label("Load Picture: ");
+    HBox pictureHBox = new HBox(pictureLabel,picture,pictureFileChooserButton);
+    pictureFileChooser.setTitle("Browse for picture");
+    picture.setTooltip(new Tooltip("picture must be located in the same directory as .jar"));
+    pictureFileChooserButton.setTooltip(new Tooltip("picture must be located in the same directory as .jar"));
+    pictureLabel.setPrefWidth(149);
+    picture.setPrefWidth(171);
+    pictureHBox.setPadding(new Insets(0,0,10,0));
 
     Label answerLabel = new Label("Enter Answer: ");
     BorderPane answerPane = new BorderPane();
@@ -139,29 +155,28 @@ public class AddMenu extends Main {
     or.setFont(Font.font("Arial", FontWeight.BOLD, 16));
     or.setPadding(new Insets(20, 0, 20, 0));
 
-    // Set project directory for browse window todo not sure whats wrong
+    // Set project directory for browse window todo not sure whats wrong, but this doesnt work with executable
     try {
-      fileChooser.setInitialDirectory(new File(Main.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath()));
+      jsonFileChooser.setInitialDirectory(new File(Main.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath()));
     }
     catch (URISyntaxException e){
       e.printStackTrace();
       System.out.println("Error while retrieving project directory");
     }
 
-
     Label loadLabel = new Label("Load JSON: ");
     Label typeLabel = new Label(".json");
     typeLabel.setFont(Font.font("Arial", 14));
-    HBox loadHBox = new HBox(loadLabel,jsonLoad,typeLabel,fileChooserButton);
-    fileChooser.setTitle("Browse for .json");
+    HBox loadHBox = new HBox(loadLabel,jsonLoad,typeLabel,jsonFileChooserButton);
+    jsonFileChooser.setTitle("Browse for .json");
     jsonLoad.setTooltip(new Tooltip(".json must be located in the same directory as .jar"));
-    fileChooserButton.setTooltip(new Tooltip(".json must be located in the same directory as .jar"));
+    jsonFileChooserButton.setTooltip(new Tooltip(".json must be located in the same directory as .jar"));
     typeLabel.setPadding(new Insets(10,20,0,0));
     loadLabel.setPrefWidth(150);
     jsonLoad.setPrefWidth(170);
 
     // Center Panel
-    VBox topVBox = new VBox(topicPane, questionPane, answerPane, optionPane);
+    VBox topVBox = new VBox(topicPane, questionPane, pictureHBox, answerPane, optionPane);
     VBox bottomVBox = new VBox(loadHBox);
     bottomVBox.setSpacing(10);
     VBox centerVBox = new VBox(topVBox, or, bottomVBox);
@@ -169,11 +184,17 @@ public class AddMenu extends Main {
 
 
     // Listeners
-    fileChooserButton.setOnAction(event -> {
-      File jsonFile = fileChooser.showOpenDialog(primaryStage);
-      if (jsonFile.exists()){
+    jsonFileChooserButton.setOnAction(event -> {
+      jsonFile = jsonFileChooser.showOpenDialog(primaryStage);
+      if (jsonFile != null && jsonFile.exists()){
         jsonLoad.setText(jsonFile.getName().substring(0,jsonFile.getName().indexOf(".")));
       }
+    });
+
+    pictureFileChooserButton.setOnAction(event -> {
+      pictureFile = pictureFileChooser.showOpenDialog(primaryStage);
+      if (pictureFile != null && pictureFile.exists())
+        picture.setText(pictureFile.getName());
     });
 
 
@@ -218,8 +239,12 @@ public class AddMenu extends Main {
         options.add(option2.getText());
         options.add(option3.getText());
         options.add(option4.getText());
+        String pathToPicture = "none";
+        if (pictureFile != null){
+          pathToPicture = pictureFile.getPath();
+        }
         super.getQuestion().addQuestion(topic.getText(), question.getText(), "", options,
-            answer.getText(), "");
+            answer.getText(), pathToPicture);
         alert = new Alert(Alert.AlertType.INFORMATION, "Successfully added question!");
         alert.setHeaderText("Success.");
         alert.showAndWait().filter(response -> response == ButtonType.OK);
@@ -253,9 +278,8 @@ public class AddMenu extends Main {
           alert.setHeaderText("Success.");
           alert.showAndWait().filter(response -> response == ButtonType.OK);
         } catch (Exception e) {
-          e.printStackTrace();
           // Throw alert if failure to load file
-          alert = new Alert(Alert.AlertType.WARNING, "Error: " + e.getMessage());
+          alert = new Alert(Alert.AlertType.CONFIRMATION, "Error: " + e.getMessage());
           alert.setHeaderText("Error loading file.");
           alert.showAndWait().filter(response -> response == ButtonType.OK);
           jsonLoad.clear();
