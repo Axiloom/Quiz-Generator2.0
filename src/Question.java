@@ -202,6 +202,13 @@ public class Question {
     JSONObject questionJSON = new JSONObject();
     JSONArray questionArray = new JSONArray();
     List<String> topicList = getTopics();
+    
+    if(topicList.size() == 0) {
+      alert = new Alert(Alert.AlertType.WARNING, "There are no questions to save.");
+      alert.setHeaderText("Error:");
+      alert.showAndWait().filter(response -> response == ButtonType.OK);
+      return false;
+    }
 
     for (String topic : topicList) {
       ArrayList<Question.QuestionNode> questionList = getQuestions(topic);

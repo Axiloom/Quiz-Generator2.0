@@ -131,9 +131,6 @@ public class SaveMenu extends Main {
           alert.showAndWait().filter(response -> response == ButtonType.OK);
           fileName.clear();
         } else {
-          alert = new Alert(Alert.AlertType.WARNING, "Could not save to " + file + ".json");
-          alert.setHeaderText("Save failed.");
-          alert.showAndWait().filter(response -> response == ButtonType.OK);
           fileName.clear();
         }
       }
