@@ -202,9 +202,7 @@ public class MainMenu extends Main {
         // Pick Random Questions
         for (int i = 0 ; i < Integer.parseInt(numberOfQuestions.getText()) ; i++){
           String topic = selected.getItems().get(rand.nextInt(selected.getItems().size()));
-          System.out.println(topic);
           int questionNum = rand.nextInt(Main.getQuestion().getQuestions(topic).size());
-          System.out.println(questionNum);
           questions.add(Main.getQuestion().getQuestions(topic).get(questionNum));
         }
 

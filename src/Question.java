@@ -117,7 +117,7 @@ public class Question {
    * @param topic - topic of questions being retrieved
    * @return ArrayList<QuestionNode> of questions
    */
-  public ArrayList<QuestionNode> getQuestion(String topic) {
+  public ArrayList<QuestionNode> getQuestions(String topic) {
     return topics.get(topic);
   }
 
