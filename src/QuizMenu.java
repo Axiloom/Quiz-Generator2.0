@@ -121,15 +121,19 @@ public class QuizMenu extends Main {
       }
     };
 
+    // Shuffle options
+    Collections.shuffle(questions.get(currentQuestion).options);
+
     // setup choices
     for (int i = 0; i < questions.get(currentQuestion).options.size(); i++) {
-      Collections.shuffle(questions.get(i).options);
       CheckBox checkBox = new CheckBox(questions.get(currentQuestion).options.get(i));
       checkBox.setFont(Font.font("Arial", FontWeight.BOLD, 15));
       checkBox.selectedProperty().addListener(listener);
       checkBox.setMaxWidth(400);
       boxes.add(checkBox);
     }
+
+    // Add answer to random place
 
     ImageView image = new ImageView(new Image(QuizMenu.class.getResourceAsStream("no-image.png")));
 
