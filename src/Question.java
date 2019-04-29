@@ -35,6 +35,7 @@ public class Question {
     ArrayList<String> options; // all options as answers
     String answer; // correct answer
     ImageView img; // image going along with the question
+    String imageName; // retains the name of the image
     String topic; // topic associated with this question
 
     /**
@@ -51,6 +52,7 @@ public class Question {
         ArrayList<String> options, String correctAnswer) {
 
       if (!image.equals("none")) {
+        imageName = image;
         img = new ImageView(new Image(image));
       }
 
@@ -189,24 +191,6 @@ public class Question {
   public boolean saveToJSON(String jsonFile) {
     // TODO check for duplicate json name
     
-    // WORKING EXAMPLE
-//    JSONObject obj = new JSONObject();
-//    obj.put("Name", "crunchify.com");
-//    obj.put("Author", "App Shah");
-//
-//    JSONArray company = new JSONArray();
-//    company.add("Compnay: eBay");
-//    company.add("Compnay: Paypal");
-//    company.add("Compnay: Google");
-//    obj.put("Company List", company);
-//
-//    // try-with-resources statement based on post comment below :)
-//    try (FileWriter file = new FileWriter("/Users/<username>/Documents/file1.txt")) {
-//        file.write(obj.toJSONString());
-//        System.out.println("Successfully Copied JSON Object to File...");
-//        System.out.println("\nJSON Object: " + obj);
-//    }
-    
     JSONObject questionJSON = new JSONObject();
     JSONArray questionArray = new JSONArray();
     List<String> topicList = getTopics();
@@ -218,7 +202,7 @@ public class Question {
         aQuestion.put("meta-data", question.metadata);
         aQuestion.put("questionText", question.question);
         aQuestion.put("topic", question.topic);
-        aQuestion.put("image", question.img);
+        aQuestion.put("image", question.imageName);
         
         JSONArray choiceArray = new JSONArray();
         for(String option : question.options) {
@@ -243,20 +227,14 @@ public class Question {
     StringWriter out = new StringWriter();
     try {
       questionJSON.writeJSONString(out);
+//      FileWriter file = new FileWriter(jsonFile);
+      FileWriter file = new FileWriter(jsonFile + ".json");
+//      if(file.)
+      file.write(out.toString());
+      file.close();
     } catch (Exception e) {
-      System.out.println("test");
       return false;
     }
-    
-    String jsonText = out.toString();
-    System.out.print(jsonText);
-    
-//    try (FileWriter file = new FileWriter(jsonFile)) {
-//      file.write(topics.toJSONString());
-//      System.out.println("good");
-//    } catch (Exception e) {
-//      System.out.println("error");
-//    }
     return true;
   }
 
