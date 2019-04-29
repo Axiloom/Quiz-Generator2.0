@@ -118,7 +118,7 @@ public class SaveMenu extends Main {
     submit.setOnAction(event -> {
       String file = fileName.getText();
       if(file.equals("")) {
-        alert = new Alert(Alert.AlertType.ERROR, "Enter valid file name.");
+        alert = new Alert(Alert.AlertType.WARNING, "Enter valid file name.");
         alert.setHeaderText("Error:");
         alert.showAndWait().filter(response -> response == ButtonType.OK);
         // clear response
@@ -131,7 +131,7 @@ public class SaveMenu extends Main {
           alert.showAndWait().filter(response -> response == ButtonType.OK);
           fileName.clear();
         } else {
-          alert = new Alert(Alert.AlertType.ERROR, "Could not save to " + file + ".json");
+          alert = new Alert(Alert.AlertType.WARNING, "Could not save to " + file + ".json");
           alert.setHeaderText("Save failed.");
           alert.showAndWait().filter(response -> response == ButtonType.OK);
           fileName.clear();

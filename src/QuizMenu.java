@@ -180,7 +180,7 @@ public class QuizMenu extends Main {
       // Make sure an answer was selected
       if (activeBoxes.isEmpty()) {
         // Throw alert if no answer is selected
-        alert = new Alert(Alert.AlertType.ERROR, "Please select an answer.");
+        alert = new Alert(Alert.AlertType.WARNING, "Please select an answer.");
         alert.setHeaderText("No answer selected.");
         alert.showAndWait().filter(response -> response == ButtonType.OK);
       }

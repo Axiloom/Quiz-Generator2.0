@@ -255,7 +255,7 @@ public class AddMenu extends Main {
         } catch (Exception e) {
           e.printStackTrace();
           // Throw alert if failure to load file
-          alert = new Alert(Alert.AlertType.CONFIRMATION, "Error: " + e.getMessage());
+          alert = new Alert(Alert.AlertType.WARNING, "Error: " + e.getMessage());
           alert.setHeaderText("Error loading file.");
           alert.showAndWait().filter(response -> response == ButtonType.OK);
           jsonLoad.clear();

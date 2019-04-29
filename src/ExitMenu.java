@@ -1,7 +1,5 @@
 import java.util.Optional;
 import javafx.application.Platform;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Alert;
@@ -100,7 +98,7 @@ public class ExitMenu extends Main {
       String file = fileName.getText();
       Optional<ButtonType> button;
       if (file.equals("")) { // No file entered
-        alert = new Alert(Alert.AlertType.ERROR, "Enter a file name.");
+        alert = new Alert(Alert.AlertType.WARNING, "Enter a file name.");
         alert.setHeaderText("Error.");
         alert.showAndWait().filter(response -> response == ButtonType.OK);
         primaryStage.setScene(Main.getExitScene());

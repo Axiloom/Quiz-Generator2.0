@@ -1,7 +1,6 @@
-import java.text.DecimalFormat;
+
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
@@ -23,7 +22,6 @@ public class StatisticsMenu extends Main {
   private BorderPane root; // BorderPane being constructed
   private Button cont; // continue button to start new quiz
   private Button exit; // exit button
-  private Alert alert; // alert displaying exit confirmation
   protected double correct;
   private double numQuestions;
 

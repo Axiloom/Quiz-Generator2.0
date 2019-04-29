@@ -1,5 +1,4 @@
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
+
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
@@ -14,13 +13,10 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
-import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 /**
  * MainMenu Class constructs the GUI for the MainMenu to display how to add/load questions, save
@@ -36,10 +32,8 @@ public class MainMenu extends Main {
   private Button add; // add button
   private Button save; // save button
   private Button start; // start quiz button
-  private ComboBox<String> questionBox; // combobox displaying amount of questions
   private Alert alert; // alert displayed when improperly starting quiz
   private ListView<String> selected;
-  private int maxNumber;
   private MenuButton choices;
   private List<CheckMenuItem> topics;
   private TextField numberOfQuestions;
