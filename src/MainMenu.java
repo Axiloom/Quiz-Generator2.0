@@ -148,7 +148,11 @@ public class MainMenu extends Main {
     for (String s : Main.getQuestion().getTopics()){
       topics.add(new CheckMenuItem(s));
     }
-
+    
+    // Clear selected so that chosen topic questions aren't still there when you go back and
+    // load more questions
+    selected.getItems().clear();
+    
     choices.getItems().addAll(topics);
 
     for  (CheckMenuItem item : topics)  {
