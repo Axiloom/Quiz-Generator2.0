@@ -1,6 +1,5 @@
 import java.io.*;
 import java.net.URISyntaxException;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Hashtable;
@@ -8,12 +7,11 @@ import java.util.List;
 import java.util.Random;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-
-import java.util.Set;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
+
 
 /**
  * Main Question Class to retrieve anything question related
@@ -206,34 +204,56 @@ public class Question {
 //        System.out.println("\nJSON Object: " + obj);
 //    }
     
-    JSONObject topics = new JSONObject();
-    JSONArray opts = new JSONArray();
+    JSONObject questionJSON = new JSONObject();
+    JSONArray questionArray = new JSONArray();
     List<String> topicList = getTopics();
     
     for(String topic : topicList) {
       ArrayList<Question.QuestionNode> questionList = getQuestions(topic);
       for(QuestionNode question : questionList) {
-        topics.put("meta-data", question.metadata);
-        topics.put("questionText", question.question);
-        topics.put("topic", question.topic);
-        topics.put("image", question.img);
+        JSONObject aQuestion = new JSONObject();
+        aQuestion.put("meta-data", question.metadata);
+        aQuestion.put("questionText", question.question);
+        aQuestion.put("topic", question.topic);
+        aQuestion.put("image", question.img);
+        
+        JSONArray choiceArray = new JSONArray();
         for(String option : question.options) {
+          JSONObject opt = new JSONObject();
           if(option.equals(question.answer)) {
-            opts.add("isCorrect\":\"T\",\"choice\":" + option);
+            opt.put("isCorrect", "T");
+            opt.put("choice", option);
           }
           else {
-            opts.add("isCorrect\":\"F\",\"choice\":" + option);
+            opt.put("isCorrect", "F");
+            opt.put("choice", option);
           }
+          choiceArray.add(opt);
         }
-        topics.put("choiceArray", opts);
+        aQuestion.put("choiceArray", choiceArray);
+        
+        questionArray.add(aQuestion);
       }
     }
-    try (FileWriter file = new FileWriter(jsonFile)) {
-      file.write(topics.toJSONString());
-      System.out.println("good");
+    questionJSON.put("questionArray", questionArray);
+    
+    StringWriter out = new StringWriter();
+    try {
+      questionJSON.writeJSONString(out);
     } catch (Exception e) {
-      System.out.println("error");
+      System.out.println("test");
+      return false;
     }
+    
+    String jsonText = out.toString();
+    System.out.print(jsonText);
+    
+//    try (FileWriter file = new FileWriter(jsonFile)) {
+//      file.write(topics.toJSONString());
+//      System.out.println("good");
+//    } catch (Exception e) {
+//      System.out.println("error");
+//    }
     return true;
   }
 
