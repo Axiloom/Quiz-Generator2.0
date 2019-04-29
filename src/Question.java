@@ -4,7 +4,10 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Hashtable;
 import java.util.List;
+import java.util.Optional;
 import java.util.Random;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import org.json.simple.JSONArray;
@@ -22,6 +25,7 @@ public class Question {
 
   private Hashtable<String, ArrayList<QuestionNode>> topics; // Hash table to store questions
   private int numQuestions; // total number of questions available
+  private Alert alert; // alert displayed when saving
 
   /**
    * Each node represents a single question and all attributes associated with that question
@@ -150,12 +154,14 @@ public class Question {
       throws FileNotFoundException, IOException, ParseException, URISyntaxException {
 
     // Read file from .jar
-//    File jarFile = new File(Main.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath());
-//    String inputFilePath = jarFile.getParent() + File.separator + jsonFilePath;
-//
-//    FileInputStream fis = new FileInputStream(new File(jsonFilePath)); // todo change jsonFilePath to inputFilePath
-//    BufferedReader in = new BufferedReader(new InputStreamReader(fis));
-//    Object obj = new JSONParser().parse(in);
+    // File jarFile = new
+    // File(Main.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath());
+    // String inputFilePath = jarFile.getParent() + File.separator + jsonFilePath;
+    //
+    // FileInputStream fis = new FileInputStream(new File(jsonFilePath)); // todo change
+    // jsonFilePath to inputFilePath
+    // BufferedReader in = new BufferedReader(new InputStreamReader(fis));
+    // Object obj = new JSONParser().parse(in);
 
     Object obj = new JSONParser().parse(new FileReader(jsonFilePath));
 
@@ -164,8 +170,8 @@ public class Question {
 
     for (Object aQuestionArray : questionArray) {
       JSONObject jsonQuestion = (JSONObject) aQuestionArray;
-      String metaData = (String) jsonQuestion.get("meta-data"); // meta data
-      String question = (String) jsonQuestion.get("questionText"); // question
+      String metaData = (String) jsonQuestion.get("meta-data");
+      String question = (String) jsonQuestion.get("questionText");
       String topic = (String) jsonQuestion.get("topic");
       String image = (String) jsonQuestion.get("image");
       // need to interate through the choices
@@ -186,55 +192,64 @@ public class Question {
   }
 
   /**
-   * Saves all questions in a new json file
+   * Saves all questions in a new json file, checking for duplicates
    * 
    * @param jsonFile - name of the new JSON file
    * @return true if the file was successfully saved
    */
   public boolean saveToJSON(String jsonFile) {
-    // TODO check for duplicate json name
-    
+
     JSONObject questionJSON = new JSONObject();
     JSONArray questionArray = new JSONArray();
     List<String> topicList = getTopics();
-    
-    for(String topic : topicList) {
+
+    for (String topic : topicList) {
       ArrayList<Question.QuestionNode> questionList = getQuestions(topic);
-      for(QuestionNode question : questionList) {
+      for (QuestionNode question : questionList) {
         JSONObject aQuestion = new JSONObject();
         aQuestion.put("meta-data", question.metadata);
         aQuestion.put("questionText", question.question);
         aQuestion.put("topic", question.topic);
         aQuestion.put("image", question.imageName);
-        
+
         JSONArray choiceArray = new JSONArray();
-        for(String option : question.options) {
+        for (String option : question.options) {
           JSONObject opt = new JSONObject();
-          if(option.equals(question.answer)) {
+          if (option.equals(question.answer)) {
             opt.put("isCorrect", "T");
             opt.put("choice", option);
-          }
-          else {
+          } else {
             opt.put("isCorrect", "F");
             opt.put("choice", option);
           }
           choiceArray.add(opt);
         }
         aQuestion.put("choiceArray", choiceArray);
-        
+
         questionArray.add(aQuestion);
       }
     }
     questionJSON.put("questionArray", questionArray);
-    
-    StringWriter out = new StringWriter();
+
     try {
-      questionJSON.writeJSONString(out);
-//      FileWriter file = new FileWriter(jsonFile);
-      FileWriter file = new FileWriter(jsonFile + ".json");
-//      if(file.)
-      file.write(out.toString());
-      file.close();
+      File f1 = new File(jsonFile + ".json");
+      Optional<ButtonType> button;
+
+      if (!f1.createNewFile()) { // checks for duplicate file already existing
+
+        // Offer to override existing file
+        alert = new Alert(Alert.AlertType.CONFIRMATION, "Overwrite " + jsonFile + ".json?");
+        alert.setHeaderText("File Already Exists.");
+        button = alert.showAndWait();
+        if (button.get().equals(ButtonType.OK)) { // Overwrites
+          FileWriter file = new FileWriter(f1);
+          file.write(jsonFile + ".json");
+          file.close();
+        }
+        if (button.get().equals(ButtonType.CANCEL)) { // cancels save
+          return false;
+        }
+      }
     } catch (Exception e) {
       return false;
     }
