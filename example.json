@@ -31,7 +31,7 @@
   {
     "meta-data":"unused",
     "questionText": "Which command will change the current working directory to a sub-directory named $p3$?",
-    "topic": "linuxa",
+    "topic": "linux",
     "image":"none",
     "choiceArray":
     [
@@ -45,7 +45,7 @@
   {
     "meta-data":"unused",
     "questionText": "Which command will change the current working directory to a sub-directory named $p3$?",
-    "topic": "linuxb",
+    "topic": "linux",
     "image":"none",
     "choiceArray":
     [
@@ -59,7 +59,7 @@
   {
     "meta-data":"unused",
     "questionText": "Which command will change the current working directory to a sub-directory named $p3$?",
-    "topic": "linuxc",
+    "topic": "linux",
     "image":"none",
     "choiceArray":
     [
@@ -73,7 +73,7 @@
   {
     "meta-data":"unused",
     "questionText": "Which command will change the current working directory to a sub-directory named $p3$?",
-    "topic": "linuxd",
+    "topic": "linux",
     "image":"none",
     "choiceArray":
     [
@@ -87,7 +87,7 @@
   {
     "meta-data":"unused",
     "questionText": "Which command will change the current working directory to a sub-directory named $p3$?",
-    "topic": "linuxe",
+    "topic": "linux",
     "image":"none",
     "choiceArray":
     [

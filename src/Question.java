@@ -1,5 +1,6 @@
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
+import java.net.URISyntaxException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Hashtable;
@@ -7,7 +8,7 @@ import java.util.List;
 import java.util.Random;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import java.io.FileNotFoundException;
+
 import java.util.Set;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -33,7 +34,7 @@ public class Question {
   class QuestionNode {
     String metadata; // metadata for a question
     String question; // question text
-    String[] options; // all options as answers
+    ArrayList<String> options; // all options as answers
     String answer; // correct answer
     ImageView img; // image going along with the question
     String topic; // topic associated with this question
@@ -50,28 +51,14 @@ public class Question {
      */
     QuestionNode(String topic, String metadata, String questionText, String image,
         ArrayList<String> options, String correctAnswer) {
-      this.metadata = metadata;
-      this.question = questionText;
-
-      // Randomize choices
-      Random rand = new Random();
-      String[] randomizedOptions = new String[options.size()];
-
-      for (String option : options) {
-        int random = rand.nextInt(options.size());
-
-        while (randomizedOptions[random] != null)
-          random = rand.nextInt(options.size());
-
-        randomizedOptions[random] = option;
-      }
-
-      this.options = randomizedOptions;
 
       if (!image.equals("none")) {
         img = new ImageView(new Image(image));
       }
 
+      this.metadata = metadata;
+      this.question = questionText;
+      this.options = options;
       this.answer = correctAnswer;
       this.topic = topic;
     }
@@ -117,7 +104,7 @@ public class Question {
    * @param topic - topic of questions being retrieved
    * @return ArrayList<QuestionNode> of questions
    */
-  public ArrayList<QuestionNode> getQuestion(String topic) {
+  public ArrayList<QuestionNode> getQuestions(String topic) {
     return topics.get(topic);
   }
 
@@ -157,10 +144,21 @@ public class Question {
    * @throws FileNotFoundException file does not exist
    */
   public boolean loadJSON(String jsonFilePath)
-      throws FileNotFoundException, IOException, ParseException {
+      throws FileNotFoundException, IOException, ParseException, URISyntaxException {
+
+    // Read file from .jar
+    File jarFile = new File(Main.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath());
+    String inputFilePath = jarFile.getParent() + File.separator + jsonFilePath;
+    FileInputStream inStream = new FileInputStream(new File(inputFilePath));
+
+
+
+
+    FileInputStream fis = inStream;
+    BufferedReader in = new BufferedReader(new InputStreamReader(fis));
 
     // todo may need to change this for when we create an executable.
-    Object obj = new JSONParser().parse(new FileReader(jsonFilePath));
+    Object obj = new JSONParser().parse(in);
 
     JSONObject jo = (JSONObject) obj;
     JSONArray questionArray = (JSONArray) jo.get("questionArray");
