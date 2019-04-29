@@ -224,7 +224,9 @@ public class Question {
     StringWriter out = new StringWriter();
     try {
       questionJSON.writeJSONString(out);
-      FileWriter file = new FileWriter(jsonFile);
+//      FileWriter file = new FileWriter(jsonFile);
+      FileWriter file = new FileWriter(jsonFile + ".json");
+//      if(file.)
       file.write(out.toString());
       file.close();
     } catch (Exception e) {
