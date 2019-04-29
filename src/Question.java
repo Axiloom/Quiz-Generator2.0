@@ -149,12 +149,8 @@ public class Question {
     // Read file from .jar
     File jarFile = new File(Main.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath());
     String inputFilePath = jarFile.getParent() + File.separator + jsonFilePath;
-    FileInputStream inStream = new FileInputStream(new File(inputFilePath));
-
-    FileInputStream fis = inStream;
+    FileInputStream fis = new FileInputStream(new File(inputFilePath));
     BufferedReader in = new BufferedReader(new InputStreamReader(fis));
-
-    // todo may need to change this for when we create an executable.
     Object obj = new JSONParser().parse(in);
 
     JSONObject jo = (JSONObject) obj;

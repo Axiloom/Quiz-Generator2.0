@@ -121,7 +121,7 @@ public class QuizMenu extends Main {
       }
     };
 
-    // setup choices todo
+    // setup choices
     for (int i = 0; i < questions.get(currentQuestion).options.size(); i++) {
       Collections.shuffle(questions.get(i).options);
       CheckBox checkBox = new CheckBox(questions.get(currentQuestion).options.get(i));
