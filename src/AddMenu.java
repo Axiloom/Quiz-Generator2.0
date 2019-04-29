@@ -213,7 +213,7 @@ public class AddMenu extends Main {
           && option2.getText().equals("") && option3.getText().equals("")
           && option4.getText().equals("") && !jsonLoad.getText().equals("")) {
         try {
-          super.getQuestion().loadJSON(jsonLoad.getText());
+          super.getQuestion().loadJSON(jsonLoad.getText() + ".json");
           jsonLoad.clear();
           // Update menu displays
           super.getMainMenu().initialize();
