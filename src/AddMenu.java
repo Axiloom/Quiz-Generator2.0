@@ -161,7 +161,7 @@ public class AddMenu extends Main {
     fileChooserButton.setOnAction(event -> {
       File jsonFile = fileChooser.showOpenDialog(primaryStage);
       if (jsonFile.exists()){
-        jsonLoad.setText(jsonFile.getName());
+        jsonLoad.setText(jsonFile.getName().substring(0,jsonFile.getName().indexOf(".")));
       }
     });
 
