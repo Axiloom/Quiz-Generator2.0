@@ -16,23 +16,24 @@ import org.json.simple.parser.ParseException;
 
 /**
  * Main Question Class to retrieve anything question related
+ * 
+ * @author ATeam-99
  */
 public class Question {
 
-  private Hashtable<String,ArrayList<QuestionNode>> topics; // Hash table to store
-  // questions
+  private Hashtable<String, ArrayList<QuestionNode>> topics; // Hash table to store questions
   private int numQuestions; // total number of questions available
-  
+
   /**
    * Each node represents a single question and all attributes associated with that question
    * 
    * @author ATeam-99
    *
    */
-  class QuestionNode{
+  class QuestionNode {
     String metadata; // metadata for a question
-    String question; // question
-    String[] options; // all options
+    String question; // question text
+    String[] options; // all options as answers
     String answer; // correct answer
     ImageView img; // image going along with the question
     String topic; // topic associated with this question
@@ -40,15 +41,15 @@ public class Question {
     /**
      * Each node represents a single question and all attributes associated with that question
      *
-     * @param topic the topic associated with this question
-     * @param metadata the metadata associated with this question
-     * @param questionText the text associated with this question
-     * @param image the image associated with this question
-     * @param options the possible answers associated with this question
-     * @param correctAnswer the correct answer for this questions
+     * @param topic - the topic associated with this question
+     * @param metadata - the metadata associated with this question
+     * @param questionText - the text associated with this question
+     * @param image - the image associated with this question
+     * @param options - the possible answers associated with this question
+     * @param correctAnswer - the correct answer for this questions
      */
-    QuestionNode(String topic, String metadata, String questionText, String image, 
-    		ArrayList<String> options, String correctAnswer){
+    QuestionNode(String topic, String metadata, String questionText, String image,
+        ArrayList<String> options, String correctAnswer) {
       this.metadata = metadata;
       this.question = questionText;
 
@@ -56,7 +57,7 @@ public class Question {
       Random rand = new Random();
       String[] randomizedOptions = new String[options.size()];
 
-      for (String option: options){
+      for (String option : options) {
         int random = rand.nextInt(options.size());
 
         while (randomizedOptions[random] != null)
@@ -67,7 +68,7 @@ public class Question {
 
       this.options = randomizedOptions;
 
-      if(!image.equals("none")) {
+      if (!image.equals("none")) {
         img = new ImageView(new Image(image));
       }
 
@@ -83,14 +84,14 @@ public class Question {
     topics = new Hashtable<>();
     numQuestions = 0;
   }
-  
+
   /**
-   * Returns an arrayList of questions for a particular topic group in random order
+   * Returns an ArrayList of questions for a particular topic group in random order
    * 
    * @param topic the topic which we want to search for
    * @param numQuestions the number of questions from that topic
    */
-  public ArrayList<QuestionNode> getQuestions(String topic, int numQuestions){
+  public ArrayList<QuestionNode> getQuestions(String topic, int numQuestions) {
 
     // Random generator
     Random rand = new Random();
@@ -99,49 +100,53 @@ public class Question {
     ArrayList<QuestionNode> questions = new ArrayList<>();
 
     // Get random questions
-    for (int i = 0 ; i < numQuestions ; i++){
+    for (int i = 0; i < numQuestions; i++) {
       QuestionNode randomQuestion = topics.get(topic).get(rand.nextInt(topics.get(topic).size()));
 
-      while (questions.contains(randomQuestion)){
+      while (questions.contains(randomQuestion)) {
         randomQuestion = topics.get(topic).get(rand.nextInt(topics.get(topic).size()));
       }
-
       questions.add(randomQuestion);
     }
-
     return questions;
   }
 
-  public ArrayList<QuestionNode> getQuestion(String topic){
+  /**
+   * Gets an ArrayList of QuestionNodes containing the questions for a given topic
+   * 
+   * @param topic - topic of questions being retrieved
+   * @return ArrayList<QuestionNode> of questions
+   */
+  public ArrayList<QuestionNode> getQuestion(String topic) {
     return topics.get(topic);
   }
 
   /**
    * Adds a node to the topicList according to its topic
    *
-   * @param topic the topic of the question
-   * @param questionText the text of the question
-   * @param metadata the meta of the question
-   * @param options the options for the question
-   * @param correctAnswer the correct answer for the question
-   * @param image the image for the question
+   * @param topic - the topic of the question
+   * @param questionText - the text of the question
+   * @param metadata - the meta of the question
+   * @param options - the options for the question
+   * @param correctAnswer - the correct answer for the question
+   * @param image - the image for the question
    */
   public void addQuestion(String topic, String questionText, String metadata,
       ArrayList<String> options, String correctAnswer, String image) {
 
     // Question to be added
-    QuestionNode question = new QuestionNode(topic, metadata, questionText, image, options,
-            correctAnswer);
+    QuestionNode question =
+        new QuestionNode(topic, metadata, questionText, image, options, correctAnswer);
 
     // Create topic if it doesnt exist
     if (!topics.containsKey(question.topic))
       topics.put(question.topic, new ArrayList<>());
 
     // Add question
-	  topics.get(question.topic).add(question);
-	  ++numQuestions;
+    topics.get(question.topic).add(question);
+    ++numQuestions;
   }
-  
+
   /**
    * Parses a json file and adds the information to the data fields
    * 
@@ -151,13 +156,14 @@ public class Question {
    * @throws IOException error with reading file
    * @throws FileNotFoundException file does not exist
    */
-  public boolean loadJSON(String jsonFilePath) throws FileNotFoundException, IOException, ParseException {
+  public boolean loadJSON(String jsonFilePath)
+      throws FileNotFoundException, IOException, ParseException {
 
     // todo may need to change this for when we create an executable.
     Object obj = new JSONParser().parse(new FileReader(jsonFilePath));
 
-	  JSONObject jo = (JSONObject) obj;
-	  JSONArray questionArray = (JSONArray) jo.get("questionArray");
+    JSONObject jo = (JSONObject) obj;
+    JSONArray questionArray = (JSONArray) jo.get("questionArray");
 
     for (Object aQuestionArray : questionArray) {
       JSONObject jsonQuestion = (JSONObject) aQuestionArray;
@@ -177,23 +183,22 @@ public class Question {
       }
 
       // Add Question
-      addQuestion(topic,question,metaData,choices,correctAnswer,image);
+      addQuestion(topic, question, metaData, choices, correctAnswer, image);
     }
-		
     return true;
   }
-  
+
   /**
    * Saves all questions in a new json file
    * 
-   * @param nameOfJson - name of the new JSON file
+   * @param jsonFile - name of the new JSON file
    * @return true if the file was successfully saved
    */
-  public boolean saveToJSON(String nameOfJson) {
+  public boolean saveToJSON(String jsonFile) {
     // TODO check for duplicate json name
     return true;
   }
-  
+
   /**
    * Gets the total number of questions available across all topics
    * 
@@ -202,7 +207,7 @@ public class Question {
   public int getSize() {
     return numQuestions;
   }
-  
+
   /**
    * Gets the number of questions available for a particular topic
    * 
@@ -222,11 +227,11 @@ public class Question {
   }
 
   /**
-   * gets a set of alphabetized topics
+   * Gets a set of alphabetized topics
    *
-   * @return set containing all topics
+   * @return List containing all topics in the data set
    */
-  public List<String> getTopics(){
+  public List<String> getTopics() {
 
     List<String> alphabetizedList = new ArrayList<>(topics.keySet());
 
@@ -234,21 +239,4 @@ public class Question {
 
     return alphabetizedList;
   }
-
-//  public static void main(String[] args){
-//    Question question = new Question();
-//    ArrayList<String> al = new ArrayList<>();
-//    al.add("a");
-//    al.add("a");
-//    al.add("a");
-//    al.add("a");
-//    question.addQuestion("Helo","a","a",al,"a","");
-//    question.addQuestion("Helo","b","b",al,"b","");
-//
-//    System.out.println(question.topics.get("Helo").get(0).question);
-//
-//    System.out.println(question.topics.size());
-//    System.out.println(question.topics.get("Helo").size());
-//
-//  }
 }
