@@ -2,15 +2,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.CheckMenuItem;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
-import javafx.scene.control.MenuButton;
-import javafx.scene.control.MenuItem;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundImage;
@@ -22,6 +14,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
+import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 import java.util.ArrayList;
 import java.util.List;
@@ -49,6 +42,7 @@ public class MainMenu extends Main {
   private int maxNumber;
   private MenuButton choices;
   private List<CheckMenuItem> topics;
+  private TextField numberOfQuestions;
   /**
    * MainMenu Constructor that declares the field variables
    * 
@@ -145,6 +139,7 @@ public class MainMenu extends Main {
 
     // List of topics
     topics.clear(); // clear list before adding more topics to avoid repeats
+
     for (String s : Main.getQuestion().getTopics()){
       topics.add(new CheckMenuItem(s));
     }
@@ -164,41 +159,12 @@ public class MainMenu extends Main {
       });
     }
 
-    // Number of Questions ComboBox
-    ObservableList<String> questions = FXCollections.observableArrayList();
-    questionBox = new ComboBox<>(questions);
-    questionBox.setPromptText("Set # Questions");
-    questionBox.setPrefWidth(180);
-    questionBox.setVisibleRowCount(5);
-
-    // Handler for picking multiple topics
-    for (CheckMenuItem item : topics){
-      item.setOnAction(event -> {
-
-        // Reset Max Number
-        maxNumber = 0;
-
-        // Get the total number of questions for a topic
-        for (String s : selected.getItems()){
-          maxNumber += Main.getQuestion().getSize(s);
-        }
-
-        // Create a list of the range of numbers needed
-        List<Integer> rangeTemp = IntStream.rangeClosed(1, maxNumber).boxed().collect(Collectors.toList());
-
-        // List to store integers as strings
-        List<String> range = new ArrayList<>();
-
-        // Convert integers to strings for setItems
-        for (Integer i : rangeTemp) range.add(Integer.toString(i));
-
-        // Set the items in our questionBox
-        questionBox.setItems(FXCollections.observableList(range));
-      });
-    }
+    // Number of Questions TextField
+    numberOfQuestions = new TextField();
+    numberOfQuestions.setPromptText("Set # Questions");
 
     // Right Panel
-    VBox rightVBox = new VBox(choices, questionBox);
+    VBox rightVBox = new VBox(choices, numberOfQuestions);
     rightVBox.setAlignment(Pos.TOP_RIGHT);
     rightVBox.setPadding(new Insets(20, 20, 0, 0));
 
@@ -218,7 +184,7 @@ public class MainMenu extends Main {
     start.setOnAction(event -> {
 
       // Error Message
-      if(selected.getItems().isEmpty() || questionBox.getValue() == null) {
+      if(selected.getItems().isEmpty() || numberOfQuestions.getText().isEmpty()) {
         alert = new Alert(Alert.AlertType.ERROR, "Select a topic and number of questions");
         alert.setHeaderText("Error.");
         alert.showAndWait().filter(response -> response == ButtonType.OK);
@@ -228,26 +194,29 @@ public class MainMenu extends Main {
       // Continue onto quiz
       else {
 
+        // to store our final questions to be asked
         ArrayList<Question.QuestionNode> questions = new ArrayList<>();
-
-        for (String topic : selected.getItems()){
-          questions.addAll(Main.getQuestion().getQuestion(topic));
-        }
 
         Random rand = new Random();
 
-        for (int i = questions.size() ; i > Integer.parseInt(questionBox.getValue()) ; i--){
-          questions.remove(rand.nextInt(questions.size()));
+        // Pick Random Questions
+        for (int i = 0 ; i < Integer.parseInt(numberOfQuestions.getText()) ; i++){
+          String topic = selected.getItems().get(rand.nextInt(selected.getItems().size()));
+          System.out.println(topic);
+          int questionNum = rand.nextInt(Main.getQuestion().getQuestions(topic).size());
+          System.out.println(questionNum);
+          questions.add(Main.getQuestion().getQuestions(topic).get(questionNum));
         }
 
         Main.setupQuizScene(questions);
-        Main.setupStatisticsScene(Integer.parseInt(questionBox.getValue()));
+        Main.setupStatisticsScene(Integer.parseInt(numberOfQuestions.getText()));
 
         // Reset all topics and #'s
         for (CheckMenuItem item : topics){
           item.setSelected(false);
         }
-        questionBox.getSelectionModel().clearSelection();
+
+        numberOfQuestions.clear();
 
         primaryStage.setScene(Main.getQuizScene());
       }

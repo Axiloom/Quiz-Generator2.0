@@ -112,7 +112,7 @@ public class Question {
     return questions;
   }
 
-  public ArrayList<QuestionNode> getQuestion(String topic){
+  public ArrayList<QuestionNode> getQuestions(String topic){
     return topics.get(topic);
   }
 
