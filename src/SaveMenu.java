@@ -124,11 +124,18 @@ public class SaveMenu extends Main {
         // clear response
         fileName.clear();
       } else {
-        super.getQuestion().saveToJSON(file);
-        alert = new Alert(Alert.AlertType.INFORMATION, "Saved to " + file + ".json");
-        alert.setHeaderText("Save successful!");
-        alert.showAndWait().filter(response -> response == ButtonType.OK);
-        fileName.clear();
+        Boolean saved = super.getQuestion().saveToJSON(file);
+        if(saved) {
+          alert = new Alert(Alert.AlertType.INFORMATION, "Saved to " + file + ".json");
+          alert.setHeaderText("Save successful!");
+          alert.showAndWait().filter(response -> response == ButtonType.OK);
+          fileName.clear();
+        } else {
+          alert = new Alert(Alert.AlertType.ERROR, "Could not save to " + file + ".json");
+          alert.setHeaderText("Save failed.");
+          alert.showAndWait().filter(response -> response == ButtonType.OK);
+          fileName.clear();
+        }
       }
       primaryStage.setScene(Main.getSaveScene());
     });
