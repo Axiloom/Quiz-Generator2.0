@@ -137,7 +137,13 @@ public class QuizMenu extends Main {
 
     image.setPreserveRatio(true);
     image.setFitHeight(200);
-    VBox answers = new VBox(boxes.get(0), boxes.get(1), boxes.get(2), boxes.get(3), boxes.get(4));
+    VBox answers = new VBox();
+    // Adds as many options as there are available
+    for(int i = 0; i < 5; ++i) {
+      if(boxes.get(i) != null) {
+        answers.getChildren().add(boxes.get(i));
+      }
+    }
     VBox displayImage = new VBox(image);
     BorderPane answersAndPicture = new BorderPane();
     answersAndPicture.setLeft(answers);
