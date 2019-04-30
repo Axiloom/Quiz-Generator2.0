@@ -243,7 +243,7 @@ public class MainMenu extends Main {
         else {
 
           // Used to keep track of duplicate questions
-          Hashtable<String,Integer> visited = new Hashtable<String,Integer>();
+          Hashtable<String,Integer> visited = new Hashtable<>();
 
           // Pick Random Questions
           for (int i = 0; i < Integer.parseInt(numberOfQuestions.getText()); i++) {
