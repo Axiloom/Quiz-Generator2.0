@@ -115,41 +115,38 @@ public class AddMenu extends Main {
    * Constructs the center panel in the BorderPane
    */
   private void setCenterPanel() {
+    
     Label topicLabel = new Label("Enter Topic: ");
-    BorderPane topicPane = new BorderPane();
-    topicPane.setLeft(topicLabel);
-    topicPane.setRight(topic);
-    topicPane.setMaxWidth(320);
-
+    HBox top = new HBox(topicLabel, topic);
+    
     Label questionLabel = new Label("Enter Question: ");
-    BorderPane questionPane = new BorderPane();
-    questionPane.setLeft(questionLabel);
-    questionPane.setRight(question);
-    questionPane.setMaxWidth(320);
-
+    HBox que = new HBox(questionLabel, question);
+    
     Label pictureLabel = new Label("Load Picture: ");
-    HBox pictureHBox = new HBox(pictureLabel,picture,pictureFileChooserButton);
+    HBox pic = new HBox(pictureLabel,picture,pictureFileChooserButton);
+    
+    Label answerLabel = new Label("Enter Answer: ");
+    HBox ans = new HBox(answerLabel, answer);
+    
+    Label optionsLabel = new Label("Enter Other Options: ");
+    Label blank1 = new Label("");
+    Label blank2 = new Label("");
+    Label blank3 = new Label("");
+    HBox opt = new HBox(optionsLabel, option1);
+    HBox opt1 = new HBox(blank1, option2);
+    HBox opt2 = new HBox(blank2, option3);
+    HBox opt3 = new HBox(blank3, option4);
+    VBox opt4 = new VBox(opt1, opt2, opt3);
+    
+    VBox left = new VBox(top, que, pic);
+    left.setAlignment(Pos.CENTER);
+    VBox right = new VBox(ans, opt, opt4);
+    right.setPadding(new Insets(50,0,0,0));
+    HBox topBox = new HBox(left, right);
+
     pictureFileChooser.setTitle("Browse for picture");
     picture.setTooltip(new Tooltip("picture must be located in the same directory as .jar"));
     pictureFileChooserButton.setTooltip(new Tooltip("picture must be located in the same directory as .jar"));
-    pictureLabel.setPrefWidth(133);
-    picture.setPrefWidth(186);
-    pictureHBox.setPadding(new Insets(0,0,10,0));
-
-    Label answerLabel = new Label("Enter Answer: ");
-    BorderPane answerPane = new BorderPane();
-    answerPane.setLeft(answerLabel);
-    answerPane.setRight(answer);
-    answerPane.setMaxWidth(320);
-    
-    Label optionsLabel = new Label("Enter Other Options: ");
-    BorderPane optionPane = new BorderPane();
-    optionPane.setLeft(optionsLabel);
-    optionsLabel.setWrapText(true);
-    optionsLabel.setPrefWidth(100);
-    VBox optionsBox = new VBox(option1, option2, option3, option4);
-    optionPane.setRight(optionsBox);
-    optionPane.setMaxWidth(320);
 
     Label or = new Label("OR");
     or.setFont(Font.font("Arial", FontWeight.BOLD, 16));
@@ -171,16 +168,31 @@ public class AddMenu extends Main {
     jsonFileChooser.setTitle("Browse for .json");
     jsonLoad.setTooltip(new Tooltip(".json must be located in the same directory as .jar"));
     jsonFileChooserButton.setTooltip(new Tooltip(".json must be located in the same directory as .jar"));
+    
+    VBox centerVBox = new VBox(topBox, or, loadHBox);
+    
+    // Formatting
+    questionLabel.setPrefWidth(106);
+    topicLabel.setPrefWidth(106);
+    pictureLabel.setPrefWidth(106);
+    answerLabel.setPrefWidth(141);
+    optionsLabel.setPrefWidth(141);
+    blank1.setPrefWidth(141);
+    blank2.setPrefWidth(141);
+    blank3.setPrefWidth(141);
+    topic.setPrefWidth(177);
+    question.setPrefWidth(177);
+    picture.setPrefWidth(177);
+    answer.setPrefWidth(177);
+    option1.setPrefWidth(177);
+    option2.setPrefWidth(177);
+    option3.setPrefWidth(177);
+    option4.setPrefWidth(177);
+    or.setPadding(new Insets(0,0,0,329));
+    loadHBox.setPadding(new Insets(0,0,0,150));
     typeLabel.setPadding(new Insets(10,20,0,0));
-    loadLabel.setPrefWidth(150);
-    jsonLoad.setPrefWidth(170);
-
-    // Center Panel
-    VBox topVBox = new VBox(topicPane, questionPane, pictureHBox, answerPane, optionPane);
-    VBox bottomVBox = new VBox(loadHBox);
-    bottomVBox.setSpacing(10);
-    VBox centerVBox = new VBox(topVBox, or, bottomVBox);
-    centerVBox.setPadding(new Insets(50, 20, 30, 200));
+    loadLabel.setPrefWidth(80);
+    centerVBox.setSpacing(20);
 
     // Listeners
     jsonFileChooserButton.setOnAction(event -> {
