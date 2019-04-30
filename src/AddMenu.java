@@ -221,6 +221,7 @@ public class AddMenu extends Main {
       option3.clear();
       option4.clear();
       jsonLoad.clear();
+      picture.clear();
       primaryStage.setScene(Main.getMainScene());
     });
 
@@ -238,12 +239,13 @@ public class AddMenu extends Main {
         options.add(option2.getText());
         options.add(option3.getText());
         options.add(option4.getText());
-        String pathToPicture = "none";
-        if (pictureFile != null){
-          pathToPicture = pictureFile.getPath();
+
+        if (picture.getText().equals("")){
+          picture.setText("none");
         }
+
         super.getQuestion().addQuestion(topic.getText(), question.getText(), "", options,
-            answer.getText(), pathToPicture);
+            answer.getText(), picture.getText());
         alert = new Alert(Alert.AlertType.INFORMATION, "Successfully added question!");
         alert.setHeaderText("Success.");
         alert.showAndWait().filter(response -> response == ButtonType.OK);
@@ -256,6 +258,10 @@ public class AddMenu extends Main {
         option2.clear();
         option3.clear();
         option4.clear();
+<<<<<<< HEAD
+=======
+        jsonLoad.clear();
+>>>>>>> refs/remotes/origin/master
         picture.clear();
 
         // Update menu displays
@@ -269,7 +275,8 @@ public class AddMenu extends Main {
           && option4.getText().equals("") && picture.getText().equals("")
           && !jsonLoad.getText().equals("")) {
         try {
-          super.getQuestion().loadJSON(jsonFile.getPath());
+
+          super.getQuestion().loadJSON(jsonLoad.getText() + ".json");
           jsonLoad.clear();
           // Update menu displays
           super.getMainMenu().initialize();
