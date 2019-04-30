@@ -243,11 +243,6 @@ public class AddMenu extends Main {
         if (picture.getText().equals("")){
           picture.setText("none");
         }
-        if (pictureFile != null){
-          picture.setText(pictureFile.getPath());
-        }
-
-        System.out.println(picture.getText());
 
         super.getQuestion().addQuestion(topic.getText(), question.getText(), "", options,
             answer.getText(), picture.getText());
@@ -277,7 +272,8 @@ public class AddMenu extends Main {
           && option4.getText().equals("") && picture.getText().equals("")
           && !jsonLoad.getText().equals("")) {
         try {
-          super.getQuestion().loadJSON(jsonFile.getPath());
+
+          super.getQuestion().loadJSON(jsonLoad.getText() + ".json");
           jsonLoad.clear();
           // Update menu displays
           super.getMainMenu().initialize();
