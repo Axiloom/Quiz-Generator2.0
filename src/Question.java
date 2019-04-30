@@ -1,3 +1,28 @@
+///////////////////////////////////////////////////////////////////////////////
+//
+// Assignment: Quiz-Generator Team Project
+// Due: 5-2-19
+// Title: Question 
+// Files: Question.java
+// Course: CS 400, Spring 2019, Lec 001
+//
+// Authors: A-Team 99 
+//          (John Bednarczyk, Joseph Lessner, Joshua Liberko, Shefali Mukerji, Mitchell Sutrick)
+// Lecturer's Name: Deb Deppeler
+//
+///////////////////////////// CREDIT OUTSIDE HELP /////////////////////////////
+//
+// Students who get help from sources other than their partner must fully
+// acknowledge and credit those sources of help here. Instructors and TAs do
+// not need to be credited here, but tutors, friends, relatives, room mates,
+// strangers, and others do. If you received no outside help from either type
+// of source, then please explicitly indicate NONE.
+//
+// Persons: NONE
+// Online Sources: NONE
+//
+///////////////////////////////////////////////////////////////////////////////
+
 import java.io.*;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
@@ -55,7 +80,7 @@ public class Question {
     QuestionNode(String topic, String metadata, String questionText, String image,
         ArrayList<String> options, String correctAnswer) {
 
-      if(!image.equals("none")){
+      if (!image.equals("none")) {
         File imageFile = new File(image);
         Image img1 = new Image(imageFile.toURI().toString());
         img = new ImageView(img1);
@@ -167,7 +192,6 @@ public class Question {
 
     Object obj = new JSONParser().parse(new FileReader(jsonFilePath));
 
-
     JSONObject jo = (JSONObject) obj;
     JSONArray questionArray = (JSONArray) jo.get("questionArray");
 
@@ -198,7 +222,7 @@ public class Question {
    * Saves all questions in a new json file, checking for duplicates
    * 
    * @param jsonFile - name of the new JSON file
-   * @return true if the file was successfully saved
+   * @return true if the file was successfully saved, false otherwise
    */
   @SuppressWarnings("unchecked")
   public boolean saveToJSON(String jsonFile) {
@@ -206,14 +230,14 @@ public class Question {
     JSONObject questionJSON = new JSONObject();
     JSONArray questionArray = new JSONArray();
     List<String> topicList = getTopics();
-    
-    if(topicList.size() == 0) {
+
+    if (topicList.size() == 0) {
       alert = new Alert(Alert.AlertType.WARNING, "There are no questions to save.");
       alert.setHeaderText("Error:");
       alert.showAndWait().filter(response -> response == ButtonType.OK);
       return false;
     }
-    
+
     for (String topic : topicList) {
       ArrayList<Question.QuestionNode> questionList = getQuestions(topic);
       for (QuestionNode question : questionList) {
@@ -260,6 +284,10 @@ public class Question {
         if (button.get().equals(ButtonType.CANCEL)) { // cancels save
           return false;
         }
+      } else { // Save
+        FileWriter file = new FileWriter(f1);
+        file.write(questionJSON.toJSONString() + ".json");
+        file.close();
       }
     } catch (Exception e) {
       return false;

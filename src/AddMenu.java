@@ -1,6 +1,29 @@
+///////////////////////////////////////////////////////////////////////////////
+//
+// Assignment: Quiz-Generator Team Project
+// Due: 5-2-19
+// Title: Add Menu 
+// Files: AddMenu.java
+// Course: CS 400, Spring 2019, Lec 001
+//
+// Authors: A-Team 99 
+//          (John Bednarczyk, Joseph Lessner, Joshua Liberko, Shefali Mukerji, Mitchell Sutrick)
+// Lecturer's Name: Deb Deppeler
+//
+///////////////////////////// CREDIT OUTSIDE HELP /////////////////////////////
+//
+// Students who get help from sources other than their partner must fully
+// acknowledge and credit those sources of help here. Instructors and TAs do
+// not need to be credited here, but tutors, friends, relatives, room mates,
+// strangers, and others do. If you received no outside help from either type
+// of source, then please explicitly indicate NONE.
+//
+// Persons: NONE
+// Online Sources: NONE
+//
+///////////////////////////////////////////////////////////////////////////////
 
 import java.io.File;
-import java.net.URISyntaxException;
 import java.util.ArrayList;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;

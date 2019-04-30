@@ -1,3 +1,29 @@
+///////////////////////////////////////////////////////////////////////////////
+//
+// Assignment: Quiz-Generator Team Project
+// Due: 5-2-19
+// Title: Quiz Menu 
+// Files: QuizMenu.java
+// Course: CS 400, Spring 2019, Lec 001
+//
+// Authors: A-Team 99 
+//          (John Bednarczyk, Joseph Lessner, Joshua Liberko, Shefali Mukerji, Mitchell Sutrick)
+// Lecturer's Name: Deb Deppeler
+//
+///////////////////////////// CREDIT OUTSIDE HELP /////////////////////////////
+//
+// Students who get help from sources other than their partner must fully
+// acknowledge and credit those sources of help here. Instructors and TAs do
+// not need to be credited here, but tutors, friends, relatives, room mates,
+// strangers, and others do. If you received no outside help from either type
+// of source, then please explicitly indicate NONE.
+//
+// Persons: NONE
+// Online Sources: https://stackoverflow.com/questions/51568622/restrict-checkboxes-checked-javafx
+//                 Code to allow only one answer to be selected in the quiz
+//
+///////////////////////////////////////////////////////////////////////////////
+
 import javafx.beans.property.ReadOnlyProperty;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -33,10 +59,10 @@ public class QuizMenu extends Main {
   private Button quit; // quit button
   private BorderPane root; // BorderPane being constructed
   private int currentQuestion; // current question number of the quiz
-  private Alert alert;
-  private ArrayList<Question.QuestionNode> questions;
-  private ArrayList<CheckBox> activeBoxes = new ArrayList<>();
-  private ArrayList<CheckBox> boxes = new ArrayList<>();
+  private Alert alert; // alert for attempting to quit the quiz
+  private ArrayList<Question.QuestionNode> questions; // all questions in this current quiz
+  private ArrayList<CheckBox> activeBoxes = new ArrayList<>(); // active option that was selected
+  private ArrayList<CheckBox> boxes = new ArrayList<>(); // check boxes for each choice option
 
   /**
    * QuestionMenu Constructor that declares the field variables and sets the background color
@@ -99,10 +125,10 @@ public class QuizMenu extends Main {
     question.setWrapText(true);
     question.setFont(Font.font("Arial", FontWeight.BOLD, 16));
 
-    // Make checkbox only have 1 answer TODO: NOT SURE HOW THIS WORKS; GOT OFF GITHUB
-    // https://stackoverflow.com/questions/51568622/restrict-checkboxes-checked-javafx
-    // Number of different check boxes the user can select
-    int maxNumberOfSelections = 1;
+    // START of code from GitHub >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    
+    // Make check box only have one selected answer
+    int maxNumberOfSelections = 1; // number of different check boxes user can select
     ChangeListener<Boolean> listener = (o, oldValue, newValue) -> {
       // get checkbox containing property
       CheckBox cb = (CheckBox) ((ReadOnlyProperty) o).getBean();
@@ -120,7 +146,8 @@ public class QuizMenu extends Main {
         activeBoxes.remove(cb);
       }
     };
-
+    // END of code from GitHub <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+    
     // Shuffle options
     Collections.shuffle(questions.get(currentQuestion).options);
 
@@ -134,7 +161,6 @@ public class QuizMenu extends Main {
     }
 
     // Add answer to random place
-
     ImageView image = new ImageView(new Image(QuizMenu.class.getResourceAsStream("no-image.png")));
 
     if (questions.get(currentQuestion).img != null) {
@@ -145,8 +171,8 @@ public class QuizMenu extends Main {
     image.setFitHeight(200);
     VBox answers = new VBox();
     // Adds as many options as there are available
-    for(int i = 0; i < boxes.size(); ++i) {
-        answers.getChildren().add(boxes.get(i));
+    for (int i = 0; i < boxes.size(); ++i) {
+      answers.getChildren().add(boxes.get(i));
     }
     VBox displayImage = new VBox(image);
     BorderPane answersAndPicture = new BorderPane();
@@ -197,11 +223,10 @@ public class QuizMenu extends Main {
         boxes.clear();
 
         // Exit if last question was answered
-        if (currentQuestion == questions.size()-1) {
+        if (currentQuestion == questions.size() - 1) {
           currentQuestion = 0;
           primaryStage.setScene(Main.getStatisticsScene());
-        }
-        else {
+        } else {
           currentQuestion++;
           Main.getQuizMenu().initialize(questions);
         }
@@ -226,6 +251,7 @@ public class QuizMenu extends Main {
       }
     });
 
+    // Style
     next.setOnMouseEntered(e -> next.setStyle("-fx-font-size: 14pt;"));
     next.setOnMouseExited(e -> next.setStyle("-fx-font-size: 12pt;"));
     quit.setOnMouseEntered(e -> quit.setStyle("-fx-font-size: 14pt;"));
