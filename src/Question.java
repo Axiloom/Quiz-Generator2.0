@@ -61,6 +61,10 @@ public class Question {
         File imageFile = new File(image);
         Image img1 = new Image(imageFile.toURI().toString());
         img = new ImageView(img1);
+        imageName = image;
+      } else {
+        img = null;
+        imageName = "none";
       }
 
       this.id = Question.id++; // Increase ID by 1
