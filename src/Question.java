@@ -200,6 +200,7 @@ public class Question {
    * @param jsonFile - name of the new JSON file
    * @return true if the file was successfully saved
    */
+  @SuppressWarnings("unchecked")
   public boolean saveToJSON(String jsonFile) {
 
     JSONObject questionJSON = new JSONObject();
@@ -212,7 +213,7 @@ public class Question {
       alert.showAndWait().filter(response -> response == ButtonType.OK);
       return false;
     }
-
+    
     for (String topic : topicList) {
       ArrayList<Question.QuestionNode> questionList = getQuestions(topic);
       for (QuestionNode question : questionList) {
