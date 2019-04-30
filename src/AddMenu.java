@@ -182,7 +182,6 @@ public class AddMenu extends Main {
     VBox centerVBox = new VBox(topVBox, or, bottomVBox);
     centerVBox.setPadding(new Insets(50, 20, 30, 200));
 
-
     // Listeners
     jsonFileChooserButton.setOnAction(event -> {
       jsonFile = jsonFileChooser.showOpenDialog(primaryStage);
@@ -196,7 +195,6 @@ public class AddMenu extends Main {
       if (pictureFile != null && pictureFile.exists())
         picture.setText(pictureFile.getName());
     });
-
 
     root.setCenter(centerVBox);
   }
@@ -232,7 +230,8 @@ public class AddMenu extends Main {
       if (!topic.getText().equals("") && !question.getText().equals("")
           && !answer.getText().equals("") && !option1.getText().equals("")
           && !option2.getText().equals("") && !option3.getText().equals("")
-          && !option4.getText().equals("") && jsonLoad.getText().equals("")) {
+          && !option4.getText().equals("") && !picture.getText().equals("")
+              && jsonLoad.getText().equals("")) {
         ArrayList<String> options = new ArrayList<>();
         options.add(answer.getText());
         options.add(option1.getText());
@@ -266,9 +265,10 @@ public class AddMenu extends Main {
       else if (topic.getText().equals("") && question.getText().equals("")
           && answer.getText().equals("") && option1.getText().equals("")
           && option2.getText().equals("") && option3.getText().equals("")
-          && option4.getText().equals("") && !jsonLoad.getText().equals("")) {
+          && option4.getText().equals("") && picture.getText().equals("")
+          && !jsonLoad.getText().equals("")) {
         try {
-          super.getQuestion().loadJSON(jsonLoad.getText() + ".json");
+          super.getQuestion().loadJSON(jsonFile.getPath());
           jsonLoad.clear();
           // Update menu displays
           super.getMainMenu().initialize();
@@ -288,7 +288,8 @@ public class AddMenu extends Main {
       else if (!topic.getText().equals("") && !question.getText().equals("")
           && !answer.getText().equals("") && !option1.getText().equals("")
           && !option2.getText().equals("") && !option3.getText().equals("")
-          && !option4.getText().equals("") && !jsonLoad.getText().equals("")) {
+          && !option4.getText().equals("") && !picture.getText().equals("")
+              && !jsonLoad.getText().equals("")) {
 
         // Throw alert if add question and parse json are entered
         alert = new Alert(Alert.AlertType.WARNING,
