@@ -1,29 +1,55 @@
+///////////////////////////////////////////////////////////////////////////////
+//
+// Assignment: Quiz-Generator Team Project
+// Due: 5-2-19
+// Title: Main 
+// Files: Main.java
+// Course: CS 400, Spring 2019, Lec 001
+//
+// Authors: A-Team 99 
+//          (John Bednarczyk, Joseph Lessner, Joshua Liberko, Shefali Mukerji, Mitchell Sutrick)
+// Lecturer's Name: Deb Deppeler
+//
+///////////////////////////// CREDIT OUTSIDE HELP /////////////////////////////
+//
+// Students who get help from sources other than their partner must fully
+// acknowledge and credit those sources of help here. Instructors and TAs do
+// not need to be credited here, but tutors, friends, relatives, room mates,
+// strangers, and others do. If you received no outside help from either type
+// of source, then please explicitly indicate NONE.
+//
+// Persons: NONE
+// Online Sources: NONE
+//
+///////////////////////////////////////////////////////////////////////////////
+
 import javafx.application.Application;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
 import java.util.ArrayList;
 
 /**
- * Initalize GUI
+ * Main initializes the GUI and creates instances of the various Scenes and Menus that are used
+ * throughout the operation of the program.
  * 
- * @author team-99
+ * @author ATeam-99
  *
  */
 public class Main extends Application {
 
-  private static Scene mainScene;
-  private static Scene saveScene;
-  private static Scene addScene;
-  private static Scene quizScene;
-  private static Scene statisticsScene;
-  private static Scene exitScene;
-  private static Question question;
-  private static MainMenu mainMenu;
-  private static SaveMenu saveMenu;
-  private static AddMenu addMenu;
-  private static QuizMenu quizMenu;
-  private static StatisticsMenu statisticsMenu;
-  
+  private static Scene mainScene; // main scene instance
+  private static Scene saveScene; // save scene instance
+  private static Scene addScene; // add scene instance
+  private static Scene quizScene; // quiz scene instance
+  private static Scene statisticsScene; // statistics scene instance
+  private static Scene exitScene; // exit scene instance
+  private static Question question; // Question Class instance
+  private static MainMenu mainMenu; // instance of Class that constructs the main menu
+  private static SaveMenu saveMenu; // instance of Class that constructs the save menu
+  private static AddMenu addMenu; // instance of Class that constructs the add menu
+  private static QuizMenu quizMenu; // instance of Class that constructs the quiz menu
+  private static StatisticsMenu statisticsMenu; // instance of Class that constructs the stats menu
+
   /**
    * Start the application here (initial setup)
    */
@@ -42,14 +68,14 @@ public class Main extends Application {
 
       // Create Scenes
       mainScene = new Scene(mainMenu.initialize(), 700, 500);
-      saveScene = new Scene(saveMenu.initialize() , 700, 500);
+      saveScene = new Scene(saveMenu.initialize(), 700, 500);
       addScene = new Scene(addMenu.initialize(), 700, 500);
       exitScene = new Scene(exitMenu.initialize(), 700, 500);
 
       // Style for main menu
       mainScene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 
-      // present stage
+      // Present stage
       primaryStage.setScene(mainScene);
       primaryStage.setTitle("Quiz Generator");
       primaryStage.show();
@@ -60,6 +86,11 @@ public class Main extends Application {
     }
   }
 
+  /**
+   * Main method that launches the program
+   * 
+   * @param args (unused)
+   */
   public static void main(String[] args) {
     launch(args);
   }
@@ -69,7 +100,7 @@ public class Main extends Application {
    *
    * @return the main scene
    */
-  protected static Scene getMainScene(){
+  protected static Scene getMainScene() {
     return mainScene;
   }
 
@@ -78,7 +109,7 @@ public class Main extends Application {
    *
    * @return the save scene
    */
-  protected static Scene getSaveScene(){
+  protected static Scene getSaveScene() {
     return saveScene;
   }
 
@@ -87,7 +118,7 @@ public class Main extends Application {
    *
    * @return the add scene
    */
-  protected static Scene getAddScene(){
+  protected static Scene getAddScene() {
     return addScene;
   }
 
@@ -96,7 +127,7 @@ public class Main extends Application {
    *
    * @return the quiz scene
    */
-  protected static Scene getQuizScene(){
+  protected static Scene getQuizScene() {
     return quizScene;
   }
 
@@ -105,19 +136,19 @@ public class Main extends Application {
    *
    * @return the statistics scene
    */
-  protected static Scene getStatisticsScene(){
+  protected static Scene getStatisticsScene() {
     return statisticsScene;
   }
-  
+
   /**
    * Getter for exit scene
    *
    * @return the exit scene
    */
-  protected static Scene getExitScene(){
+  protected static Scene getExitScene() {
     return exitScene;
   }
-  
+
   /**
    * Getter for the Question instance
    * 
@@ -126,7 +157,7 @@ public class Main extends Application {
   protected static Question getQuestion() {
     return question;
   }
-  
+
   /**
    * Getter for the MainMenu instance
    * 
@@ -135,7 +166,7 @@ public class Main extends Application {
   protected static MainMenu getMainMenu() {
     return mainMenu;
   }
-  
+
   /**
    * Getter for the SaveMenu instance
    * 
@@ -144,7 +175,7 @@ public class Main extends Application {
   protected static SaveMenu getSaveMenu() {
     return saveMenu;
   }
-  
+
   /**
    * Getter for the AddMenu instance
    * 
@@ -153,7 +184,7 @@ public class Main extends Application {
   protected static AddMenu getAddMenu() {
     return addMenu;
   }
-  
+
   /**
    * Getter for the Questionmenu instance
    * 
@@ -168,16 +199,17 @@ public class Main extends Application {
    *
    * @return instance of StatisticsMenu
    */
-  protected static StatisticsMenu getStatisticsMenu(){ return statisticsMenu; }
+  protected static StatisticsMenu getStatisticsMenu() {
+    return statisticsMenu;
+  }
 
   /**
    * Creates the quizScene
    */
-  protected static void setupQuizScene(ArrayList<Question.QuestionNode> questions){
+  protected static void setupQuizScene(ArrayList<Question.QuestionNode> questions) {
     if (quizScene == null) {
       quizScene = new Scene(quizMenu.initialize(questions), 700, 500);
-    }
-    else {
+    } else {
       quizScene.setRoot(quizMenu.initialize(questions));
     }
   }
@@ -187,11 +219,10 @@ public class Main extends Application {
    *
    * @param numQuestions the number of questions in the quiz
    */
-  protected static void setupStatisticsScene(int numQuestions){
+  protected static void setupStatisticsScene(int numQuestions) {
     if (statisticsScene == null) {
       statisticsScene = new Scene(statisticsMenu.initialize(numQuestions), 700, 500);
-    }
-    else {
+    } else {
       statisticsScene.setRoot(statisticsMenu.initialize(numQuestions));
     }
   }
