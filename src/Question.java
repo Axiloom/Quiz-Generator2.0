@@ -55,12 +55,10 @@ public class Question {
     QuestionNode(String topic, String metadata, String questionText, String image,
         ArrayList<String> options, String correctAnswer) {
 
-      if (!image.equals("none")) {
-        imageName = image;
-        img = new ImageView(new Image(image));
-      } else {
-        imageName = "none";
-        img = null;
+      if(image.equals("none")){
+        File imageFile = new File(image);
+        Image img1 = new Image(imageFile.toURI().toString());
+        img = new ImageView(img1);
       }
 
       this.metadata = metadata;
