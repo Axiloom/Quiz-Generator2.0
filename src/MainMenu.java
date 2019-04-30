@@ -226,14 +226,14 @@ public class MainMenu extends Main {
         // to store our final questions to be asked
         ArrayList<Question.QuestionNode> questions = new ArrayList<>();
 
+        // todo TIME COMPLEXITY O(N)
+        // Get all questions
+        for (String topic : selected.getItems()){
+          questions.addAll(Main.getQuestion().getQuestions(topic));
+        }
+
         // If there are less selected questions than possible questions, go through all
         if (Integer.parseInt(numberOfQuestions.getText()) >= totalQuestions){
-
-          // todo TIME COMPLEXITY O(N)
-          // Get all questions
-          for (String topic : selected.getItems()){
-            questions.addAll(Main.getQuestion().getQuestions(topic));
-          }
 
           // Set the new number of questions for the quiz
           numberOfQuestions.setText(Integer.toString(questions.size()));
@@ -245,20 +245,9 @@ public class MainMenu extends Main {
           Random rand = new Random();
 
           // Pick Random Questions
-          for (int i = 0; i < Integer.parseInt(numberOfQuestions.getText()); i++) {
-
-            String topic = selected.getItems().get(rand.nextInt(selected.getItems().size()));
-            int questionNum = rand.nextInt(Main.getQuestion().getQuestions(topic).size());
-
-            // Check for duplicates todo COMPLEXITY numberOfQuestions*O(N), must maintain O(N)
-            for (Question.QuestionNode question : questions){
-              if (question.id == Main.getQuestion().getQuestions(topic).get(questionNum).id) {
-                topic = selected.getItems().get(rand.nextInt(selected.getItems().size()));
-                questionNum = rand.nextInt(Main.getQuestion().getQuestions(topic).size());
-              }
-            }
-
-            questions.add(Main.getQuestion().getQuestions(topic).get(questionNum));
+          for (int i = questions.size(); i > Integer.parseInt(numberOfQuestions.getText()); i--) {
+            int questionNum = rand.nextInt(questions.size());
+            questions.remove(questionNum);
           }
         }
 
