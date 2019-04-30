@@ -28,19 +28,19 @@ public class AddMenu extends Main {
   private TextField topic; // records the question topic
   private TextField question; // records the question text
   private TextField answer; // records the answer to the question
-  private TextField picture;
+  private TextField picture; // records the picture file name
   private TextField option1; // records alternative choice
   private TextField option2; // records alternative choice
   private TextField option3; // records alternative choice
   private TextField option4; // records alternative choice
-  private TextField jsonLoad; // file name to load
+  private TextField jsonLoad; // json file name to load
   private Alert alert; // alert for failure to load files
-  private FileChooser jsonFileChooser;
-  private FileChooser pictureFileChooser;
-  private Button jsonFileChooserButton;
-  private Button pictureFileChooserButton;
-  private File pictureFile;
-  private File jsonFile;
+  private FileChooser jsonFileChooser; // popup file system for browsing files
+  private FileChooser pictureFileChooser; // popup file system for browsing picture files
+  private Button jsonFileChooserButton; // browse button
+  private Button pictureFileChooserButton; // brose button
+  private File pictureFile; // file of the picture for the question being added
+  private File jsonFile; // file of the jsonFile being loaded
 
   /**
    * AddMenu Constructor that declares the field variables and sets the background color
@@ -227,7 +227,7 @@ public class AddMenu extends Main {
 
     // Submit Listener
     submit.setOnAction(event -> {
-      // Add question
+      // Add question with picture
       if (!topic.getText().equals("") && !question.getText().equals("")
           && !answer.getText().equals("") && !option1.getText().equals("")
           && !option2.getText().equals("") && !option3.getText().equals("")
@@ -239,10 +239,6 @@ public class AddMenu extends Main {
         options.add(option2.getText());
         options.add(option3.getText());
         options.add(option4.getText());
-
-        if (picture.getText().equals("")){
-          picture.setText("none");
-        }
 
         super.getQuestion().addQuestion(topic.getText(), question.getText(), "", options,
             answer.getText(), picture.getText());
@@ -258,10 +254,42 @@ public class AddMenu extends Main {
         option2.clear();
         option3.clear();
         option4.clear();
-<<<<<<< HEAD
-=======
         jsonLoad.clear();
->>>>>>> refs/remotes/origin/master
+        picture.clear();
+
+        // Update menu displays
+        super.getMainMenu().initialize();
+        super.getAddMenu().initialize();
+        super.getSaveMenu().initialize();
+      } // Add question with no picture
+      else if (!topic.getText().equals("") && !question.getText().equals("")
+          && !answer.getText().equals("") && !option1.getText().equals("")
+          && !option2.getText().equals("") && !option3.getText().equals("")
+          && !option4.getText().equals("") && picture.getText().equals("")
+              && jsonLoad.getText().equals("")) {
+        ArrayList<String> options = new ArrayList<>();
+        options.add(answer.getText());
+        options.add(option1.getText());
+        options.add(option2.getText());
+        options.add(option3.getText());
+        options.add(option4.getText());
+        picture.setText("none");
+
+        super.getQuestion().addQuestion(topic.getText(), question.getText(), "", options,
+            answer.getText(), picture.getText());
+        alert = new Alert(Alert.AlertType.INFORMATION, "Successfully added question!");
+        alert.setHeaderText("Success.");
+        alert.showAndWait().filter(response -> response == ButtonType.OK);
+
+        // Clear TextFields
+        topic.clear();
+        question.clear();
+        answer.clear();
+        option1.clear();
+        option2.clear();
+        option3.clear();
+        option4.clear();
+        jsonLoad.clear();
         picture.clear();
 
         // Update menu displays
