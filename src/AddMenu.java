@@ -113,13 +113,13 @@ public class AddMenu extends Main {
     // Labels
     Label label = new Label("Add Menu");
     String qLabel = "" + getQuestion().getSize();
-    if(getQuestion().getSize() == 1) {
+    if (getQuestion().getSize() == 1) {
       qLabel += " question available";
     } else {
       qLabel += " questions available";
     }
     Label qAvailableLabel = new Label(qLabel);
-    
+
     // Style
     qAvailableLabel.setFont(Font.font("Arial", FontWeight.BOLD, 16));
     label.setFont(Font.font("Arial", FontWeight.BOLD, 16));
@@ -138,19 +138,19 @@ public class AddMenu extends Main {
    * Constructs the center panel in the BorderPane
    */
   private void setCenterPanel() {
-    
+
     Label topicLabel = new Label("Enter Topic: ");
     HBox top = new HBox(topicLabel, topic);
-    
+
     Label questionLabel = new Label("Enter Question: ");
     HBox que = new HBox(questionLabel, question);
-    
+
     Label pictureLabel = new Label("Load Picture: ");
-    HBox pic = new HBox(pictureLabel,picture,pictureFileChooserButton);
-    
+    HBox pic = new HBox(pictureLabel, picture, pictureFileChooserButton);
+
     Label answerLabel = new Label("Enter Answer: ");
     HBox ans = new HBox(answerLabel, answer);
-    
+
     Label optionsLabel = new Label("Enter Other Options: ");
     Label blank1 = new Label("");
     Label blank2 = new Label("");
@@ -160,40 +160,44 @@ public class AddMenu extends Main {
     HBox opt2 = new HBox(blank2, option3);
     HBox opt3 = new HBox(blank3, option4);
     VBox opt4 = new VBox(opt1, opt2, opt3);
-    
+
     VBox left = new VBox(top, que, pic);
     left.setAlignment(Pos.CENTER);
     VBox right = new VBox(ans, opt, opt4);
-    right.setPadding(new Insets(50,0,0,0));
+    right.setPadding(new Insets(50, 0, 0, 0));
     HBox topBox = new HBox(left, right);
 
     pictureFileChooser.setTitle("Browse for picture");
     picture.setTooltip(new Tooltip("picture must be located in the same directory as .jar"));
-    pictureFileChooserButton.setTooltip(new Tooltip("picture must be located in the same directory as .jar"));
+    pictureFileChooserButton
+        .setTooltip(new Tooltip("picture must be located in the same directory as .jar"));
 
     Label or = new Label("OR");
     or.setFont(Font.font("Arial", FontWeight.BOLD, 16));
     or.setPadding(new Insets(20, 0, 20, 0));
 
-    // Set project directory for browse window todo not sure whats wrong, but this doesnt work with executable
-//    try {
-//      jsonFileChooser.setInitialDirectory(new File(Main.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath()));
-//    }
-//    catch (URISyntaxException e){
-//      e.printStackTrace();
-//      System.out.println("Error while retrieving project directory");
-//    }
+    // Set project directory for browse window todo not sure whats wrong, but this doesnt work with
+    // executable
+    // try {
+    // jsonFileChooser.setInitialDirectory(new
+    // File(Main.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath()));
+    // }
+    // catch (URISyntaxException e){
+    // e.printStackTrace();
+    // System.out.println("Error while retrieving project directory");
+    // }
 
     Label loadLabel = new Label("Load JSON: ");
     Label typeLabel = new Label(".json");
     typeLabel.setFont(Font.font("Arial", 14));
-    HBox loadHBox = new HBox(loadLabel,jsonLoad,typeLabel,jsonFileChooserButton);
+    HBox loadHBox = new HBox(loadLabel, jsonLoad, typeLabel, jsonFileChooserButton);
     jsonFileChooser.setTitle("Browse for .json");
     jsonLoad.setTooltip(new Tooltip(".json must be located in the same directory as .jar"));
-    jsonFileChooserButton.setTooltip(new Tooltip(".json must be located in the same directory as .jar"));
-    
+    jsonFileChooserButton
+        .setTooltip(new Tooltip(".json must be located in the same directory as .jar"));
+
     VBox centerVBox = new VBox(topBox, or, loadHBox);
-    
+
     // Formatting
     questionLabel.setPrefWidth(106);
     topicLabel.setPrefWidth(106);
@@ -211,17 +215,17 @@ public class AddMenu extends Main {
     option2.setPrefWidth(177);
     option3.setPrefWidth(177);
     option4.setPrefWidth(177);
-    or.setPadding(new Insets(0,0,0,329));
-    loadHBox.setPadding(new Insets(0,0,0,150));
-    typeLabel.setPadding(new Insets(10,20,0,0));
+    or.setPadding(new Insets(0, 0, 0, 329));
+    loadHBox.setPadding(new Insets(0, 0, 0, 150));
+    typeLabel.setPadding(new Insets(10, 20, 0, 0));
     loadLabel.setPrefWidth(80);
     centerVBox.setSpacing(20);
 
     // Listeners
     jsonFileChooserButton.setOnAction(event -> {
       jsonFile = jsonFileChooser.showOpenDialog(primaryStage);
-      if (jsonFile != null && jsonFile.exists()){
-        jsonLoad.setText(jsonFile.getName().substring(0,jsonFile.getName().indexOf(".")));
+      if (jsonFile != null && jsonFile.exists()) {
+        jsonLoad.setText(jsonFile.getName().substring(0, jsonFile.getName().indexOf(".")));
       }
     });
 
@@ -267,7 +271,7 @@ public class AddMenu extends Main {
           && !answer.getText().equals("") && !option1.getText().equals("")
           && !option2.getText().equals("") && !option3.getText().equals("")
           && !option4.getText().equals("") && !picture.getText().equals("")
-              && jsonLoad.getText().equals("")) {
+          && jsonLoad.getText().equals("")) {
         ArrayList<String> options = new ArrayList<>();
         options.add(answer.getText());
         options.add(option1.getText());
@@ -301,7 +305,7 @@ public class AddMenu extends Main {
           && !answer.getText().equals("") && !option1.getText().equals("")
           && !option2.getText().equals("") && !option3.getText().equals("")
           && !option4.getText().equals("") && picture.getText().equals("")
-              && jsonLoad.getText().equals("")) {
+          && jsonLoad.getText().equals("")) {
         ArrayList<String> options = new ArrayList<>();
         options.add(answer.getText());
         options.add(option1.getText());
@@ -360,7 +364,7 @@ public class AddMenu extends Main {
           && !answer.getText().equals("") && !option1.getText().equals("")
           && !option2.getText().equals("") && !option3.getText().equals("")
           && !option4.getText().equals("") && !picture.getText().equals("")
-              && !jsonLoad.getText().equals("")) {
+          && !jsonLoad.getText().equals("")) {
 
         // Throw alert if add question and parse json are entered
         alert = new Alert(Alert.AlertType.WARNING,

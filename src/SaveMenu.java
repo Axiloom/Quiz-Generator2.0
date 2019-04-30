@@ -37,8 +37,8 @@ import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 
 /**
- * SaveMenu Class constructs the GUI for the SaveMenu to display how to save current questions
- * to a json file.
+ * SaveMenu Class constructs the GUI for the SaveMenu to display how to save current questions to a
+ * json file.
  * 
  * @author ATeam-99
  *
@@ -51,7 +51,6 @@ public class SaveMenu extends Main {
   private Button submit; // submit button
   private TextField fileName; // TextField to record saved file name
   private Alert alert; // alert to help user save properly
-
 
   /**
    * SaveMenu Constructor that declares the field variables and sets the background color
@@ -72,15 +71,15 @@ public class SaveMenu extends Main {
    * 
    * @return root - BorderPane of the SaveMenu screen
    */
-  public BorderPane initialize(){
+  public BorderPane initialize() {
 
     setTopPanel();
     setCenterPanel();
     setBottomPanel();
-    
+
     return root;
   }
-  
+
   /**
    * Constructs the top panel in the BorderPane
    */
@@ -88,7 +87,7 @@ public class SaveMenu extends Main {
     // Labels
     Label label = new Label("Save Menu");
     String qLabel = "" + getQuestion().getSize();
-    if(getQuestion().getSize() == 1) {
+    if (getQuestion().getSize() == 1) {
       qLabel += " question available";
     } else {
       qLabel += " questions available";
@@ -98,51 +97,51 @@ public class SaveMenu extends Main {
     // Style
     qAvailableLabel.setFont(Font.font("Arial", FontWeight.BOLD, 16));
     label.setFont(Font.font("Arial", FontWeight.BOLD, 16));
-    
+
     // Top Panel
     HBox topPanel = new HBox(label, qAvailableLabel);
-    topPanel.setPadding(new Insets(10,50,10,50));
+    topPanel.setPadding(new Insets(10, 50, 10, 50));
     topPanel.setSpacing(100);
     topPanel.setAlignment(Pos.CENTER);
     topPanel.setStyle("-fx-background-color: #9fb983");
-    
+
     root.setTop(topPanel);
   }
-  
+
   /**
    * Constructs the center panel in the BorderPane
    */
   private void setCenterPanel() {
-    
+
     Label jsonLabel = new Label("Save as JSON:");
-    
+
     // Center Panel
-    HBox centerPanel = new HBox(jsonLabel,fileName);
-    centerPanel.setPadding(new Insets(150,100,50,200));
+    HBox centerPanel = new HBox(jsonLabel, fileName);
+    centerPanel.setPadding(new Insets(150, 100, 50, 200));
     centerPanel.setSpacing(10);
-    
+
     root.setCenter(centerPanel);
   }
-  
+
   /**
    * Constructs the bottom panel in the BorderPane
    */
   private void setBottomPanel() {
     // Style
-    back.setPrefSize(100,50);
-    submit.setPrefSize(100,50);
+    back.setPrefSize(100, 50);
+    submit.setPrefSize(100, 50);
     back.setOnMouseEntered(e -> back.setStyle("-fx-font-size: 14pt;"));
     back.setOnMouseExited(e -> back.setStyle("-fx-font-size: 12pt;"));
     submit.setOnMouseEntered(e -> submit.setStyle("-fx-font-size: 14pt;"));
     submit.setOnMouseExited(e -> submit.setStyle("-fx-font-size: 12pt;"));
-    
+
     // Listeners
     back.setOnAction(event -> {
       primaryStage.setScene(Main.getMainScene());
     });
     submit.setOnAction(event -> {
       String file = fileName.getText();
-      if(file.equals("")) {
+      if (file.equals("")) {
         alert = new Alert(Alert.AlertType.WARNING, "Enter valid file name.");
         alert.setHeaderText("Error:");
         alert.showAndWait().filter(response -> response == ButtonType.OK);
@@ -150,7 +149,7 @@ public class SaveMenu extends Main {
         fileName.clear();
       } else {
         Boolean saved = super.getQuestion().saveToJSON(file);
-        if(saved) {
+        if (saved) {
           alert = new Alert(Alert.AlertType.INFORMATION, "Saved to " + file + ".json");
           alert.setHeaderText("Save successful!");
           alert.showAndWait().filter(response -> response == ButtonType.OK);
@@ -161,12 +160,12 @@ public class SaveMenu extends Main {
       }
       primaryStage.setScene(Main.getSaveScene());
     });
-    
+
     // Bottom Panel
-    HBox bottomPanel = new HBox(back,submit);
-    bottomPanel.setPadding(new Insets(0,100,65,200));
+    HBox bottomPanel = new HBox(back, submit);
+    bottomPanel.setPadding(new Insets(0, 100, 65, 200));
     bottomPanel.setSpacing(100);
-    
+
     root.setBottom(bottomPanel);
   }
 }
