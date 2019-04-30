@@ -218,6 +218,7 @@ public class MainMenu extends Main {
         // Keep track of the total number of questions
         int totalQuestions = 0;
 
+        // todo TIME COMPLEXITY O(N)
         for (String topic : selected.getItems()){
             totalQuestions += Main.getQuestion().getQuestions(topic).size();
         }
@@ -225,11 +226,10 @@ public class MainMenu extends Main {
         // to store our final questions to be asked
         ArrayList<Question.QuestionNode> questions = new ArrayList<>();
 
-        Random rand = new Random();
-
         // If there are less selected questions than possible questions, go through all
-        if (Integer.parseInt(numberOfQuestions.getText()) > totalQuestions){
+        if (Integer.parseInt(numberOfQuestions.getText()) >= totalQuestions){
 
+          // todo TIME COMPLEXITY O(N)
           // Get all questions
           for (String topic : selected.getItems()){
             questions.addAll(Main.getQuestion().getQuestions(topic));
@@ -242,19 +242,22 @@ public class MainMenu extends Main {
 
         else {
 
-          // Used to keep track of duplicate questions
-          Hashtable<String,Integer> visited = new Hashtable<>();
+          Random rand = new Random();
 
           // Pick Random Questions
           for (int i = 0; i < Integer.parseInt(numberOfQuestions.getText()); i++) {
+
             String topic = selected.getItems().get(rand.nextInt(selected.getItems().size()));
             int questionNum = rand.nextInt(Main.getQuestion().getQuestions(topic).size());
 
-            while (visited.contains(topic) && visited.get(topic).equals(questionNum)){
-              topic = selected.getItems().get(rand.nextInt(selected.getItems().size()));
-              questionNum = rand.nextInt(Main.getQuestion().getQuestions(topic).size());
+            // Check for duplicates todo COMPLEXITY numberOfQuestions*O(N), must maintain O(N)
+            for (Question.QuestionNode question : questions){
+              if (question.id == Main.getQuestion().getQuestions(topic).get(questionNum).id) {
+                topic = selected.getItems().get(rand.nextInt(selected.getItems().size()));
+                questionNum = rand.nextInt(Main.getQuestion().getQuestions(topic).size());
+              }
             }
-            visited.put(topic,questionNum);
+
             questions.add(Main.getQuestion().getQuestions(topic).get(questionNum));
           }
         }
@@ -262,6 +265,7 @@ public class MainMenu extends Main {
         Main.setupQuizScene(questions);
         Main.setupStatisticsScene(Integer.parseInt(numberOfQuestions.getText()));
 
+        // todo TIME COMPLEXITY O(N)
         // Reset all topics and #'s
         for (CheckMenuItem item : topics) {
           item.setSelected(false);

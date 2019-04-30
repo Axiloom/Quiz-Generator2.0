@@ -7,25 +7,25 @@
     "image":"none",
     "choiceArray":
     [
-      {"isCorrect":"F","choice":"pwd"},
-      {"isCorrect":"F","choice":"cwd"},
-      {"isCorrect":"F","choice":"cp"},
-      {"isCorrect":"T","choice":"cd"},
-      {"isCorrect":"F","choice":"mkdir"}
+      {"isCorrect":"F","choice":"a"},
+      {"isCorrect":"F","choice":"a"},
+      {"isCorrect":"F","choice":"a"},
+      {"isCorrect":"T","choice":"a"},
+      {"isCorrect":"F","choice":"a"}
     ]
   },
   {
     "meta-data":"unused",
     "questionText": "If a good hash function is found and a reasonable table size is used for a hash table, then the operations of put, remove, and get should achieve an average time complexity of _____ where $N$ is the number of items and $TS$ is the size of the table.",
-    "topic": "hash table",
+    "topic": "linux",
     "image":"none",
     "choiceArray":
     [
-      {"isCorrect":"T","choice":"$O(1)$"},
-      {"isCorrect":"F","choice":"$O(log N)$"},
-      {"isCorrect":"F","choice":"$O(log_{TS} N)$"},
-      {"isCorrect":"F","choice":"$O(N^{TS})$"},
-      {"isCorrect":"F","choice":"$O(N)$"}
+      {"isCorrect":"T","choice":"b"},
+      {"isCorrect":"F","choice":"b"},
+      {"isCorrect":"F","choice":"b"},
+      {"isCorrect":"F","choice":"b"},
+      {"isCorrect":"F","choice":"b"}
     ]
   },
   {
@@ -35,11 +35,11 @@
     "image":"none",
     "choiceArray":
     [
-      {"isCorrect":"F","choice":"pwd"},
-      {"isCorrect":"F","choice":"cwd"},
-      {"isCorrect":"F","choice":"cp"},
-      {"isCorrect":"T","choice":"cd"},
-      {"isCorrect":"F","choice":"mkdir"}
+      {"isCorrect":"F","choice":"c"},
+      {"isCorrect":"F","choice":"c"},
+      {"isCorrect":"F","choice":"c"},
+      {"isCorrect":"T","choice":"c"},
+      {"isCorrect":"F","choice":"c"}
     ]
   },
   {
@@ -49,11 +49,11 @@
     "image":"none",
     "choiceArray":
     [
-      {"isCorrect":"F","choice":"pwd"},
-      {"isCorrect":"F","choice":"cwd"},
-      {"isCorrect":"F","choice":"cp"},
-      {"isCorrect":"T","choice":"cd"},
-      {"isCorrect":"F","choice":"mkdir"}
+      {"isCorrect":"F","choice":"d"},
+      {"isCorrect":"F","choice":"d"},
+      {"isCorrect":"F","choice":"d"},
+      {"isCorrect":"T","choice":"d"},
+      {"isCorrect":"F","choice":"d"}
     ]
   },
   {
@@ -63,11 +63,11 @@
     "image":"none",
     "choiceArray":
     [
-      {"isCorrect":"F","choice":"pwd"},
-      {"isCorrect":"F","choice":"cwd"},
-      {"isCorrect":"F","choice":"cp"},
-      {"isCorrect":"T","choice":"cd"},
-      {"isCorrect":"F","choice":"mkdir"}
+      {"isCorrect":"F","choice":"e"},
+      {"isCorrect":"F","choice":"e"},
+      {"isCorrect":"F","choice":"e"},
+      {"isCorrect":"T","choice":"e"},
+      {"isCorrect":"F","choice":"e"}
     ]
   },
   {
@@ -77,11 +77,11 @@
     "image":"none",
     "choiceArray":
     [
-      {"isCorrect":"F","choice":"pwd"},
-      {"isCorrect":"F","choice":"cwd"},
-      {"isCorrect":"F","choice":"cp"},
-      {"isCorrect":"T","choice":"cd"},
-      {"isCorrect":"F","choice":"mkdir"}
+      {"isCorrect":"F","choice":"f"},
+      {"isCorrect":"F","choice":"f"},
+      {"isCorrect":"F","choice":"f"},
+      {"isCorrect":"T","choice":"f"},
+      {"isCorrect":"F","choice":"f"}
     ]
   },
   {
@@ -91,11 +91,67 @@
     "image":"none",
     "choiceArray":
     [
-      {"isCorrect":"F","choice":"pwd"},
-      {"isCorrect":"F","choice":"cwd"},
-      {"isCorrect":"F","choice":"cp"},
-      {"isCorrect":"T","choice":"cd"},
-      {"isCorrect":"F","choice":"mkdir"}
+      {"isCorrect":"F","choice":"g"},
+      {"isCorrect":"F","choice":"g"},
+      {"isCorrect":"F","choice":"g"},
+      {"isCorrect":"T","choice":"g"},
+      {"isCorrect":"F","choice":"g"}
+    ]
+  },
+  {
+    "meta-data":"unused",
+    "questionText": "Which command will change the current working directory to a sub-directory named $p3$?",
+    "topic": "linux",
+    "image":"none",
+    "choiceArray":
+    [
+      {"isCorrect":"F","choice":"h"},
+      {"isCorrect":"F","choice":"h"},
+      {"isCorrect":"F","choice":"h"},
+      {"isCorrect":"T","choice":"h"},
+      {"isCorrect":"F","choice":"h"}
+    ]
+  },
+  {
+    "meta-data":"unused",
+    "questionText": "Which command will change the current working directory to a sub-directory named $p3$?",
+    "topic": "linux",
+    "image":"none",
+    "choiceArray":
+    [
+      {"isCorrect":"F","choice":"i"},
+      {"isCorrect":"F","choice":"i"},
+      {"isCorrect":"F","choice":"i"},
+      {"isCorrect":"T","choice":"i"},
+      {"isCorrect":"F","choice":"i"}
+    ]
+  },
+  {
+    "meta-data":"unused",
+    "questionText": "Which command will change the current working directory to a sub-directory named $p3$?",
+    "topic": "linux",
+    "image":"none",
+    "choiceArray":
+    [
+      {"isCorrect":"F","choice":"j"},
+      {"isCorrect":"F","choice":"j"},
+      {"isCorrect":"F","choice":"j"},
+      {"isCorrect":"T","choice":"j"},
+      {"isCorrect":"F","choice":"j"}
+    ]
+  },
+  {
+    "meta-data":"unused",
+    "questionText": "Which command will change the current working directory to a sub-directory named $p3$?",
+    "topic": "linux",
+    "image":"none",
+    "choiceArray":
+    [
+      {"isCorrect":"F","choice":"k"},
+      {"isCorrect":"F","choice":"k"},
+      {"isCorrect":"F","choice":"k"},
+      {"isCorrect":"T","choice":"k"},
+      {"isCorrect":"F","choice":"k"}
     ]
   }
 ]
