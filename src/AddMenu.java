@@ -132,8 +132,8 @@ public class AddMenu extends Main {
     pictureFileChooser.setTitle("Browse for picture");
     picture.setTooltip(new Tooltip("picture must be located in the same directory as .jar"));
     pictureFileChooserButton.setTooltip(new Tooltip("picture must be located in the same directory as .jar"));
-    pictureLabel.setPrefWidth(149);
-    picture.setPrefWidth(171);
+    pictureLabel.setPrefWidth(133);
+    picture.setPrefWidth(186);
     pictureHBox.setPadding(new Insets(0,0,10,0));
 
     Label answerLabel = new Label("Enter Answer: ");
@@ -256,6 +256,7 @@ public class AddMenu extends Main {
         option2.clear();
         option3.clear();
         option4.clear();
+        picture.clear();
 
         // Update menu displays
         super.getMainMenu().initialize();
