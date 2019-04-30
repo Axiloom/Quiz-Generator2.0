@@ -26,7 +26,6 @@ public class Question {
   private Hashtable<String, ArrayList<QuestionNode>> topics; // Hash table to store questions
   private int numQuestions; // total number of questions available
   private Alert alert; // alert displayed when saving
-  private static int id; // Used to keep track of each question for duplicates
 
   /**
    * Each node represents a single question and all attributes associated with that question
@@ -42,7 +41,6 @@ public class Question {
     ImageView img; // image going along with the question
     String imageName; // retains the name of the image
     String topic; // topic associated with this question
-    int id;
 
     /**
      * Each node represents a single question and all attributes associated with that question
@@ -67,8 +65,6 @@ public class Question {
         imageName = "none";
       }
 
-      this.id = Question.id++; // Increase ID by 1
-
       this.metadata = metadata;
       this.question = questionText;
       this.options = options;
@@ -83,7 +79,6 @@ public class Question {
   public Question() {
     topics = new Hashtable<>();
     numQuestions = 0;
-    id = 0;
   }
 
   /**
