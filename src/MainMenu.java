@@ -214,16 +214,39 @@ public class MainMenu extends Main {
       // Continue onto quiz
       else {
 
+        // Keep track of the total number of questions
+        int totalQuestions = 0;
+
+        for (String topic : selected.getItems()){
+            totalQuestions += Main.getQuestion().getQuestions(topic).size();
+        }
+
         // to store our final questions to be asked
         ArrayList<Question.QuestionNode> questions = new ArrayList<>();
 
         Random rand = new Random();
 
-        // Pick Random Questions
-        for (int i = 0; i < Integer.parseInt(numberOfQuestions.getText()); i++) {
-          String topic = selected.getItems().get(rand.nextInt(selected.getItems().size()));
-          int questionNum = rand.nextInt(Main.getQuestion().getQuestions(topic).size());
-          questions.add(Main.getQuestion().getQuestions(topic).get(questionNum));
+        // If there are less selected questions than possible questions, go through all
+        if (Integer.parseInt(numberOfQuestions.getText()) > totalQuestions){
+
+          // Get all questions
+          for (String topic : selected.getItems()){
+            questions.addAll(Main.getQuestion().getQuestions(topic));
+          }
+
+          // Set the new number of questions for the quiz
+          numberOfQuestions.setText(Integer.toString(questions.size()));
+
+        }
+
+        else {
+          // Pick Random Questions
+          for (int i = 0; i < Integer.parseInt(numberOfQuestions.getText()); i++) {
+            String topic = selected.getItems().get(rand.nextInt(selected.getItems().size()));
+            int questionNum = rand.nextInt(Main.getQuestion().getQuestions(topic).size());
+            questions.add(Main.getQuestion().getQuestions(topic).get(questionNum));
+
+          }
         }
 
         Main.setupQuizScene(questions);
