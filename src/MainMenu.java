@@ -39,6 +39,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 import java.util.ArrayList;
+import java.util.Hashtable;
 import java.util.List;
 import java.util.Random;
 
@@ -240,12 +241,21 @@ public class MainMenu extends Main {
         }
 
         else {
+
+          // Used to keep track of duplicate questions
+          Hashtable<String,Integer> visited = new Hashtable<String,Integer>();
+
           // Pick Random Questions
           for (int i = 0; i < Integer.parseInt(numberOfQuestions.getText()); i++) {
             String topic = selected.getItems().get(rand.nextInt(selected.getItems().size()));
             int questionNum = rand.nextInt(Main.getQuestion().getQuestions(topic).size());
-            questions.add(Main.getQuestion().getQuestions(topic).get(questionNum));
 
+            while (visited.contains(topic) && visited.get(topic).equals(questionNum)){
+              topic = selected.getItems().get(rand.nextInt(selected.getItems().size()));
+              questionNum = rand.nextInt(Main.getQuestion().getQuestions(topic).size());
+            }
+            visited.put(topic,questionNum);
+            questions.add(Main.getQuestion().getQuestions(topic).get(questionNum));
           }
         }
 
