@@ -55,7 +55,7 @@ public class Question {
     QuestionNode(String topic, String metadata, String questionText, String image,
         ArrayList<String> options, String correctAnswer) {
 
-      if(image.equals("none")){
+      if(!image.equals("none")){
         File imageFile = new File(image);
         Image img1 = new Image(imageFile.toURI().toString());
         img = new ImageView(img1);

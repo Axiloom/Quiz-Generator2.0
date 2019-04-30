@@ -221,6 +221,7 @@ public class AddMenu extends Main {
       option3.clear();
       option4.clear();
       jsonLoad.clear();
+      picture.clear();
       primaryStage.setScene(Main.getMainScene());
     });
 
@@ -238,12 +239,18 @@ public class AddMenu extends Main {
         options.add(option2.getText());
         options.add(option3.getText());
         options.add(option4.getText());
-        String pathToPicture = "none";
-        if (pictureFile != null){
-          pathToPicture = pictureFile.getPath();
+
+        if (picture.getText().equals("")){
+          picture.setText("none");
         }
+        if (pictureFile != null){
+          picture.setText(pictureFile.getPath());
+        }
+
+        System.out.println(picture.getText());
+
         super.getQuestion().addQuestion(topic.getText(), question.getText(), "", options,
-            answer.getText(), pathToPicture);
+            answer.getText(), picture.getText());
         alert = new Alert(Alert.AlertType.INFORMATION, "Successfully added question!");
         alert.setHeaderText("Success.");
         alert.showAndWait().filter(response -> response == ButtonType.OK);
@@ -256,6 +263,8 @@ public class AddMenu extends Main {
         option2.clear();
         option3.clear();
         option4.clear();
+        jsonLoad.clear();
+        picture.clear();
 
         // Update menu displays
         super.getMainMenu().initialize();
