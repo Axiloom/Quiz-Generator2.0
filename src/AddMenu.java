@@ -45,7 +45,7 @@ import javafx.stage.Stage;
 public class AddMenu extends Main {
 
   private Stage primaryStage; // stage being displayed on
-  private BorderPane root; // BorderPane being constructed
+  public static BorderPane root; // BorderPane being constructed //todo set to private after testing
   private Button back; // back button
   private Button submit; // submit button
   private TextField topic; // records the question topic
@@ -355,6 +355,7 @@ public class AddMenu extends Main {
           alert.setHeaderText("Success.");
           alert.showAndWait().filter(response -> response == ButtonType.OK);
         } catch (Exception e) {
+          e.printStackTrace();
           // Throw alert if failure to load file
           alert = new Alert(Alert.AlertType.CONFIRMATION, "Error: " + e.getMessage());
           alert.setHeaderText("Error loading file.");

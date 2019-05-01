@@ -82,8 +82,22 @@ public class Question {
         ArrayList<String> options, String correctAnswer) {
 
       if (!image.equals("none")) {
-        File imageFile = new File(image);
-        Image img1 = new Image(imageFile.toURI().toString());
+
+        if (Main.class.getProtectionDomain().getCodeSource().getLocation().getPath().contains("Quiz-Generator2.0.jar"))
+          image = Main.class.getProtectionDomain().getCodeSource().getLocation().getPath().substring(0, Main.class.getProtectionDomain().getCodeSource().getLocation().getPath().indexOf("Quiz-Generator2.0.jar")) + image;
+
+        else
+          image = Main.class.getProtectionDomain().getCodeSource().getLocation().getPath() + image;
+
+
+        // todo remove after testing
+//        Label temp = new Label(image);
+//        temp.setPrefWidth(500);
+//        temp.setWrapText(true);
+//        Main.getAddMenu().root.setLeft(temp);
+
+
+        Image img1 = new Image(new File(image).toURI().toString());
         img = new ImageView(img1);
         imageName = image;
       } else {
