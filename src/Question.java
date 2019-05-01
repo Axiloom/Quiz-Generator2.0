@@ -33,6 +33,7 @@ import java.util.Optional;
 import java.util.Random;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import org.json.simple.JSONArray;
@@ -181,16 +182,16 @@ public class Question {
       throws FileNotFoundException, IOException, ParseException, URISyntaxException {
 
     // Read file from .jar
-    // File jarFile = new
-    // File(Main.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath());
-    // String inputFilePath = jarFile.getParent() + File.separator + jsonFilePath;
-    //
-    // FileInputStream fis = new FileInputStream(new File(jsonFilePath)); // todo change
-    // jsonFilePath to inputFilePath
-    // BufferedReader in = new BufferedReader(new InputStreamReader(fis));
-    // Object obj = new JSONParser().parse(in);
+    if (Main.class.getProtectionDomain().getCodeSource().getLocation().getPath().contains("Quiz-Generator2.0.jar"))
+      jsonFilePath = Main.class.getProtectionDomain().getCodeSource().getLocation().getPath().substring(0,Main.class.getProtectionDomain().getCodeSource().getLocation().getPath().indexOf("Quiz-Generator2.0.jar")) + jsonFilePath;
 
-    Object obj = new JSONParser().parse(new FileReader(jsonFilePath));
+    jsonFilePath = Main.class.getProtectionDomain().getCodeSource().getLocation().getPath() + jsonFilePath;
+
+    jsonFilePath = jsonFilePath.substring(jsonFilePath.indexOf(":")+1);
+    FileInputStream fis = new FileInputStream(jsonFilePath);
+    BufferedReader in = new BufferedReader(new InputStreamReader(fis));
+
+    Object obj = new JSONParser().parse(in);
 
     JSONObject jo = (JSONObject) obj;
     JSONArray questionArray = (JSONArray) jo.get("questionArray");
