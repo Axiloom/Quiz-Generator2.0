@@ -25,6 +25,8 @@
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.List;
+
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
@@ -356,6 +358,10 @@ public class AddMenu extends Main {
           alert.showAndWait().filter(response -> response == ButtonType.OK);
         } catch (Exception e) {
           e.printStackTrace();
+          Label temp = new Label();
+          temp.setWrapText(true);
+          temp.setPrefWidth(500);
+          root.setLeft(temp);
           // Throw alert if failure to load file
           alert = new Alert(Alert.AlertType.CONFIRMATION, "Error: " + e.getMessage());
           alert.setHeaderText("Error loading file.");
