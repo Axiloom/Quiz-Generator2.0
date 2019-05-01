@@ -182,15 +182,11 @@ public class Question {
       throws FileNotFoundException, IOException, ParseException, URISyntaxException {
 
     // Read file from .jar
-    if (Main.class.getProtectionDomain().getCodeSource().getLocation().getPath()
-        .contains("Quiz-Generator2.0.jar"))
-      jsonFilePath = Main.class.getProtectionDomain().getCodeSource().getLocation().getPath()
-          .substring(0, Main.class.getProtectionDomain().getCodeSource().getLocation().getPath()
-              .indexOf("Quiz-Generator2.0.jar"))
-          + jsonFilePath;
+    if (Main.class.getProtectionDomain().getCodeSource().getLocation().getPath().contains("Quiz-Generator2.0.jar"))
+      jsonFilePath = Main.class.getProtectionDomain().getCodeSource().getLocation().getPath().substring(0, Main.class.getProtectionDomain().getCodeSource().getLocation().getPath().indexOf("Quiz-Generator2.0.jar")) + jsonFilePath;
 
-    jsonFilePath =
-        Main.class.getProtectionDomain().getCodeSource().getLocation().getPath() + jsonFilePath;
+    else
+      jsonFilePath = Main.class.getProtectionDomain().getCodeSource().getLocation().getPath() + jsonFilePath;
 
     jsonFilePath = jsonFilePath.substring(jsonFilePath.indexOf(":") + 1);
     FileInputStream fis = new FileInputStream(jsonFilePath);
