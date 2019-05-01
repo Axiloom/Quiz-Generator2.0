@@ -33,6 +33,7 @@ import java.util.Optional;
 import java.util.Random;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import org.json.simple.JSONArray;
@@ -81,11 +82,9 @@ public class Question {
         ArrayList<String> options, String correctAnswer) {
 
       if (!image.equals("none")) {
-
-        InputStream is = Main.class.getResourceAsStream(image);
-
-        Image img1 = new Image(is);
-        img = new ImageView(img1);
+        System.out.println(System.getProperty("user.dir") + File.separator + image);
+        Image img2 = new Image(image);
+        img = new ImageView(img2);
         imageName = image;
       } else {
         img = null;
@@ -158,8 +157,7 @@ public class Question {
       ArrayList<String> options, String correctAnswer, String image) {
 
     // Question to be added
-    QuestionNode question =
-        new QuestionNode(topic, metadata, questionText, image, options, correctAnswer);
+    QuestionNode question = new QuestionNode(topic, metadata, questionText, image, options, correctAnswer);
 
     // Create topic if it doesnt exist
     if (!topics.containsKey(question.topic))
@@ -180,6 +178,7 @@ public class Question {
    */
   public void loadJSON(String jsonFilePath)
       throws FileNotFoundException, IOException, ParseException, URISyntaxException {
+<<<<<<< HEAD
     
     InputStream is = Main.class.getResourceAsStream(jsonFilePath);
     BufferedReader jsonReader = new BufferedReader(new InputStreamReader(is));
@@ -191,6 +190,10 @@ public class Question {
      * java.lang.NoClassDefFoundError: org/json/simple/parser/JSONParser at
      * Question.loadJSON(Question.java:194) todo this is the line above
      */
+=======
+
+    Object obj = new JSONParser().parse(new FileReader(System.getProperty("user.dir") + File.separator + jsonFilePath));
+>>>>>>> branch 'master' of https://github.com/Rockapella/Quiz-Generator2.0
 
     JSONObject jo = (JSONObject) obj;
 

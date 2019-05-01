@@ -45,7 +45,7 @@ import javafx.stage.Stage;
 public class AddMenu extends Main {
 
   private Stage primaryStage; // stage being displayed on
-  public static BorderPane root; // BorderPane being constructed //todo set to private after testing
+  private BorderPane root; // BorderPane being constructed //todo set to private after testing
   private Button back; // back button
   private Button submit; // submit button
   private TextField topic; // records the question topic
@@ -342,8 +342,6 @@ public class AddMenu extends Main {
           && option4.getText().equals("") && picture.getText().equals("")
           && !jsonLoad.getText().equals("")) {
         try {
-
-
 
           super.getQuestion().loadJSON(jsonLoad.getText() + ".json");
           jsonLoad.clear();
