@@ -186,6 +186,10 @@ public class Question {
     BufferedReader jsonReader = new BufferedReader(new InputStreamReader(is));
 
     Object obj = new JSONParser().parse(jsonReader); //todo this line causes an exception when comiled through cmd
+    /*
+    java.lang.NoClassDefFoundError: org/json/simple/parser/JSONParser
+	at Question.loadJSON(Question.java:194) todo this is the line above
+    */
 
     JSONObject jo = (JSONObject) obj;
 
