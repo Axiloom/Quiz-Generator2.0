@@ -83,12 +83,6 @@ public class Question {
 
       if (!image.equals("none")) {
 
-        // todo remove after testing
-//        Label temp = new Label(image);
-//        temp.setPrefWidth(500);
-//        temp.setWrapText(true);
-//        Main.getAddMenu().root.setLeft(temp);
-
         InputStream is = Main.class.getResourceAsStream(image);
 
         Image img1 = new Image(is);
@@ -191,9 +185,10 @@ public class Question {
     InputStream is = Main.class.getResourceAsStream(jsonFilePath);
     BufferedReader jsonReader = new BufferedReader(new InputStreamReader(is));
 
-    Object obj = new JSONParser().parse(jsonReader);
+    Object obj = new JSONParser().parse(jsonReader); //todo this line causes an exception when comiled through cmd
 
     JSONObject jo = (JSONObject) obj;
+
     JSONArray questionArray = (JSONArray) jo.get("questionArray");
 
     for (Object aQuestionArray : questionArray) {
