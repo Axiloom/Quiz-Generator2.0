@@ -83,22 +83,15 @@ public class Question {
 
       if (!image.equals("none")) {
 
-        // Check to see if we are running from a .jar file and set image accordingly
-        if (Main.class.getProtectionDomain().getCodeSource().getLocation().getPath().contains("Quiz-Generator2.0.jar"))
-          image = Main.class.getProtectionDomain().getCodeSource().getLocation().getPath().substring(0, Main.class.getProtectionDomain().getCodeSource().getLocation().getPath().indexOf("Quiz-Generator2.0.jar")) + image;
-
-        else
-          image = Main.class.getProtectionDomain().getCodeSource().getLocation().getPath() + image;
-
-
         // todo remove after testing
 //        Label temp = new Label(image);
 //        temp.setPrefWidth(500);
 //        temp.setWrapText(true);
 //        Main.getAddMenu().root.setLeft(temp);
 
+        InputStream is = Main.class.getResourceAsStream(image);
 
-        Image img1 = new Image(new File(image).toURI().toString());
+        Image img1 = new Image(is);
         img = new ImageView(img1);
         imageName = image;
       } else {
@@ -188,25 +181,17 @@ public class Question {
    * Parses a json file and adds the information to the data fields
    * 
    * @param jsonFilePath the path to the JSON file
-   * @return true if the file was loaded correctly
    * @throws ParseException error with parsing
    * @throws IOException error with reading file
    * @throws FileNotFoundException file does not exist
    */
-  public boolean loadJSON(String jsonFilePath)
+  public void loadJSON(String jsonFilePath)
       throws FileNotFoundException, IOException, ParseException, URISyntaxException {
 
-    // Check to see if we are running from a .jar file and set jsonFilePath accordingly
-    if (Main.class.getProtectionDomain().getCodeSource().getLocation().getPath().contains("Quiz-Generator2.0.jar"))
-      jsonFilePath = Main.class.getProtectionDomain().getCodeSource().getLocation().getPath().substring(0, Main.class.getProtectionDomain().getCodeSource().getLocation().getPath().indexOf("Quiz-Generator2.0.jar")) + jsonFilePath;
+    InputStream is = Main.class.getResourceAsStream(jsonFilePath);
+    BufferedReader jsonReader = new BufferedReader(new InputStreamReader(is));
 
-    else
-      jsonFilePath = Main.class.getProtectionDomain().getCodeSource().getLocation().getPath() + jsonFilePath;
-
-    FileInputStream fis = new FileInputStream(jsonFilePath);
-    BufferedReader in = new BufferedReader(new InputStreamReader(fis));
-
-    Object obj = new JSONParser().parse(in);
+    Object obj = new JSONParser().parse(jsonReader);
 
     JSONObject jo = (JSONObject) obj;
     JSONArray questionArray = (JSONArray) jo.get("questionArray");
@@ -231,7 +216,6 @@ public class Question {
       // Add Question
       addQuestion(topic, question, metaData, choices, correctAnswer, image);
     }
-    return true;
   }
 
   /**
