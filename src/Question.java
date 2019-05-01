@@ -82,7 +82,6 @@ public class Question {
         ArrayList<String> options, String correctAnswer) {
 
       if (!image.equals("none")) {
-        System.out.println(System.getProperty("user.dir") + File.separator + image);
         Image img2 = new Image(image);
         img = new ImageView(img2);
         imageName = image;
@@ -178,22 +177,10 @@ public class Question {
    */
   public void loadJSON(String jsonFilePath)
       throws FileNotFoundException, IOException, ParseException, URISyntaxException {
-<<<<<<< HEAD
-    
-    InputStream is = Main.class.getResourceAsStream(jsonFilePath);
-    BufferedReader jsonReader = new BufferedReader(new InputStreamReader(is));
 
-    Object obj = new JSONParser().parse(jsonReader); // todo this line causes an exception when
-                                                     // compiled through terminal
+    System.out.println(new File(jsonFilePath).getAbsolutePath());
 
-    /*
-     * java.lang.NoClassDefFoundError: org/json/simple/parser/JSONParser at
-     * Question.loadJSON(Question.java:194) todo this is the line above
-     */
-=======
-
-    Object obj = new JSONParser().parse(new FileReader(System.getProperty("user.dir") + File.separator + jsonFilePath));
->>>>>>> branch 'master' of https://github.com/Rockapella/Quiz-Generator2.0
+    Object obj = new JSONParser().parse(new FileReader(new File(jsonFilePath).getAbsolutePath()));
 
     JSONObject jo = (JSONObject) obj;
 
