@@ -178,22 +178,9 @@ public class Question {
    */
   public void loadJSON(String jsonFilePath)
       throws FileNotFoundException, IOException, ParseException, URISyntaxException {
-<<<<<<< HEAD
-    
-    InputStream is = Main.class.getResourceAsStream(jsonFilePath);
-    BufferedReader jsonReader = new BufferedReader(new InputStreamReader(is));
 
-    Object obj = new JSONParser().parse(jsonReader); // todo this line causes an exception when
-                                                     // compiled through terminal
-
-    /*
-     * java.lang.NoClassDefFoundError: org/json/simple/parser/JSONParser at
-     * Question.loadJSON(Question.java:194) todo this is the line above
-     */
-=======
-
-    Object obj = new JSONParser().parse(new FileReader(System.getProperty("user.dir") + File.separator + jsonFilePath));
->>>>>>> branch 'master' of https://github.com/Rockapella/Quiz-Generator2.0
+    Object obj = new JSONParser()
+        .parse(new FileReader(System.getProperty("user.dir") + File.separator + jsonFilePath));
 
     JSONObject jo = (JSONObject) obj;
 
