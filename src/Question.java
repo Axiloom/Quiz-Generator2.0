@@ -82,7 +82,6 @@ public class Question {
         ArrayList<String> options, String correctAnswer) {
 
       if (!image.equals("none")) {
-        System.out.println(System.getProperty("user.dir") + File.separator + image);
         Image img2 = new Image(image);
         img = new ImageView(img2);
         imageName = image;
@@ -179,8 +178,14 @@ public class Question {
   public void loadJSON(String jsonFilePath)
       throws FileNotFoundException, IOException, ParseException, URISyntaxException {
 
+<<<<<<< HEAD
     Object obj = new JSONParser()
         .parse(new FileReader(System.getProperty("user.dir") + File.separator + jsonFilePath));
+=======
+    System.out.println(new File(jsonFilePath).getAbsolutePath());
+
+    Object obj = new JSONParser().parse(new FileReader(new File(jsonFilePath).getAbsolutePath()));
+>>>>>>> branch 'master' of https://github.com/Rockapella/Quiz-Generator2.0
 
     JSONObject jo = (JSONObject) obj;
 
