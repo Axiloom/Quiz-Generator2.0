@@ -25,8 +25,6 @@
 
 import java.io.File;
 import java.util.ArrayList;
-import java.util.List;
-
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
@@ -47,7 +45,7 @@ import javafx.stage.Stage;
 public class AddMenu extends Main {
 
   private Stage primaryStage; // stage being displayed on
-  public static BorderPane root; // BorderPane being constructed //todo set to private after testing
+  private BorderPane root; // BorderPane being constructed //todo set to private after testing
   private Button back; // back button
   private Button submit; // submit button
   private TextField topic; // records the question topic
@@ -345,8 +343,6 @@ public class AddMenu extends Main {
           && !jsonLoad.getText().equals("")) {
         try {
 
-
-
           super.getQuestion().loadJSON(jsonLoad.getText() + ".json");
           jsonLoad.clear();
           // Update menu displays
@@ -358,10 +354,6 @@ public class AddMenu extends Main {
           alert.showAndWait().filter(response -> response == ButtonType.OK);
         } catch (Exception e) {
           e.printStackTrace();
-          Label temp = new Label();
-          temp.setWrapText(true);
-          temp.setPrefWidth(500);
-          root.setLeft(temp);
           // Throw alert if failure to load file
           alert = new Alert(Alert.AlertType.CONFIRMATION, "Error: " + e.getMessage());
           alert.setHeaderText("Error loading file.");
