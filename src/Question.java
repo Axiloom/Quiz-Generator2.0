@@ -184,12 +184,13 @@ public class Question {
     InputStream is = Main.class.getResourceAsStream(jsonFilePath);
     BufferedReader jsonReader = new BufferedReader(new InputStreamReader(is));
 
-    Object obj = new JSONParser().parse(jsonReader); //todo this line causes an exception when compiled through terminal
+    Object obj = new JSONParser().parse(jsonReader); // todo this line causes an exception when
+                                                     // compiled through terminal
 
     /*
-    java.lang.NoClassDefFoundError: org/json/simple/parser/JSONParser
-	at Question.loadJSON(Question.java:194) todo this is the line above
-    */
+     * java.lang.NoClassDefFoundError: org/json/simple/parser/JSONParser at
+     * Question.loadJSON(Question.java:194) todo this is the line above
+     */
 
     JSONObject jo = (JSONObject) obj;
 
