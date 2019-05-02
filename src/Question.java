@@ -180,7 +180,9 @@ public class Question {
 
     System.out.println(new File(jsonFilePath).getAbsolutePath());
 
-    Object obj = new JSONParser().parse(new FileReader(new File(jsonFilePath).getAbsolutePath()));
+    String path = new File(jsonFilePath).getAbsolutePath();
+
+    Object obj = new JSONParser().parse(new FileReader(path));
 
     JSONObject jo = (JSONObject) obj;
 
@@ -206,6 +208,8 @@ public class Question {
       // Add Question
       addQuestion(topic, question, metaData, choices, correctAnswer, image);
     }
+
+    ((JSONObject) obj).clear();
   }
 
   /**
@@ -229,26 +233,38 @@ public class Question {
     }
 
     for (String topic : topicList) {
+
       ArrayList<Question.QuestionNode> questionList = getQuestions(topic);
+
       for (QuestionNode question : questionList) {
+
+        // Create a new JSONObject
         JSONObject aQuestion = new JSONObject();
+
         aQuestion.put("meta-data", question.metadata);
         aQuestion.put("questionText", question.question);
         aQuestion.put("topic", question.topic);
         aQuestion.put("image", question.imageName);
 
         JSONArray choiceArray = new JSONArray();
+
         for (String option : question.options) {
+
           JSONObject opt = new JSONObject();
+
           if (option.equals(question.answer)) {
             opt.put("isCorrect", "T");
             opt.put("choice", option);
-          } else {
+          }
+          else {
             opt.put("isCorrect", "F");
             opt.put("choice", option);
           }
+
           choiceArray.add(opt);
+
         }
+
         aQuestion.put("choiceArray", choiceArray);
 
         questionArray.add(aQuestion);
@@ -257,7 +273,9 @@ public class Question {
     questionJSON.put("questionArray", questionArray);
 
     try {
+
       File f1 = new File(jsonFile + ".json");
+
       Optional<ButtonType> button;
 
       if (!f1.createNewFile()) { // checks for duplicate file already existing
@@ -268,18 +286,21 @@ public class Question {
         button = alert.showAndWait();
         if (button.get().equals(ButtonType.OK)) { // Overwrites
           FileWriter file = new FileWriter(f1);
-          file.write(jsonFile + ".json");
+          file.write(questionJSON.toJSONString());
+          file.flush();
           file.close();
         }
         if (button.get().equals(ButtonType.CANCEL)) { // cancels save
           return false;
         }
       } else { // Save
-        FileWriter file = new FileWriter(f1);
-        file.write(questionJSON.toJSONString() + ".json");
+        FileWriter file = new FileWriter(jsonFile + ".json");
+        file.write(questionJSON.toJSONString());
+        file.flush();
         file.close();
       }
     } catch (Exception e) {
+      e.printStackTrace();
       return false;
     }
     return true;
