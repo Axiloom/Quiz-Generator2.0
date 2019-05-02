@@ -1,9 +1,11 @@
+package application;
+
 ///////////////////////////////////////////////////////////////////////////////
 //
 // Assignment: Quiz-Generator Team Project
 // Due: 5-2-19
 // Title: Quiz Menu 
-// Files: QuizMenu.java
+// Files: application.QuizMenu.java
 // Course: CS 400, Spring 2019, Lec 001
 //
 // Authors: A-Team 99 
@@ -99,7 +101,7 @@ public class QuizMenu extends Main {
   private void setTopPanel() {
     // Labels
     Label label = new Label("Quiz");
-    Label questionLabel = new Label("Question " + (currentQuestion + 1) + "/" + questions.size());
+    Label questionLabel = new Label("application.Question " + (currentQuestion + 1) + "/" + questions.size());
 
     // Style
     label.setFont(Font.font("Arial", FontWeight.BOLD, 16));
@@ -120,7 +122,7 @@ public class QuizMenu extends Main {
    */
   private void setCenterPanel() {
 
-    // Setup Question
+    // Setup application.Question
     Label question = new Label(questions.get(currentQuestion).question);
     question.setWrapText(true);
     question.setFont(Font.font("Arial", FontWeight.BOLD, 16));

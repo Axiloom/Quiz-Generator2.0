@@ -1,9 +1,11 @@
+package application;
+
 ///////////////////////////////////////////////////////////////////////////////
 //
 // Assignment: Quiz-Generator Team Project
 // Due: 5-2-19
 // Title: Statistics Menu 
-// Files: StatisticsMenu.java
+// Files: application.StatisticsMenu.java
 // Course: CS 400, Spring 2019, Lec 001
 //
 // Authors: A-Team 99 
@@ -35,7 +37,7 @@ import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 
 /**
- * StatisticsMenu Class constructs the GUI for the StatisticsMenu to display the quiz results.
+ * application.StatisticsMenu Class constructs the GUI for the application.StatisticsMenu to display the quiz results.
  * 
  * @author ATeam-99
  *
@@ -50,7 +52,7 @@ public class StatisticsMenu extends Main {
   private double numQuestions; // total number of questions in the current quiz
 
   /**
-   * StatisticsMenu Constructor that declares the field variables and sets the background color
+   * application.StatisticsMenu Constructor that declares the field variables and sets the background color
    * 
    * @param primaryStage - stage being displayed on
    */
@@ -64,9 +66,9 @@ public class StatisticsMenu extends Main {
   }
 
   /**
-   * Initializes a BorderPane of the StatisticsMenu screen
+   * Initializes a BorderPane of the application.StatisticsMenu screen
    * 
-   * @return root - BorderPane of the StatisticsMenu screen
+   * @return root - BorderPane of the application.StatisticsMenu screen
    */
   public BorderPane initialize(int numQuestions) {
 

@@ -1,9 +1,11 @@
+package application;
+
 ///////////////////////////////////////////////////////////////////////////////
 //
 // Assignment: Quiz-Generator Team Project
 // Due: 5-2-19
 // Title: Add Menu 
-// Files: AddMenu.java
+// Files: application.AddMenu.java
 // Course: CS 400, Spring 2019, Lec 001
 //
 // Authors: A-Team 99 
@@ -37,7 +39,7 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 /**
- * AddMenu Class constructs the GUI for the AddMenu to display how to add or load questions
+ * application.AddMenu Class constructs the GUI for the application.AddMenu to display how to add or load questions
  * 
  * @author ATeam-99
  *
@@ -66,7 +68,7 @@ public class AddMenu extends Main {
   private File jsonFile; // file of the jsonFile being loaded
 
   /**
-   * AddMenu Constructor that declares the field variables and sets the background color
+   * application.AddMenu Constructor that declares the field variables and sets the background color
    * 
    * @param primaryStage - stage being displayed on
    */
@@ -93,9 +95,9 @@ public class AddMenu extends Main {
   }
 
   /**
-   * Initializes a BorderPane of the AddMenu screen
+   * Initializes a BorderPane of the application.AddMenu screen
    * 
-   * @return root - BorderPane of the AddMenu screen
+   * @return root - BorderPane of the application.AddMenu screen
    */
   public BorderPane initialize() {
 
@@ -142,7 +144,7 @@ public class AddMenu extends Main {
     Label topicLabel = new Label("Enter Topic: ");
     HBox top = new HBox(topicLabel, topic);
 
-    Label questionLabel = new Label("Enter Question: ");
+    Label questionLabel = new Label("Enter application.Question: ");
     HBox que = new HBox(questionLabel, question);
 
     Label pictureLabel = new Label("Load Picture: ");

@@ -1,9 +1,11 @@
+package application;
+
 ///////////////////////////////////////////////////////////////////////////////
 //
 // Assignment: Quiz-Generator Team Project
 // Due: 5-2-19
 // Title: Save Menu 
-// Files: SaveMenu.java
+// Files: application.SaveMenu.java
 // Course: CS 400, Spring 2019, Lec 001
 //
 // Authors: A-Team 99 
@@ -37,7 +39,7 @@ import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 
 /**
- * SaveMenu Class constructs the GUI for the SaveMenu to display how to save current questions to a
+ * application.SaveMenu Class constructs the GUI for the application.SaveMenu to display how to save current questions to a
  * json file.
  * 
  * @author ATeam-99
@@ -53,7 +55,7 @@ public class SaveMenu extends Main {
   private Alert alert; // alert to help user save properly
 
   /**
-   * SaveMenu Constructor that declares the field variables and sets the background color
+   * application.SaveMenu Constructor that declares the field variables and sets the background color
    * 
    * @param primaryStage - stage being displayed on
    */
@@ -67,9 +69,9 @@ public class SaveMenu extends Main {
   }
 
   /**
-   * Initializes a BorderPane of the SaveMenu screen
+   * Initializes a BorderPane of the application.SaveMenu screen
    * 
-   * @return root - BorderPane of the SaveMenu screen
+   * @return root - BorderPane of the application.SaveMenu screen
    */
   public BorderPane initialize() {
 

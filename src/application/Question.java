@@ -1,9 +1,11 @@
+package application;
+
 ///////////////////////////////////////////////////////////////////////////////
 //
 // Assignment: Quiz-Generator Team Project
 // Due: 5-2-19
-// Title: Question 
-// Files: Question.java
+// Title: application.Question
+// Files: application.Question.java
 // Course: CS 400, Spring 2019, Lec 001
 //
 // Authors: A-Team 99 
@@ -40,7 +42,7 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 /**
- * Main Question Class to retrieve anything question related
+ * application.Main application.Question Class to retrieve anything question related
  * 
  * @author ATeam-99
  */
@@ -96,7 +98,7 @@ public class Question {
   }
 
   /**
-   * No-arg Constructor for Question class
+   * No-arg Constructor for application.Question class
    */
   public Question() {
     topics = new Hashtable<>();
@@ -152,7 +154,7 @@ public class Question {
   public void addQuestion(String topic, String questionText, String metadata,
       ArrayList<String> options, String correctAnswer, String image) {
 
-    // Question to be added
+    // application.Question to be added
     QuestionNode question = new QuestionNode(topic, metadata, questionText, image, options, correctAnswer);
 
     // Create topic if it doesnt exist
@@ -200,7 +202,7 @@ public class Question {
         choices.add((String) ((JSONObject) answer).get("choice"));
       }
 
-      // Add Question
+      // Add application.Question
       addQuestion(topic, question, metaData, choices, correctAnswer, image);
     }
 

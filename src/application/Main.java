@@ -1,9 +1,11 @@
+package application;
+
 ///////////////////////////////////////////////////////////////////////////////
 //
 // Assignment: Quiz-Generator Team Project
 // Due: 5-2-19
-// Title: Main 
-// Files: Main.java
+// Title: application.Main
+// Files: application.Main.java
 // Course: CS 400, Spring 2019, Lec 001
 //
 // Authors: A-Team 99 
@@ -23,13 +25,14 @@
 //
 ///////////////////////////////////////////////////////////////////////////////
 
+
 import javafx.application.Application;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
 import java.util.ArrayList;
 
 /**
- * Main initializes the GUI and creates instances of the various Scenes and Menus that are used
+ * application.Main initializes the GUI and creates instances of the various Scenes and Menus that are used
  * throughout the operation of the program.
  * 
  * @author ATeam-99
@@ -43,7 +46,7 @@ public class Main extends Application {
   private static Scene quizScene; // quiz scene instance
   private static Scene statisticsScene; // statistics scene instance
   private static Scene exitScene; // exit scene instance
-  private static Question question; // Question Class instance
+  private static Question question; // application.Question Class instance
   private static MainMenu mainMenu; // instance of Class that constructs the main menu
   private static SaveMenu saveMenu; // instance of Class that constructs the save menu
   private static AddMenu addMenu; // instance of Class that constructs the add menu
@@ -87,7 +90,7 @@ public class Main extends Application {
   }
 
   /**
-   * Main method that launches the program
+   * application.Main method that launches the program
    * 
    * @param args (unused)
    */
@@ -150,36 +153,36 @@ public class Main extends Application {
   }
 
   /**
-   * Getter for the Question instance
+   * Getter for the application.Question instance
    * 
-   * @return instance of Question
+   * @return instance of application.Question
    */
   protected static Question getQuestion() {
     return question;
   }
 
   /**
-   * Getter for the MainMenu instance
+   * Getter for the application.MainMenu instance
    * 
-   * @return instance of MainMenu
+   * @return instance of application.MainMenu
    */
   protected static MainMenu getMainMenu() {
     return mainMenu;
   }
 
   /**
-   * Getter for the SaveMenu instance
+   * Getter for the application.SaveMenu instance
    * 
-   * @return instance of SaveMenu
+   * @return instance of application.SaveMenu
    */
   protected static SaveMenu getSaveMenu() {
     return saveMenu;
   }
 
   /**
-   * Getter for the AddMenu instance
+   * Getter for the application.AddMenu instance
    * 
-   * @return instance of AddMenu
+   * @return instance of application.AddMenu
    */
   protected static AddMenu getAddMenu() {
     return addMenu;
@@ -195,9 +198,9 @@ public class Main extends Application {
   }
 
   /**
-   * Getter for the StatisticsMenu instance
+   * Getter for the application.StatisticsMenu instance
    *
-   * @return instance of StatisticsMenu
+   * @return instance of application.StatisticsMenu
    */
   protected static StatisticsMenu getStatisticsMenu() {
     return statisticsMenu;

@@ -1,9 +1,11 @@
+package application;
+
 ///////////////////////////////////////////////////////////////////////////////
 //
 // Assignment: Quiz-Generator Team Project
 // Due: 5-2-19
-// Title: Main Menu 
-// Files: MainMenu.java
+// Title: application.Main Menu
+// Files: application.MainMenu.java
 // Course: CS 400, Spring 2019, Lec 001
 //
 // Authors: A-Team 99 
@@ -39,12 +41,11 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 import java.util.ArrayList;
-import java.util.Hashtable;
 import java.util.List;
 import java.util.Random;
 
 /**
- * MainMenu Class constructs the GUI for the MainMenu to display how to add/load questions, save
+ * application.MainMenu Class constructs the GUI for the application.MainMenu to display how to add/load questions, save
  * current questions, select a topic and number of questions, as well as to start the quiz.
  * 
  * @author ATeam-99
@@ -64,7 +65,7 @@ public class MainMenu extends Main {
   private TextField numberOfQuestions; // TextField for entering number of questions
 
   /**
-   * MainMenu Constructor that declares the field variables
+   * application.MainMenu Constructor that declares the field variables
    * 
    * @param primaryStage - stage being displayed on
    */
@@ -79,9 +80,9 @@ public class MainMenu extends Main {
   }
 
   /**
-   * Initalizes a BorderPane of the MainMenu scene
+   * Initalizes a BorderPane of the application.MainMenu scene
    * 
-   * @return root - BorderPane of the MainMenu scene
+   * @return root - BorderPane of the application.MainMenu scene
    */
   public BorderPane initialize() {
 
@@ -112,7 +113,7 @@ public class MainMenu extends Main {
    */
   private void setTopPanel() {
     // Labels
-    Label label = new Label("Main Menu");
+    Label label = new Label("application.Main Menu");
     Label numQuestions = new Label(getQuestion().getSize() + " questions available");
 
     // Style
