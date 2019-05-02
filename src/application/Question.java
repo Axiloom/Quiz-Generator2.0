@@ -80,9 +80,11 @@ public class Question {
     QuestionNode(String topic, String metadata, String questionText, String image,
         ArrayList<String> options, String correctAnswer) {
 
+
       if (!image.equals("none")) {
-        Image img2 = new Image(image);
-        img = new ImageView(img2);
+        File file = new File(new File(image).getAbsolutePath());
+        Image tempImg = new Image(file.toURI().toString());
+        img = new ImageView(tempImg);
         imageName = image;
       } else {
         img = null;

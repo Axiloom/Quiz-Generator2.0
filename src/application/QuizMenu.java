@@ -163,7 +163,7 @@ public class QuizMenu extends Main {
     }
 
     // Add answer to random place
-    ImageView image = new ImageView(new Image(QuizMenu.class.getResourceAsStream("no-image.png")));
+    ImageView image = new ImageView(new Image("no-image.png"));
 
     if (questions.get(currentQuestion).img != null) {
       image = questions.get(currentQuestion).img;
