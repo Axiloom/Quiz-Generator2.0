@@ -24,7 +24,6 @@
 ///////////////////////////////////////////////////////////////////////////////
 
 import java.io.*;
-import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Hashtable;
@@ -33,14 +32,12 @@ import java.util.Optional;
 import java.util.Random;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
-import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
-
 
 /**
  * Main Question Class to retrieve anything question related
@@ -176,9 +173,7 @@ public class Question {
    * @throws FileNotFoundException file does not exist
    */
   public void loadJSON(String jsonFilePath)
-      throws FileNotFoundException, IOException, ParseException, URISyntaxException {
-
-    System.out.println(new File(jsonFilePath).getAbsolutePath());
+      throws FileNotFoundException, IOException, ParseException {
 
     String path = new File(jsonFilePath).getAbsolutePath();
 
@@ -260,13 +255,9 @@ public class Question {
             opt.put("isCorrect", "F");
             opt.put("choice", option);
           }
-
           choiceArray.add(opt);
-
         }
-
         aQuestion.put("choiceArray", choiceArray);
-
         questionArray.add(aQuestion);
       }
     }

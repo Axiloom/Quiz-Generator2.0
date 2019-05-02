@@ -45,7 +45,7 @@ import javafx.stage.Stage;
 public class AddMenu extends Main {
 
   private Stage primaryStage; // stage being displayed on
-  private BorderPane root; // BorderPane being constructed //todo set to private after testing
+  private BorderPane root; // BorderPane being constructed
   private Button back; // back button
   private Button submit; // submit button
   private TextField topic; // records the question topic
@@ -175,17 +175,6 @@ public class AddMenu extends Main {
     Label or = new Label("OR");
     or.setFont(Font.font("Arial", FontWeight.BOLD, 16));
     or.setPadding(new Insets(20, 0, 20, 0));
-
-    // Set project directory for browse window todo not sure whats wrong, but this doesnt work with
-    // executable
-    // try {
-    // jsonFileChooser.setInitialDirectory(new
-    // File(Main.class.getProtectionDomain().getCodeSource().getLocation().toURI().getPath()));
-    // }
-    // catch (URISyntaxException e){
-    // e.printStackTrace();
-    // System.out.println("Error while retrieving project directory");
-    // }
 
     Label loadLabel = new Label("Load JSON: ");
     Label typeLabel = new Label(".json");
