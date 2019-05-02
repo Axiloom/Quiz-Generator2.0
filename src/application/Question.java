@@ -183,7 +183,7 @@ public class Question {
 
     Object obj = new JSONParser().parse(new FileReader(path));
 
-    JSONObject jo = (JSONObject) obj;
+    JSONObject jo = (JSONObject)obj;
 
     JSONArray questionArray = (JSONArray) jo.get("questionArray");
 
