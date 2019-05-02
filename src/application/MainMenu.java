@@ -113,7 +113,7 @@ public class MainMenu extends Main {
    */
   private void setTopPanel() {
     // Labels
-    Label label = new Label("application.Main Menu");
+    Label label = new Label("Main Menu");
     Label numQuestions = new Label(getQuestion().getSize() + " questions available");
 
     // Style
