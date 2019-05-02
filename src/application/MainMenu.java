@@ -104,7 +104,7 @@ public class MainMenu extends Main {
     Image image1 = new Image("uwCrest_Dope.png");
     Background background = new Background(new BackgroundImage(image1, BackgroundRepeat.NO_REPEAT,
         BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, bSize));
-
+   
     root.setBackground(background);
   }
 
