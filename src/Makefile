@@ -4,7 +4,7 @@ CLASSPATH = .:junit-platform-console-standalone-1.3.2.jar:json-simple-1.1.1.jar
 
 make: 
 	javac -cp $(CLASSPATH) -d . application/*.java
-	java -cp $(CLASSPATH) application.application.Main
+	java -cp $(CLASSPATH) application.Main
 
 jar: 
 	jar cvmf manifest.txt executable.jar .
