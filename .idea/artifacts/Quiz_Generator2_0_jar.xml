@@ -3,7 +3,7 @@
     <output-path>$PROJECT_DIR$/out/artifacts/Quiz_Generator2_0_jar</output-path>
     <root id="archive" name="Quiz-Generator2.0.jar">
       <element id="module-output" name="Quiz-Generator2.0" />
-      <element id="extracted-dir" path="$PROJECT_DIR$/resources/json-simple-1.1.1.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/resources/json-simple-1.1.jar" path-in-jar="/" />
     </root>
   </artifact>
 </component>

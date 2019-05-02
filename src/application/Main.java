@@ -75,9 +75,6 @@ public class Main extends Application {
       addScene = new Scene(addMenu.initialize(), 700, 500);
       exitScene = new Scene(exitMenu.initialize(), 700, 500);
 
-      // Style for main menu
-      mainScene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
-
       // Present stage
       primaryStage.setScene(mainScene);
       primaryStage.setTitle("Quiz Generator");
