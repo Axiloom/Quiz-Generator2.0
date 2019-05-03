@@ -82,8 +82,7 @@ public class Question {
 
 
       if (!image.equals("none")) {
-        File file = new File(new File(image).getAbsolutePath());
-        Image tempImg = new Image(file.toURI().toString());
+        Image tempImg = new Image(image);
         img = new ImageView(tempImg);
         imageName = image;
       } else {
@@ -179,9 +178,9 @@ public class Question {
   public void loadJSON(String jsonFilePath)
       throws FileNotFoundException, IOException, ParseException {
 
-    String path = new File(jsonFilePath).getAbsolutePath();
+    Reader reader = new InputStreamReader(this.getClass().getResourceAsStream("/" + jsonFilePath));
 
-    Object obj = new JSONParser().parse(new FileReader(path));
+    Object obj = new JSONParser().parse(reader);
 
     JSONObject jo = (JSONObject)obj;
 
