@@ -216,7 +216,7 @@ public class AddMenu extends Main {
 
 		// Listeners
 		jsonFileChooserButton.setOnAction(event -> {
-			jsonFile = jsonFileChooser.showOpenDialog(primaryStage); // FIXME
+			jsonFile = jsonFileChooser.showOpenDialog(primaryStage);
 			if (jsonFile != null && jsonFile.exists()) {		
 				jsonLoad.setText(jsonFile.getName().substring(0, jsonFile.getName().lastIndexOf(".")));
 			}
