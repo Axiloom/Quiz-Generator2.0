@@ -1,6 +1,6 @@
 .PHONY = make jar runjar test clean
 
-CLASSPATH = .:junit-platform-console-standalone-1.3.2.jar:json-simple-1.1.1.jar:resources
+CLASSPATH = .:junit-platform-console-standalone-1.3.2.jar:json-simple-1.1.1.jar
 
 make: 
 	javac -cp $(CLASSPATH) -d . application/*.java
@@ -11,7 +11,7 @@ run:
 
 jar: 
 	javac -cp $(CLASSPATH) -d . application/*.java
-	jar cvmf manifest.txt executable.jar . -C resources .
+	jar cvmf manifest.txt executable.jar .
 
 runjar:
 	java -jar executable.jar
