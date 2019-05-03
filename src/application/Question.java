@@ -31,6 +31,7 @@ import java.util.Collections;
 import java.util.Hashtable;
 import java.util.List;
 import java.util.Optional;
+import java.util.Properties;
 import java.util.Random;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
@@ -178,10 +179,7 @@ public class Question {
   public void loadJSON(String jsonFilePath)
       throws FileNotFoundException, IOException, ParseException {
 
-    Reader reader =
-            new InputStreamReader(this.getClass().getResourceAsStream(File.separator + jsonFilePath));
-
-    Object obj = new JSONParser().parse(reader);
+    Object obj = new JSONParser().parse(new FileReader(jsonFilePath));
 
     JSONObject jo = (JSONObject)obj;
 
