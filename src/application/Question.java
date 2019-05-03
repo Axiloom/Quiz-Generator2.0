@@ -178,7 +178,8 @@ public class Question {
   public void loadJSON(String jsonFilePath)
       throws FileNotFoundException, IOException, ParseException {
 
-    Reader reader = new InputStreamReader(this.getClass().getResourceAsStream("/" + jsonFilePath));
+    Reader reader =
+            new InputStreamReader(this.getClass().getResourceAsStream(File.separator + jsonFilePath));
 
     Object obj = new JSONParser().parse(reader);
 
